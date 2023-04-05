@@ -1,5 +1,7 @@
 package login.gui;
 
+import login.classes.UserData;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;

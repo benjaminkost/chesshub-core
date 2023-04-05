@@ -20,7 +20,7 @@ public class UserData {
 
     public static void saveUserData(User user) {
         encryptUser(user);
-        File file = new File("src/users/" + user.getEncryptedUserName() + ".dat");
+        File file = new File("src/main/java/login" + user.getEncryptedUserName() + ".dat");
         if (file.isFile() && JOptionPane.showConfirmDialog((Component)null, "The Username already exists! \nOverwrite?", "Save", 0) == 1) {
             saveUserData(user);
         } else {
@@ -42,7 +42,7 @@ public class UserData {
 
     public static User getUser(String userName, String userPassword) {
         User testUser = encryptUser(new User(userName, userPassword));
-        File file = new File("src/users/" + testUser.getEncryptedUserName() + ".dat");
+        File file = new File("src/main/java/login" + testUser.getEncryptedUserName() + ".dat");
         if (!file.isFile()) {
             JOptionPane.showMessageDialog((Component)null, "User doesn't exist!", "Load", 0);
         }
