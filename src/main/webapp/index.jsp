@@ -9,7 +9,5 @@
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
-<a href="datenschutz.html">Datenschutz</a>
-<a href="impressum.html">Impressum</a>
 </body>
 </html>
