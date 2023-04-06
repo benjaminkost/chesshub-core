@@ -4,21 +4,16 @@ import java.util.List;
 
 public class User{
 
+	private List<User> userList;
 	private int user_Id;
 	private String Lastname;
 	private String Firstname;
 	private String Email;
 	private String password;
 	private String dateString;
-	private List<Team> memberInTeams;
-	private Club memberInClub;
-	private List<Authorisation> auth;
 	
-		
-	
-
-	public User(int user_Id, String lastname, String firstname, String email, String password, String dateString,
-			List<Team> memberInTeam, Club memberInClub, List<Authorisation> auth) {
+			
+	public User(int user_Id, String lastname, String firstname, String email, String password, String dateString) {
 		super();
 		this.user_Id = user_Id;
 		Lastname = lastname;
@@ -26,12 +21,9 @@ public class User{
 		Email = email;
 		this.password = password;
 		this.dateString = dateString;
-		this.memberInTeams = memberInTeam;
-		this.memberInClub = memberInClub;
-		this.auth = auth;
 	}
 
-
+	
 
 	public User() {
 		super();
@@ -86,55 +78,14 @@ public class User{
 	public void setDateString(String dateString) {
 		this.dateString = dateString;
 	}
-
-
-
-	public int getUser_Id() {
-		return user_Id;
-	}
-
-
-
-	public void setUser_Id(int user_Id) {
-		this.user_Id = user_Id;
-	}
-
-
-
-	public List<Team> getMemberInTeams() {
-		return memberInTeams;
-	}
-
-
-
-	public void setMemberInTeams(List<Team> memberInTeam) {
-		this.memberInTeams = memberInTeam;
-	}
-
-
-
-	public Club getMemberInClub() {
-		return memberInClub;
-	}
-
-
-
-	public void setMemberInClub(Club memberInClub) {
-		this.memberInClub = memberInClub;
-	}
-
-
-
-	public List<Authorisation> getAuth() {
-		return auth;
-	}
-
-
-
-	public void setAuth(List<Authorisation> auth) {
-		this.auth = auth;
-	}
 	
-	
+
+	public List<User> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
+	}
 }	
 
