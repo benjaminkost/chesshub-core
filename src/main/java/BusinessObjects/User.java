@@ -1,5 +1,6 @@
 package BusinessObjects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User{
@@ -11,19 +12,27 @@ public class User{
 	private String Email;
 	private String password;
 	private String dateString;
+	private Club club;
+	private List<Authorisation> authorisations = new ArrayList(); // TODO Warum nochmal als Liste reicht doch eine Berechtigung...?
+	private List<Team> teams = new ArrayList();
 	
 			
-	public User(int user_Id, String lastname, String firstname, String email, String password, String dateString) {
+	public User(List<User> userList, int user_Id, String lastname, String firstname, String email, String password,
+			String dateString, Club club, List<Authorisation> authorisations, List<Team> teams) {
 		super();
+		this.userList = userList;
 		this.user_Id = user_Id;
 		Lastname = lastname;
 		Firstname = firstname;
 		Email = email;
 		this.password = password;
 		this.dateString = dateString;
+		this.club = club;
+		this.authorisations = authorisations;
+		this.teams = teams;
 	}
 
-	
+
 
 	public User() {
 		super();
@@ -31,13 +40,17 @@ public class User{
 
 
 
-	public int getuser_Id() {
-		return user_Id;
+	public Club getClub() {
+		return club;
 	}
 
-	public void setuser_Id(int user_Id) {
-		this.user_Id = user_Id;
+
+
+	public void setClub(Club club) {
+		this.club = club;
 	}
+
+
 
 	public String getLastname() {
 		return Lastname;
@@ -87,5 +100,44 @@ public class User{
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
 	}
+
+
+
+	public int getUser_Id() {
+		return user_Id;
+	}
+
+
+
+	public void setUser_Id(int user_Id) {
+		this.user_Id = user_Id;
+	}
+
+
+
+	public List<Authorisation> getAuthorisations() {
+		return authorisations;
+	}
+
+
+
+	public void setAuthorisations(List<Authorisation> authorisations) {
+		this.authorisations = authorisations;
+	}
+
+
+
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
+	}
+	
+	
+	
 }	
 

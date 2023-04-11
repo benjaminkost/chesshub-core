@@ -4,11 +4,13 @@ public class Club {
 
 	private int club_ID;
 	private String name;
-	
-	public Club(int club_ID, String name) {
+	private User president;
+
+	public Club(int club_ID, String name, User president) {
 		super();
 		this.club_ID = club_ID;
 		this.name = name;
+		this.president = president;
 	}
 
 	public Club() {
@@ -30,6 +32,13 @@ public class Club {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
+	public User getPresident() {
+		return president;
+	}
+
+	public void setPresident(User president) {
+		this.president = president;
+	}
+
 }

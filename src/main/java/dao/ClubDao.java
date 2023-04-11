@@ -36,10 +36,13 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 		List<Club> clubList = new ArrayList<Club>();
 		try {
 			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTALLCLUBS);
+			Club club = new Club();
 			while (rs.next()) {
-				Club club = new Club();
 				club.setClub_ID(rs.getInt(COL_CLUB_ID));
+				club.setName(rs.getString(COL_NAME));
+				club.setPresident(UserDao.getInstance().getUserById(rs.getInt(COL_PRESIDENT)));
 				clubList.add(club);
+				club = null;
 			}
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -62,6 +65,7 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 			if (rs.next()) {
 				club.setClub_ID(rs.getInt(COL_CLUB_ID));
 				club.setName(rs.getString(COL_NAME));
+				club.setPresident(UserDao.getInstance().getUserById(rs.getInt(COL_PRESIDENT)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -81,7 +85,7 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 	public boolean updateClub(Club club) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATECLUB, club.getName(), club.getClub_ID()) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATECLUB, club.getName(),club.getPresident(), club.getClub_ID()) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -129,7 +133,7 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 		boolean result = false;
 		try {
 			if (DatabaseConnector.getInstance()
-					.executeUpdate(Q_INSERTCLUB, Club.getName()) > 0) {
+					.executeUpdate(Q_INSERTCLUB, Club.getName(), Club.getPresident()) > 0) {
 				ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
 				if (rs.next()) {
 					Club.setClub_ID(rs.getInt(1));

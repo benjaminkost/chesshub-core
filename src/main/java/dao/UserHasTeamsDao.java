@@ -1,21 +1,20 @@
 package dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-
 import java.util.List;
 
 import BusinessObjects.Team;
+import BusinessObjects.User;
 import Database.DatabaseConnector;
-import Database.DatabaseConnectorIF;
-import dao.Interface.TeamDaoIF;
+import dao.Interface.UserHasTeamsDaoIF;
 
-import java.sql.*;
+public class UserHasTeamsDao implements UserHasTeamsDaoIF{
+	
+	private static UserHasTeamsDao instance;
 
-public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
-
-	private static TeamDao instance;
-
-	private TeamDao() {
+	private UserHasTeamsDao() {
 		try {
 			DatabaseConnector.getInstance().connect();
 		} catch (SQLException e) {
@@ -24,24 +23,22 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 		}
 	}
 
-	public static TeamDao getInstance() {
+	public static UserHasTeamsDao getInstance() {
 		if (instance == null) {
-			instance = new TeamDao();
+			instance = new UserHasTeamsDao();
 		}
 		return instance;
 	}
 
+	
 	@Override
-	public List<Team> getAllTeams() {
+	public List<Team> getTeamsByUserId(User user) {
 		List<Team> TeamList = new ArrayList<Team>();
+		Team Team = new Team();
 		try {
-			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTALLTEAMS);
-			Team Team = new Team();
+			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTTEAMSBYUSERID, user.getUser_Id());
 			while (rs.next()) {
 				Team.setTeam_ID(rs.getInt(COL_TEAM_ID));
-				Team.setName(rs.getString(COL_NAME));
-				Team.setClub(ClubDao.getInstance().getClubById(rs.getInt(COL_CLUB)));
-				Team.setLeader(UserDao.getInstance().getUserById(rs.getInt(COL_LEADER)));
 				TeamList.add(Team);
 				Team = null;
 			}
@@ -59,35 +56,10 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 	}
 
 	@Override
-	public Team getTeamById(int Team_id){
-		Team Team = new Team();
-		try {
-			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYTEAMID, Team_id);
-			if (rs.next()) {
-				Team.setTeam_ID(rs.getInt(COL_TEAM_ID));
-				Team.setName(rs.getString(COL_NAME));
-				Team.setClub(ClubDao.getInstance().getClubById(rs.getInt(COL_CLUB)));
-				Team.setLeader(UserDao.getInstance().getUserById(rs.getInt(COL_LEADER)));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				DatabaseConnector.getInstance().closeStatement();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return Team;
-	}
-
-	@Override
-	public boolean updateTeam(Team Team) {
+	public boolean updateUserInTeam(User user, Team fromteam, Team toTeam) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATETEAM, Team.getName(),Team.getClub(), Team.getLeader(), Team.getTeam_ID()) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEUSERTEAM, toTeam.getTeam_ID(), user.getUser_Id(), fromteam.getTeam_ID()) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -107,10 +79,10 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 	}
 
 	@Override
-	public boolean deleteTeam(int Team_id) {
+	public boolean deleteUserFromTeam(User user, Team team) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETETEAM, Team_id) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEUSERFROMTEAM, user.getUser_Id(), team.getTeam_ID()) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -131,15 +103,10 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 	}
 
 	@Override
-	public boolean insertTeam(Team Team) {
+	public boolean insertUserInTeam(User user, Team team) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance()
-					.executeUpdate(Q_INSERTTEAM, Team.getName(), Team.getClub(), Team.getLeader()) > 0) {
-				ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
-				if (rs.next()) {
-					Team.setTeam_ID(rs.getInt(1));
-				}
+			if (DatabaseConnector.getInstance().executeUpdate(Q_INSERTUSERINTEAM, user.getUser_Id(), team.getTeam_ID()) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -147,7 +114,8 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
+		}
+		finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {

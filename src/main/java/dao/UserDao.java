@@ -35,15 +35,17 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 	public List<User> getAllUser() {
 		List<User> userList = new ArrayList<User>();
 		try {
-			ResultSet rs = DatabaseConnector.getInstance().executeQuery("select * from user;");
+			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTALLUSERS);
+			User user = new User();
 			while (rs.next()) {
-				User user = new User();
-				user.setuser_Id(rs.getInt(USER_ID));
-				user.setFirstname(rs.getString(FIRSTNAME));
-				user.setLastname(rs.getString(LASTNAME));
-				user.setEmail(rs.getString(EMAIL));
-				user.setPassword(rs.getString(PASSWORD));
+				user.setUser_Id(rs.getInt(COL_USER_ID));
+				user.setFirstname(rs.getString(COL_FIRSTNAME));
+				user.setLastname(rs.getString(COL_LASTNAME));
+				user.setEmail(rs.getString(COL_EMAIL));
+				user.setPassword(rs.getString(COL_PASSWORD));
+				user.setClub(ClubDao.getInstance().getClubById(rs.getInt(COL_CLUB)));
 				userList.add(user);
+				user = null;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -64,14 +66,15 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 	public User getUserById(int User_id) {
 		User user = new User();
 		try {
-			ResultSet rs = DatabaseConnector.getInstance().executeQuery("select * from user where User_ID = ? ;", User_id);
+			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYUSERID, User_id);
 			if (rs.next()) {
 				user = new User();
-				user.setuser_Id(rs.getInt(USER_ID));
-				user.setFirstname(rs.getString(FIRSTNAME));
-				user.setLastname(rs.getString(LASTNAME));
-				user.setEmail(rs.getString(EMAIL));
-				user.setPassword(rs.getString(PASSWORD));
+				user.setUser_Id(rs.getInt(COL_USER_ID));
+				user.setFirstname(rs.getString(COL_FIRSTNAME));
+				user.setLastname(rs.getString(COL_LASTNAME));
+				user.setEmail(rs.getString(COL_EMAIL));
+				user.setPassword(rs.getString(COL_PASSWORD));
+				user.setClub(ClubDao.getInstance().getClubById(rs.getInt(COL_CLUB)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,7 +95,7 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 		boolean result = false;
 		try {
 			if (DatabaseConnector.getInstance().executeUpdate(
-					"UPDATE user SET Firstname=?, Lastname=?, Email=?, Password=? WHERE User_ID=?;", user.getFirstname(), user.getLastname(), user.getEmail(), user.getPassword(), user.getuser_Id() ) > 0) {
+					Q_UPDATEUSER, user.getFirstname(), user.getLastname(), user.getEmail(), user.getPassword(),user.getClub(), user.getUser_Id() ) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -116,7 +119,7 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 	public boolean deleteUser(int user_id) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate("DELETE FROM user WHERE user_ID = ?", user_id) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEUSER, user_id) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -141,10 +144,10 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 		boolean result = false;
 		try {
 			if (DatabaseConnector.getInstance()
-					.executeUpdate("INSERT INTO user(Firstname, Lastname, Email, Password) VALUES(?, ?, ?,?)",user.getFirstname(), user.getLastname(),user.getEmail(),user.getPassword() ) > 0) {
+					.executeUpdate(Q_INSERTUSER,user.getFirstname(), user.getLastname(),user.getEmail(),user.getPassword(),user.getClub() ) > 0) {
 				ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
 				if (rs.next()) {
-					user.setuser_Id(rs.getInt(1));
+					user.setUser_Id(rs.getInt(1));
 				}
 				result = true;
 			} else {

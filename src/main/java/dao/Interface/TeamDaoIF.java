@@ -9,16 +9,18 @@ public interface TeamDaoIF {
 	final String TABLENAME = "team";
 
 	// Collumnnames of Databasetable
-	final String COL_TEAM_ID = "TEAM_ID";
+	final String COL_TEAM_ID = "Team_ID";
 	final String COL_NAME = "Name";
+	final String COL_CLUB = "Club_ID";
+	final String COL_LEADER = "User_ID";
 
 	
 	//Queries
 	final String Q_SELECTALLTEAMS = "SELECT * FROM " +TABLENAME;
 	final String Q_SELECTBYTEAMID = "SELECT * FROM "+TABLENAME+ " WHERE "+COL_TEAM_ID+" = ? ;";
-	final String Q_UPDATETEAM = "UPDATE "+TABLENAME+" SET "+COL_NAME+"=? WHERE "+ COL_TEAM_ID+"=?;";
+	final String Q_UPDATETEAM = "UPDATE "+TABLENAME+" SET "+COL_NAME+"=?, "+COL_CLUB+"=?, "+COL_LEADER+"=? WHERE "+ COL_TEAM_ID+"=?;";
 	final String Q_DELETETEAM = "DELETE FROM "+TABLENAME+" WHERE "+COL_TEAM_ID+"=?";
-	final String Q_INSERTTEAM = "INSERT INTO "+TABLENAME+"("+COL_NAME+") VALUES (?)";
+	final String Q_INSERTTEAM = "INSERT INTO "+TABLENAME+"("+COL_NAME+","+COL_CLUB+","+COL_LEADER+") VALUES (?,?,?)";
 
 	public List<Team> getAllTeams();
 

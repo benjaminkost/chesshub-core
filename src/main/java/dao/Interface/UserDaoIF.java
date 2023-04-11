@@ -1,22 +1,36 @@
 package dao.Interface;
+
 import java.util.List;
 
 import BusinessObjects.User;
 
-public interface UserDaoIF{
-	
+public interface UserDaoIF {
+
+	final String TABLENAME = "User";
 	// Collumnames
-	 final String USER_ID = "User_ID";
-	 final String FIRSTNAME = "Firstname";
-	 final String LASTNAME = "Lastname";
-	 final String EMAIL = "Email";
-	 final String PASSWORD = "Password";
-		
-	public List<User> getAllUser ();
-	public User getUserById (int User_id);
-	public boolean updateUser (User user);
-	public boolean deleteUser (int user_id);
-	public boolean insertUser (User user);
-	
+	final String COL_USER_ID = "User_ID";
+	final String COL_FIRSTNAME = "Firstname";
+	final String COL_LASTNAME = "Lastname";
+	final String COL_EMAIL = "Email";
+	final String COL_PASSWORD = "Password";
+	final String COL_LASTLOGIN = "LastLogin";
+	final String COL_CLUB = "Club_ID";
+
+//	 Queries
+	final String Q_SELECTALLUSERS = "SELECT * FROM " +TABLENAME;
+	final String Q_SELECTBYUSERID = "SELECT * FROM "+TABLENAME+ " WHERE "+COL_USER_ID+" = ? ;";
+	final String Q_UPDATEUSER = "UPDATE "+TABLENAME+" SET "+COL_FIRSTNAME+"=?, "+COL_LASTNAME+"=?, "+COL_EMAIL+"=?, "+COL_PASSWORD+"=?, "+COL_CLUB+"=? WHERE "+ COL_USER_ID+"=?;";
+	final String Q_DELETEUSER = "DELETE FROM "+TABLENAME+" WHERE "+COL_USER_ID+"=?";
+	final String Q_INSERTUSER = "INSERT INTO "+TABLENAME+"("+COL_FIRSTNAME+","+COL_LASTNAME+","+COL_EMAIL+","+COL_PASSWORD+","+COL_CLUB+") VALUES (?,?,?,?,?)";
+
+	public List<User> getAllUser();
+
+	public User getUserById(int User_id);
+
+	public boolean updateUser(User user);
+
+	public boolean deleteUser(int user_id);
+
+	public boolean insertUser(User user);
 
 }

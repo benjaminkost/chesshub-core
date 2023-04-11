@@ -4,10 +4,16 @@ public class Team {
 	
 	private int team_ID;
 	private String name;
-	public Team(int team_ID, String name) {
+	private Club club;
+	private User leader;
+	
+	public Team(int team_ID, String name, Club club, User leader) {
 		super();
 		this.team_ID = team_ID;
 		this.name = name;
+		this.club = club;
+		this.leader = leader;	
+		
 	}
 	public Team() {
 		super();
@@ -23,6 +29,18 @@ public class Team {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public Club getClub() {
+		return club;
+	}
+	public void setClub(Club club) {
+		this.club = club;
+	}
+	public User getLeader() {
+		return leader;
+	}
+	public void setLeader(User leader) {
+		this.leader = leader;
 	}
 	
 	

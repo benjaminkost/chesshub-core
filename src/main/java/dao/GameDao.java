@@ -37,8 +37,8 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 		List<Game> gameList = new ArrayList<Game>();
 		try {
 			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTALLGAMES);
+			Game game = new Game();
 			while (rs.next()) {
-				Game game = new Game();
 				game.setGame_ID(rs.getInt(COL_GAME_ID));
 				game.setEvent(rs.getString(COL_EVENT));
 				game.setRound(rs.getInt(COL_ROUND));
@@ -48,7 +48,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				game.setBlack(UserDao.getInstance().getUserById(rs.getInt(COL_BLACK)));
 				game.setWhite(UserDao.getInstance().getUserById(rs.getInt(COL_WHITE)));
 				gameList.add(game);
-
+				game = null;
 			}
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -97,8 +97,8 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 		boolean result = false;
 		try {
 			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEGAME, game.getEvent(), game.getRound(), game.getSite(),
-					game.getDate(), game.getMoves(), game.getResult(), game.getBlack().getuser_Id(),
-					game.getWhite().getuser_Id(), game.getGame_ID()) > 0) {
+					game.getDate(), game.getMoves(), game.getResult(), game.getBlack().getUser_Id(),
+					game.getWhite().getUser_Id(), game.getGame_ID()) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -147,8 +147,8 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 		try {
 			if (DatabaseConnector.getInstance()
 					.executeUpdate(Q_INSERTGAME,game.getEvent(), game.getRound(), game.getSite(),
-							game.getDate(), game.getMoves(), game.getResult(), game.getBlack().getuser_Id(),
-							game.getWhite().getuser_Id())  > 0) {
+							game.getDate(), game.getMoves(), game.getResult(), game.getBlack().getUser_Id(),
+							game.getWhite().getUser_Id())  > 0) {
 				ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
 				if (rs.next()) {
 					game.setGame_ID(rs.getInt(1));
