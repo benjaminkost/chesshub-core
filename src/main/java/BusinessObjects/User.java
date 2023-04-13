@@ -14,7 +14,7 @@ public class User{
 	private String dateString;
 	private Club club;
 	private List<Authorisation> authorisations = new ArrayList(); // TODO Warum nochmal als Liste reicht doch eine Berechtigung...?
-	private List<Team> teams = new ArrayList();
+	private List<Team> teams;
 	
 			
 	public User(List<User> userList, int user_Id, String lastname, String firstname, String email, String password,
@@ -135,6 +135,14 @@ public class User{
 
 	public void setTeams(List<Team> teams) {
 		this.teams = teams;
+	}
+
+	public void addTeam(Team newTeam){
+		this.teams.add(newTeam);
+	}
+
+	public void removeTeam(Team oldTeam){
+		this.teams.remove(oldTeam);
 	}
 	
 	
