@@ -1,4 +1,4 @@
-package login.gui;
+package login.deprecated.gui;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -9,7 +9,7 @@ import javax.swing.*;
  * Beschreibung
  *
  * @version 1.0 vom 27.03.2023
- * @author 
+ * @author  unknown
  */
 
 public class GUI extends JFrame {

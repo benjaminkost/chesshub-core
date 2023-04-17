@@ -1,7 +1,6 @@
-package login.classes;
+package login;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
 
 /**
  * A class that provides a method for encrypting a string using SHA-256 algorithm.
