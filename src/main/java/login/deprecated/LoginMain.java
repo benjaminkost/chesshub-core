@@ -2,8 +2,9 @@ package login.deprecated;
 
 import login.deprecated.gui.LoginGUI;
 
-public class LoginMain {
+public class LoginMain {/*
     public static void main(String[] args) {
+
         User user = new User("ben", "123");
         UserData.saveUserData(user);
         //UserData.saveUserData("123", "123"); //Also possible
@@ -14,5 +15,5 @@ public class LoginMain {
         User newUser = UserData.getUser(userName, userPassword);
 
         new LoginGUI();
-    }
+    }*/
 }
