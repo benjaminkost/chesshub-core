@@ -39,7 +39,7 @@ public class UserDaoTest {
 		user.setEmail("max.mustermann@test.com");
 		user.setPassword("password");
 		assertTrue(userDao.insertUser(user));
-		assertNotNull(user.getuser_Id());
+		assertNotNull(user.getUser_Id());
 	}
 	@Test
     @Order(2)
