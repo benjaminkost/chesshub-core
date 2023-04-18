@@ -53,7 +53,7 @@ public class DatabaseConnector implements DatabaseConnectorIF{
 
 
     public synchronized void connect() throws SQLException {
-        String url = "jdbc:mysql://" + HOST + "/" + DATABASENAME;
+        String url = "jdbc:mariadb://" + HOST + "/" + DATABASENAME;
         connection = DriverManager.getConnection(url, DBUSER, DBPW);
     }
     
