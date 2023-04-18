@@ -1,8 +1,10 @@
-package login.classes;
+package login.deprecated;
 //
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by FernFlower decompiler)
 //
+
+import login.StringEncrypter;
 
 import java.awt.Component;
 import java.io.File;
@@ -30,7 +32,7 @@ public class UserData {
                 oos.writeObject(new User(user.getEncryptedUserName(), user.getEncryptedUserPassword(), true));
                 oos.close();
                 fos.close();
-                JOptionPane.showMessageDialog((Component)null, "Sucesfully saved", "Save", 1);
+                JOptionPane.showMessageDialog((Component)null, "Successfully saved", "Save", 1);
             } catch (FileNotFoundException var4) {
                 var4.printStackTrace();
             } catch (IOException var5) {

@@ -1,18 +1,22 @@
 package BusinessObjects;
 
+import java.util.List;
+
 public class Team {
 	
 	private int team_ID;
 	private String name;
 	private Club club;
 	private User leader;
+	private List<User> members;
 	
-	public Team(int team_ID, String name, Club club, User leader) {
+	public Team(int team_ID, String name, Club club, User leader, List<User> members) {
 		super();
 		this.team_ID = team_ID;
 		this.name = name;
 		this.club = club;
-		this.leader = leader;	
+		this.leader = leader;
+		this.members=members;
 		
 	}
 	public Team() {
@@ -42,7 +46,22 @@ public class Team {
 	public void setLeader(User leader) {
 		this.leader = leader;
 	}
-	
-	
 
+	public List<User> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<User> members) {
+		this.members = members;
+	}
+
+	public void addMember(User newMember){
+		this.members.add(newMember);
+		newMember.addTeam(this);
+	}
+
+	public void removeMember(User oldMember){
+		this.members.remove(oldMember);
+		oldMember.removeTeam(this);
+	}
 }

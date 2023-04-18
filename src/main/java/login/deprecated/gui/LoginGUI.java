@@ -1,7 +1,6 @@
-package login.gui;
+package login.deprecated.gui;
 
-import login.classes.User;
-import login.classes.UserData;
+import login.deprecated.UserData;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -15,24 +14,22 @@ import javax.swing.*;
  * @author 
  */
 
-public class SignUpGUI extends JFrame {
+public class LoginGUI extends JFrame {
   // Anfang Attribute
   private JLabel lUsername = new JLabel();
   private JLabel lPassword = new JLabel();
-  private JLabel lSignUp = new JLabel();
+  private JLabel lHEADLINE = new JLabel();
   private JTextField tfUsername = new JTextField();
   private JTextField tfPassword = new JTextField();
   private JButton bContinue = new JButton();
-  private JLabel lConfirmpassword = new JLabel();
-  private JTextField tfConfirmpassword = new JTextField();
   // Ende Attribute
   
-  public SignUpGUI() {
+  public LoginGUI() {
     // Frame-Initialisierung
     super();
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    int frameWidth = 332; 
-    int frameHeight = 208;
+    int frameWidth = 300; 
+    int frameHeight = 186;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -43,7 +40,7 @@ public class SignUpGUI extends JFrame {
     Container cp = getContentPane();
     cp.setLayout(null);
     // Anfang Komponenten
-    bContinue.setBounds(120, 136, 80, 24);
+    bContinue.setBounds(104, 112, 80, 24);
     bContinue.setText("Continue");
     bContinue.setMargin(new Insets(2, 2, 2, 2));
     bContinue.addActionListener(new ActionListener() { 
@@ -53,14 +50,14 @@ public class SignUpGUI extends JFrame {
     });
     bContinue.setBackground(Color.WHITE);
     cp.add(bContinue);
-    tfUsername.setBounds(120, 40, 184, 24);
+    tfUsername.setBounds(88, 40, 184, 24);
     tfUsername.setToolTipText("Enter a username");
     tfUsername.setText("Enter a username");
     cp.add(tfUsername);
-    lSignUp.setBounds(0, 8, 320, 24);
-    lSignUp.setText("Sign Up");
-    lSignUp.setHorizontalAlignment(SwingConstants.CENTER);
-    cp.add(lSignUp);
+    lHEADLINE.setBounds(8, 8, 264, 24);
+    lHEADLINE.setText("Login");
+    lHEADLINE.setHorizontalAlignment(SwingConstants.CENTER);
+    cp.add(lHEADLINE);
     lUsername.setBounds(8, 40, 80, 24);
     lUsername.setText("Username:");
     lUsername.setBackground(Color.WHITE);
@@ -73,32 +70,22 @@ public class SignUpGUI extends JFrame {
     lPassword.setBackground(Color.WHITE);
     lPassword.setOpaque(true);
     cp.add(lPassword);
-    tfPassword.setBounds(120, 72, 184, 24);
+    tfPassword.setBounds(88, 72, 184, 24);
     tfPassword.setToolTipText("Enter a password");
     tfPassword.setText("Enter a password");
     cp.add(tfPassword);
-    lConfirmpassword.setBounds(8, 104, 112, 24);
-    lConfirmpassword.setText("Confirm password:");
-    cp.add(lConfirmpassword);
-    tfConfirmpassword.setBounds(120, 104, 184, 24);
-    tfConfirmpassword.setText("Confirm password");
-    tfConfirmpassword.setToolTipText("Confirm password");
-    cp.add(tfConfirmpassword);
     // Ende Komponenten
     
     setVisible(true);
   } // end of public UserdataGUI
   
-  // Anfang Methoden
+  // Anfang Methode
   
   public void bContinue_ActionPerformed(ActionEvent evt) {
     if (tfPassword != null && tfUsername != null){
-      if (tfPassword.getText().equals(tfConfirmpassword.getText())) {
-        UserData.saveUserData(new User(tfUsername.getText(), tfPassword.getText()));
-      } else {
-        JOptionPane.showMessageDialog(null, "Passwords don't match", "Error", JOptionPane.INFORMATION_MESSAGE);
-      }
-    }else {
+      UserData.getUser(tfUsername.getText(), tfPassword.getText());
+      dispose();
+    } else {
       JOptionPane.showMessageDialog(null, "Please fillout all fields", "Error", JOptionPane.INFORMATION_MESSAGE);
     }
     

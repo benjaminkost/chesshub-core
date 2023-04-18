@@ -1,4 +1,4 @@
-package login.gui;
+package login.deprecated.gui;
 
 import java.awt.*;
 import java.awt.event.*;

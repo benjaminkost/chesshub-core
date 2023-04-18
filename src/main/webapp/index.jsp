@@ -2,14 +2,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Chess Management</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<h1><%= "Welcome to the digitization of chess score sheets!" %>
 </h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
-<a href="datenschutz.html">Datenschutz</a>
-<a href="impressum.html">Impressum</a>
+<b>Navigation:</b>
+<ol>
+    <li><a href="helloServlet">Hello Servlet</a></li>
+    <li><a href="login.html"> Login</a></li>
+    <li><a href="datenschutz.html">Data protection</a></li>
+    <li><a href="impressum.html">Imprint</a></li>
+</ol>
+
+
+
 </body>
 </html>

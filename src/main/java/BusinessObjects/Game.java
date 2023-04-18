@@ -1,6 +1,6 @@
 package BusinessObjects;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Game {
 
@@ -103,7 +103,22 @@ public class Game {
 	public void setMoves(String moves) {
 		this.moves = moves;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Game{" +
+				"\ngame_ID=" + game_ID +
+				"\n, event='" + event + '\'' +
+				"\n, site='" + site + '\'' +
+				"\n, date=" + date +
+				"\n, round=" + round +
+				"\n, white=" + white +
+				"\n, black=" + black +
+				"\n, Result='" + Result + '\'' +
+				"\n, moves='" + moves + '\'' +
+				'}';
+	}
+
 	public String readPGN() {
 //		TODO BEN?
 		return Result;

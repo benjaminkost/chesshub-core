@@ -75,3 +75,4 @@ public class UserDaoTest {
 		assertNull(userDao.getUserById(1));
 	}
 }
+

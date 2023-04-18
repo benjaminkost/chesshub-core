@@ -5,7 +5,7 @@ import java.util.List;
 
 public class User{
 
-	private List<User> userList;
+	//private List<User> userList;
 	private int user_Id;
 	private String Lastname;
 	private String Firstname;
@@ -14,13 +14,13 @@ public class User{
 	private String dateString;
 	private Club club;
 	private List<Authorisation> authorisations = new ArrayList(); // TODO Warum nochmal als Liste reicht doch eine Berechtigung...?
-	private List<Team> teams = new ArrayList();
+	private List<Team> teams;
 	
 			
-	public User(List<User> userList, int user_Id, String lastname, String firstname, String email, String password,
+	public User( /*List<User> userList,*/ int user_Id, String lastname, String firstname, String email, String password,
 			String dateString, Club club, List<Authorisation> authorisations, List<Team> teams) {
 		super();
-		this.userList = userList;
+		//this.userList = userList;
 		this.user_Id = user_Id;
 		Lastname = lastname;
 		Firstname = firstname;
@@ -38,19 +38,13 @@ public class User{
 		super();
 	}
 
-
-
 	public Club getClub() {
 		return club;
 	}
 
-
-
 	public void setClub(Club club) {
 		this.club = club;
 	}
-
-
 
 	public String getLastname() {
 		return Lastname;
@@ -91,53 +85,45 @@ public class User{
 	public void setDateString(String dateString) {
 		this.dateString = dateString;
 	}
-	
-
+/*
 	public List<User> getUserList() {
 		return userList;
 	}
 
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
-	}
-
-
+	}*/
 
 	public int getUser_Id() {
 		return user_Id;
 	}
 
-
-
 	public void setUser_Id(int user_Id) {
 		this.user_Id = user_Id;
 	}
-
-
 
 	public List<Authorisation> getAuthorisations() {
 		return authorisations;
 	}
 
-
-
 	public void setAuthorisations(List<Authorisation> authorisations) {
 		this.authorisations = authorisations;
 	}
-
-
 
 	public List<Team> getTeams() {
 		return teams;
 	}
 
-
-
 	public void setTeams(List<Team> teams) {
 		this.teams = teams;
 	}
-	
-	
-	
+
+	public void addTeam(Team newTeam){
+		this.teams.add(newTeam);
+	}
+
+	public void removeTeam(Team oldTeam){
+		this.teams.remove(oldTeam);
+	}
 }	
 
