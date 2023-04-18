@@ -1,6 +1,7 @@
-package PGNReader;
+package PGNReaderTest;
 
 import Database.DatabaseConnector;
+import PGNReader.PGNReader;
 import org.junit.Test;
 
 import java.io.File;
@@ -19,7 +20,7 @@ public class PGNReaderTest {
 
         try {
             PGNReader test = new PGNReader();
-            File pgnFile = new File("/Users/benkostka/Documents/Schach/Partien/Gewonnen/TestPGN.pgn");
+            File pgnFile = new File("src/test/resources/PGNTestFile.pgn");
             test.parseFile(pgnFile);
         } catch (Exception e){
             System.out.println(e.getMessage());
