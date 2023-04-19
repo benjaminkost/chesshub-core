@@ -1,5 +1,6 @@
 package BusinessObjects;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Team {
@@ -8,7 +9,7 @@ public class Team {
 	private String name;
 	private Club club;
 	private User leader;
-	private List<User> members;
+	private List<User> members = new ArrayList<>();
 	
 	public Team(int team_ID, String name, Club club, User leader, List<User> members) {
 		super();

@@ -14,7 +14,7 @@ public class User{
 	private String dateString;
 	private Club club;
 	private Authorisation auth;
-	private List<Team> teams;
+	private List<Team> teams = new ArrayList<>();
 	
 			
 	public User( int user_Id, String lastname, String firstname, String email, String password,
