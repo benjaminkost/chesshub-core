@@ -16,11 +16,11 @@ public interface TeamDaoIF {
 
 	
 	//Queries
-	final String Q_SELECTALLTEAMS = "SELECT * FROM " +TABLENAME;
+	final String Q_SELECTALLTEAMS = "SELECT * FROM " +TABLENAME+";";
 	final String Q_SELECTBYTEAMID = "SELECT * FROM "+TABLENAME+ " WHERE "+COL_TEAM_ID+" = ? ;";
 	final String Q_UPDATETEAM = "UPDATE "+TABLENAME+" SET "+COL_NAME+"=?, "+COL_CLUB+"=?, "+COL_LEADER+"=? WHERE "+ COL_TEAM_ID+"=?;";
-	final String Q_DELETETEAM = "DELETE FROM "+TABLENAME+" WHERE "+COL_TEAM_ID+"=?";
-	final String Q_INSERTTEAM = "INSERT INTO "+TABLENAME+"("+COL_NAME+","+COL_CLUB+","+COL_LEADER+") VALUES (?,?,?)";
+	final String Q_DELETETEAM = "DELETE FROM "+TABLENAME+" WHERE "+COL_TEAM_ID+"=?;";
+	final String Q_INSERTTEAM = "INSERT INTO "+TABLENAME+"("+COL_NAME+","+COL_CLUB+","+COL_LEADER+") VALUES (?,?,?);";
 
 	public List<Team> getAllTeams();
 

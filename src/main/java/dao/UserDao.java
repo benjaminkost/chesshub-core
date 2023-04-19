@@ -93,12 +93,16 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 	public boolean updateUser(User user) {
 		boolean result = false;
 		Integer clubID = null;
-		if (user.getClub() != null) {
+		Integer authId = null;
+		if (user.getClub() != null && user.getClub().getClub_ID() != 0) {
 			clubID = user.getClub().getClub_ID();
+		}
+		if (user.getAuthorisation() != null && user.getAuthorisation().getAuth_ID() != 0) {
+			authId = user.getAuthorisation().getAuth_ID();
 		}
 		try {
 			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEUSER, user.getFirstname(), user.getLastname(),
-					user.getEmail(), user.getPassword(), clubID, user.getUser_Id()) > 0) {
+					user.getEmail(), user.getPassword(), clubID, authId, user.getUser_Id()) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -145,13 +149,17 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 	public boolean insertUser(User user) {
 		boolean result = false;
 		Integer clubID = null;
+		Integer authId = null;
 		if (user.getClub() != null) {
 			clubID = user.getClub().getClub_ID();
 		}
 		
+		if (user.getAuthorisation() != null) {
+			authId = user.getAuthorisation().getAuth_ID();
+		}
 		try {
 			if (DatabaseConnector.getInstance().executeUpdate(Q_INSERTUSER, user.getFirstname(), user.getLastname(),
-					user.getEmail(), user.getPassword(), clubID) > 0) {
+					user.getEmail(), user.getPassword(), clubID, authId) > 0) {
 				ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
 				if (rs.next()) {
 					user.setUser_Id(rs.getInt(1));

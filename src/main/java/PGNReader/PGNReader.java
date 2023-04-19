@@ -27,7 +27,7 @@ public class PGNReader {
      */
     private static boolean parsingTagpairs;
 
-    Game importedGame = new Game();
+    public Game importedGame = new Game();
 
     /**
      * Given pgn file this method returns list of games contained in the file.
@@ -57,18 +57,17 @@ public class PGNReader {
 
             //po radcich precteme cely pgn file
             while ((line = input.readLine()) != null) {
-                if(line.length() > 0) {
+                if (line.length() > 0) {
 
                     if (line.startsWith("[")) {
                         String lineTag[] = line.split(" ");
-                        setAttribute(lineTag[0].substring(1,lineTag[0].length()), //attribute name
-                                lineTag[1].substring(1,lineTag[1].length()-2));   //attribute value
+                        setAttribute(lineTag[0].substring(1, lineTag[0].length()), //attribute name
+                                lineTag[1].substring(1, lineTag[1].length() - 2));   //attribute value
                     } else {
                         importedGame.setMoves(line);
                     }
                 }
-                }
-            GameDao.getInstance().insertGame(importedGame);
+            }
 
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -85,13 +84,16 @@ public class PGNReader {
                 ex.printStackTrace();
             }
         }
+
+        System.out.println( importedGame.toString());
+        GameDao.getInstance().insertGame(importedGame);
     }
 
     private void setAttribute(String attrName,
                                      String attrValue) throws ParseException {
         attrName = attrName.toLowerCase();
 
-        System.out.println("attrName: "+attrName+" attrValue: "+attrValue);
+        //System.out.println("attrName: "+attrName+" attrValue: "+attrValue);
 
         switch (attrName) {
             case "event":

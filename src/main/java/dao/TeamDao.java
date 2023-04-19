@@ -87,10 +87,10 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 		boolean result = false;
 		Integer leaderID = null;
 		Integer clubID = null;
-		if (Team.getLeader() != null) {
+		if (Team.getLeader() != null && Team.getLeader().getUser_Id() != 0) {
 			leaderID = Team.getLeader().getUser_Id();
 		}
-		if (Team.getClub() != null) {
+		if (Team.getClub() != null && Team.getClub().getClub_ID() != 0) {
 			clubID = Team.getClub().getClub_ID();
 		}
 		try {

@@ -37,9 +37,9 @@ public class UserHasTeamsDao implements UserHasTeamsDaoIF{
 		try {
 			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTTEAMSBYUSERID, user.getUser_Id());
 			while (rs.next()) {
-				Team Team = new Team();
-				Team.setTeam_ID(rs.getInt(COL_TEAM_ID));
-				TeamList.add(Team);
+				Team team = new Team();
+				team = TeamDao.getInstance().getTeamById(rs.getInt(COL_TEAM_ID));
+				TeamList.add(team);
 			}
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -52,6 +52,29 @@ public class UserHasTeamsDao implements UserHasTeamsDaoIF{
 			}
 		}
 		return TeamList;
+	}
+	
+	@Override
+	public List<User> getUsersByTeamId(Team team) {
+		List<User> UserList = new ArrayList<User>();
+		try {
+			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTUSERSBYTEAMID, team.getTeam_ID());
+			while (rs.next()) {
+				User user = new User();
+				user = UserDao.getInstance().getUserById(rs.getInt(COL_USER_ID));
+				UserList.add(user);
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+		} finally {
+			try {
+				DatabaseConnector.getInstance().closeStatement();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return UserList;
 	}
 
 	@Override

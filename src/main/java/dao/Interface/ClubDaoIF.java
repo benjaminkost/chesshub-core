@@ -15,11 +15,11 @@ public interface ClubDaoIF {
 
 	
 	//Queries
-	final String Q_SELECTALLCLUBS = "SELECT * FROM " +TABLENAME;
+	final String Q_SELECTALLCLUBS = "SELECT * FROM " +TABLENAME+";";
 	final String Q_SELECTBYCLUBID = "SELECT * FROM "+TABLENAME+" WHERE "+ COL_CLUB_ID+"=?;";
 	final String Q_UPDATECLUB = "UPDATE "+TABLENAME+" SET "+COL_NAME+"=?, "+COL_PRESIDENT+"=? WHERE "+ COL_CLUB_ID+"=?;";
-	final String Q_DELETECLUB = "DELETE FROM "+TABLENAME+" WHERE "+COL_CLUB_ID+"=?";
-	final String Q_INSERTCLUB = "INSERT INTO "+TABLENAME+"("+COL_NAME+","+COL_PRESIDENT+") VALUES (?,?)";
+	final String Q_DELETECLUB = "DELETE FROM "+TABLENAME+" WHERE "+COL_CLUB_ID+"=?;";
+	final String Q_INSERTCLUB = "INSERT INTO "+TABLENAME+"("+COL_NAME+","+COL_PRESIDENT+") VALUES (?,?);";
 
 	public List<Club> getAllClubs();
 

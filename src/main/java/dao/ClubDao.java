@@ -85,7 +85,7 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 	public boolean updateClub(Club club) {
 		boolean result = false;
 		Integer presidentID = null;
-		if (club.getPresident()!= null) {
+		if (club.getPresident()!= null && club.getPresident().getUser_Id() != 0) {
 			presidentID = club.getPresident().getUser_Id();
 		}
 		try {
@@ -137,7 +137,7 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 	public boolean insertClub(Club Club) {
 		boolean result = false;
 		Integer presidentID = null;
-		if (Club.getPresident()!= null) {
+		if (Club.getPresident()!= null && Club.getPresident().getUser_Id() != 0) {
 			presidentID = Club.getPresident().getUser_Id();
 		}
 		try {
