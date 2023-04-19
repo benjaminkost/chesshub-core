@@ -3,11 +3,13 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import BusinessObjects.Club;
 import BusinessObjects.User;
 import Database.DatabaseConnector;
 import Database.DatabaseConnectorIF;
 import dao.Interface.UserDaoIF;
 
+import java.lang.reflect.Method;
 import java.sql.*;
 
 public class UserDao implements UserDaoIF, DatabaseConnectorIF {
@@ -22,22 +24,22 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static UserDao getInstance() {
-        if (instance == null) {
-            instance = new UserDao();
-        }
-        return instance;
-		
+		if (instance == null) {
+			instance = new UserDao();
+		}
+		return instance;
+
 	}
-	
+
 	@Override
 	public List<User> getAllUser() {
 		List<User> userList = new ArrayList<User>();
 		try {
 			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTALLUSERS);
-			User user = new User();
 			while (rs.next()) {
+				User user = new User();
 				user.setUser_Id(rs.getInt(COL_USER_ID));
 				user.setFirstname(rs.getString(COL_FIRSTNAME));
 				user.setLastname(rs.getString(COL_LASTNAME));
@@ -45,13 +47,11 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 				user.setPassword(rs.getString(COL_PASSWORD));
 				user.setClub(ClubDao.getInstance().getClubById(rs.getInt(COL_CLUB)));
 				userList.add(user);
-				user = null;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
@@ -78,8 +78,7 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
@@ -93,9 +92,13 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 	@Override
 	public boolean updateUser(User user) {
 		boolean result = false;
+		Integer clubID = null;
+		if (user.getClub() != null) {
+			clubID = user.getClub().getClub_ID();
+		}
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(
-					Q_UPDATEUSER, user.getFirstname(), user.getLastname(), user.getEmail(), user.getPassword(),user.getClub(), user.getUser_Id() ) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEUSER, user.getFirstname(), user.getLastname(),
+					user.getEmail(), user.getPassword(), clubID, user.getUser_Id()) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -103,8 +106,7 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
@@ -116,19 +118,19 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 	}
 
 	@Override
-	public boolean deleteUser(int user_id) {
+	public boolean deleteUser(User user) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEUSER, user_id) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEUSER, user.getUser_Id()) > 0) {
 				result = true;
+				user = null;
 			} else {
 				result = false;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally {
+		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
@@ -142,9 +144,14 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 	@Override
 	public boolean insertUser(User user) {
 		boolean result = false;
+		Integer clubID = null;
+		if (user.getClub() != null) {
+			clubID = user.getClub().getClub_ID();
+		}
+		
 		try {
-			if (DatabaseConnector.getInstance()
-					.executeUpdate(Q_INSERTUSER,user.getFirstname(), user.getLastname(),user.getEmail(),user.getPassword(),user.getClub() ) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_INSERTUSER, user.getFirstname(), user.getLastname(),
+					user.getEmail(), user.getPassword(), clubID) > 0) {
 				ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
 				if (rs.next()) {
 					user.setUser_Id(rs.getInt(1));

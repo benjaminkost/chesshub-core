@@ -29,7 +29,7 @@ public interface UserDaoIF {
 
 	public boolean updateUser(User user);
 
-	public boolean deleteUser(int user_id);
+	public boolean deleteUser(User user);
 
 	public boolean insertUser(User user);
 

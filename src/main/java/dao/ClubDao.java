@@ -36,13 +36,13 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 		List<Club> clubList = new ArrayList<Club>();
 		try {
 			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTALLCLUBS);
-			Club club = new Club();
 			while (rs.next()) {
+				Club club = new Club();
 				club.setClub_ID(rs.getInt(COL_CLUB_ID));
 				club.setName(rs.getString(COL_NAME));
 				club.setPresident(UserDao.getInstance().getUserById(rs.getInt(COL_PRESIDENT)));
 				clubList.add(club);
-				club = null;
+
 			}
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -105,11 +105,12 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 	}
 
 	@Override
-	public boolean deleteClub(int club_id) {
+	public boolean deleteClub(Club club) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETECLUB, club_id) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETECLUB, club.getClub_ID()) > 0) {
 				result = true;
+				club = null;
 			} else {
 				result = false;
 			}

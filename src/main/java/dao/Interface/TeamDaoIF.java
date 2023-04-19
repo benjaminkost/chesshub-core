@@ -10,7 +10,7 @@ public interface TeamDaoIF {
 
 	// Collumnnames of Databasetable
 	final String COL_TEAM_ID = "Team_ID";
-	final String COL_NAME = "Name";
+	final String COL_NAME = "Teamname";
 	final String COL_CLUB = "Club_ID";
 	final String COL_LEADER = "User_ID";
 
@@ -28,7 +28,7 @@ public interface TeamDaoIF {
 
 	public boolean updateTeam(Team team);
 
-	public boolean deleteTeam(int team_id);
+	public boolean deleteTeam(Team team);
 
 	public boolean insertTeam(Team team);
 

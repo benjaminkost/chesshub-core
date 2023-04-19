@@ -32,7 +32,7 @@ public interface GameDaoIF {
 
 	public boolean updateGame(Game game);
 
-	public boolean deleteGame(int game_id);
+	public boolean deleteGame(Game game);
 
 	public boolean insertGame(Game game);
 

@@ -37,8 +37,8 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 		List<Game> gameList = new ArrayList<Game>();
 		try {
 			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTALLGAMES);
-			Game game = new Game();
 			while (rs.next()) {
+				Game game = new Game();
 				game.setGame_ID(rs.getInt(COL_GAME_ID));
 				game.setEvent(rs.getString(COL_EVENT));
 				game.setRound(rs.getInt(COL_ROUND));
@@ -48,7 +48,6 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				game.setBlack(UserDao.getInstance().getUserById(rs.getInt(COL_BLACK)));
 				game.setWhite(UserDao.getInstance().getUserById(rs.getInt(COL_WHITE)));
 				gameList.add(game);
-				game = null;
 			}
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -118,11 +117,12 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 	}
 
 	@Override
-	public boolean deleteGame(int game_id) {
+	public boolean deleteGame(Game game) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEGAME, game_id) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEGAME, game.getGame_ID()) > 0) {
 				result = true;
+				game = null;
 			} else {
 				result = false;
 			}

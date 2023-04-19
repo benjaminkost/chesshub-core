@@ -104,11 +104,13 @@ public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
 	}
 
 	@Override
-	public boolean deleteAuth(int auth_id) {
+	public boolean deleteAuth(Authorisation auth) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEAUTH, auth_id) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEAUTH, auth.getAuth_ID()) > 0) {
 				result = true;
+				auth = null;
+				
 			} else {
 				result = false;
 			}

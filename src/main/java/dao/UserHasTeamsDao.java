@@ -34,13 +34,12 @@ public class UserHasTeamsDao implements UserHasTeamsDaoIF{
 	@Override
 	public List<Team> getTeamsByUserId(User user) {
 		List<Team> TeamList = new ArrayList<Team>();
-		Team Team = new Team();
 		try {
 			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTTEAMSBYUSERID, user.getUser_Id());
 			while (rs.next()) {
+				Team Team = new Team();
 				Team.setTeam_ID(rs.getInt(COL_TEAM_ID));
 				TeamList.add(Team);
-				Team = null;
 			}
 		} catch (SQLException e) {
 			// TODO: handle exception

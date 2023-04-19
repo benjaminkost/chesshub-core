@@ -36,14 +36,13 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 		List<Team> TeamList = new ArrayList<Team>();
 		try {
 			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTALLTEAMS);
-			Team Team = new Team();
 			while (rs.next()) {
+				Team Team = new Team();
 				Team.setTeam_ID(rs.getInt(COL_TEAM_ID));
 				Team.setName(rs.getString(COL_NAME));
 				Team.setClub(ClubDao.getInstance().getClubById(rs.getInt(COL_CLUB)));
 				Team.setLeader(UserDao.getInstance().getUserById(rs.getInt(COL_LEADER)));
 				TeamList.add(Team);
-				Team = null;
 			}
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -87,7 +86,7 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 	public boolean updateTeam(Team Team) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATETEAM, Team.getName(),Team.getClub(), Team.getLeader(), Team.getTeam_ID()) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATETEAM, Team.getName(),Team.getClub().getClub_ID(), Team.getLeader().getUser_Id(), Team.getTeam_ID()) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -107,11 +106,12 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 	}
 
 	@Override
-	public boolean deleteTeam(int Team_id) {
+	public boolean deleteTeam(Team team) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETETEAM, Team_id) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETETEAM, team.getTeam_ID()) > 0) {
 				result = true;
+				team = null;
 			} else {
 				result = false;
 			}

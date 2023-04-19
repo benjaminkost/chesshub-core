@@ -25,7 +25,7 @@ public interface AuthDaoIF {
 
 	public boolean updateAuth(Authorisation auth);
 
-	public boolean deleteAuth(int auth_id);
+	public boolean deleteAuth(Authorisation auth);
 
 	public boolean insertAuth(Authorisation Auth);
 

@@ -27,7 +27,7 @@ public interface ClubDaoIF {
 
 	public boolean updateClub(Club club);
 
-	public boolean deleteClub(int club_id);
+	public boolean deleteClub(Club club);
 
 	public boolean insertClub(Club Club);
 
