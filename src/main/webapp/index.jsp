@@ -10,10 +10,10 @@
 <br/>
 <b>Navigation:</b>
 <ol>
-    <li><a href="helloServlet">Hello Servlet</a></li>
     <li><a href="login.html"> Login</a></li>
     <li><a href="datenschutz.html">Data protection</a></li>
     <li><a href="impressum.html">Imprint</a></li>
+    <li><a href="PGNUpload.jsp">PGNUpload</a></li>
 </ol>
 
 
