@@ -1,17 +1,10 @@
 package PGNReaderTest;
 
-import Database.DatabaseConnector;
+import BusinessObjects.Game;
 import PGNReader.PGNReader;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Scanner;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class PGNReaderTest {
 
@@ -21,7 +14,8 @@ public class PGNReaderTest {
         try {
             PGNReader test = new PGNReader();
             File pgnFile = new File("src/test/resources/PGNTestFile.pgn");
-            test.parseFile(pgnFile);
+            Game importedGame = test.parseFile(pgnFile);
+            System.out.println(importedGame.toString());
         } catch (Exception e){
             System.out.println(e.getMessage());
         }

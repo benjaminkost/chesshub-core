@@ -1,9 +1,6 @@
 package PGNReader;
 
 import BusinessObjects.Game;
-import dao.ClubDao;
-import dao.GameDao;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,21 +18,15 @@ import java.util.Date;
  */
 public class PGNReader {
 
-    /**
-     * State information of the parser representing whether it currently parses
-     * tag pair section of some game (true) or movetext section (false).
-     */
-    private static boolean parsingTagpairs;
-
     public Game importedGame = new Game();
 
     /**
      * Given pgn file this method returns list of games contained in the file.
      *
      * @param f the pgn file to be parsed.
-     * @return The list of games stored in the file.
+     * @return Game that was put in.
      */
-    public void parseFile(File f) {
+    public Game parseFile(File f) {
         if (f == null) {
             throw new NullPointerException("File can't be null!");
         }
@@ -51,17 +42,15 @@ public class PGNReader {
 
         try {
             input = new BufferedReader(new FileReader(f));
-            String line = null;
+            String line;
 
-            StringBuilder moveText = new StringBuilder();
-
-            //po radcich precteme cely pgn file
+            //read the entire pgn file after the instructions
             while ((line = input.readLine()) != null) {
                 if (line.length() > 0) {
 
                     if (line.startsWith("[")) {
-                        String lineTag[] = line.split(" ");
-                        setAttribute(lineTag[0].substring(1, lineTag[0].length()), //attribute name
+                        String[] lineTag = line.split(" ");
+                        setAttribute(lineTag[0].substring(1), //attribute name
                                 lineTag[1].substring(1, lineTag[1].length() - 2));   //attribute value
                     } else {
                         importedGame.setMoves(line);
@@ -71,9 +60,8 @@ public class PGNReader {
 
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (ParseException e) {
+
+        } catch (ParseException | IOException e) {
             throw new RuntimeException(e);
         } finally {
             try {
@@ -85,15 +73,12 @@ public class PGNReader {
             }
         }
 
-        System.out.println( importedGame.toString());
-        GameDao.getInstance().insertGame(importedGame);
+        return importedGame;
     }
 
     private void setAttribute(String attrName,
-                                     String attrValue) throws ParseException {
+                              String attrValue) throws ParseException {
         attrName = attrName.toLowerCase();
-
-        //System.out.println("attrName: "+attrName+" attrValue: "+attrValue);
 
         switch (attrName) {
             case "event":
@@ -103,7 +88,7 @@ public class PGNReader {
                 importedGame.setSite(attrValue);
                 break;
             case "date":
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy.mm.dd");
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy.MM.dd");
                 Date dateAttr = formatter.parse(attrValue);
                 importedGame.setDate(dateAttr);
                 break;

@@ -1,4 +1,4 @@
-package com.example.chessgamemanagement;
+package Servlets;
 
 import java.io.*;
 
