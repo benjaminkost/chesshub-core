@@ -15,13 +15,14 @@ public interface UserDaoIF {
 	final String COL_PASSWORD = "Password";
 	final String COL_LASTLOGIN = "LastLogin";
 	final String COL_CLUB = "Club_ID";
+	final String COL_AUTH = "Auth_ID";
 
 //	 Queries
-	final String Q_SELECTALLUSERS = "SELECT * FROM " +TABLENAME;
+	final String Q_SELECTALLUSERS = "SELECT * FROM " +TABLENAME+";";
 	final String Q_SELECTBYUSERID = "SELECT * FROM "+TABLENAME+ " WHERE "+COL_USER_ID+" = ? ;";
-	final String Q_UPDATEUSER = "UPDATE "+TABLENAME+" SET "+COL_FIRSTNAME+"=?, "+COL_LASTNAME+"=?, "+COL_EMAIL+"=?, "+COL_PASSWORD+"=?, "+COL_CLUB+"=? WHERE "+ COL_USER_ID+"=?;";
-	final String Q_DELETEUSER = "DELETE FROM "+TABLENAME+" WHERE "+COL_USER_ID+"=?";
-	final String Q_INSERTUSER = "INSERT INTO "+TABLENAME+"("+COL_FIRSTNAME+","+COL_LASTNAME+","+COL_EMAIL+","+COL_PASSWORD+","+COL_CLUB+") VALUES (?,?,?,?,?)";
+	final String Q_UPDATEUSER = "UPDATE "+TABLENAME+" SET "+COL_FIRSTNAME+"=?, "+COL_LASTNAME+"=?, "+COL_EMAIL+"=?, "+COL_PASSWORD+"=?, "+COL_CLUB+"=?, "+COL_AUTH+"=? WHERE "+ COL_USER_ID+"=?;";
+	final String Q_DELETEUSER = "DELETE FROM "+TABLENAME+" WHERE "+COL_USER_ID+"=?;";
+	final String Q_INSERTUSER = "INSERT INTO "+TABLENAME+"("+COL_FIRSTNAME+","+COL_LASTNAME+","+COL_EMAIL+","+COL_PASSWORD+","+COL_CLUB+","+COL_AUTH+") VALUES (?,?,?,?,?,?);";
 
 	public List<User> getAllUser();
 

@@ -106,6 +106,7 @@ public class GameDaoTest {
 		testGame.setSite("Test Site");
 		testGame.setDate(Date.valueOf(LocalDate.now()));
 		testGame.setResult("1/2-1/2");
+		testGame.setMoves("E6");
 		// create test users
 		testUser1 = new User();
 		testUser1.setFirstname("Black");

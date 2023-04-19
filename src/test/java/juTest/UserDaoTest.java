@@ -20,7 +20,7 @@ public class UserDaoTest {
         user.setEmail("max.mustermann@example.com");
         user.setPassword("password123");
         Club club = new Club();
-        club.setName("TestInsertUser");
+        club.setName("ClubForInsertUserTest");
         ClubDao.getInstance().insertClub(club);
         user.setClub(club);
         boolean result = userDao.insertUser(user);

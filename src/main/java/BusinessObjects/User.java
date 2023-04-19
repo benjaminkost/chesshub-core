@@ -13,14 +13,13 @@ public class User{
 	private String password;
 	private String dateString;
 	private Club club;
-	private List<Authorisation> authorisations = new ArrayList(); // TODO Warum nochmal als Liste reicht doch eine Berechtigung...?
-	private List<Team> teams;
+	private Authorisation auth;
+	private List<Team> teams = new ArrayList<>();
 	
 			
-	public User( /*List<User> userList,*/ int user_Id, String lastname, String firstname, String email, String password,
-			String dateString, Club club, List<Authorisation> authorisations, List<Team> teams) {
+	public User( int user_Id, String lastname, String firstname, String email, String password,
+			String dateString, Club club, Authorisation authorisations, List<Team> teams) {
 		super();
-		//this.userList = userList;
 		this.user_Id = user_Id;
 		Lastname = lastname;
 		Firstname = firstname;
@@ -28,7 +27,7 @@ public class User{
 		this.password = password;
 		this.dateString = dateString;
 		this.club = club;
-		this.authorisations = authorisations;
+		this.auth = authorisations;
 		this.teams = teams;
 	}
 
@@ -102,12 +101,12 @@ public class User{
 		this.user_Id = user_Id;
 	}
 
-	public List<Authorisation> getAuthorisations() {
-		return authorisations;
+	public Authorisation getAuthorisation() {
+		return auth;
 	}
 
-	public void setAuthorisations(List<Authorisation> authorisations) {
-		this.authorisations = authorisations;
+	public void setAuthorisation(Authorisation authorisations) {
+		this.auth = authorisations;
 	}
 
 	public List<Team> getTeams() {

@@ -90,6 +90,35 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 		}
 		return game;
 	}
+	
+	@Override
+	public Game getGameByUserId(int user_id) {
+		Game game = new Game();
+		try {
+			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTGAMEBYUSERID, user_id, user_id);
+			if (rs.next()) {
+				game.setGame_ID(rs.getInt(COL_GAME_ID));
+				game.setEvent(rs.getString(COL_EVENT));
+				game.setRound(rs.getInt(COL_ROUND));
+				game.setSite(rs.getString(COL_SITE));
+				game.setDate(rs.getDate(COL_DATE));
+				game.setResult(rs.getString(COL_RESULT));
+				game.setBlack(UserDao.getInstance().getUserById(rs.getInt(COL_BLACK)));
+				game.setWhite(UserDao.getInstance().getUserById(rs.getInt(COL_WHITE)));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				DatabaseConnector.getInstance().closeStatement();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return game;
+	}
 
 	@Override
 	public boolean updateGame(Game game) {
@@ -170,5 +199,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 		}
 		return result;
 	}
+
+
 
 }

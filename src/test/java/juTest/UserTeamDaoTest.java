@@ -1,0 +1,96 @@
+package juTest;
+
+import BusinessObjects.Team;
+import BusinessObjects.User;
+import dao.TeamDao;
+import dao.UserDao;
+import dao.UserTeamDao;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class UserTeamDaoTest {
+
+    @Test
+    void testInsertUserInTeam() {
+        TeamDao teamDao = TeamDao.getInstance();
+        UserDao userDao = UserDao.getInstance();
+        UserTeamDao uhtDao= UserTeamDao.getInstance();
+        Team team = new Team();
+        team.setName("InsertUserInTeamTest");
+        User user = new User();
+        user.setLastname("InsertUserInTeamTest");
+        user.setFirstname("InsertUserInTeamTest");
+        user.addTeam(team);
+        team.addMember(user);
+        teamDao.insertTeam(team);
+        userDao.insertUser(user);
+        boolean result = uhtDao.insertUserInTeam(user, team);
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    void testGetTeamByUserId() {
+        TeamDao teamDao = TeamDao.getInstance();
+        UserDao userDao = UserDao.getInstance();
+        UserTeamDao uhtDao= UserTeamDao.getInstance();
+        Team team = new Team();
+        team.setName("InsertUserInTeamTest");
+        User user = new User();
+        user.setLastname("InsertUserInTeamTest");
+        user.setFirstname("InsertUserInTeamTest");
+        team.addMember(user);
+        teamDao.insertTeam(team);
+        userDao.insertUser(user);
+        boolean result = uhtDao.insertUserInTeam(user, team);
+        Assertions.assertTrue(result); // Prüfung ob Eintrag in die Datenbank gespeichert
+        user.setTeams(uhtDao.getTeamsByUserId(user));
+        Assertions.assertFalse(user.getTeams().isEmpty()); // Prüfung ob Liste Leer
+        Assertions.assertEquals(user.getTeams().get(0).getTeam_ID(), team.getTeam_ID()); // Prüfung ob Objekt in Liste gleich Teamobjekt
+    }
+
+//    @Test
+//    void testUpdateTeam() {
+//        TeamDao teamDao = TeamDao.getInstance();
+//        Team team = new Team();
+//        team.setName("TeamTest");
+//        boolean result = teamDao.insertTeam(team);
+//        Assertions.assertTrue(result);
+//        int teamId = team.getTeam_ID();
+//        Team updatedTeam = teamDao.getTeamById(teamId);
+//        updatedTeam.setName("TeamTestUpdate");
+//        boolean updated = teamDao.updateTeam(updatedTeam);
+//        Assertions.assertTrue(updated);
+//        Assertions.assertEquals(team.getTeam_ID(), updatedTeam.getTeam_ID());
+//        Assertions.assertNotEquals(team.getName(),updatedTeam.getName());
+//    }
+//
+//    @Test
+//    void testDeleteTeam() {
+//        TeamDao teamDao = TeamDao.getInstance();
+//        Team team = new Team();
+//        team.setName("TeamTest");
+//        boolean result = teamDao.insertTeam(team);
+//        Assertions.assertTrue(result);
+//        int teamId = team.getTeam_ID();
+//        boolean deleted = teamDao.deleteTeam(team);
+//        Assertions.assertTrue(deleted);
+//        Team deletedTeam = teamDao.getTeamById(teamId);
+//        Assertions.assertEquals(deletedTeam.getTeam_ID(), 0);
+//    }
+//
+//    @Test
+//    void testGetTeamById() {
+//        TeamDao teamDao = TeamDao.getInstance();
+//        Team team = new Team();
+//        team.setName("TeamTest");
+//        boolean result = teamDao.insertTeam(team);
+//        Assertions.assertTrue(result);
+//        int teamId = team.getTeam_ID();
+//        Team retrievedTeam = teamDao.getTeamById(teamId);
+//        Assertions.assertEquals(team.getTeam_ID(), retrievedTeam.getTeam_ID());
+//    }
+
+}
