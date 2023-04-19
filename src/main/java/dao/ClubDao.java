@@ -84,8 +84,12 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 	@Override
 	public boolean updateClub(Club club) {
 		boolean result = false;
+		Integer presidentID = null;
+		if (club.getPresident()!= null) {
+			presidentID = club.getPresident().getUser_Id();
+		}
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATECLUB, club.getName(),club.getPresident(), club.getClub_ID()) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATECLUB, club.getName(), presidentID, club.getClub_ID()) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -132,9 +136,13 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 	@Override
 	public boolean insertClub(Club Club) {
 		boolean result = false;
+		Integer presidentID = null;
+		if (Club.getPresident()!= null) {
+			presidentID = Club.getPresident().getUser_Id();
+		}
 		try {
 			if (DatabaseConnector.getInstance()
-					.executeUpdate(Q_INSERTCLUB, Club.getName(), Club.getPresident()) > 0) {
+					.executeUpdate(Q_INSERTCLUB, Club.getName(), presidentID) > 0) {
 				ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
 				if (rs.next()) {
 					Club.setClub_ID(rs.getInt(1));

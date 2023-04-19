@@ -85,8 +85,16 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 	@Override
 	public boolean updateTeam(Team Team) {
 		boolean result = false;
+		Integer leaderID = null;
+		Integer clubID = null;
+		if (Team.getLeader() != null) {
+			leaderID = Team.getLeader().getUser_Id();
+		}
+		if (Team.getClub() != null) {
+			clubID = Team.getClub().getClub_ID();
+		}
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATETEAM, Team.getName(),Team.getClub().getClub_ID(), Team.getLeader().getUser_Id(), Team.getTeam_ID()) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATETEAM, Team.getName(),clubID, leaderID, Team.getTeam_ID()) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -133,9 +141,18 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 	@Override
 	public boolean insertTeam(Team Team) {
 		boolean result = false;
+		Integer leaderID = null;
+		Integer clubID = null;
+		if (Team.getLeader() != null) {
+			leaderID = Team.getLeader().getUser_Id();
+		}
+		if (Team.getClub() != null) {
+			clubID = Team.getClub().getClub_ID();
+		}
+		
 		try {
 			if (DatabaseConnector.getInstance()
-					.executeUpdate(Q_INSERTTEAM, Team.getName(), Team.getClub(), Team.getLeader()) > 0) {
+					.executeUpdate(Q_INSERTTEAM, Team.getName(), clubID, leaderID) > 0) {
 				ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
 				if (rs.next()) {
 					Team.setTeam_ID(rs.getInt(1));
