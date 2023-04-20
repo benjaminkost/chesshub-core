@@ -58,9 +58,7 @@ public class UserManagement {
                 return false;
             }
         }
-        // Based on the idea, the input is still decrypted
-        String encryptedPassword = StringEncrypter.encryptString(newUser.getPassword());
-        newUser.setPassword(encryptedPassword);
+        // Based on the idea, the input is still decrypted; BUT by calling the method in the servlet, the password gets encrypted!!!
         UserDao.getInstance().insertUser(newUser);
         return true;
     }

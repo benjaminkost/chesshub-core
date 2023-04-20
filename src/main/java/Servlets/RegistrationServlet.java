@@ -1,22 +1,12 @@
 package Servlets;
 
-import BusinessObjects.Authorisation;
-import BusinessObjects.Club;
-import BusinessObjects.Team;
-import BusinessObjects.User;
-
+import BusinessObjects.*;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import javax.servlet.http.*;
+import java.io.*;
+import java.util.*;
 
 import static login.StringEncrypter.encryptString;
-import static login.UserManagement.loginUser;
 import static login.UserManagement.saveNewUser;
 
 public class RegistrationServlet extends HttpServlet {
@@ -57,7 +47,7 @@ public class RegistrationServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Benutzerdaten aus der Anforderung auslesen
+		// Reading Users Input
 		String email = req.getParameter("email");
 		String password = encryptString(req.getParameter("password"));
 		int user_Id = 99;
@@ -68,25 +58,25 @@ public class RegistrationServlet extends HttpServlet {
 		Authorisation auth = null;
 		List<Team> teams = new ArrayList<>();
 
-		saveNewUser(new User(99,Lastname,Firstname,email,password,dateString,club,auth,teams));
+		boolean registrationSucceed = saveNewUser(new User(99,Lastname,Firstname,email,password,dateString,club,auth,teams));
 
-
-		// Hier könntest du den Code schreiben, um die Benutzerdaten zu verarbeiten
-		// und den Benutzer in der Datenbank zu registrieren
-
-		// Eine Antwort an den Benutzer senden
+		// Response for User
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
 		out.println("<head>");
-		out.println("<title>Registrierungsbestätigung</title>");
+		out.println("<title>Registration confirmation</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<h1>Vielen Dank für die Registrierung!</h1>");
-		out.println("<p>Deine E-Mail-Adresse lautet: " + email + "</p>");
+		if(registrationSucceed){
+			out.println("<h1>Registration finished!</h1>");
+			out.println("<p>Your email address: " + email + "</p>");
+		}
+		else{
+			out.println("<h1>Registration failed. Please contact Lukas!</h1>");
+		}
 		out.println("</body>");
 		out.println("</html>");
 	}
-
 
 }

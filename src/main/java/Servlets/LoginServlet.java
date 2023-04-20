@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 		out.println("</head>");
 		out.println("<body>");
 		if(login){
-			out.println("<h1>Log in!</h1>");
+			out.println("<h1>Log in successfully!</h1>");
 		}
 		else {
 			out.println("<h1>Access denied, ask Lukas for help</h1>");
