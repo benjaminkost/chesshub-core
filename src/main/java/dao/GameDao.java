@@ -45,6 +45,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				game.setSite(rs.getString(COL_SITE));
 				game.setDate(rs.getDate(COL_DATE));
 				game.setResult(rs.getString(COL_RESULT));
+				game.setMoves(rs.getString(COL_MOVES));
 				game.setBlack(UserDao.getInstance().getUserById(rs.getInt(COL_BLACK)));
 				game.setWhite(UserDao.getInstance().getUserById(rs.getInt(COL_WHITE)));
 				gameList.add(game);
@@ -74,6 +75,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				game.setSite(rs.getString(COL_SITE));
 				game.setDate(rs.getDate(COL_DATE));
 				game.setResult(rs.getString(COL_RESULT));
+				game.setMoves(rs.getString(COL_MOVES));
 				game.setBlack(UserDao.getInstance().getUserById(rs.getInt(COL_BLACK)));
 				game.setWhite(UserDao.getInstance().getUserById(rs.getInt(COL_WHITE)));
 			}
@@ -92,7 +94,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 	}
 	
 	@Override
-	public Game getGameByUserId(int user_id) {
+	public List<Game> getGamesByUserId(int user_id) {
 		Game game = new Game();
 		try {
 			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTGAMEBYUSERID, user_id, user_id);
@@ -117,7 +119,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				e.printStackTrace();
 			}
 		}
-		return game;
+		return null;
 	}
 
 	@Override

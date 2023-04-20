@@ -31,7 +31,7 @@ public interface GameDaoIF {
 
 	public Game getGameById(int game_id);
 	
-	public Game getGameByUserId(int user_id);
+	public List<Game> getGamesByUserId(int user_id);
 
 	public boolean updateGame(Game game);
 

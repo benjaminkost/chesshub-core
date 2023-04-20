@@ -223,6 +223,7 @@ public class ChessBoard extends JPanel {
 					lastPressed.setFigure(null);
 					int[] fromPlace = getTilePlace(lastPressed);
 					int[] toPlace = getTilePlace(tile);
+					System.out.println(tile.getFigure() + " " + fromPlace[0] + " " + fromPlace[1] + " " + toPlace[0] + " " + toPlace[1]);
 					networkUtils.sendMessage(new Message(Type.STEP,
 							fromPlace[0] + " " + fromPlace[1] + " " + toPlace[0] + " " + toPlace[1]));
 					nextPlayer();

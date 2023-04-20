@@ -14,6 +14,12 @@ public class DatabaseConnector implements DatabaseConnectorIF{
     private PreparedStatement statement;
 
     private DatabaseConnector() {
+    	try {
+			Class.forName("org.mariadb.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     public static synchronized DatabaseConnector getInstance() {
