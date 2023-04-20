@@ -5,7 +5,6 @@ import java.util.List;
 
 public class User{
 
-	//private List<User> userList;
 	private int user_Id;
 	private String Lastname;
 	private String Firstname;
@@ -15,8 +14,7 @@ public class User{
 	private Club club;
 	private Authorisation auth;
 	private List<Team> teams = new ArrayList<>();
-	
-			
+
 	public User( int user_Id, String lastname, String firstname, String email, String password,
 			String dateString, Club club, Authorisation authorisations, List<Team> teams) {
 		super();
@@ -38,7 +36,7 @@ public class User{
 	}
 
 	public Club getClub() {
-		return club;
+		return this.club;
 	}
 
 	public void setClub(Club club) {
@@ -46,7 +44,7 @@ public class User{
 	}
 
 	public String getLastname() {
-		return Lastname;
+		return this.Lastname;
 	}
 
 	public void setLastname(String lastname) {
@@ -54,7 +52,7 @@ public class User{
 	}
 
 	public String getFirstname() {
-		return Firstname;
+		return this.Firstname;
 	}
 
 	public void setFirstname(String firstname) {
@@ -62,7 +60,7 @@ public class User{
 	}
 
 	public String getEmail() {
-		return Email;
+		return this.Email;
 	}
 
 	public void setEmail(String email) {
@@ -70,7 +68,7 @@ public class User{
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -78,7 +76,7 @@ public class User{
 	}
 
 	public String getDateString() {
-		return dateString;
+		return this.dateString;
 	}
 
 	public void setDateString(String dateString) {
@@ -94,7 +92,7 @@ public class User{
 	}*/
 
 	public int getUser_Id() {
-		return user_Id;
+		return this.user_Id;
 	}
 
 	public void setUser_Id(int user_Id) {
@@ -102,7 +100,7 @@ public class User{
 	}
 
 	public Authorisation getAuthorisation() {
-		return auth;
+		return this.auth;
 	}
 
 	public void setAuthorisation(Authorisation authorisations) {
@@ -110,7 +108,7 @@ public class User{
 	}
 
 	public List<Team> getTeams() {
-		return teams;
+		return this.teams;
 	}
 
 	public void setTeams(List<Team> teams) {

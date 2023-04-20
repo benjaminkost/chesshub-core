@@ -13,7 +13,7 @@ public class UserManagement {
      *
      * @author ZanderLK
      */
-    public boolean loginUser(String userEmail, String decryptedPassword){
+    public static boolean loginUser(String userEmail, String decryptedPassword){
         boolean userExists = false;
         String encryptedPasswordInput = StringEncrypter.encryptString(decryptedPassword);
         int userID = -1;
@@ -50,7 +50,7 @@ public class UserManagement {
      *
      * @author ZanderLK
      */
-    public boolean saveNewUser(User newUser){
+    public static boolean saveNewUser(User newUser){
         //Check, if Email is already used
         for (User u : UserDao.getInstance().getAllUser()){
             if (u.getEmail().equals(newUser.getEmail())){

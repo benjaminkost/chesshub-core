@@ -10,11 +10,12 @@
 	<br />
 	<b>Navigation:</b>
 	<ol>
-		<li><a href="login.html"> Login</a></li>
 		<li><a href="datenschutz.html">Data protection</a></li>
 		<li><a href="impressum.html">Imprint</a></li>
 		<li><a href="PGNUpload.jsp">PGNUpload</a></li>
 		<li><a href="GamesByUserIdServlet">Games</a></li>
+		<li><a href="LoginServlet">Login (V2)</a></li>
+		<li><a href="RegistrationServlet">Registration</a></li>
 	</ol>
 
 
