@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import BusinessObjects.Game;
 import dao.GameDao;
 
+import static Servlets.LoginServlet.session;
+
 public class GamesByUserIdServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		PrintWriter out = res.getWriter();
 		res.setContentType("text/html");
 		out.println("<html><body>");
 		GameDao gameDao = GameDao.getInstance();
-		List<Game> partien = gameDao.getAllGames();
+		List<Game> partien = gameDao.getGamesByUserId((int) session.getAttribute("userId"));
 		out.println("<table border=1 width=100% height=50%>");
 		out.println("<col style=width:5%>");
 		out.println("<col style=width:10%>");

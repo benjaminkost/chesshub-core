@@ -14,10 +14,8 @@ public class UserManagement {
      * @author ZanderLK
      */
 
-    public static User loggedInUser;
 
-
-    public static boolean loginUser(String userEmail, String decryptedPassword){
+    public static int loginUser(String userEmail, String decryptedPassword){
         boolean userExists = false;
         String encryptedPasswordInput = StringEncrypter.encryptString(decryptedPassword);
         int userID = -1;
@@ -34,18 +32,11 @@ public class UserManagement {
         if (userExists){
             if(encryptedPasswordInput.equals(UserDao.getInstance().getUserById(userID).getPassword())){
                 System.out.println("Login successfully!");
-                loggedInUser = UserDao.getInstance().getUserById(userID);
-                return true;
+                return userID;
             }
-            else {
-                System.out.println("Error: Wrong password!");
-                return false;
-            }
+            else return -2;
         }
-        else {
-            System.out.println("Error: User doesn't exist!");
-            return false;
-        }
+        else return -1;
     }
 
     /**

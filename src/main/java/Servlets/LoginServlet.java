@@ -1,20 +1,20 @@
 package Servlets;
 
-import BusinessObjects.*;
-import dao.*;
-import login.UserManagement;
+import static login.UserManagement.loginUser;
+
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.util.List;
-
-import static login.UserManagement.loggedInUser;
-import static login.UserManagement.loginUser;
+import javax.servlet.http.HttpSession;
 
 public class LoginServlet extends HttpServlet {
+	
+	protected static HttpSession session;
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		PrintWriter out = res.getWriter();
 		res.setContentType("text/html");
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 		String i_mail = req.getParameter("mail");
 		String i_password = req.getParameter("psw");
 
-		boolean login = loginUser(i_mail,i_password);
+		int login = loginUser(i_mail,i_password);
 
 		PrintWriter out = res.getWriter();
 		res.setContentType("text/html");
@@ -53,13 +53,17 @@ public class LoginServlet extends HttpServlet {
 		out.println("<title>Login</title>");
 		out.println("</head>");
 		out.println("<body>");
-		if(login){
-			String Username = loggedInUser.getFirstname();
-			out.println("<h1>Log in successfully! Welcome "+Username+"</h1>");
+		if(login==-1){
+			out.println("<h1>Error: User doesn't exist!</h1>");
 		}
-		else {
-			out.println("<h1>Access denied, ask Lukas for help</h1>");
+		else if (login==-2) {
+			out.println("<h1>Error: Wrong password!</h1>");
+		}else {
+			session = req.getSession();
+			session.setAttribute("userId", login);
+			out.println("<h1>Log in successfully! Welcome "+(int) session.getAttribute("userId")+"</h1>");
 		}
+		
 
 		out.println("</body>");
 		out.println("</html>");
