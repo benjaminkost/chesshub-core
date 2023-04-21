@@ -13,6 +13,10 @@ public class UserManagement {
      *
      * @author ZanderLK
      */
+
+    public static User loggedInUser;
+
+
     public static boolean loginUser(String userEmail, String decryptedPassword){
         boolean userExists = false;
         String encryptedPasswordInput = StringEncrypter.encryptString(decryptedPassword);
@@ -30,6 +34,7 @@ public class UserManagement {
         if (userExists){
             if(encryptedPasswordInput.equals(UserDao.getInstance().getUserById(userID).getPassword())){
                 System.out.println("Login successfully!");
+                loggedInUser = UserDao.getInstance().getUserById(userID);
                 return true;
             }
             else {

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
 
+import static login.UserManagement.loggedInUser;
 import static login.UserManagement.loginUser;
 
 public class LoginServlet extends HttpServlet {
@@ -53,7 +54,8 @@ public class LoginServlet extends HttpServlet {
 		out.println("</head>");
 		out.println("<body>");
 		if(login){
-			out.println("<h1>Log in successfully!</h1>");
+			String Username = loggedInUser.getFirstname();
+			out.println("<h1>Log in successfully! Welcome "+Username+"</h1>");
 		}
 		else {
 			out.println("<h1>Access denied, ask Lukas for help</h1>");
