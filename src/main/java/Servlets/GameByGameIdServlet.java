@@ -14,9 +14,7 @@ import BusinessObjects.Game;
 import dao.GameDao;
 
 public class GameByGameIdServlet extends HttpServlet {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -24,8 +22,10 @@ public class GameByGameIdServlet extends HttpServlet {
 		List<Game> partien = gameDao.getGamesByUserId((int) session.getAttribute("userId"));
 		Game partie = gameDao.getGameById(Integer.parseInt(req.getParameter("gameId")));
 		for (Game partieVergleich : partien) {
-		if(partie.getGame_ID()==partieVergleich.getGame_ID()) {	
-			req.setAttribute("game", partie.getGame());
-		req.getRequestDispatcher("PGN_Viewer.jsp").forward(req, res);
-	}}}
+			if (partie.getGame_ID() == partieVergleich.getGame_ID()) {
+				req.setAttribute("game", partie.getGame());
+				req.getRequestDispatcher("PGN_Viewer.jsp").forward(req, res);
+			}
+		}
+	}
 }

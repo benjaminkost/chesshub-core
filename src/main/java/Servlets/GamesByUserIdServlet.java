@@ -1,7 +1,8 @@
 package Servlets;
 
+import static Servlets.LoginServlet.session;
+
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,31 +13,22 @@ import javax.servlet.http.HttpServletResponse;
 import BusinessObjects.Game;
 import dao.GameDao;
 
-import static Servlets.LoginServlet.session;
-
 public class GamesByUserIdServlet extends HttpServlet {
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		PrintWriter out = res.getWriter();
-		res.setContentType("text/html");
-		out.println("<html><body>");
+
+	private static final long serialVersionUID = 1L;
+
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		GameDao gameDao = GameDao.getInstance();
 		List<Game> partien = gameDao.getGamesByUserId((int) session.getAttribute("userId"));
-		if (partien.isEmpty()) {out.println("<h1>You have not any Games!</h1>");}
-		else {
-		out.println("<table border=1 width=100% height=50%>");
-		//out.println("<col style=width:5%>");
-		//out.println("<col style=width:10%>");
-		//out.println("<col style=width:85%>");
-		out.println("<tr><th>Game ID</th><th>Player</th><th>Opponent</th><th>Date</th><th>Result</th><th>Moves</th><tr>");
-		for (Game partie : partien) {
-			out.println("<tr><td>" + partie.getGame_ID() + "</td><td>" + partie.getPlayer((int) session.getAttribute("userId")) + "</td><td>"
-					+ partie.getOpponent((int) session.getAttribute("userId")) + "</td><td>" + partie.getDate() + "</td><td>" + partie.getResult() + "</td><td>" + partie.getMoves() + "</td></tr>");
+
+		if (partien.isEmpty()) {
+			req.setAttribute("noGames", "You have not any Games!");
+		} else {
+			req.setAttribute("noGames", "");
+			req.setAttribute("partien", partien);
 		}
-		out.println("</table>");
-		out.println("<br><form action=GameByGameIdServlet>");
-		out.println("GameID: <input type=text name=gameId>");
-		out.println("<input type=submit>");
-		out.println("</form>");}
-		out.println("</html></body>");
+
+		req.getRequestDispatcher("GameAnsicht.jsp").forward(req, res);
 	}
+
 }
