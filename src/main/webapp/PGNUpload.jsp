@@ -1,22 +1,19 @@
 <%--
   Created by IntelliJ IDEA.
   User: benkostka
-  Date: 19.04.23
-  Time: 15:55
+  Date: 21.04.23
+  Time: 18:06
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>PGN Upload</title>
+    <title>File Upload Form</title>
 </head>
 <body>
-<h1>Datei hochladen</h1>
-<form method="post" action="<%= request.getContextPath() %>/pgnservlet">
-    <label for="file">Datei auswählen:</label>
-    <input type="file" id="file" name="file" />
-    <br />
-    <input type="submit" value="Hochladen" />
+<h2>File Upload Form</h2>
+<form action="PGNServlet" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" /><br /><br />
+    <input type="submit" value="Upload" />
 </form>
 </body>
 </html>
