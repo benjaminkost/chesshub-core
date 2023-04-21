@@ -61,7 +61,8 @@ public class LoginServlet extends HttpServlet {
 		}else {
 			session = req.getSession();
 			session.setAttribute("userId", login);
-			out.println("<h1>Log in successfully! Welcome "+(int) session.getAttribute("userId")+"</h1>");
+			out.println("<h1>Log in successfully! Welcome "+(int) session.getAttribute("userId") +" ID </h1><br>");
+			out.println("<a href=GamesByUserIdServlet>Games</a>");
 		}
 		
 
