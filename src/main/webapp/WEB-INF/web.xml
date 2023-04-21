@@ -40,4 +40,13 @@
     <servlet-name>RegistrationServlet</servlet-name>
     <url-pattern>/RegistrationServlet</url-pattern>
   </servlet-mapping>
+  <!-->PGNServlet-->
+  <servlet>
+    <servlet-name>PGNServlet</servlet-name>
+    <servlet-class>Servlets.PGNServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PGNServlet</servlet-name>
+    <url-pattern>/PGNServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

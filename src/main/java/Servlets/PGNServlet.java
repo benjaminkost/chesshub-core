@@ -1,4 +1,4 @@
-package controller;
+package Servlets;
 
 import BusinessObjects.Game;
 import PGNReader.PGNReader;
@@ -11,8 +11,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import java.io.*;
-
-@WebServlet("/pgnservlet")
 
 public class PGNServlet extends HttpServlet{
     private static final long serialVersionUID = 1L;
