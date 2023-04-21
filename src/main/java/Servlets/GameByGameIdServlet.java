@@ -16,7 +16,7 @@ public class GameByGameIdServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		GameDao gameDao = GameDao.getInstance();
 		Game partie = gameDao.getGameById(Integer.parseInt(req.getParameter("gameId")));
-		req.setAttribute("moves", partie.getMoves());
+		req.setAttribute("moves", partie.getGame());
 		req.getRequestDispatcher("PGN_Viewer.jsp").forward(req, res);
 	}
 }

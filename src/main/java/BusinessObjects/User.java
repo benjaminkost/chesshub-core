@@ -71,6 +71,10 @@ public class User{
 	public void setFirstname(String firstname) {
 		Firstname = firstname;
 	}
+	
+	public String getFullName() {
+		return this.Firstname + " " + this.Lastname;
+	}
 
 	public String getEmail() {
 		return this.Email;

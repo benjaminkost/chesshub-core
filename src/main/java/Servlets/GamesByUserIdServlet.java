@@ -21,19 +21,22 @@ public class GamesByUserIdServlet extends HttpServlet {
 		out.println("<html><body>");
 		GameDao gameDao = GameDao.getInstance();
 		List<Game> partien = gameDao.getGamesByUserId((int) session.getAttribute("userId"));
+		if (partien.isEmpty()) {out.println("<h1>You have not any Games!</h1>");}
+		else {
 		out.println("<table border=1 width=100% height=50%>");
-		out.println("<col style=width:5%>");
-		out.println("<col style=width:10%>");
-		out.println("<col style=width:85%>");
-		out.println("<tr><th>Game ID</th><th>Date</th><th>Moves</th><tr>");
+		//out.println("<col style=width:5%>");
+		//out.println("<col style=width:10%>");
+		//out.println("<col style=width:85%>");
+		out.println("<tr><th>Game ID</th><th>Player</th><th>Opponent</th><th>Date</th><th>Result</th><th>Moves</th><tr>");
 		for (Game partie : partien) {
-			out.println("<tr><td>" + partie.getGame_ID() + "</td><td>" + partie.getDate() + "</td><td>"
-					+ partie.getMoves() + "</td></tr>");
+			out.println("<tr><td>" + partie.getGame_ID() + "</td><td>" + partie.getPlayer((int) session.getAttribute("userId")) + "</td><td>"
+					+ partie.getOpponent((int) session.getAttribute("userId")) + "</td><td>" + partie.getDate() + "</td><td>" + partie.getResult() + "</td><td>" + partie.getMoves() + "</td></tr>");
 		}
 		out.println("</table>");
 		out.println("<br><form action=GameByGameIdServlet>");
 		out.println("GameID: <input type=text name=gameId>");
 		out.println("<input type=submit>");
-		out.println("</form></html></body>");
+		out.println("</form>");}
+		out.println("</html></body>");
 	}
 }
