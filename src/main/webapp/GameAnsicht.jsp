@@ -8,11 +8,13 @@
 <title>Game-Ansicht</title>
 </head>
 <body>
-	<h1>
-		<%
-		out.println(request.getAttribute("noGames"));
-		%>
-	</h1>
+
+	<%
+	List<Game> partien = (List<Game>) request.getAttribute("partien");
+	if (partien.isEmpty()) {
+		out.println("You have not any Games!");
+	} else {
+	%>
 
 	<table border=1 width=100% height=50%>
 		<tr>
@@ -24,9 +26,8 @@
 			<th>Moves</th>
 		<tr>
 		<tr>
-
 			<%
-			for (Game partie : (List<Game>) request.getAttribute("partien")) {
+			for (Game partie : partien) {
 			%>
 			<td>
 				<%
@@ -67,5 +68,8 @@
 	<form action=GameByGameIdServlet>
 		GameID: <input type=text name=gameId> <input type=submit>
 	</form>
+	<%
+	}
+	%>
 </body>
 </html>

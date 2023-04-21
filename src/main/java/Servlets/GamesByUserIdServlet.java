@@ -20,14 +20,7 @@ public class GamesByUserIdServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		GameDao gameDao = GameDao.getInstance();
 		List<Game> partien = gameDao.getGamesByUserId((int) session.getAttribute("userId"));
-
-		if (partien.isEmpty()) {
-			req.setAttribute("noGames", "You have not any Games!");
-		} else {
-			req.setAttribute("noGames", "");
-			req.setAttribute("partien", partien);
-		}
-
+		req.setAttribute("partien", partien);
 		req.getRequestDispatcher("GameAnsicht.jsp").forward(req, res);
 	}
 
