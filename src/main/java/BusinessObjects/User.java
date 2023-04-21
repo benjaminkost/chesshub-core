@@ -29,6 +29,19 @@ public class User{
 		this.teams = teams;
 	}
 
+	public User(String lastname, String firstname, String email, String password,
+				 String dateString, Club club, Authorisation authorisations, List<Team> teams) {
+		super();
+		Lastname = lastname;
+		Firstname = firstname;
+		Email = email;
+		this.password = password;
+		this.dateString = dateString;
+		this.club = club;
+		this.auth = authorisations;
+		this.teams = teams;
+	}
+
 
 
 	public User() {

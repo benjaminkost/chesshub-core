@@ -50,7 +50,6 @@ public class RegistrationServlet extends HttpServlet {
 		// Reading Users Input
 		String email = req.getParameter("email");
 		String password = encryptString(req.getParameter("password"));
-		int user_Id = 99;
 		String Lastname = req.getParameter("lastname");
 		String Firstname = req.getParameter("firstname");
 		String dateString = Calendar.getInstance().getTime().toString();
@@ -58,7 +57,7 @@ public class RegistrationServlet extends HttpServlet {
 		Authorisation auth = null;
 		List<Team> teams = new ArrayList<>();
 
-		boolean registrationSucceed = saveNewUser(new User(99,Lastname,Firstname,email,password,dateString,club,auth,teams));
+		boolean registrationSucceed = saveNewUser(new User(Lastname,Firstname,email,password,dateString,club,auth,teams));
 
 		// Response for User
 		response.setContentType("text/html");
