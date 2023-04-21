@@ -20,6 +20,8 @@ public class ClubDaoTest {
         User president = new User();
         president.setFirstname("Ben");
         president.setLastname("Chester");
+        president.setEmail("janedoe@test.com");
+        president.setPassword("test456");
         UserDao.getInstance().insertUser(president);
         club.setPresident(president);
         boolean result = clubdao.insertClub(club);

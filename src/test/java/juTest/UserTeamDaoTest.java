@@ -23,6 +23,8 @@ public class UserTeamDaoTest {
         User user = new User();
         user.setLastname("InsertUserInTeamTest");
         user.setFirstname("InsertUserInTeamTest");
+        user.setEmail("janedoe@test.com");
+        user.setPassword("test456");
         user.addTeam(team);
         team.addMember(user);
         teamDao.insertTeam(team);
@@ -41,6 +43,8 @@ public class UserTeamDaoTest {
         User user = new User();
         user.setLastname("InsertUserInTeamTest");
         user.setFirstname("InsertUserInTeamTest");
+        user.setEmail("janedoe@test.com");
+        user.setPassword("test456");
         team.addMember(user);
         teamDao.insertTeam(team);
         userDao.insertUser(user);
