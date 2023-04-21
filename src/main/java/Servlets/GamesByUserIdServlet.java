@@ -22,13 +22,13 @@ public class GamesByUserIdServlet extends HttpServlet {
 		GameDao gameDao = GameDao.getInstance();
 		List<Game> partien = gameDao.getGamesByUserId((int) session.getAttribute("userId"));
 		out.println("<table border=1 width=100% height=50%>");
-		out.println("<col style=width:5%>");
-		out.println("<col style=width:10%>");
-		out.println("<col style=width:85%>");
-		out.println("<tr><th>Game ID</th><th>Date</th><th>Moves</th><tr>");
+		//out.println("<col style=width:5%>");
+		//out.println("<col style=width:10%>");
+		//out.println("<col style=width:85%>");
+		out.println("<tr><th>Game ID</th><th>Player</th><th>Opponent</th><th>Date</th><th>Result</th><th>Moves</th><tr>");
 		for (Game partie : partien) {
-			out.println("<tr><td>" + partie.getGame_ID() + "</td><td>" + partie.getDate() + "</td><td>"
-					+ partie.getMoves() + "</td></tr>");
+			out.println("<tr><td>" + partie.getGame_ID() + "</td><td>" + partie.getPlayer((int) session.getAttribute("userId")) + "</td><td>"
+					+ partie.getOpponent((int) session.getAttribute("userId")) + "</td><td>" + partie.getDate() + "</td><td>" + partie.getResult() + "</td><td>" + partie.getMoves() + "</td></tr>");
 		}
 		out.println("</table>");
 		out.println("<br><form action=GameByGameIdServlet>");

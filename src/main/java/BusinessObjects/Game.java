@@ -13,6 +13,8 @@ public class Game {
 	private User black;
 	private String Result; 
 	private String moves;
+	private String Player;
+	private String Opponent;
 	
 	public Game(int game_ID, String event, String site, Date date, int round, User whitie, User black, String result,
 			String moves) {
@@ -117,6 +119,16 @@ public class Game {
 				"\n, Result='" + Result + '\'' +
 				"\n, moves='" + moves + '\'' +
 				'}';
+	}
+	
+	public String getPlayer(int userID) {
+		if (userID==this.white.getUser_Id()) return this.white.getFullName() + " (WHITE)"; 
+		else return this.black.getFullName() + " (BLACK)";
+	}
+	
+	public String getOpponent(int userID) {
+		if (userID!=this.white.getUser_Id()) return this.white.getFullName() + " (WHITE)"; 
+		else return this.black.getFullName() + " (BLACK)";
 	}
 
 	public String readPGN() {
