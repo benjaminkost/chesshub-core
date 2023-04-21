@@ -130,6 +130,10 @@ public class Game {
 		if (userID!=this.white.getUser_Id()) return this.white.getFullName() + " (WHITE)"; 
 		else return this.black.getFullName() + " (BLACK)";
 	}
+	
+	public String getGame() {
+		return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event + "\"] [Black \"" + black.getFullName() + "\"] [White \"" + white.getFullName() + "\"] [Site \"" + site + "\"]" + moves;
+	}
 
 	public String readPGN() {
 //		TODO BEN?
