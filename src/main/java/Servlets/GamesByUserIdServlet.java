@@ -21,6 +21,8 @@ public class GamesByUserIdServlet extends HttpServlet {
 		out.println("<html><body>");
 		GameDao gameDao = GameDao.getInstance();
 		List<Game> partien = gameDao.getGamesByUserId((int) session.getAttribute("userId"));
+		if (partien.isEmpty()) {out.println("<h1>You have not any Games!</h1>");}
+		else {
 		out.println("<table border=1 width=100% height=50%>");
 		//out.println("<col style=width:5%>");
 		//out.println("<col style=width:10%>");
@@ -34,6 +36,7 @@ public class GamesByUserIdServlet extends HttpServlet {
 		out.println("<br><form action=GameByGameIdServlet>");
 		out.println("GameID: <input type=text name=gameId>");
 		out.println("<input type=submit>");
-		out.println("</form></html></body>");
+		out.println("</form>");}
+		out.println("</html></body>");
 	}
 }
