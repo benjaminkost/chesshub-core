@@ -13,8 +13,6 @@ public class Game {
 	private User black;
 	private String Result; 
 	private String moves;
-	private String Player;
-	private String Opponent;
 	
 	public Game(int game_ID, String event, String site, Date date, int round, User whitie, User black, String result,
 			String moves) {

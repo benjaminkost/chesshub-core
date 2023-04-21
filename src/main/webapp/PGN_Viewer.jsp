@@ -24,7 +24,7 @@ ct-pgn-viewer.ct-pgn-viewer move-list .ct-move-list-container {
 <body>
 <ct-pgn-viewer board-pieceStyle="merida" board-boardStyle="green-white">
 
-      <% out.println(request.getAttribute("moves")); %>
+      <% out.println(request.getAttribute("game")); %>
     
 </ct-pgn-viewer>
 </body>
