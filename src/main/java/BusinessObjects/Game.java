@@ -154,11 +154,19 @@ public class Game {
 	}
 	
 	public String getOpponent(int userID) {
-		if (userID!=this.white.getUser_Id()) return this.white.getFullName() + " (WHITE)"; 
-		else return this.black.getFullName() + " (BLACK)";
+		if (userID!=this.white.getUser_Id()) {
+			if (this.white.getUser_Id()!=0) return this.white.getFullName() + " (WHITE)"; 
+			else return this.comment + " (WHITE)";
+		}
+		else {
+			if (this.black.getUser_Id()!=0) return this.black.getFullName() + " (BLACK)";
+			else return this.comment + " (BLACK)";
+		}
 	}
 	
 	public String getGame() {
+		if (white.getUser_Id()==0) return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event + "\"] [Black \"" + black.getFullName() + "\"] [White \"" + comment + "\"] [Site \"" + site + "\"]" + moves;
+		if (black.getUser_Id()==0) return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event + "\"] [Black \"" + comment + "\"] [White \"" + white.getFullName() + "\"] [Site \"" + site + "\"]" + moves;
 		return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event + "\"] [Black \"" + black.getFullName() + "\"] [White \"" + white.getFullName() + "\"] [Site \"" + site + "\"]" + moves;
 	}
 
