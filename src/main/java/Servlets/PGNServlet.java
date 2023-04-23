@@ -3,6 +3,9 @@ package Servlets;
 import BusinessObjects.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+
+import static Servlets.LoginServlet.session;
+
 import java.io.*;
 import PGNReader.*;
 import dao.*;
@@ -45,12 +48,17 @@ public class PGNServlet extends HttpServlet {
                     // Set the parsed file as a request attribute
                     request.setAttribute("parsedFile", parsedFile);
 
-                    //Test User TODO Catch if no users were given
-                    User a = UserDao.getInstance().getUserById(1);
-                    User b = UserDao.getInstance().getUserById(2);
-
-                    parsedFile.setBlack(a);
-                    parsedFile.setWhite(b);
+                    //Color 
+                    if(session.getAttribute("color").equals("White")) { 
+                    	parsedFile.setWhite(UserDao.getInstance().getUserById((int)session.getAttribute("userId")));
+                    	parsedFile.setBlack(UserDao.getInstance().getUserById(0));
+                    	parsedFile.setComment(parsedFile.getCommentBlack());
+                    }
+                    else {
+                    	parsedFile.setBlack(UserDao.getInstance().getUserById((int)session.getAttribute("userId")));
+                    	parsedFile.setWhite(UserDao.getInstance().getUserById(0));
+                    	parsedFile.setComment(parsedFile.getCommentWhite());
+                    }
 
                     //safe game with DAO in Database
                     GameDao.getInstance().insertGame(parsedFile);

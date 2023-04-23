@@ -18,14 +18,15 @@ public interface GameDaoIF {
 	final String COL_RESULT = "Result";
 	final String COL_BLACK = "Black";
 	final String COL_WHITE = "White";
+	final String COL_COMMENT = "Comment";
 	
 	//Queries
 	final String Q_SELECTALLGAMES = "SELECT * FROM " +TABLENAME+";";
 	final String Q_SELECTBYGAMEID = "SELECT * FROM "+TABLENAME+ " WHERE "+COL_GAME_ID+" = ? ;";
 	final String Q_SELECTGAMEBYUSERID = "SELECT * FROM "+TABLENAME+ " WHERE "+COL_BLACK+" = ? OR "+COL_WHITE+"=?;";
-	final String Q_UPDATEGAME = "UPDATE "+TABLENAME+" SET "+COL_EVENT+"=?, "+COL_ROUND+"=?,"+COL_SITE+"=?,"+COL_DATE+"=?,"+COL_MOVES+"=?, "+COL_RESULT+"=?, "+COL_BLACK+"=?, "+COL_WHITE+"=? WHERE "+ COL_GAME_ID+"=?;";
+	final String Q_UPDATEGAME = "UPDATE "+TABLENAME+" SET "+COL_EVENT+"=?, "+COL_ROUND+"=?,"+COL_SITE+"=?,"+COL_DATE+"=?,"+COL_MOVES+"=?, "+COL_RESULT+"=?, "+COL_BLACK+"=?, "+COL_WHITE+"=?, "+COL_COMMENT+"=?  WHERE "+ COL_GAME_ID+"=?;";
 	final String Q_DELETEGAME = "DELETE FROM "+TABLENAME+" WHERE "+COL_GAME_ID+"=?";
-	final String Q_INSERTGAME = "INSERT INTO "+TABLENAME+"("+COL_EVENT+", "+COL_ROUND+", "+COL_SITE+", "+COL_DATE+", "+COL_MOVES+", "+COL_RESULT+", "+COL_BLACK+", "+COL_WHITE+") VALUES (?,?,?,?,?,?,?,?);";
+	final String Q_INSERTGAME = "INSERT INTO "+TABLENAME+"("+COL_EVENT+", "+COL_ROUND+", "+COL_SITE+", "+COL_DATE+", "+COL_MOVES+", "+COL_RESULT+", "+COL_BLACK+", "+COL_WHITE+", "+COL_COMMENT+") VALUES (?,?,?,?,?,?,?,?,?);";
 
 	public List<Game> getAllGames();
 

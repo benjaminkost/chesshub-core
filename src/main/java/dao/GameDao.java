@@ -48,6 +48,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				game.setMoves(rs.getString(COL_MOVES));
 				game.setBlack(UserDao.getInstance().getUserById(rs.getInt(COL_BLACK)));
 				game.setWhite(UserDao.getInstance().getUserById(rs.getInt(COL_WHITE)));
+				game.setComment(rs.getString(COL_COMMENT));
 				gameList.add(game);
 			}
 		} catch (SQLException e) {
@@ -78,6 +79,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				game.setMoves(rs.getString(COL_MOVES));
 				game.setBlack(UserDao.getInstance().getUserById(rs.getInt(COL_BLACK)));
 				game.setWhite(UserDao.getInstance().getUserById(rs.getInt(COL_WHITE)));
+				game.setComment(rs.getString(COL_COMMENT));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -109,6 +111,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				game.setMoves(rs.getString(COL_MOVES));
 				game.setBlack(UserDao.getInstance().getUserById(rs.getInt(COL_BLACK)));
 				game.setWhite(UserDao.getInstance().getUserById(rs.getInt(COL_WHITE)));
+				game.setComment(rs.getString(COL_COMMENT));
 				gameList.add(game);
 			}
 		} catch (SQLException e) {
@@ -130,7 +133,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 		try {
 			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEGAME, game.getEvent(), game.getRound(), game.getSite(),
 					game.getDate(), game.getMoves(), game.getResult(), game.getBlack().getUser_Id(),
-					game.getWhite().getUser_Id(), game.getGame_ID()) > 0) {
+					game.getWhite().getUser_Id(), game.getGame_ID(), game.getComment()) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -181,7 +184,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 			if (DatabaseConnector.getInstance()
 					.executeUpdate(Q_INSERTGAME,game.getEvent(), game.getRound(), game.getSite(),
 							game.getDate(), game.getMoves(), game.getResult(), game.getBlack().getUser_Id(),
-							game.getWhite().getUser_Id())  > 0) {
+							game.getWhite().getUser_Id(), game.getComment())  > 0) {
 				ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
 				if (rs.next()) {
 					game.setGame_ID(rs.getInt(1));

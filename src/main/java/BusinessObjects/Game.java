@@ -13,9 +13,12 @@ public class Game {
 	private User black;
 	private String Result; 
 	private String moves;
+	private String comment;
+	private String commentWhite;
+	private String commentBlack;
 	
 	public Game(int game_ID, String event, String site, Date date, int round, User whitie, User black, String result,
-			String moves) {
+			String moves, String comment) {
 		super();
 		this.game_ID = game_ID;
 		this.event = event;
@@ -26,6 +29,7 @@ public class Game {
 		this.black = black;
 		Result = result;
 		this.moves = moves;
+		this.comment = comment;
 	}
 
 	public Game() {
@@ -103,6 +107,30 @@ public class Game {
 	public void setMoves(String moves) {
 		this.moves = moves;
 	}
+	
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	
+	public String getCommentWhite() {
+		return commentWhite;
+	}
+
+	public void setCommentWhite(String commentWhite) {
+		this.commentWhite = commentWhite;
+	}
+	
+	public String getCommentBlack() {
+		return commentBlack;
+	}
+
+	public void setCommentBlack(String commentBlack) {
+		this.commentBlack = commentBlack;
+	}
 
 	@Override
 	public String toString() {
@@ -116,6 +144,7 @@ public class Game {
 				"\n, black=" + black +
 				"\n, Result='" + Result + '\'' +
 				"\n, moves='" + moves + '\'' +
+				"\n, comment='" + comment + '\'' +
 				'}';
 	}
 	

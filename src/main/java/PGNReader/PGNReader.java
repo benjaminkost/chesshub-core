@@ -49,7 +49,7 @@ public class PGNReader {
                 if (line.length() > 0) {
 
                     if (line.startsWith("[")) {
-                        String[] lineTag = line.split(" ");
+                        String[] lineTag = line.split(" ",2);
                         setAttribute(lineTag[0].substring(1), //attribute name
                                 lineTag[1].substring(1, lineTag[1].length() - 2));   //attribute value
                     } else {
@@ -96,11 +96,10 @@ public class PGNReader {
                 importedGame.setRound(Integer.parseInt(attrValue));
                 break;
             case "white":
-                //TODO Mit String die Spieler einer Partie suchen
-                //importedGame.setWhite(attrValue);
+                importedGame.setCommentWhite(attrValue);
                 break;
             case "black":
-                //importedGame.setBlack(attrValue);
+                importedGame.setCommentBlack(attrValue);
                 break;
             case "result":
                 importedGame.setResult(attrValue);
