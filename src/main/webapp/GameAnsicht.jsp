@@ -4,6 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style> 
+.normal { color:#000000; background-color:#ffffff; }
+.spezial { color:#000000; background-color:#66FF99; cursor:pointer; }
+</style>
+
 <meta charset="ISO-8859-1">
 <title>Game-Ansicht</title>
 </head>
@@ -17,23 +23,20 @@
 	%>
 
 	<table border=1 width=100% height=50%>
+	
+	
 		<tr>
-			<th>Game ID</th>
 			<th>Player</th>
 			<th>Opponent</th>
 			<th>Date</th>
 			<th>Result</th>
 			<th>Moves</th>
 		<tr>
-		<tr>
 			<%
 			for (Game partie : partien) {
+			
+				out.println("<tr class=normal onmouseover=this.className='spezial'; onmouseout=this.className='normal'; onclick=window.location.href='http://localhost:8080/ChessGameManagement/GameByGameIdServlet?gameId=" + partie.getGame_ID() +"';>");
 			%>
-			<td>
-				<%
-				out.println(partie.getGame_ID());
-				%>
-			</td>
 			<td>
 				<%
 				out.println(partie.getPlayer((int) session.getAttribute("userId")));
@@ -64,10 +67,6 @@
 		}
 		%>
 	</table>
-	<br>
-	<form action=GameByGameIdServlet>
-		GameID: <input type=text name=gameId> <input type=submit>
-	</form>
 	<%
 	}
 	%>
