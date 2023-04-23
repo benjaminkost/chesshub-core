@@ -11,7 +11,7 @@
 </head>
 <body>
 <h2>File Upload Form</h2>
-<form action="PGNServlet" method="post" enctype="multipart/form-data">
+    <form action="PGNServlet" method="post" enctype="multipart/form-data">
     <input type="file" name="file" /><br /><br />
     <input type="submit" value="Upload" />
 </form>
