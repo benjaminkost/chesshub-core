@@ -63,7 +63,8 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("userId", login);
 			out.println("<h1>Log in successfully! Welcome "+(int) session.getAttribute("userId") +" ID </h1><br>");
 			out.println("<a href=GamesByUserIdServlet>Games</a> <br>");
-			out.println("<a href=SelectColor.jsp>Upload PGN</a>");
+			out.println("<a href=SelectColor.jsp>Upload PGN</a> <br>");
+			out.println("<a href=GameToPGN.jsp>Game to PGN</a>");
 		}
 		
 

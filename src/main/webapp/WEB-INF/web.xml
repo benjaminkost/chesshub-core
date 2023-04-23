@@ -51,4 +51,12 @@
     <servlet-name>SelectColorServlet</servlet-name>
     <url-pattern>/SelectColorServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>GameToPGNServlet</servlet-name>
+    <servlet-class>Servlets.GameToPGNServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GameToPGNServlet</servlet-name>
+    <url-pattern>/GameToPGNServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
