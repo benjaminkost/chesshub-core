@@ -19,10 +19,6 @@ public class UserDaoTest {
         user.setLastname("Mustermann");
         user.setEmail("max.mustermann@example.com");
         user.setPassword("password123");
-        Club club = new Club();
-        club.setName("ClubForInsertUserTest");
-        ClubDao.getInstance().insertClub(club);
-        user.setClub(club);
         boolean result = userDao.insertUser(user);
         Assertions.assertTrue(result);
         int userId = user.getUser_Id();

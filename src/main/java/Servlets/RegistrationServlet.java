@@ -53,11 +53,10 @@ public class RegistrationServlet extends HttpServlet {
 		String Lastname = req.getParameter("lastname");
 		String Firstname = req.getParameter("firstname");
 		String dateString = Calendar.getInstance().getTime().toString();
-		Club club = null;
 		Authorisation auth = null;
 		List<Team> teams = new ArrayList<>();
 
-		boolean registrationSucceed = saveNewUser(new User(Lastname,Firstname,email,password,dateString,club,auth,teams));
+		boolean registrationSucceed = saveNewUser(new User(Lastname,Firstname,email,password,dateString, auth,teams));
 
 		// Response for User
 		response.setContentType("text/html");

@@ -11,12 +11,11 @@ public class User{
 	private String Email;
 	private String password;
 	private String dateString;
-	private Club club;
 	private Authorisation auth;
 	private List<Team> teams = new ArrayList<>();
 
 	public User( int user_Id, String lastname, String firstname, String email, String password,
-			String dateString, Club club, Authorisation authorisations, List<Team> teams) {
+			String dateString, Authorisation authorisations, List<Team> teams) {
 		super();
 		this.user_Id = user_Id;
 		Lastname = lastname;
@@ -24,20 +23,18 @@ public class User{
 		Email = email;
 		this.password = password;
 		this.dateString = dateString;
-		this.club = club;
 		this.auth = authorisations;
 		this.teams = teams;
 	}
 
 	public User(String lastname, String firstname, String email, String password,
-				 String dateString, Club club, Authorisation authorisations, List<Team> teams) {
+				 String dateString, Authorisation authorisations, List<Team> teams) {
 		super();
 		Lastname = lastname;
 		Firstname = firstname;
 		Email = email;
 		this.password = password;
 		this.dateString = dateString;
-		this.club = club;
 		this.auth = authorisations;
 		this.teams = teams;
 	}
@@ -46,14 +43,6 @@ public class User{
 
 	public User() {
 		super();
-	}
-
-	public Club getClub() {
-		return this.club;
-	}
-
-	public void setClub(Club club) {
-		this.club = club;
 	}
 
 	public String getLastname() {
@@ -99,14 +88,6 @@ public class User{
 	public void setDateString(String dateString) {
 		this.dateString = dateString;
 	}
-/*
-	public List<User> getUserList() {
-		return userList;
-	}
-
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
-	}*/
 
 	public int getUser_Id() {
 		return this.user_Id;

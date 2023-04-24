@@ -62,12 +62,7 @@ public class DatabaseConnector implements DatabaseConnectorIF{
         String url = "jdbc:mariadb://" + HOST + "/" + DATABASENAME;
         connection = DriverManager.getConnection(url, DBUSER, DBPW);
     }
-    
-    public synchronized Connection getConnection() {
-        return connection;
-    }
-	
-    
+
     public synchronized ResultSet executeQuery(String query, Object... params) throws SQLException {
         statement = null;
         try {
@@ -79,6 +74,10 @@ public class DatabaseConnector implements DatabaseConnectorIF{
         } finally {
 
     }}
+
+    public synchronized Connection getConnection() {
+        return connection;
+    }
 
     public synchronized int executeUpdate(String query, Object... params) throws SQLException {
         statement = null;
