@@ -67,4 +67,12 @@
     <servlet-name>GamesWithoutOpponentServlet</servlet-name>
     <url-pattern>/GamesWithoutOpponentServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>GameDownloadServlet</servlet-name>
+    <servlet-class>Servlets.GameDownloadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GameDownloadServlet</servlet-name>
+    <url-pattern>/GameDownloadServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
