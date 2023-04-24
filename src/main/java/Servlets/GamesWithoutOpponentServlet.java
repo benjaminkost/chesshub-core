@@ -18,7 +18,7 @@ public class GamesWithoutOpponentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		List<Game> partien = GameDao.getInstance().getGamesByUserId(0);
+		List<Game> partien = GameDao.getInstance().getGamesWithoutOpponent((int) session.getAttribute("userId"));
 		req.setAttribute("gamesWithoutOpponent", partien);
 		req.getRequestDispatcher("GamesWithoutOpponent.jsp").forward(req, res);
 	}

@@ -18,7 +18,7 @@
 	<%
 	List<Game> partien = (List<Game>) request.getAttribute("gamesWithoutOpponent");
 	if (partien.isEmpty()) {
-		out.println("You have not any Games!");
+		out.println("There are currently no such games!");
 	} else {
 	%>
 
