@@ -59,4 +59,12 @@
     <servlet-name>GameToPGNServlet</servlet-name>
     <url-pattern>/GameToPGNServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>GamesWithoutOpponentServlet</servlet-name>
+    <servlet-class>Servlets.GamesWithoutOpponentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GamesWithoutOpponentServlet</servlet-name>
+    <url-pattern>/GamesWithoutOpponentServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
