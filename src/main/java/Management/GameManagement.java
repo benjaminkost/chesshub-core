@@ -1,4 +1,4 @@
-package gameManagement;
+package Management;
 
 import java.io.File;
 import java.text.ParseException;

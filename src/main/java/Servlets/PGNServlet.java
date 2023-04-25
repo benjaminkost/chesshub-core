@@ -4,7 +4,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
 import static Servlets.LoginServlet.session;
-import static gameManagement.GameManagement.PGN;
+import static Management.GameManagement.PGN;
 
 import java.io.*;
 

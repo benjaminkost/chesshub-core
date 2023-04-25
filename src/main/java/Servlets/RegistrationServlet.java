@@ -6,8 +6,8 @@ import javax.servlet.http.*;
 import java.io.*;
 import java.util.*;
 
-import static login.StringEncrypter.encryptString;
-import static login.UserManagement.saveNewUser;
+import static Management.StringEncrypter.encryptString;
+import static Management.UserManagement.saveNewUser;
 
 public class RegistrationServlet extends HttpServlet {
 

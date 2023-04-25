@@ -1,7 +1,7 @@
 package Servlets;
 
 import static Servlets.LoginServlet.session;
-import static gameManagement.GameManagement.gameDownload;
+import static Management.GameManagement.gameDownload;
 
 import java.io.IOException;
 

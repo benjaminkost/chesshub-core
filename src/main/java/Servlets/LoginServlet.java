@@ -1,7 +1,7 @@
 package Servlets;
 
-import static login.UserManagement.loginUser;
-import static login.UserManagement.getUserById;
+import static Management.UserManagement.loginUser;
+import static Management.UserManagement.getUserById;
 
 import java.io.IOException;
 
