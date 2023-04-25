@@ -15,6 +15,7 @@
 <a href=SelectColor.jsp>Upload PGN</a> <br>
 <a href=GameToPGN.jsp>Game to PGN</a> <br>
 <a href=GamesWithoutOpponentServlet>Games without registered opponent</a> <br>
+<a href="TeamServlet">Team Administration</a>
 
 </body>
 </html>

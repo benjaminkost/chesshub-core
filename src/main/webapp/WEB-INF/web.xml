@@ -75,4 +75,12 @@
     <servlet-name>GameDownloadServlet</servlet-name>
     <url-pattern>/GameDownloadServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>TeamServlet</servlet-name>
+    <servlet-class>Servlets.TeamServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TeamServlet</servlet-name>
+    <url-pattern>/TeamServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
