@@ -21,7 +21,7 @@ public class PGNServlet extends HttpServlet {
 		try {
 			request.setAttribute("message", PGN(new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request),
 					(String) session.getAttribute("color"), (int) session.getAttribute("userId")));
-			request.getRequestDispatcher("FileUploadResult.jsp").forward(request, response);
+			request.getRequestDispatcher("Message.jsp").forward(request, response);
 		} catch (FileUploadException e) {
 		}
 

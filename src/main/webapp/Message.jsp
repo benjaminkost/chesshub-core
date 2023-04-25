@@ -7,10 +7,10 @@
 --%>
 <html>
 <head>
-    <title>File Upload Result</title>
+    <title>Message</title>
 </head>
 <body>
-<h2>File Upload Result</h2>
+<h2>Message</h2>
 <p><%= request.getAttribute("message")%></p>
 </body>
 </html>

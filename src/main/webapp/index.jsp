@@ -12,11 +12,8 @@
 	<ol>
 		<li><a href="datenschutz.html">Data protection</a></li>
 		<li><a href="impressum.html">Imprint</a></li>
-		<li><a href="LoginServlet">Login (V2)</a></li>
-		<li><a href="RegistrationServlet">Registration</a></li>
+		<li><a href="Login.jsp">Login</a></li>
+		<li><a href="Registration.jsp">Registration</a></li>
 	</ol>
-
-
-
 </body>
 </html>

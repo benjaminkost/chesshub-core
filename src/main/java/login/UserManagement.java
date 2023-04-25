@@ -59,4 +59,8 @@ public class UserManagement {
 		return true;
 	}
 
+	public static User getUserById(int userId) {
+		return UserDao.getInstance().getUserById(userId);
+	}
+
 }
