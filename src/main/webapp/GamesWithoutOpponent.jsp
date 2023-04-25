@@ -65,7 +65,7 @@
 			</td>
 			<td>
 				<%
-				out.println(partie.getMoves().substring(0, 160)+" ...");
+				out.println(partie.getMoves().substring(0,(int) Math.round(partie.getMoves().length()*0.25))+" ...");
 				%>
 			</td>
 		</tr>

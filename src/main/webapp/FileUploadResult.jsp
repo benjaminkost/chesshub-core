@@ -11,9 +11,7 @@
 </head>
 <body>
 <h2>File Upload Result</h2>
-<p>The file was successfully uploaded and parsed.</p>
-<p>Filename: <%= request.getAttribute("fileName")%><% Game parsedFile = (Game) request.getAttribute("parsedFile");%></p>
-<h1> <%= parsedFile.toString()%></h1>
+<p><%= request.getAttribute("message")%></p>
 </body>
 </html>
 
