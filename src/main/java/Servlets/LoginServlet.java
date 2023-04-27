@@ -1,5 +1,10 @@
 package Servlets;
 
+import BusinessObjects.Club;
+import BusinessObjects.Team;
+
+import static Management.ClubManagement.getManagedClubByUserID;
+import static Management.TeamManagement.getManagedTeamByUserID;
 import static Management.UserManagement.loginUser;
 import static Management.UserManagement.getUserById;
 
@@ -18,7 +23,6 @@ public class LoginServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		// Hier wird der Java-Code ausgeführt, nachdem der Button gedrückt wurde
 
 		String i_mail = req.getParameter("mail");
 		String i_password = req.getParameter("psw");
@@ -36,6 +40,25 @@ public class LoginServlet extends HttpServlet {
 			session = req.getSession();
 			session.setAttribute("userId", login);
 			req.setAttribute("welcome", "Log in successfully! Welcome "+ getUserById(login).getFullName());
+
+
+			//if User leads a team
+			Team managedTeam = getManagedTeamByUserID(login);
+			if(managedTeam!=null){
+				req.setAttribute("team", "You are leading the team "+ managedTeam.getName());
+			}
+			else {
+				req.setAttribute("team", "You don't lead a team");
+			}
+			Club managedClub = getManagedClubByUserID(login);
+			//if User leads a club
+			if(managedClub!=null){
+				req.setAttribute("club", "You are leading the club "+ managedClub.getName());
+			}
+			else {
+				req.setAttribute("club", "You don't lead a club");
+			}
+
 			req.getRequestDispatcher("Menu.jsp").forward(req, res);
 		}
 		

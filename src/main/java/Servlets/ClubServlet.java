@@ -1,18 +1,19 @@
 package Servlets;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static Management.UserManagement.*;
-
-public class TeamServlet extends HttpServlet {
+public class ClubServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     protected static HttpSession session;
 
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
-        req.getRequestDispatcher("Team.jsp").forward(req, res);
+        req.getRequestDispatcher("Club.jsp").forward(req, res);
     }
 }

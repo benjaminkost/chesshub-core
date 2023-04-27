@@ -4,6 +4,7 @@ import BusinessObjects.Club;
 import BusinessObjects.Team;
 import BusinessObjects.User;
 import dao.ClubDao;
+import dao.TeamDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,5 +41,14 @@ public class ClubManagement {
             presidents.add(c.getPresident());
         }
         return presidents;
+    }
+
+    public static Club getManagedClubByUserID(int userID){
+        for(Club c: ClubDao.getInstance().getAllClubs()){
+            if(c.getPresident().getUser_Id()==userID){
+                return c;
+            }
+        }
+        return null;
     }
 }

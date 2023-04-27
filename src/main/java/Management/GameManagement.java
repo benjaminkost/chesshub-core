@@ -102,16 +102,19 @@ public class GameManagement {
 
 					// safe game with DAO in Database
 					GameDao.getInstance().insertGame(parsedFile);
-					s = "<a href='http://localhost:8080/ChessGameManagement/GameByGameIdServlet?gameId=" + parsedFile.getGame_ID() +"'> The file was successfully uploaded and parsed. <br> Click here if you want to see it.";
+					s = "<a href='./GameByGameIdServlet?gameId=" + parsedFile.getGame_ID() +"'> The file was successfully uploaded and parsed. <br> Click here if you want to see it.";
 
 				}
 			}
 
 		} catch (Exception e) {
-			if (e.getMessage().isEmpty())
+			if (e.getMessage().isEmpty()){
 				s = "No file uploaded.";
-			else
+			}
+			else{
 				s = "File must end with .pgn";
+				System.out.print(e.getMessage());
+			}
 		}
 		return s;
 	}

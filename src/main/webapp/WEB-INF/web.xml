@@ -83,4 +83,12 @@
     <servlet-name>TeamServlet</servlet-name>
     <url-pattern>/TeamServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ClubServlet</servlet-name>
+    <servlet-class>Servlets.ClubServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClubServlet</servlet-name>
+    <url-pattern>/ClubServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

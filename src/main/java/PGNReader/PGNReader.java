@@ -36,6 +36,7 @@ public class PGNReader {
         }
         if (!f.getName().toLowerCase().endsWith(".pgn")) {
             throw new IllegalArgumentException("File must end with \".pgn\"");
+
         }
 
         BufferedReader input = null;

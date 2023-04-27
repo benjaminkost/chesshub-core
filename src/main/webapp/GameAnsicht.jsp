@@ -35,7 +35,7 @@
 			<%
 			for (Game partie : partien) {
 			
-				out.println("<tr class=normal onmouseover=this.className='spezial'; onmouseout=this.className='normal'; onclick=window.location.href='http://localhost:8080/ChessGameManagement/GameByGameIdServlet?gameId=" + partie.getGame_ID() +"';>");
+				out.println("<tr class=normal onmouseover=this.className='spezial'; onmouseout=this.className='normal'; onclick=window.location.href='./GameByGameIdServlet?gameId=" + partie.getGame_ID() +"';>");
 			%>
 			<td>
 				<%
