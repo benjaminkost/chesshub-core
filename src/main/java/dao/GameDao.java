@@ -165,7 +165,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 		try {
 			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEGAME, game.getEvent(), game.getRound(), game.getSite(),
 					game.getDate(), game.getMoves(), game.getResult(), game.getBlack().getUser_Id(),
-					game.getWhite().getUser_Id(), game.getGame_ID(), game.getComment()) > 0) {
+					game.getWhite().getUser_Id(), game.getComment(), game.getGame_ID()) > 0) {
 				result = true;
 			} else {
 				result = false;

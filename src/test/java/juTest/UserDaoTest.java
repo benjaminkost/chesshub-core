@@ -1,12 +1,11 @@
 package juTest;
 
-import org.junit.jupiter.api.*;
-
 import java.util.List;
+import static Management.StringEncrypter.encryptString;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import BusinessObjects.User;
-import BusinessObjects.Club;
-import dao.ClubDao;
 import dao.UserDao;
 
 public class UserDaoTest {
@@ -18,7 +17,7 @@ public class UserDaoTest {
         user.setFirstname("Max");
         user.setLastname("Mustermann");
         user.setEmail("max.mustermann@example.com");
-        user.setPassword("password123");
+        user.setPassword(encryptString("password123"));
         boolean result = userDao.insertUser(user);
         Assertions.assertTrue(result);
         int userId = user.getUser_Id();
@@ -41,7 +40,7 @@ public class UserDaoTest {
         user.setFirstname("Max");
         user.setLastname("Mustermann");
         user.setEmail("max.mustermann@example.com");
-        user.setPassword("password123");
+        user.setPassword(encryptString("password123"));
         boolean result = userDao.insertUser(user);
         Assertions.assertTrue(result);
         int userId = user.getUser_Id();
@@ -63,7 +62,7 @@ public class UserDaoTest {
         user.setFirstname("Max");
         user.setLastname("Mustermann");
         user.setEmail("max.mustermann@example.com");
-        user.setPassword("password123");
+        user.setPassword(encryptString("password123"));
         boolean result = userDao.insertUser(user);
         Assertions.assertTrue(result);
         int userId = user.getUser_Id();
@@ -80,7 +79,7 @@ public class UserDaoTest {
         user.setFirstname("Max");
         user.setLastname("Mustermann");
         user.setEmail("max.mustermann@example.com");
-        user.setPassword("password123");
+        user.setPassword(encryptString("password123"));
         boolean result = userDao.insertUser(user);
         Assertions.assertTrue(result);
         int userId = user.getUser_Id();

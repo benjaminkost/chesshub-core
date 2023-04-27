@@ -96,6 +96,7 @@ public class GameDaoTest {
 		Assertions.assertFalse(gameList.isEmpty());
 	}
 
+	
 	@Test
 	public void testUpdateGame() {
 		testGame = new Game();
@@ -127,8 +128,8 @@ public class GameDaoTest {
 		gameDao.insertGame(testGame);
 		int gameId = testGame.getGame_ID();
         Game updatedGame = gameDao.getGameById(gameId);
-		testGame.setEvent("Test Game Updated");
-        boolean result = gameDao.updateGame(testGame);
+        updatedGame.setEvent("Test Game Updated");
+        boolean result = gameDao.updateGame(updatedGame);
         Assertions.assertTrue(result);
         Assertions.assertEquals(testGame.getGame_ID(), updatedGame.getGame_ID());
         Assertions.assertNotEquals(testGame.getEvent(),updatedGame.getEvent());

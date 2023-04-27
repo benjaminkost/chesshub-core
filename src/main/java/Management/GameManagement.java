@@ -13,6 +13,8 @@ import dao.GameDao;
 import dao.UserDao;
 
 public class GameManagement {
+	
+	Game game;
 
 	public static String gameByGameId(int userId, String gameId) {
 		Game partie = GameDao.getInstance().getGameById(Integer.parseInt(gameId));
@@ -100,7 +102,7 @@ public class GameManagement {
 
 					// safe game with DAO in Database
 					GameDao.getInstance().insertGame(parsedFile);
-					s = "The file was successfully uploaded and parsed.";
+					s = "<a href='http://localhost:8080/ChessGameManagement/GameByGameIdServlet?gameId=" + parsedFile.getGame_ID() +"'> The file was successfully uploaded and parsed. <br> Click here if you want to see it.";
 
 				}
 			}
