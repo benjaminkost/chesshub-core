@@ -78,6 +78,7 @@
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<center>
+							<br><br><br><br>
 							<h2>Welcome to the digitization of chess score sheets!</h2>
 						</center>
 						<div class="contact_bt_main">

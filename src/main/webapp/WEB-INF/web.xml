@@ -91,4 +91,12 @@
     <servlet-name>ClubServlet</servlet-name>
     <url-pattern>/ClubServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>Servlets.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/LogoutServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
