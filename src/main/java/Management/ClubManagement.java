@@ -9,18 +9,20 @@ import dao.TeamDao;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Management.TeamManagement.removeTeam;
+
 public class ClubManagement {
 
     public static void addTeamToClub(Club club, Team newTeam){
-        ClubDao.getInstance().getClubById(club.getClub_ID()).addTeam(newTeam);
-    }
-
-    public static void removeTeamFromClub(Club club, Team oldTeam){
-        ClubDao.getInstance().getClubById(club.getClub_ID()).removeTeam(oldTeam);
+        TeamDao.getInstance().getTeamById(newTeam.getTeam_ID()).setClub(club);
+        //ClubDao.getInstance().getClubById(club.getClub_ID()).addTeam(newTeam);
     }
 
     public static void removeAllTeamsFromClub(Club club){
-        ClubDao.getInstance().getClubById(club.getClub_ID()).setTeams(null);
+        for (Team t : getAllTeamsOfClub(club)){
+            removeTeam(t);
+        }
+        //ClubDao.getInstance().getClubById(club.getClub_ID()).setTeams(null);
     }
 
     public static void changeClubPresident(Club club, User newPresident){
@@ -28,7 +30,14 @@ public class ClubManagement {
     }
 
     public static List<Team> getAllTeamsOfClub(Club club){
-        return ClubDao.getInstance().getClubById(club.getClub_ID()).getTeams();
+        List<Team> teamsOfClub = new ArrayList<>();
+        for(Team t : TeamDao.getInstance().getAllTeams()){
+            if (t.getClub().getClub_ID()==club.getClub_ID()){
+                teamsOfClub.add(t);
+            }
+        }
+        return teamsOfClub;
+        //return ClubDao.getInstance().getClubById(club.getClub_ID()).getTeams();
     }
 
     public static List<Club> getAllClubs(){

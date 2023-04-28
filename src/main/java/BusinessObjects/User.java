@@ -129,8 +129,15 @@ public class User{
 	 *
 	 * @author Lukas Zander
 	 */
-	public boolean equals(Object obj){
-		return this.user_Id == ((User) obj).user_Id;
+	@Override
+	public boolean equals(Object obj) {
+		//If the object is an instance of the User class, we can check for equality
+		if(obj.getClass() == this.getClass()) {
+			User u = (User) obj;
+			return this.user_Id == u.user_Id;
+		}
+		//otherwise, this is definitely not the same object, so return false
+		return false;
 	}
 }	
 

@@ -7,15 +7,15 @@ public class Club {
 	private int club_ID;
 	private String name;
 	private User president;
-	private List<Team> teams;
+	//private List<Team> teams;
 
 
-	public Club(int club_ID, String name, User president, List<Team> teams) {
+	public Club(String name, User president) {
 		super();
-		this.club_ID = club_ID;
+		//this.club_ID = club_ID;
 		this.name = name;
 		this.president = president;
-		this.teams = teams;
+		//this.teams = teams;
 	}
 
 	public Club() {
@@ -46,6 +46,10 @@ public class Club {
 		this.president = president;
 	}
 
+	/*
+	@deprecated by Lukas
+	Its trash
+
 	public void addTeam(Team newTeam){
 		this.teams.add(newTeam);
 		newTeam.setClub(this);
@@ -63,5 +67,7 @@ public class Club {
 	public void setTeams(List<Team> teams){
 		this.teams=teams;
 	}
+
+	 */
 
 }

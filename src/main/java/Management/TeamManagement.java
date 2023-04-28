@@ -46,7 +46,10 @@ public class TeamManagement {
     }
 
     public static void changeTeamLeader(Team team, User newTeamLeader){
-        TeamDao.getInstance().getTeamById(team.getTeam_ID()).setLeader(newTeamLeader);
+        Team update = team;
+        update.setLeader(newTeamLeader);
+
+        TeamDao.getInstance().updateTeam(update);
     }
 
     public static Team getManagedTeamByUserID(int userID){
@@ -70,6 +73,17 @@ public class TeamManagement {
         }
         return false;
 
+    }
+
+    public static Team getTeamByID(int ID){
+        for(Team t: TeamDao.getInstance().getAllTeams()){
+            if(t.getTeam_ID()==ID){
+                return t;
+            }
+        }
+
+        return null;
+        //return TeamDao.getInstance().getTeamById(ID);
     }
 
 

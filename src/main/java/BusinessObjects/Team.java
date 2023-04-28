@@ -11,15 +11,15 @@ public class Team {
 	private User leader;
 	private List<User> members = new ArrayList<>();
 	
-	public Team(int team_ID, String name, Club club, User leader, List<User> members) {
+	public Team(String name, Club club, User leader) {
 		super();
-		this.team_ID = team_ID;
+		//this.team_ID = team_ID;
 		this.name = name;
 		this.club = club;
 		this.leader = leader;
-		this.members=members;
-		
+		//this.members=members;
 	}
+
 	public Team() {
 		super();
 	}
