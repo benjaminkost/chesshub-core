@@ -54,7 +54,7 @@ public class PGNReader {
                         setAttribute(lineTag[0].substring(1), //attribute name
                                 lineTag[1].substring(1, lineTag[1].length() - 2));   //attribute value
                     } else {
-                        importedGame.setMoves(line);
+                        importedGame.setMoves(importedGame.getMoves() + " "+ line);
                     }
                 }
             }
@@ -73,7 +73,7 @@ public class PGNReader {
                 ex.printStackTrace();
             }
         }
-
+        importedGame.setMoves(importedGame.getMoves().substring(4));
         return importedGame;
     }
 
