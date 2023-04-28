@@ -48,6 +48,10 @@ public class Team {
 		this.leader = leader;
 	}
 
+	/*
+	@deprecated from Lukas, 28.04.2023
+	Diese Methoden sollen nur über UserTeamDao genutzt werden, hier sind sie doppelt und funktionierne nicht zsm mit der DB wegen n-m-relation
+
 	public List<User> getMembers() {
 		return members;
 	}
@@ -65,4 +69,7 @@ public class Team {
 		this.members.remove(oldMember);
 		oldMember.removeTeam(this);
 	}
+
+	 */
+
 }

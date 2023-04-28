@@ -120,5 +120,17 @@ public class User{
 	public void removeTeam(Team oldTeam){
 		this.teams.remove(oldTeam);
 	}
+
+	/***
+	 * Needed for checking if user is part of list<user>
+	 *
+	 * @param obj
+	 * @return boolean
+	 *
+	 * @author Lukas Zander
+	 */
+	public boolean equals(Object obj){
+		return this.user_Id == ((User) obj).user_Id;
+	}
 }	
 

@@ -4,6 +4,7 @@ import BusinessObjects.Club;
 import BusinessObjects.Team;
 import BusinessObjects.User;
 import dao.TeamDao;
+import dao.UserDao;
 import dao.UserTeamDao;
 
 import java.util.ArrayList;
@@ -28,15 +29,20 @@ public class TeamManagement {
     }
 
     public static void addMemberToTeam(Team team, User newMember){
-        TeamDao.getInstance().getTeamById(team.getTeam_ID()).addMember(newMember);
+        UserTeamDao.getInstance().insertUserInTeam(newMember,team);
+        //TeamDao.getInstance().getTeamById(team.getTeam_ID()).addMember(newMember);
     }
 
     public static void removeMemberFromTeam(Team team, User oldMember){
-        TeamDao.getInstance().getTeamById(team.getTeam_ID()).removeMember(oldMember);
+        UserTeamDao.getInstance().deleteUserFromTeam(oldMember,team);
+        //TeamDao.getInstance().getTeamById(team.getTeam_ID()).removeMember(oldMember);
     }
 
     public static void removeAllMembersFromTeam(Team team){
-        TeamDao.getInstance().getTeamById(team.getTeam_ID()).setMembers(null);
+        for(User u : UserTeamDao.getInstance().getUsersByTeamId(team)){
+            UserTeamDao.getInstance().deleteUserFromTeam(u, team);
+        }
+        //TeamDao.getInstance().getTeamById(team.getTeam_ID()).setMembers(null);
     }
 
     public static void changeTeamLeader(Team team, User newTeamLeader){
@@ -50,6 +56,20 @@ public class TeamManagement {
             }
         }
         return null;
+    }
+
+    public static List<User> getUsersFromTeam(Team t){
+        return UserTeamDao.getInstance().getUsersByTeamId(t);
+    }
+
+    public static boolean isUserPartofTeam(User u, Team t){
+        for (Team userT : UserTeamDao.getInstance().getTeamsByUserId(u)){
+            if (userT == t){
+                return true;
+            }
+        }
+        return false;
+
     }
 
 

@@ -26,7 +26,7 @@ public class UserTeamDaoTest {
         user.setEmail("janedoe@test.com");
         user.setPassword("test456");
         user.addTeam(team);
-        team.addMember(user);
+        //team.addMember(user);
         teamDao.insertTeam(team);
         userDao.insertUser(user);
         boolean result = uhtDao.insertUserInTeam(user, team);
@@ -45,7 +45,7 @@ public class UserTeamDaoTest {
         user.setFirstname("InsertUserInTeamTest");
         user.setEmail("janedoe@test.com");
         user.setPassword("test456");
-        team.addMember(user);
+        //team.addMember(user);
         teamDao.insertTeam(team);
         userDao.insertUser(user);
         boolean result = uhtDao.insertUserInTeam(user, team);
