@@ -10,7 +10,6 @@ import java.io.IOException;
 public class ClubServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    protected static HttpSession session;
 
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {

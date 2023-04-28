@@ -38,25 +38,25 @@ public class LoginServlet extends HttpServlet {
 			req.getRequestDispatcher("Message.jsp").forward(req, res);
 		}else {
 			session = req.getSession();
-			session.setAttribute("userId", login);
+			session.setAttribute("userID", login);
 			req.setAttribute("welcome", "Log in successfully! Welcome "+ getUserById(login).getFullName());
 
 
 			//if User leads a team
 			Team managedTeam = getManagedTeamByUserID(login);
 			if(managedTeam!=null){
-				req.setAttribute("team", "You are leading the team "+ managedTeam.getName());
+				req.setAttribute("team", managedTeam);
 			}
 			else {
-				req.setAttribute("team", "You don't lead a team");
+				req.setAttribute("team", null);
 			}
 			Club managedClub = getManagedClubByUserID(login);
 			//if User leads a club
 			if(managedClub!=null){
-				req.setAttribute("club", "You are leading the club "+ managedClub.getName());
+				req.setAttribute("club", managedClub);
 			}
 			else {
-				req.setAttribute("club", "You don't lead a club");
+				req.setAttribute("club", null);
 			}
 
 			req.getRequestDispatcher("Menu.jsp").forward(req, res);

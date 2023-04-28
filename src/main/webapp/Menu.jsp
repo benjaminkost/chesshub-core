@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,18 +78,25 @@
 			<div id="costum_slider" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<center>
 							<h2>
 								<%=request.getAttribute("welcome")%>
 							</h2>
 							<a href=GamesByUserIdServlet>Games</a> <br> <a
 								href=SelectColor.jsp>Upload PGN</a> <br> <a
 								href=GameToPGN.jsp>Game to PGN</a> <br> <a
-								href=GamesWithoutOpponentServlet>Games without registered
-								opponent</a> <br> <a href="TeamServlet"><%=request.getAttribute("team")%></a>
-							<br> <a href="ClubServlet"><%=request.getAttribute("club")%></a>
-							<br>
-						</center>
+								href=GamesWithoutOpponentServlet>Games without registered opponent</a> <br>
+
+							<!-- Condition for Team Management -->
+							<% if(request.getAttribute("team")!=null){
+								%>
+								<a href="TeamServlet"> Team Management </a> <br>
+							<%}%>
+
+							<!-- Condition for Club Management -->
+							<% if(request.getAttribute("club")!=null){
+							%>
+							<a href="ClubServlet"> Club Management </a> <br>
+							<%}%>
 						<div class="contact_bt_main">
 							<div class="contact_bt"></div>
 						</div>

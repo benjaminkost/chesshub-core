@@ -39,7 +39,7 @@ public class UserManagement {
 
 	/**
 	 * This method saves a new User
-	 * 
+	 *
 	 * @param newUser - user data provided by input
 	 * @return if User was saved
 	 *
@@ -61,6 +61,16 @@ public class UserManagement {
 
 	public static User getUserById(int userId) {
 		return UserDao.getInstance().getUserById(userId);
+	}
+
+
+	public static User getUserByMail(String mail){
+		for (User u: UserDao.getInstance().getAllUser()){
+			if (u.getEmail().equals(mail)){
+				return u;
+			}
+		}
+		return null;
 	}
 
 }
