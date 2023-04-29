@@ -97,9 +97,7 @@
 							%>
 							<a href="ClubServlet"> Club Management </a> <br>
 							<%}%>
-						<div class="contact_bt_main">
-							<div class="contact_bt"></div>
-						</div>
+						<br><br><br><br><br>
 					</div>
 				</div>
 			</div>
