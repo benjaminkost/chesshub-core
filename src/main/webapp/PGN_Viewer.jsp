@@ -54,7 +54,7 @@
 
 <style>
 ct-pgn-viewer.ct-pgn-viewer move-list .ct-move-list-container {
-	height: 250px;
+	height: 280px;
 }
 </style>
 </head>
@@ -95,7 +95,7 @@ ct-pgn-viewer.ct-pgn-viewer move-list .ct-move-list-container {
 	<div class="banner_section layout_padding">
 		<div class="container">
 
-	<ct-pgn-viewer board-pieceStyle="merida" board-boardStyle="green-white">
+	<ct-pgn-viewer board-pieceStyle="merida" board-boardStyle="green-white" board-pieceMovementSpeed="50" move-list-autoplaySpeed="1000" move-list-fontSize="14" move-list-resizable="true" board-disablePieceMovement="true">
 	<%
 	out.println(request.getAttribute("game"));
 	%> </ct-pgn-viewer>

@@ -75,16 +75,12 @@
 						<center>
 						<h1>GAME UPLOAD</h1>
 						<br>
-							<legend>Please select your color</legend>
-						<li class="nav-item"><a class="nav-link"
-							href="./SelectColorServlet?color=White">White</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="./SelectColorServlet?color=Black">Black</a></li>
-						
+							<legend>Please select your color:</legend>
+						<h2 class="nav-item"><a class="nav-link"
+							href="./SelectColorServlet?color=White">White</a> 
+							<a class="nav-link" href="./SelectColorServlet?color=Black">Black</a></h2>
+							<br><br>
 						</center>
-						<div class="contact_bt_main">
-							<div class="contact_bt"></div>
-						</div>
 					</div>
 				</div>
 			</div>
