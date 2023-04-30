@@ -102,7 +102,7 @@ public class GameManagement {
 
 					// safe game with DAO in Database
 					GameDao.getInstance().insertGame(parsedFile);
-					s = "<a href='./GameByGameIdServlet?gameId=" + parsedFile.getGame_ID() +"'> The file was successfully uploaded and parsed. <br> Click here if you want to see it.";
+					s = "<a href='./GameByGameIdServlet?gameId=" + parsedFile.getGame_ID() +"'> The file was successfully uploaded and parsed. <br> Click here if you want to see it.</a>";
 
 				}
 			}

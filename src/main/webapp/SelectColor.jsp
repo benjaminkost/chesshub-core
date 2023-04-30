@@ -69,9 +69,6 @@
 	<!-- banner section start -->
 	<div class="banner_section layout_padding">
 		<div class="container">
-			<div id="costum_slider" class="carousel slide" data-ride="carousel">
-				<div class="carousel-inner">
-					<div class="carousel-item active">
 						<center>
 						<h1>GAME UPLOAD</h1>
 						<br>
@@ -81,9 +78,6 @@
 							<a class="nav-link" href="./SelectColorServlet?color=Black">Black</a></h2>
 							<br><br>
 						</center>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	<!-- footer section start -->
