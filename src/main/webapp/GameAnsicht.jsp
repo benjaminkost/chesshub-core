@@ -64,7 +64,7 @@
 		<div class="container-fluid">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="logo">
-					<a><img src="images/logo.png"></a>
+					<a href="Menu.jsp"><img src="images/logo.png"></a>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
@@ -120,7 +120,7 @@
 								<%
 								List<Game> partien = (List<Game>) request.getAttribute("partien");
 								if (partien.isEmpty()) {
-									out.println("You have not any Games!");
+									out.println("You don't have any games!");
 								} else {
 								%>
 

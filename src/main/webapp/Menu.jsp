@@ -79,7 +79,7 @@
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 							<h2>
-								<%=request.getAttribute("welcome")%>
+								<%=session.getAttribute("welcome")%>
 							</h2>
 							<a href=GamesByUserIdServlet>Games</a> <br> <a
 								href=SelectColor.jsp>Upload PGN</a> <br> <a
@@ -87,13 +87,13 @@
 								href=GamesWithoutOpponentServlet>Games without registered opponent</a> <br>
 
 							<!-- Condition for Team Management -->
-							<% if(request.getAttribute("team")!=null){
+							<% if(session.getAttribute("team")!=null){
 								%>
 								<a href="TeamServlet"> Team Management </a> <br>
 							<%}%>
 
 							<!-- Condition for Club Management -->
-							<% if(request.getAttribute("club")!=null){
+							<% if(session.getAttribute("club")!=null){
 							%>
 							<a href="ClubServlet"> Club Management </a> <br>
 							<%}%>

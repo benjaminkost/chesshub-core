@@ -65,7 +65,7 @@ ct-pgn-viewer.ct-pgn-viewer move-list .ct-move-list-container {
 		<div class="container-fluid">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="logo">
-					<a><img src="images/logo.png"></a>
+					<a href="Menu.jsp"><img src="images/logo.png"></a>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"

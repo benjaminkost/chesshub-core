@@ -39,24 +39,24 @@ public class LoginServlet extends HttpServlet {
 		}else {
 			session = req.getSession();
 			session.setAttribute("userId", login);
-			req.setAttribute("welcome", "Log in successfully! Welcome "+ getUserById(login).getFullName());
+			session.setAttribute("welcome", "Log in successfully! Welcome "+ getUserById(login).getFullName());
 
 
 			//if User leads a team
 			Team managedTeam = getManagedTeamByUserID(login);
 			if(managedTeam!=null){
-				req.setAttribute("team", managedTeam);
+				session.setAttribute("team", managedTeam);
 			}
 			else {
-				req.setAttribute("team", null);
+				session.setAttribute("team", null);
 			}
 			Club managedClub = getManagedClubByUserID(login);
 			//if User leads a club
 			if(managedClub!=null){
-				req.setAttribute("club", managedClub);
+				session.setAttribute("club", managedClub);
 			}
 			else {
-				req.setAttribute("club", null);
+				session.setAttribute("club", null);
 			}
 
 			req.getRequestDispatcher("Menu.jsp").forward(req, res);
