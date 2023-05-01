@@ -9,8 +9,8 @@ import org.junit.jupiter.api.*;
 
 import BusinessObjects.Game;
 import BusinessObjects.User;
-import dao.GameDao;
-import dao.UserDao;
+import DAO.GameDao;
+import DAO.UserDao;
 
 public class GameDaoTest {
 

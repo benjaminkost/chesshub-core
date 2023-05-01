@@ -2,8 +2,8 @@ package juTest;
 
 import BusinessObjects.Club;
 import BusinessObjects.User;
-import dao.ClubDao;
-import dao.UserDao;
+import DAO.ClubDao;
+import DAO.UserDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

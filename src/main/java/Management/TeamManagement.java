@@ -1,13 +1,9 @@
 package Management;
 
-import BusinessObjects.Club;
-import BusinessObjects.Team;
-import BusinessObjects.User;
-import dao.TeamDao;
-import dao.UserDao;
-import dao.UserTeamDao;
+import BusinessObjects.*;
+import DAO.*;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class TeamManagement {
@@ -30,19 +26,16 @@ public class TeamManagement {
 
     public static void addMemberToTeam(Team team, User newMember){
         UserTeamDao.getInstance().insertUserInTeam(newMember,team);
-        //TeamDao.getInstance().getTeamById(team.getTeam_ID()).addMember(newMember);
     }
 
     public static void removeMemberFromTeam(Team team, User oldMember){
         UserTeamDao.getInstance().deleteUserFromTeam(oldMember,team);
-        //TeamDao.getInstance().getTeamById(team.getTeam_ID()).removeMember(oldMember);
     }
 
     public static void removeAllMembersFromTeam(Team team){
         for(User u : UserTeamDao.getInstance().getUsersByTeamId(team)){
             UserTeamDao.getInstance().deleteUserFromTeam(u, team);
         }
-        //TeamDao.getInstance().getTeamById(team.getTeam_ID()).setMembers(null);
     }
 
     public static void changeTeamLeader(Team team, User newTeamLeader){
@@ -83,7 +76,6 @@ public class TeamManagement {
         }
 
         return null;
-        //return TeamDao.getInstance().getTeamById(ID);
     }
 
 

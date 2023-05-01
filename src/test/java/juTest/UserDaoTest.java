@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import BusinessObjects.User;
-import dao.UserDao;
+import DAO.UserDao;
 
 public class UserDaoTest {
 

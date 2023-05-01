@@ -1,4 +1,4 @@
-package dao;
+package DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ import java.util.List;
 import BusinessObjects.Team;
 import BusinessObjects.User;
 import Database.DatabaseConnector;
-import dao.Interface.UserTeamDaoIF;
+import DAO.Interface.UserTeamDaoIF;
 
 public class UserTeamDao implements UserTeamDaoIF {
 	
@@ -18,7 +18,6 @@ public class UserTeamDao implements UserTeamDaoIF {
 		try {
 			DatabaseConnector.getInstance().connect();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -42,12 +41,10 @@ public class UserTeamDao implements UserTeamDaoIF {
 				TeamList.add(team);
 			}
 		} catch (SQLException e) {
-			// TODO: handle exception
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -65,12 +62,10 @@ public class UserTeamDao implements UserTeamDaoIF {
 				UserList.add(user);
 			}
 		} catch (SQLException e) {
-			// TODO: handle exception
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -87,13 +82,11 @@ public class UserTeamDao implements UserTeamDaoIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -110,14 +103,12 @@ public class UserTeamDao implements UserTeamDaoIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -134,18 +125,15 @@ public class UserTeamDao implements UserTeamDaoIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return result;
 	}
-
 }

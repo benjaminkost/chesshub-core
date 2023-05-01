@@ -1,7 +1,7 @@
 package juTest;
 
 import BusinessObjects.Authorisation;
-import dao.AuthDao;
+import DAO.AuthDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

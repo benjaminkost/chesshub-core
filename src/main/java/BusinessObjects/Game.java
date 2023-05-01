@@ -3,7 +3,6 @@ package BusinessObjects;
 import java.util.Date;
 
 public class Game {
-
 	private int game_ID;
 	private String event;
 	private String site;
@@ -168,16 +167,6 @@ public class Game {
 		if (white.getUser_Id()==0) return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event + "\"] [Black \"" + black.getFullName() + "\"] [White \"" + comment + "\"] [Site \"" + site + "\"]" + moves;
 		if (black.getUser_Id()==0) return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event + "\"] [Black \"" + comment + "\"] [White \"" + white.getFullName() + "\"] [Site \"" + site + "\"]" + moves;
 		return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event + "\"] [Black \"" + black.getFullName() + "\"] [White \"" + white.getFullName() + "\"] [Site \"" + site + "\"]" + moves;
-	}
-
-	public String readPGN() {
-//		TODO BEN?
-		return Result;
-		
-	}
-	
-	public void analyzePGN() {
-//		TODO BEN?
 	}
 	
 }

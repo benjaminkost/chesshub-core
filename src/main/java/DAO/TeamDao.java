@@ -1,4 +1,4 @@
-package dao;
+package DAO;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import java.util.List;
 import BusinessObjects.Team;
 import Database.DatabaseConnector;
 import Database.DatabaseConnectorIF;
-import dao.Interface.TeamDaoIF;
+import DAO.Interface.TeamDaoIF;
 
 import java.sql.*;
 
@@ -19,7 +19,6 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 		try {
 			DatabaseConnector.getInstance().connect();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -50,7 +49,6 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -59,27 +57,31 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 
 	@Override
 	public Team getTeamById(int Team_id){
-		Team Team = new Team();
+		Team team = new Team();
 		try {
 			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYTEAMID, Team_id);
 			if (rs.next()) {
-				Team.setTeam_ID(rs.getInt(COL_TEAM_ID));
-				Team.setName(rs.getString(COL_NAME));
-				Team.setClub(ClubDao.getInstance().getClubById(rs.getInt(COL_CLUB)));
-				Team.setLeader(UserDao.getInstance().getUserById(rs.getInt(COL_LEADER)));
+				team.setTeam_ID(rs.getInt(COL_TEAM_ID));
+				team.setName(rs.getString(COL_NAME));
+				team.setClub(ClubDao.getInstance().getClubById(rs.getInt(COL_CLUB)));
+				team.setLeader(UserDao.getInstance().getUserById(rs.getInt(COL_LEADER)));
 			}
+			/*
+			else {
+				team = null;
+			}
+
+			 */
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		return Team;
+		return team;
 	}
 
 	@Override
@@ -100,13 +102,11 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -124,14 +124,12 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -162,17 +160,14 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return result;
 	}
-
 }

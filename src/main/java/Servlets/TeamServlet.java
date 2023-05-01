@@ -1,15 +1,12 @@
 package Servlets;
 
-import BusinessObjects.Club;
-import BusinessObjects.Team;
-import BusinessObjects.User;
+import BusinessObjects.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
-import static Management.ClubManagement.getManagedClubByUserID;
 import static Management.TeamManagement.*;
 import static Management.UserManagement.*;
 import static Servlets.LoginServlet.session;

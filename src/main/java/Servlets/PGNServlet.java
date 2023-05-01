@@ -24,9 +24,8 @@ public class PGNServlet extends HttpServlet {
 			request.getRequestDispatcher("Message.jsp").forward(request, response);
 
 		} catch (FileUploadException e) {
-
 		}
-
 	}
-
 }
+
+

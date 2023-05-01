@@ -3,8 +3,8 @@ package Management;
 import BusinessObjects.Club;
 import BusinessObjects.Team;
 import BusinessObjects.User;
-import dao.ClubDao;
-import dao.TeamDao;
+import DAO.ClubDao;
+import DAO.TeamDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +15,12 @@ public class ClubManagement {
 
     public static void addTeamToClub(Club club, Team newTeam){
         TeamDao.getInstance().getTeamById(newTeam.getTeam_ID()).setClub(club);
-        //ClubDao.getInstance().getClubById(club.getClub_ID()).addTeam(newTeam);
     }
 
     public static void removeAllTeamsFromClub(Club club){
         for (Team t : getAllTeamsOfClub(club)){
             removeTeam(t);
         }
-        //ClubDao.getInstance().getClubById(club.getClub_ID()).setTeams(null);
     }
 
     public static void changeClubPresident(Club club, User newPresident){
@@ -37,7 +35,6 @@ public class ClubManagement {
             }
         }
         return teamsOfClub;
-        //return ClubDao.getInstance().getClubById(club.getClub_ID()).getTeams();
     }
 
     public static List<Club> getAllClubs(){

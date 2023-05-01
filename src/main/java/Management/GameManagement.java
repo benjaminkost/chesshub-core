@@ -8,9 +8,8 @@ import java.util.List;
 import org.apache.commons.fileupload.FileItem;
 
 import BusinessObjects.Game;
-import PGNReader.PGNReader;
-import dao.GameDao;
-import dao.UserDao;
+import DAO.GameDao;
+import DAO.UserDao;
 
 public class GameManagement {
 	

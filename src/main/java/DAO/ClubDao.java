@@ -1,4 +1,4 @@
-package dao;
+package DAO;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import java.util.List;
 import BusinessObjects.Club;
 import Database.DatabaseConnector;
 import Database.DatabaseConnectorIF;
-import dao.Interface.ClubDaoIF;
+import DAO.Interface.ClubDaoIF;
 
 import java.sql.*;
 
@@ -19,7 +19,6 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 		try {
 			DatabaseConnector.getInstance().connect();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -45,12 +44,10 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 
 			}
 		} catch (SQLException e) {
-			// TODO: handle exception
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -68,13 +65,11 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 				club.setPresident(UserDao.getInstance().getUserById(rs.getInt(COL_PRESIDENT)));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -95,13 +90,11 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -119,14 +112,12 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -152,13 +143,11 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

@@ -1,10 +1,8 @@
 package BusinessObjects;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class User{
-
 	private int user_Id;
 	private String Lastname;
 	private String Firstname;
@@ -38,8 +36,6 @@ public class User{
 		this.auth = authorisations;
 		this.teams = teams;
 	}
-
-
 
 	public User() {
 		super();

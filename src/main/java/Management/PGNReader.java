@@ -1,4 +1,4 @@
-package PGNReader;
+package Management;
 
 import BusinessObjects.Game;
 import java.io.BufferedReader;
@@ -30,13 +30,14 @@ public class PGNReader {
         if (f == null) {
             throw new NullPointerException("File can't be null!");
         }
+
         if (!f.isFile()) {
             throw new IllegalArgumentException("f should not be a directo"
                     + "ry, but was: " + f);
         }
+
         if (!f.getName().toLowerCase().endsWith(".pgn")) {
             throw new IllegalArgumentException("File must end with \".pgn\"");
-
         }
 
         BufferedReader input = null;
@@ -44,7 +45,6 @@ public class PGNReader {
         try {
             input = new BufferedReader(new FileReader(f));
             String line;
-
             //read the entire pgn file after the instructions
             while ((line = input.readLine()) != null) {
                 if (line.length() > 0) {

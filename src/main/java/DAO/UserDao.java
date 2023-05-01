@@ -1,15 +1,13 @@
-package dao;
+package DAO;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import BusinessObjects.Club;
 import BusinessObjects.User;
 import Database.DatabaseConnector;
 import Database.DatabaseConnectorIF;
-import dao.Interface.UserDaoIF;
+import DAO.Interface.UserDaoIF;
 
-import java.lang.reflect.Method;
 import java.sql.*;
 
 public class UserDao implements UserDaoIF, DatabaseConnectorIF {
@@ -20,7 +18,6 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 		try {
 			DatabaseConnector.getInstance().connect();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -48,13 +45,11 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 				userList.add(user);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -67,20 +62,24 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 		try {
 			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYUSERID, User_id);
 			if (rs.next()) {
-				user = new User();
 				user.setUser_Id(rs.getInt(COL_USER_ID));
 				user.setFirstname(rs.getString(COL_FIRSTNAME));
 				user.setLastname(rs.getString(COL_LASTNAME));
 				user.setEmail(rs.getString(COL_EMAIL));
 				user.setPassword(rs.getString(COL_PASSWORD));
 			}
+			/*
+			else{
+				user = null;
+			}
+
+			 */
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -103,13 +102,11 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -127,13 +124,11 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -160,17 +155,14 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return result;
 	}
-
 }

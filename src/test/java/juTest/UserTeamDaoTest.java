@@ -2,14 +2,11 @@ package juTest;
 
 import BusinessObjects.Team;
 import BusinessObjects.User;
-import dao.TeamDao;
-import dao.UserDao;
-import dao.UserTeamDao;
+import DAO.TeamDao;
+import DAO.UserDao;
+import DAO.UserTeamDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserTeamDaoTest {
 

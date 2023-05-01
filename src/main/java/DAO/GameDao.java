@@ -1,4 +1,4 @@
-package dao;
+package DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ import java.util.List;
 import BusinessObjects.Game;
 import Database.DatabaseConnector;
 import Database.DatabaseConnectorIF;
-import dao.Interface.GameDaoIF;
+import DAO.Interface.GameDaoIF;
 
 public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 
@@ -19,7 +19,6 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 		try {
 			DatabaseConnector.getInstance().connect();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -57,7 +56,6 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -82,13 +80,11 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				game.setComment(rs.getString(COL_COMMENT));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -120,7 +116,6 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -152,7 +147,6 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -171,13 +165,11 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -195,14 +187,12 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -226,19 +216,14 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return result;
 	}
-
-
-
 }

@@ -1,4 +1,4 @@
-package dao;
+package DAO;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ import java.util.List;
 
 import BusinessObjects.Authorisation;
 
-import dao.Interface.AuthDaoIF;
+import DAO.Interface.AuthDaoIF;
 
 import Database.DatabaseConnector;
 import Database.DatabaseConnectorIF;
@@ -22,7 +22,6 @@ public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
 		try {
 			DatabaseConnector.getInstance().connect();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -50,7 +49,6 @@ public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -67,13 +65,11 @@ public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
 				auth.setRole(rs.getString(COL_ROLE));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -90,13 +86,11 @@ public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -115,13 +109,11 @@ public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -142,13 +134,11 @@ public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
 				result = false;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
