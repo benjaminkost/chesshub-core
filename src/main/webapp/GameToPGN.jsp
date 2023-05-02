@@ -14,7 +14,7 @@
     Opponent: <input type=text name=opponent> <br>
     Result: <input type=text name=result> <br>
     Date: <input type=text name=date> <br>
-    Round: <input type=text name=round> <br>
+    Round: <input type=text name=round required> <br>
     Event: <input type=text name=event> <br>
     Site: <input type=text name=site> <br> <br>
     <input type="submit" value="SUBMIT" />

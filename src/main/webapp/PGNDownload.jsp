@@ -116,7 +116,7 @@ ct-pgn-viewer.ct-pgn-viewer move-list .ct-move-list-container {
 	%> </ct-pgn-viewer>
 	
 	<br>
-	<form action="GameDownloadServlet">
+	<form action="GameDownloadServlet" method="post">
 	<input type="hidden" name="eMoves" id="eMoves" value="" />
 	<button onclick="extractMoves()">SAVE THE GAME</button>
 	</form>
