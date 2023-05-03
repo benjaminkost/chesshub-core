@@ -1,7 +1,13 @@
 package Management;
 
+import BusinessObjects.Authorisation;
+import BusinessObjects.Team;
 import BusinessObjects.User;
 import DAO.UserDao;
+
+import java.util.List;
+
+import static Management.StringEncrypter.encryptString;
 
 public class UserManagement {
 	/**
@@ -16,7 +22,7 @@ public class UserManagement {
 
 	public static int loginUser(String userEmail, String decryptedPassword) {
 		boolean userExists = false;
-		String encryptedPasswordInput = StringEncrypter.encryptString(decryptedPassword);
+		String encryptedPasswordInput = encryptString(decryptedPassword);
 		int userID = -1;
 
 		// Getting User by Email, Check if User exists
@@ -87,5 +93,29 @@ public class UserManagement {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * This method updates a user by the given attributes
+	 * @param userID - identifier for user
+	 * @param firstName - new firstName
+	 * @param lastName - new lastName
+	 * @param mail - new Mail
+	 * @return false, if user doesn't exists; true after update
+	 *
+	 * @author Lukas Zander
+	 */
+	public static boolean updateUser(int userID, String firstName, String lastName, String mail){
+		//Guard Clause
+		if(getUserById(userID)==null){
+			return false;
+		}
+		//Setting attributes, which should be the same as before update
+		List<Team> teams = getUserById(userID).getTeams();
+		String password = getUserById(userID).getPassword();
+
+		//Updating user
+		UserDao.getInstance().updateUser(new User(userID,lastName,firstName,mail,password,null,null,teams));
+		return true;
 	}
 }

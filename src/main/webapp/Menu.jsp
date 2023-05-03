@@ -81,10 +81,10 @@
 							<h2>
 								<%=session.getAttribute("welcome")%>
 							</h2>
-							<a href=GamesByUserIdServlet>Games</a> <br> <a
-								href=SelectColor.jsp>Upload PGN</a> <br> <a
-								href=GameToPGN.jsp>Game to PGN</a> <br> <a
-								href=GamesWithoutOpponentServlet>Games without registered opponent</a> <br>
+							<a href=GamesByUserIdServlet>Games</a> <br>
+							<a href=SelectColor.jsp>Upload PGN</a> <br>
+							<a href=GameToPGN.jsp>Game to PGN</a> <br>
+							<a href=GamesWithoutOpponentServlet>Games without registered opponent</a> <br>
 
 							<!-- Condition for Team Management -->
 							<% if(session.getAttribute("team")!=null){
@@ -97,6 +97,9 @@
 							%>
 							<a href="ClubServlet"> Club Management </a> <br>
 							<%}%>
+
+							<a href=UserServlet>Edit your profile</a> <br>
+
 						<br><br><br><br>
 					</div>
 				</div>
