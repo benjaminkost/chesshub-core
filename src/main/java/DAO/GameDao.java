@@ -51,7 +51,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				gameList.add(game);
 			}
 		} catch (SQLException e) {
-			// TODO: handle exception
+			// TODO: @Azad handle exception
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
@@ -111,7 +111,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				gameList.add(game);
 			}
 		} catch (SQLException e) {
-			// TODO: handle exception
+			// TODO: @Azad handle exception
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();
@@ -142,7 +142,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 				gameList.add(game);
 			}
 		} catch (SQLException e) {
-			// TODO: handle exception
+			// TODO: @Azad handle exception
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();

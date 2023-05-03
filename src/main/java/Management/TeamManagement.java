@@ -2,8 +2,6 @@ package Management;
 
 import BusinessObjects.*;
 import DAO.*;
-
-
 import java.util.List;
 
 public class TeamManagement {
@@ -38,6 +36,14 @@ public class TeamManagement {
         }
     }
 
+    /**
+     * This method changes the leader of an existing team
+     *
+     * @param team - team, which gets a new leader
+     * @param newTeamLeader - user, who will lead the given team
+     *
+     * @author Lukas Zander
+     */
     public static void changeTeamLeader(Team team, User newTeamLeader){
         Team update = team;
         update.setLeader(newTeamLeader);
@@ -45,6 +51,14 @@ public class TeamManagement {
         TeamDao.getInstance().updateTeam(update);
     }
 
+    /**
+     * This method returns the team, which the given user leads
+     *
+     * @param userID - search string of potential team leader
+     * @return leaded Team if exists, else null
+     *
+     * @author Lukas Zander
+     */
     public static Team getManagedTeamByUserID(int userID){
         for(Team t: TeamDao.getInstance().getAllTeams()){
             if(t.getLeader().getUser_Id()==userID){
@@ -68,20 +82,20 @@ public class TeamManagement {
 
     }
 
+    /**
+     * This method returns a team, identified by given ID
+     *
+     * @param ID - search parameter for team, given by user
+     * @return matching team if exists, else null
+     *
+     * @author Lukas Zander
+     */
     public static Team getTeamByID(int ID){
         for(Team t: TeamDao.getInstance().getAllTeams()){
             if(t.getTeam_ID()==ID){
                 return t;
             }
         }
-
         return null;
     }
-
-
-
-
-
-
-
 }

@@ -44,7 +44,7 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
 				TeamList.add(Team);
 			}
 		} catch (SQLException e) {
-			// TODO: handle exception
+			// TODO: @Azad handle exception
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();

@@ -2,9 +2,6 @@ package Management;
 
 import java.security.*;
 
-/**
- * A class that provides a method for encrypting a string using SHA-256 algorithm.
- */
 public class StringEncrypter {
 
     /**
@@ -13,6 +10,8 @@ public class StringEncrypter {
      * @param string the string to be encrypted
      * @return the SHA-256 hash of the given string
      * @throws RuntimeException if the SHA-256 algorithm is not available
+     *
+     * @author Lukas Zander
      */
     public static String encryptString(String string) {
         try {

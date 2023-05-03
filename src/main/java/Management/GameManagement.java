@@ -1,20 +1,23 @@
 package Management;
 
 import java.io.File;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.List;
-
 import org.apache.commons.fileupload.FileItem;
-
-import BusinessObjects.Game;
-import DAO.GameDao;
-import DAO.UserDao;
+import BusinessObjects.*;
+import DAO.*;
 
 public class GameManagement {
-	
-	Game game;
 
+
+	/**
+	 * 	//TODO @Ben bitte kommentieren
+	 * @param userId
+	 * @param gameId
+	 * @return
+	 *
+	 * @author Ben Kostka
+	 */
 	public static String gameByGameId(int userId, String gameId) {
 		Game partie = GameDao.getInstance().getGameById(Integer.parseInt(gameId));
 		for (Game partieVergleich : GameDao.getInstance().getGamesByUserId(userId)) {
@@ -25,6 +28,13 @@ public class GameManagement {
 		return "";
 	}
 
+	/**
+	 * //TODO @Ben bitte kommentieren
+	 * @param game
+	 * @param moves
+	 *
+	 * @author Ben Kostka
+	 */
 	public static void gameDownload(Game game, String moves) {
 		game.setMoves(moves);
 		GameDao.getInstance().insertGame(game);
@@ -38,6 +48,21 @@ public class GameManagement {
 		return GameDao.getInstance().getGamesWithoutOpponent(userId);
 	}
 
+	/**
+	 * //TODO @Ben bitte kommentieren
+	 *
+	 * @param color
+	 * @param userId
+	 * @param result
+	 * @param date
+	 * @param round
+	 * @param event
+	 * @param site
+	 * @param opponent
+	 * @return
+	 *
+	 * @author Ben Kostka
+	 */
 	public static Game gameToPGN(String color, int userId, String result, String date, String round, String event,
 			String site, String opponent) {
 
@@ -64,6 +89,15 @@ public class GameManagement {
 		return game;
 	}
 
+	/**
+	 * //TODO @Ben bitte kommentieren
+	 * @param uploadItems
+	 * @param color
+	 * @param userId
+	 * @return
+	 *
+	 * @author Ben Kostka
+	 */
 	public static String PGN(List<FileItem> uploadItems, String color, int userId) {
 
 		String s = "";

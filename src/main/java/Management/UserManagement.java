@@ -9,9 +9,9 @@ public class UserManagement {
 	 *
 	 * @param userEmail         - provided email by user's input
 	 * @param decryptedPassword - provided password by user's input
-	 * @return boolean, if login was successfully
+	 * @return userId, if login succeed; -1 if user doesn't exist, -2 if password is wrong
 	 *
-	 * @author ZanderLK
+	 * @author Lukas Zander
 	 */
 
 	public static int loginUser(String userEmail, String decryptedPassword) {
@@ -41,9 +41,9 @@ public class UserManagement {
 	 * This method saves a new User
 	 *
 	 * @param newUser - user data provided by input
-	 * @return if User was saved
+	 * @return true if User was saved
 	 *
-	 * @author ZanderLK
+	 * @author Lukas Zander
 	 */
 	public static boolean saveNewUser(User newUser) {
 		// Check, if Email is already used
@@ -59,11 +59,27 @@ public class UserManagement {
 		return true;
 	}
 
+	/**
+	 * This method returns a user, who is identified by given ID
+	 *
+	 * @param userId - search parameter for user
+	 * @return matching user
+	 *
+	 * @author Lukas Zander
+	 */
 	public static User getUserById(int userId) {
 		return UserDao.getInstance().getUserById(userId);
 	}
 
 
+	/**
+	 * This method returns a user, who is identified by given Mail
+	 *
+	 * @param mail - search parameter for user
+	 * @return matching user if found, else null
+	 *
+	 * @author Lukas Zander
+	 */
 	public static User getUserByMail(String mail){
 		for (User u: UserDao.getInstance().getAllUser()){
 			if (u.getEmail().equals(mail)){
@@ -72,5 +88,4 @@ public class UserManagement {
 		}
 		return null;
 	}
-
 }

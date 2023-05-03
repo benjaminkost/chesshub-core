@@ -44,7 +44,7 @@ public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
 				authList.add(auth);
 			}
 		} catch (SQLException e) {
-			// TODO: handle exception
+			// TODO: @Azad handle exception
 		} finally {
 			try {
 				DatabaseConnector.getInstance().closeStatement();

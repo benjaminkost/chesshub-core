@@ -1,15 +1,9 @@
 package Management;
 
 import BusinessObjects.Game;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.*;
+import java.text.*;
 import java.util.Date;
-
 
 /**
  * Enables parsing files in reduced PGN export format.
@@ -25,6 +19,8 @@ public class PGNReader {
      *
      * @param f the pgn file to be parsed.
      * @return Game that was put in.
+     *
+     * @author Benjamin Kostka
      */
     public Game parseFile(File f) {
         if (f == null) {
@@ -76,6 +72,16 @@ public class PGNReader {
         importedGame.setMoves(importedGame.getMoves().substring(4));
         return importedGame;
     }
+
+    /**
+     * //TODO @Ben bitte kommentieren
+     *
+     * @param attrName
+     * @param attrValue
+     * @throws ParseException
+     *
+     * @author Benjamin Kostka
+     */
 
     private void setAttribute(String attrName,
                               String attrValue) throws ParseException {

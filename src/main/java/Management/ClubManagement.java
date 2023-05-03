@@ -1,14 +1,8 @@
 package Management;
 
-import BusinessObjects.Club;
-import BusinessObjects.Team;
-import BusinessObjects.User;
-import DAO.ClubDao;
-import DAO.TeamDao;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import BusinessObjects.*;
+import DAO.*;
+import java.util.*;
 import static Management.TeamManagement.removeTeam;
 
 public class ClubManagement {
@@ -27,6 +21,14 @@ public class ClubManagement {
         ClubDao.getInstance().getClubById(club.getClub_ID()).setPresident(newPresident);
     }
 
+    /**
+     * Returns all Teams of a given club
+     *
+     * @param club - club, which teams are requested
+     * @return List<Team>, including all teams of the club
+     *
+     * @author Lukas Zander
+     */
     public static List<Team> getAllTeamsOfClub(Club club){
         List<Team> teamsOfClub = new ArrayList<>();
         for(Team t : TeamDao.getInstance().getAllTeams()){
@@ -49,6 +51,14 @@ public class ClubManagement {
         return presidents;
     }
 
+    /**
+     * This method returns the club, a given user manage (if exists)
+     *
+     * @param userID - search parameter for user/leader
+     * @return managed club of identified user, if exists; else null1
+     *
+     * @author Lukas Zander
+     */
     public static Club getManagedClubByUserID(int userID){
         for(Club c: ClubDao.getInstance().getAllClubs()){
             if(c.getPresident().getUser_Id()==userID){

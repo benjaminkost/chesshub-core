@@ -1,20 +1,12 @@
 package Servlets;
 
-import BusinessObjects.Club;
-import BusinessObjects.Team;
-
+import BusinessObjects.*;
 import static Management.ClubManagement.getManagedClubByUserID;
 import static Management.TeamManagement.getManagedTeamByUserID;
-import static Management.UserManagement.loginUser;
-import static Management.UserManagement.getUserById;
-
+import static Management.UserManagement.*;
 import java.io.IOException;
-
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 
 public class LoginServlet extends HttpServlet {
 

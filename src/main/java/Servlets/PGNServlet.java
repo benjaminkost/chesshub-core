@@ -2,12 +2,9 @@ package Servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-
 import static Servlets.LoginServlet.session;
 import static Management.GameManagement.PGN;
-
 import java.io.*;
-
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
