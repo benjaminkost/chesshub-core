@@ -21,10 +21,9 @@ public class RegistrationServlet extends HttpServlet {
 		String Lastname = req.getParameter("lastname");
 		String Firstname = req.getParameter("firstname");
 		String dateString = Calendar.getInstance().getTime().toString();
-		Authorisation auth = null;
 		List<Team> teams = new ArrayList<>();
 
-		boolean registrationSucceed = saveNewUser(new User(Lastname,Firstname,email,password,dateString, auth,teams));
+		boolean registrationSucceed = saveNewUser(new User(Lastname,Firstname,email,password,dateString,teams));
 
 		if(registrationSucceed){
 			req.getRequestDispatcher("Login.jsp").forward(req, res);

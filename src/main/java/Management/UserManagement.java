@@ -1,6 +1,5 @@
 package Management;
 
-import BusinessObjects.Authorisation;
 import BusinessObjects.Team;
 import BusinessObjects.User;
 import DAO.UserDao;
@@ -115,7 +114,7 @@ public class UserManagement {
 		String password = getUserById(userID).getPassword();
 
 		//Updating user
-		UserDao.getInstance().updateUser(new User(userID,lastName,firstName,mail,password,null,null,teams));
+		UserDao.getInstance().updateUser(new User(userID,lastName,firstName,mail,password,null,teams));
 		return true;
 	}
 }

@@ -91,9 +91,6 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 		boolean result = false;
 		Integer authId = null;
 
-		if (user.getAuthorisation() != null && user.getAuthorisation().getAuth_ID() != 0) {
-			authId = user.getAuthorisation().getAuth_ID();
-		}
 		try {
 			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEUSER, user.getFirstname(), user.getLastname(),
 					user.getEmail(), user.getPassword(), authId, user.getUser_Id()) > 0) {
@@ -140,9 +137,6 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 		boolean result = false;
 		Integer authId = null;
 
-		if (user.getAuthorisation() != null) {
-			authId = user.getAuthorisation().getAuth_ID();
-		}
 		try {
 			if (DatabaseConnector.getInstance().executeUpdate(Q_INSERTUSER, user.getFirstname(), user.getLastname(),
 					user.getEmail(), user.getPassword(), authId) > 0) {

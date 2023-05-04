@@ -2,6 +2,8 @@ package BusinessObjects;
 
 import java.util.Date;
 
+import DAO.UserDao;
+
 public class Game {
 	private int game_ID;
 	private String event;
@@ -10,12 +12,12 @@ public class Game {
 	private int round;
 	private User white;
 	private User black;
-	private String Result; 
+	private String Result;
 	private String moves;
 	private String comment;
 	private String commentWhite;
 	private String commentBlack;
-	
+
 	public Game(int game_ID, String event, String site, Date date, int round, User whitie, User black, String result,
 			String moves, String comment) {
 		super();
@@ -79,8 +81,8 @@ public class Game {
 		return white;
 	}
 
-	public void setWhite(User whitie) {
-		this.white = whitie;
+	public void setWhite(User white) {
+		this.white = white;
 	}
 
 	public User getBlack() {
@@ -106,7 +108,7 @@ public class Game {
 	public void setMoves(String moves) {
 		this.moves = moves;
 	}
-	
+
 	public String getComment() {
 		return comment;
 	}
@@ -114,7 +116,7 @@ public class Game {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	
+
 	public String getCommentWhite() {
 		return commentWhite;
 	}
@@ -122,7 +124,7 @@ public class Game {
 	public void setCommentWhite(String commentWhite) {
 		this.commentWhite = commentWhite;
 	}
-	
+
 	public String getCommentBlack() {
 		return commentBlack;
 	}
@@ -133,40 +135,61 @@ public class Game {
 
 	@Override
 	public String toString() {
-		return "Game{" +
-				"\ngame_ID=" + game_ID +
-				"\n, event='" + event + '\'' +
-				"\n, site='" + site + '\'' +
-				"\n, date=" + date +
-				"\n, round=" + round +
-				"\n, white=" + white +
-				"\n, black=" + black +
-				"\n, Result='" + Result + '\'' +
-				"\n, moves='" + moves + '\'' +
-				"\n, comment='" + comment + '\'' +
-				'}';
+		return "Game{" + "\ngame_ID=" + game_ID + "\n, event='" + event + '\'' + "\n, site='" + site + '\''
+				+ "\n, date=" + date + "\n, round=" + round + "\n, white=" + white + "\n, black=" + black
+				+ "\n, Result='" + Result + '\'' + "\n, moves='" + moves + '\'' + "\n, comment='" + comment + '\''
+				+ '}';
 	}
-	
+
 	public String getPlayer(int userID) {
-		if (userID==this.white.getUser_Id()) return this.white.getFullName() + " (WHITE)"; 
-		else return this.black.getFullName() + " (BLACK)";
+		if (userID == this.white.getUser_Id())
+			return this.white.getFullName() + " (WHITE)";
+		else
+			return this.black.getFullName() + " (BLACK)";
 	}
-	
+
 	public String getOpponent(int userID) {
-		if (userID!=this.white.getUser_Id()) {
-			if (this.white.getUser_Id()!=0) return this.white.getFullName() + " (WHITE)"; 
-			else return this.comment + " (WHITE)";
-		}
-		else {
-			if (this.black.getUser_Id()!=0) return this.black.getFullName() + " (BLACK)";
-			else return this.comment + " (BLACK)";
+		if (userID != this.white.getUser_Id()) {
+			if (this.white.getUser_Id() != 0)
+				return this.white.getFullName() + " (WHITE)";
+			else
+				return this.comment + " (WHITE)";
+		} else {
+			if (this.black.getUser_Id() != 0)
+				return this.black.getFullName() + " (BLACK)";
+			else
+				return this.comment + " (BLACK)";
 		}
 	}
-	
+
+	public void setOpponent(int opponentId) {
+		if (this.white.getUser_Id() == 0) {
+			this.white = UserDao.getInstance().getUserById(opponentId);
+		} else {
+			this.black = UserDao.getInstance().getUserById(opponentId);
+		}
+	}
+
+	public int getRecipient() {
+		if (this.white.getUser_Id() == 0) {
+			return this.black.getUser_Id();
+		} else {
+			return this.white.getUser_Id();
+		}
+	}
+
 	public String getGame() {
-		if (white.getUser_Id()==0) return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event + "\"] [Black \"" + black.getFullName() + "\"] [White \"" + comment + "\"] [Site \"" + site + "\"]" + moves;
-		if (black.getUser_Id()==0) return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event + "\"] [Black \"" + comment + "\"] [White \"" + white.getFullName() + "\"] [Site \"" + site + "\"]" + moves;
-		return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event + "\"] [Black \"" + black.getFullName() + "\"] [White \"" + white.getFullName() + "\"] [Site \"" + site + "\"]" + moves;
+		if (white.getUser_Id() == 0)
+			return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event
+					+ "\"] [Black \"" + black.getFullName() + "\"] [White \"" + comment + "\"] [Site \"" + site + "\"]"
+					+ moves;
+		if (black.getUser_Id() == 0)
+			return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event
+					+ "\"] [Black \"" + comment + "\"] [White \"" + white.getFullName() + "\"] [Site \"" + site + "\"]"
+					+ moves;
+		return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event
+				+ "\"] [Black \"" + black.getFullName() + "\"] [White \"" + white.getFullName() + "\"] [Site \"" + site
+				+ "\"]" + moves;
 	}
-	
+
 }

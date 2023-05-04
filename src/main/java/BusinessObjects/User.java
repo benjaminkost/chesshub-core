@@ -9,11 +9,10 @@ public class User{
 	private String Email;
 	private String password;
 	private String dateString;
-	private Authorisation auth;
 	private List<Team> teams = new ArrayList<>();
 
 	public User( int user_Id, String lastname, String firstname, String email, String password,
-			String dateString, Authorisation authorisations, List<Team> teams) {
+			String dateString, List<Team> teams) {
 		super();
 		this.user_Id = user_Id;
 		Lastname = lastname;
@@ -21,19 +20,17 @@ public class User{
 		Email = email;
 		this.password = password;
 		this.dateString = dateString;
-		this.auth = authorisations;
 		this.teams = teams;
 	}
 
 	public User(String lastname, String firstname, String email, String password,
-				 String dateString, Authorisation authorisations, List<Team> teams) {
+				 String dateString, List<Team> teams) {
 		super();
 		Lastname = lastname;
 		Firstname = firstname;
 		Email = email;
 		this.password = password;
 		this.dateString = dateString;
-		this.auth = authorisations;
 		this.teams = teams;
 	}
 
@@ -91,14 +88,6 @@ public class User{
 
 	public void setUser_Id(int user_Id) {
 		this.user_Id = user_Id;
-	}
-
-	public Authorisation getAuthorisation() {
-		return this.auth;
-	}
-
-	public void setAuthorisation(Authorisation authorisations) {
-		this.auth = authorisations;
 	}
 
 	public List<Team> getTeams() {

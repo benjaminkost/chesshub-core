@@ -1,24 +1,19 @@
 package DAO;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-
 import java.util.List;
-
-import BusinessObjects.Authorisation;
-
-import DAO.Interface.AuthDaoIF;
-
+import BusinessObjects.Request;
+import DAO.Interface.RequestDaoIF;
 import Database.DatabaseConnector;
 import Database.DatabaseConnectorIF;
 
+public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
+	
+	private static RequestDao instance;
 
-import java.sql.*;
-
-public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
-
-	private static AuthDao instance;
-
-	private AuthDao() {
+	private RequestDao() {
 		try {
 			DatabaseConnector.getInstance().connect();
 		} catch (SQLException e) {
@@ -26,22 +21,22 @@ public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
 		}
 	}
 
-	public static AuthDao getInstance() {
+	public static RequestDao getInstance() {
 		if (instance == null) {
-			instance = new AuthDao();
+			instance = new RequestDao();
 		}
 		return instance;
 	}
 
 	@Override
-	public List<Authorisation> getAllAuths() {
-		List<Authorisation> authList = new ArrayList<Authorisation>();
+	public List<Request> getAllRequests() {
+		List<Request> requestList = new ArrayList<Request>();
 		try {
-			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTALLAUTHS);
+			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTALLREQUESTS);
 			while (rs.next()) {
-				Authorisation auth = new Authorisation();
-				auth.setAuth_ID(rs.getInt(COL_AUTH_ID));
-				authList.add(auth);
+				Request request = new Request();
+				request.setRequest_ID(rs.getInt(COL_REQUEST_ID));
+				requestList.add(request);
 			}
 		} catch (SQLException e) {
 			// TODO: @Azad handle exception
@@ -52,17 +47,20 @@ public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
 				e.printStackTrace();
 			}
 		}
-		return authList;
+		return requestList;
 	}
 
 	@Override
-	public Authorisation getAuthById(int auth_id) {
-		Authorisation auth = new Authorisation();
+	public Request getRequestById(int request_id) {
+		Request request = new Request();
 		try {
-			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYAUTHID, auth_id);
+			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYREQUESTID, request_id);
 			if (rs.next()) {
-				auth.setAuth_ID(rs.getInt(COL_AUTH_ID));
-				auth.setRole(rs.getString(COL_ROLE));
+				request.setRequest_ID(rs.getInt(COL_REQUEST_ID));
+				request.setSender_ID(rs.getInt(COL_SENDER_ID));
+				request.setRecipient_ID(rs.getInt(COL_RECIPIENT_ID));
+				request.setGame_ID(rs.getInt(COL_GAME_ID));
+				request.setStatus(rs.getString(COL_STATUS));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -73,14 +71,14 @@ public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
 				e.printStackTrace();
 			}
 		}
-		return auth;
+		return request;
 	}
 
 	@Override
-	public boolean updateAuth(Authorisation Auth) {
+	public boolean updateRequest(int request_id, String status) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEAUTH, Auth.getRole(), Auth.getAuth_ID()) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEREQUEST, status, request_id) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -98,13 +96,11 @@ public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
 	}
 
 	@Override
-	public boolean deleteAuth(Authorisation auth) {
+	public boolean deleteRequest(int request_id) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEAUTH, auth.getAuth_ID()) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEREQUEST, request_id) > 0) {
 				result = true;
-				auth = null;
-				
 			} else {
 				result = false;
 			}
@@ -121,14 +117,11 @@ public class AuthDao implements AuthDaoIF, DatabaseConnectorIF {
 	}
 
 	@Override
-	public boolean insertAuth(Authorisation Auth) {
+	public boolean insertRequest(int sender_ID, int recipient_ID, int game_ID, String status) {
 		boolean result = false;
 		try {
-			if (DatabaseConnector.getInstance().executeUpdate(Q_INSERTAUTH, Auth.getRole()) > 0) {
+			if (DatabaseConnector.getInstance().executeUpdate(Q_INSERTREQUEST, sender_ID, recipient_ID, game_ID, status) > 0) {
 				ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
-				if (rs.next()) {
-					Auth.setAuth_ID(rs.getInt(1));
-				}
 				result = true;
 			} else {
 				result = false;

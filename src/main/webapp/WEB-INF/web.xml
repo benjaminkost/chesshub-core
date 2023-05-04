@@ -107,6 +107,14 @@
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/UserServlet</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>SendRequestServlet</servlet-name>
+    <servlet-class>Servlets.SendRequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SendRequestServlet</servlet-name>
+    <url-pattern>/SendRequestServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
 
 
