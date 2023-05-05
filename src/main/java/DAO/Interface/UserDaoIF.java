@@ -20,7 +20,7 @@ public interface UserDaoIF {
 	final String Q_SELECTBYUSERID = "SELECT * FROM "+TABLENAME+ " WHERE "+COL_USER_ID+" = ? ;";
 	final String Q_UPDATEUSER = "UPDATE "+TABLENAME+" SET "+COL_FIRSTNAME+"=?, "+COL_LASTNAME+"=?, "+COL_EMAIL+"=?, "+COL_PASSWORD+"=? WHERE "+ COL_USER_ID+"=?;";
 	final String Q_DELETEUSER = "DELETE FROM "+TABLENAME+" WHERE "+COL_USER_ID+"=?;";
-	final String Q_INSERTUSER = "INSERT INTO "+TABLENAME+"("+COL_FIRSTNAME+","+COL_LASTNAME+","+COL_EMAIL+","+COL_PASSWORD+") VALUES (?,?,?,?,?);";
+	final String Q_INSERTUSER = "INSERT INTO "+TABLENAME+"("+COL_FIRSTNAME+","+COL_LASTNAME+","+COL_EMAIL+","+COL_PASSWORD+") VALUES (?,?,?,?);";
 
 	public List<User> getAllUser();
 
