@@ -1,9 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
-
-
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8" import="BusinessObjects.Team"
+	import="java.util.List"%>
 <html>
 <head>
 <!-- basic -->
@@ -37,7 +34,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
 	media="screen">
-<title>Menu</title>
+<title>Select Team</title>
 </head>
 <body>
 
@@ -46,7 +43,7 @@
 		<div class="container-fluid">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="logo">
-					<a><img src="images/logo.png"></a>
+					<a href="Menu.jsp"><img src="images/logo.png"></a>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
@@ -75,36 +72,24 @@
 	<!-- banner section start -->
 	<div class="banner_section layout_padding">
 		<div class="container">
-			<div id="costum_slider" class="carousel slide" data-ride="carousel">
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-							<h2>
-								<%=session.getAttribute("welcome")%>
-							</h2>
-							<a href=GamesByUserIdServlet>My Games</a> <br>
-							<a href=TeamsByUserIdServlet>Team Games</a> <br>
-							<a href=SelectColor.jsp>Upload PGN</a> <br>
-							<a href=GameToPGN.jsp>Game to PGN</a> <br>
-							<a href=GamesWithoutOpponentServlet>Games without registered opponent</a> <br>
-
-							<!-- Condition for Team Management -->
-							<% if(session.getAttribute("team")!=null){
+						<center>
+						<h1>TEAM GAMES</h1>
+						<br>
+						<%
+								List<Team> teams = (List<Team>) request.getAttribute("teams");
+								if (teams.isEmpty()) {
+									out.println("You are currently not a member of any team!");
+								} else {
+									%>
+									<h2>Please select team:</h2>
+									<h2 class="nav-item">
+									<% 
+									for (Team team : teams) {
+										out.println("<a class=nav-link href=./SelectTeamGamesServlet?teamId=" + team.getTeam_ID() + ">" + team.getName() + "</a>");
+								}}
 								%>
-								<a href="TeamServlet"> Team Management </a> <br>
-							<%}%>
-
-							<!-- Condition for Club Management -->
-							<% if(session.getAttribute("club")!=null){
-							%>
-							<a href="ClubServlet"> Club Management </a> <br>
-							<%}%>
-
-							<a href=UserServlet>Edit your profile</a> <br>
-
-						<br><br><br><br>
-					</div>
-				</div>
-			</div>
+								</h2>
+						</center>
 		</div>
 	</div>
 	<!-- footer section start -->
@@ -131,3 +116,4 @@
 		src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 </body>
 </html>
+

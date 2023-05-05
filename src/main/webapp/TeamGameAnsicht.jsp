@@ -1,11 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
-
-
+	pageEncoding="ISO-8859-1" import="BusinessObjects.Game" import="BusinessObjects.Team" import = "static Management.TeamManagement.isUserPartofTeam"
+	import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+<style>
+.normal {
+	color: #000000;
+	background-color: #ffffff;
+}
+
+.spezial {
+	color: #000000;
+	background-color: #66FF99;
+	cursor: pointer;
+}
+</style>
+
 <!-- basic -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,16 +55,16 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
 	media="screen">
-<title>Menu</title>
+
+<title>Game-Ansicht</title>
 </head>
 <body>
-
-	<!-- header section start -->
+<!-- header section start -->
 	<div class="header_section">
 		<div class="container-fluid">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="logo">
-					<a><img src="images/logo.png"></a>
+					<a href="Menu.jsp"><img src="images/logo.png"></a>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
@@ -74,40 +92,113 @@
 	<!-- header section end -->
 	<!-- banner section start -->
 	<div class="banner_section layout_padding">
+		
+			
+
+	<main class="py-4">
+
 		<div class="container">
-			<div id="costum_slider" class="carousel slide" data-ride="carousel">
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-							<h2>
-								<%=session.getAttribute("welcome")%>
-							</h2>
-							<a href=GamesByUserIdServlet>My Games</a> <br>
-							<a href=TeamsByUserIdServlet>Team Games</a> <br>
-							<a href=SelectColor.jsp>Upload PGN</a> <br>
-							<a href=GameToPGN.jsp>Game to PGN</a> <br>
-							<a href=GamesWithoutOpponentServlet>Games without registered opponent</a> <br>
 
-							<!-- Condition for Team Management -->
-							<% if(session.getAttribute("team")!=null){
+			<div class="row justify-content-center">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-header"> <% out.println(request.getAttribute("teamName")+"-Games"); %> </div> 
+						<div class="card-body">
+
+							<div style="margin-bottom: 20px;">
+
+								<input type="text" id="filter0" placeholder="Filter By White">
+								<input type="text" id="filter1" placeholder="Filter By Black">
+								<input type="text" id="filter2" placeholder="Filter By Event">
+								<input type="text" id="filter3" placeholder="Filter By Date">
+								<input type="text" id="filter4" placeholder="Filter By Result">
+
+							</div>
+
+							<table id="filter" class="table">
+
+								<%
+								List<Game> partien = (List<Game>) request.getAttribute("partien");
+								if (partien.isEmpty()) {
+									out.println("You don't have any games!");
+								} else {
 								%>
-								<a href="TeamServlet"> Team Management </a> <br>
-							<%}%>
 
-							<!-- Condition for Club Management -->
-							<% if(session.getAttribute("club")!=null){
+								<thead>
+									<tr>
+										<th>White</th>
+										<th>Black</th>
+										<th>Event</th>
+										<th>Date</th>
+										<th>Result</th>
+										<th>Moves</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									<%
+									for (Game partie : partien) {
+
+										out.println(
+										"<tr class=normal onmouseover=this.className='spezial'; onmouseout=this.className='normal'; onclick=window.location.href='./GameByGameIdServlet?gameId="
+												+ partie.getGame_ID() + "';>");
+									
+										if (isUserPartofTeam(partie.getWhite(), (Team) request.getAttribute("team"))){out.println("<td bgcolor='green'>");}
+										else{out.println("<td>");}
+										out.println(partie.getWhitePlayer());
+										%>
+									</td>
+										<%
+										if (isUserPartofTeam(partie.getBlack(), (Team) request.getAttribute("team"))){out.println("<td bgcolor='green'>");}
+										else{out.println("<td>");}
+										out.println(partie.getBlackPlayer());
+										%>
+									</td>
+									<td>
+										<%
+										out.println(partie.getEvent());
+										%>
+									</td>
+									<td>
+										<%
+										out.println(partie.getDate());
+										%>
+									</td>
+									<td>
+										<%
+										out.println(partie.getResult());
+										%>
+									</td>
+									<td>
+										<%
+										out.println(partie.getMoves().substring(0,(int) Math.round(partie.getMoves().length()*0.25))+" ...");
+										%>
+									</td>
+									</tr>
+									<%
+									}
+									%>
+
+								</tbody>
+							</table>
+							<%
+							}
 							%>
-							<a href="ClubServlet"> Club Management </a> <br>
-							<%}%>
-
-							<a href=UserServlet>Edit your profile</a> <br>
-
-						<br><br><br><br>
+						</div>
 					</div>
 				</div>
 			</div>
+
+
 		</div>
-	</div>
-	<!-- footer section start -->
+
+	</main>
+					
+				</div>
+		
+	
+
+<!-- footer section start -->
 	<div class="footer_section layout_padding">
 		<center>At the end of this project it should be possible for
 			every chess player to store and manage your chess scoresheet in your
@@ -129,5 +220,9 @@
 	<script src="js/owl.carousel.js"></script>
 	<script
 		src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+	<script src="./js/TableFilter.min.js" defer></script>
+	
+	
+
 </body>
 </html>

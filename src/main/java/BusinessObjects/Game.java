@@ -141,6 +141,20 @@ public class Game {
 				+ '}';
 	}
 
+	public String getWhitePlayer() {
+		if (this.white.getUser_Id() == 0) {
+			return this.comment;
+		} else
+			return this.white.getFullName();
+	}
+	
+	public String getBlackPlayer() {
+		if (this.black.getUser_Id() == 0) {
+			return this.comment;
+		} else
+			return this.black.getFullName();
+	}
+
 	public String getPlayer(int userID) {
 		if (userID == this.white.getUser_Id())
 			return this.white.getFullName() + " (WHITE)";

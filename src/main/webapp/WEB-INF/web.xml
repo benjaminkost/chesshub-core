@@ -115,6 +115,22 @@
     <servlet-name>SendRequestServlet</servlet-name>
     <url-pattern>/SendRequestServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>SelectTeamGamesServlet</servlet-name>
+    <servlet-class>Servlets.SelectTeamGamesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SelectTeamGamesServlet</servlet-name>
+    <url-pattern>/SelectTeamGamesServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>TeamsByUserIdServlet</servlet-name>
+    <servlet-class>Servlets.TeamsByUserIdServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TeamsByUserIdServlet</servlet-name>
+    <url-pattern>/TeamsByUserIdServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
 
 

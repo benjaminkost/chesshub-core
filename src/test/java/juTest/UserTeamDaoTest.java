@@ -47,7 +47,7 @@ public class UserTeamDaoTest {
         userDao.insertUser(user);
         boolean result = uhtDao.insertUserInTeam(user, team);
         Assertions.assertTrue(result); // Prüfung ob Eintrag in die Datenbank gespeichert
-        user.setTeams(uhtDao.getTeamsByUserId(user));
+        user.setTeams(uhtDao.getTeamsByUserId(user.getUser_Id()));
         Assertions.assertFalse(user.getTeams().isEmpty()); // Prüfung ob Liste Leer
         Assertions.assertEquals(user.getTeams().get(0).getTeam_ID(), team.getTeam_ID()); // Prüfung ob Objekt in Liste gleich Teamobjekt
     }

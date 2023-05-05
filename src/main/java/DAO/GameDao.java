@@ -123,6 +123,37 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
 	}	
 	
 	@Override
+	public List<Game> getGamesByTeamId(int team_id) {
+		List<Game> gameList = new ArrayList<Game>();
+		try {
+			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTGAMEBYTEAMID, team_id, team_id);
+			while (rs.next()) {
+				Game game = new Game();
+				game.setGame_ID(rs.getInt(COL_GAME_ID));
+				game.setEvent(rs.getString(COL_EVENT));
+				game.setRound(rs.getInt(COL_ROUND));
+				game.setSite(rs.getString(COL_SITE));
+				game.setDate(rs.getDate(COL_DATE));
+				game.setResult(rs.getString(COL_RESULT));
+				game.setMoves(rs.getString(COL_MOVES));
+				game.setBlack(UserDao.getInstance().getUserById(rs.getInt(COL_BLACK)));
+				game.setWhite(UserDao.getInstance().getUserById(rs.getInt(COL_WHITE)));
+				game.setComment(rs.getString(COL_COMMENT));
+				gameList.add(game);
+			}
+		} catch (SQLException e) {
+			// TODO: @Azad handle exception
+		} finally {
+			try {
+				DatabaseConnector.getInstance().closeStatement();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return gameList;
+	}	
+	
+	@Override
 	public List<Game> getGamesWithoutOpponent(int user_id) {
 		List<Game> gameList = new ArrayList<Game>();
 		try {

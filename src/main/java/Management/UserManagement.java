@@ -1,12 +1,13 @@
 package Management;
 
-import BusinessObjects.Team;
-import BusinessObjects.User;
-import DAO.UserDao;
+import static Management.StringEncrypter.encryptString;
 
 import java.util.List;
 
-import static Management.StringEncrypter.encryptString;
+import BusinessObjects.Team;
+import BusinessObjects.User;
+import DAO.UserDao;
+import DAO.UserTeamDao;
 
 public class UserManagement {
 	/**
@@ -116,5 +117,9 @@ public class UserManagement {
 		//Updating user
 		UserDao.getInstance().updateUser(new User(userID,lastName,firstName,mail,password,null,teams));
 		return true;
+	}
+	
+	public static List<Team> getTeamsByUserId(int userID) {
+		return UserTeamDao.getInstance().getTeamsByUserId(userID);
 	}
 }

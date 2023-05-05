@@ -45,6 +45,10 @@ public class GameManagement {
 	public static List<Game> gamesByUserId(int userId) {
 		return GameDao.getInstance().getGamesByUserId(userId);
 	}
+	
+	public static List<Game> gamesByTeamId(int teamId) {
+		return GameDao.getInstance().getGamesByTeamId(teamId);
+	}
 
 	public static List<Game> gamesWithoutOpponent(int userId) {
 		return GameDao.getInstance().getGamesWithoutOpponent(userId);

@@ -31,10 +31,10 @@ public class UserTeamDao implements UserTeamDaoIF {
 
 	
 	@Override
-	public List<Team> getTeamsByUserId(User user) {
+	public List<Team> getTeamsByUserId(int userID) {
 		List<Team> TeamList = new ArrayList<Team>();
 		try {
-			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTTEAMSBYUSERID, user.getUser_Id());
+			ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTTEAMSBYUSERID, userID);
 			while (rs.next()) {
 				Team team = new Team();
 				team = TeamDao.getInstance().getTeamById(rs.getInt(COL_TEAM_ID));

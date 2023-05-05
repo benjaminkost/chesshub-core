@@ -23,7 +23,7 @@ public interface UserTeamDaoIF {
 	final String Q_INSERTUSERINTEAM = "INSERT INTO " + TABLENAME + "(" + COL_USER_ID + "," + COL_TEAM_ID
 			+ ") VALUES (?,?);";
 
-	public List<Team> getTeamsByUserId(User user);
+	public List<Team> getTeamsByUserId(int userID);
 	
 	public List<User> getUsersByTeamId(Team team);
 
