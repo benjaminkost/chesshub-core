@@ -89,11 +89,10 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 	@Override
 	public boolean updateUser(User user) {
 		boolean result = false;
-		Integer authId = null;
 
 		try {
 			if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEUSER, user.getFirstname(), user.getLastname(),
-					user.getEmail(), user.getPassword(), authId, user.getUser_Id()) > 0) {
+					user.getEmail(), user.getPassword(), user.getUser_Id()) > 0) {
 				result = true;
 			} else {
 				result = false;
@@ -135,11 +134,10 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
 	@Override
 	public boolean insertUser(User user) {
 		boolean result = false;
-		Integer authId = null;
 
 		try {
 			if (DatabaseConnector.getInstance().executeUpdate(Q_INSERTUSER, user.getFirstname(), user.getLastname(),
-					user.getEmail(), user.getPassword(), authId) > 0) {
+					user.getEmail(), user.getPassword()) > 0) {
 				ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
 				if (rs.next()) {
 					user.setUser_Id(rs.getInt(1));
