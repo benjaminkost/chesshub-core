@@ -4,10 +4,21 @@ import BusinessObjects.*;
 import DAO.*;
 import java.util.List;
 
+import static Management.ClubManagement.getAllTeamsOfClub;
+
 public class TeamManagement {
 
     public static List<Team> getAllTeams(){
         return TeamDao.getInstance().getAllTeams();
+    }
+
+    public static boolean teamNameAlreadyExistsInClub (Club club, String newTeamName){
+        for(Team t: getAllTeamsOfClub(club)){
+            if (t.getName().equals(newTeamName)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void addTeam(Team newTeam){
@@ -15,6 +26,10 @@ public class TeamManagement {
     }
 
     public static void removeTeam(Team oldTeam){
+        for(User u : UserTeamDao.getInstance().getUsersByTeamId(oldTeam)){
+            UserTeamDao.getInstance().deleteUserFromTeam(u, oldTeam);
+        }
+
         TeamDao.getInstance().deleteTeam(oldTeam);
     }
 
@@ -28,12 +43,6 @@ public class TeamManagement {
 
     public static void removeMemberFromTeam(Team team, User oldMember){
         UserTeamDao.getInstance().deleteUserFromTeam(oldMember,team);
-    }
-
-    public static void removeAllMembersFromTeam(Team team){
-        for(User u : UserTeamDao.getInstance().getUsersByTeamId(team)){
-            UserTeamDao.getInstance().deleteUserFromTeam(u, team);
-        }
     }
 
     /**
@@ -73,7 +82,11 @@ public class TeamManagement {
     }
 
     public static boolean isUserPartofTeam(User u, Team t){
+<<<<<<< HEAD
         for (Team userT : UserTeamDao.getInstance().getTeamsByUserId(u.getUser_Id())){
+=======
+        for (Team userT : UserTeamDao.getInstance().getTeamsByUserId(u)){
+>>>>>>> 4a599cc7df3e8e9a8e13ce257fd1053acb399777
             if (userT.getTeam_ID() == t.getTeam_ID()){
                 return true;
             }

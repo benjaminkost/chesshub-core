@@ -28,9 +28,7 @@ public class Team {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Club getClub() {
-		return club;
-	}
+	public Club getClub() {	return this.club;	}
 	public void setClub(Club club) {
 		this.club = club;
 	}

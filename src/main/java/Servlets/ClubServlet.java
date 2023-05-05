@@ -43,15 +43,20 @@ public class ClubServlet extends HttpServlet {
             String i_team_name = req.getParameter("team_name");
 
             User leader = getUserByMail(i_leader_mail);
-
-            if(leader!=null){
-                addTeam(new Team(i_team_name,managedClub,leader));
-                req.setAttribute("message", "Team added to club!");
-                req.getRequestDispatcher("Message.jsp").forward(req, res);
-            }
-            else {
+            
+            if(leader==null){
                 req.setAttribute("message", "Error: Leader not found");
                 req.getRequestDispatcher("Message.jsp").forward(req, res);
+            } else if (getManagedTeamByUserID(leader.getUser_Id())!=null) {
+                req.setAttribute("message", "Error: User already leads a team!");
+                req.getRequestDispatcher("Message.jsp").forward(req, res);           
+            } else if (teamNameAlreadyExistsInClub(managedClub,i_team_name)) {
+                req.setAttribute("message", "Error: Name already used in your club!");
+                req.getRequestDispatcher("Message.jsp").forward(req, res);
+            } else {
+                addTeam(new Team(i_team_name,managedClub,leader));
+                req.setAttribute("message", "Team added to club!");
+                req.getRequestDispatcher("Message.jsp").forward(req, res);  
             }
 
         } else if (form.equals("changingLeader")) {
@@ -70,25 +75,23 @@ public class ClubServlet extends HttpServlet {
             User newLeader = getUserByMail(i_leader_mail);
             Team changedTeam = getTeamByID(teamID);
 
-
-
             if(changedTeam==null){
                 req.setAttribute("message", "Error: Team doesn't exist!");
                 req.getRequestDispatcher("Message.jsp").forward(req, res);
-            }
-
-            System.out.println(changedTeam.getTeam_ID());
-            //System.out.println(newLeader.getUser_Id());
-
-                if (newLeader != null) {
+            } else if (newLeader != null) {
+                if(getManagedTeamByUserID(newLeader.getUser_Id())!=null){
+                    req.setAttribute("message", "Error: User already leads a team!");
+                    req.getRequestDispatcher("Message.jsp").forward(req, res);
+                }
+                else {
                     changeTeamLeader(changedTeam, newLeader);
                     req.setAttribute("message", "Leader changed!");
                     req.getRequestDispatcher("Message.jsp").forward(req, res);
-                } else {
-                    req.setAttribute("message", "Error: Leader not found");
-                    req.getRequestDispatcher("Message.jsp").forward(req, res);
                 }
-
+            } else {
+                req.setAttribute("message", "Error: Leader not found");
+                req.getRequestDispatcher("Message.jsp").forward(req, res);
+            }
 
         } else if (form.equals("removingTeam")) {
             String i_team_id = req.getParameter("team_ID");
@@ -107,16 +110,18 @@ public class ClubServlet extends HttpServlet {
             if(oldTeam==null){
                 req.setAttribute("message", "Error: Team doesn't exist!");
                 req.getRequestDispatcher("Message.jsp").forward(req, res);
-            }
 
-            else {
+            } else if (oldTeam.getClub().getClub_ID()!=managedClub.getClub_ID()) {
+                req.setAttribute("message", "Error: Selected Team doesn't belong to your club!");
+                req.getRequestDispatcher("Message.jsp").forward(req, res);
+
+            } else {
                 removeTeam(oldTeam);
-
                 req.setAttribute("message", "Team removed");
                 req.getRequestDispatcher("Message.jsp").forward(req, res);
             }
 
-
+        // no formular activated
         } else {
             req.setAttribute("message", "Error: Unkown issue");
             req.getRequestDispatcher("Message.jsp").forward(req, res);

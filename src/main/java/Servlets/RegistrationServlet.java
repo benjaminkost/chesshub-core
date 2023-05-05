@@ -16,7 +16,7 @@ public class RegistrationServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		// Reading Users Input
-		String email = req.getParameter("email");
+		String email = req.getParameter("email").toLowerCase();
 		String password = encryptString(req.getParameter("password"));
 		String Lastname = req.getParameter("lastname");
 		String Firstname = req.getParameter("firstname");
