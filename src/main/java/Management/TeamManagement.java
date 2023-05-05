@@ -82,11 +82,7 @@ public class TeamManagement {
     }
 
     public static boolean isUserPartofTeam(User u, Team t){
-<<<<<<< HEAD
         for (Team userT : UserTeamDao.getInstance().getTeamsByUserId(u.getUser_Id())){
-=======
-        for (Team userT : UserTeamDao.getInstance().getTeamsByUserId(u)){
->>>>>>> 4a599cc7df3e8e9a8e13ce257fd1053acb399777
             if (userT.getTeam_ID() == t.getTeam_ID()){
                 return true;
             }
