@@ -30,17 +30,19 @@ public class UserServlet extends HttpServlet {
 
         String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
-        String mail = req.getParameter("mail");
+        String mail = req.getParameter("mail").toLowerCase();
 
-        boolean updateSuccess = updateUser(userID,firstName,lastName,mail);
-
-        if(updateSuccess){
+        if(getUserByMail(mail)!=null&&getUserByMail(mail).getUser_Id()!=userID){
+            req.setAttribute("message", "Error: Mail is already used!");
+            req.getRequestDispatcher("Message.jsp").forward(req, res);
+        } else if (updateUser(userID,firstName,lastName,mail)) {
             req.setAttribute("message", "Profile updated!");
             req.getRequestDispatcher("Message.jsp").forward(req, res);
-        }
-        else {
+        } else {
             req.setAttribute("message", "Error: Update failed");
             req.getRequestDispatcher("Message.jsp").forward(req, res);
         }
+
+
     }
 }

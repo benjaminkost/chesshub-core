@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 
-		String i_mail = req.getParameter("mail");
+		String i_mail = req.getParameter("mail").toLowerCase();
 		String i_password = req.getParameter("psw");
 
 		int login = loginUser(i_mail,i_password);

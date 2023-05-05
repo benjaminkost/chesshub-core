@@ -42,10 +42,16 @@ public class TeamServlet extends HttpServlet {
                 int userID = (int) session.getAttribute("userId");
                 Team team = getManagedTeamByUserID(userID);
 
-                addMemberToTeam(team,newUser);
+                if (isUserPartofTeam(newUser,team)){
+                    req.setAttribute("message", "Error: User is already in the team!");
+                    req.getRequestDispatcher("Message.jsp").forward(req, res);
+                }
+                else {
+                    addMemberToTeam(team,newUser);
 
-                req.setAttribute("message", "User added");
-                req.getRequestDispatcher("Message.jsp").forward(req, res);
+                    req.setAttribute("message", "User added");
+                    req.getRequestDispatcher("Message.jsp").forward(req, res);
+                }
             }
             else {
                 req.setAttribute("message", "Error: User not found");
