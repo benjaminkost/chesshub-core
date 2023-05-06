@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
-
-
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8" import="BusinessObjects.Request"
+	import="BusinessObjects.User"
+	import="static Management.UserManagement.getUserById"
+	import="java.util.List"%>
 <html>
 <head>
 <!-- basic -->
@@ -37,7 +36,8 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
 	media="screen">
-<title>Menu</title>
+
+<title>Requests</title>
 </head>
 <body>
 
@@ -46,7 +46,7 @@
 		<div class="container-fluid">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="logo">
-					<a><img src="images/logo.png"></a>
+					<a href="Menu.jsp"><img src="images/logo.png"></a>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
@@ -75,37 +75,51 @@
 	<!-- banner section start -->
 	<div class="banner_section layout_padding">
 		<div class="container">
-			<div id="costum_slider" class="carousel slide" data-ride="carousel">
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-							<h2>
-								<%=session.getAttribute("welcome")%>
-							</h2>
-							<a href=GamesByUserIdServlet>My Games</a> <br>
-							<a href=TeamsByUserIdServlet>Team Games</a> <br>
-							<a href=SelectColor.jsp>Upload PGN</a> <br>
-							<a href=GameToPGN.jsp>Game to PGN</a> <br>
-							<a href=GamesWithoutOpponentServlet>Games without registered opponent</a> <br>
-							<a href=RequestsServlet>Requests</a> <br>
+			<h1>Requests</h1>
+			<br>
+			<h2>Sent requests:</h2>
 
-							<!-- Condition for Team Management -->
-							<% if(session.getAttribute("team")!=null){
-								%>
-								<a href="TeamServlet"> Team Management </a> <br>
-							<%}%>
+			<%
+			List<Request> requests = (List<Request>) request.getAttribute("senderRequests");
+			if (requests.isEmpty()) {
+				out.println("You currently have no such requests!");
+			} else {
+			%>
+			<a class="nav-item"> <%
+ for (Request req : requests) {
+ 	out.println("<input type='radio' name='request' value='3'> Affected: "
+ 	+ getUserById((int) req.getRecipient_ID()).getFullName() + " (Game-ID " + req.getGame_ID() + ") | Status: "
+ 	+ req.getStatus());
+ }
+ }
+ %>
+			</a> <br> <br>
+			<h2>Received requests:</h2>
+			<%
+			requests = (List<Request>) request.getAttribute("recipientRequests");
+			if (requests.isEmpty()) {
+				out.println("You currently have no such requests!");
+			} else {
+			%>
+			<a class="nav-item"> <%
+ for (Request req : requests) {
+ 	out.println("<input type='radio' name='request' value='3'> From: "
+ 	+ getUserById((int) req.getSender_ID()).getFullName() + "<a href='./GameByGameIdServlet?gameId="
+ 	+ req.getGame_ID() + "'> (Game-ID " + req.getGame_ID() + ")</a> | Status: " + req.getStatus());
+ }
+ }
+ %>
+			</a> <br>
+			<br>
 
-							<!-- Condition for Club Management -->
-							<% if(session.getAttribute("club")!=null){
-							%>
-							<a href="ClubServlet"> Club Management </a> <br>
-							<%}%>
+			<form action="ManageRequestServlet">
+			<h2>
+				<a> <button type="submit">ACCEPT</button> </a> 
+				<a> <button type="submit">DENY</button> </a>
+				<a> <button type="submit">DELETE</button> </a>
+			</h2>
+			</form>
 
-							<a href=UserServlet>Edit your profile</a> <br>
-
-						<br><br><br><br>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 	<!-- footer section start -->
@@ -118,6 +132,20 @@
 	</div>
 	<!--  footer section end -->
 	<!-- Javascript files-->
+
+	<script type="text/javascript">
+		var rdBtn = document.querySelectorAll("input[name='request']");
+		var output = document.getElementById("output");
+
+		for (var i = 0; i < rdBtn.length; i++) {
+			rdBtn[i].addEventListener("change", checkRd);
+		}
+
+		function checkRd(evt) {
+			output.innerHTML = evt.currentTarget.value;
+		}
+	</script>
+
 	<script src="js/jquery.min.js"></script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
@@ -132,3 +160,4 @@
 		src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 </body>
 </html>
+

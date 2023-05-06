@@ -17,11 +17,17 @@ public interface RequestDaoIF {
 	// Queries
 	final String Q_SELECTALLREQUESTS = "SELECT * FROM " + TABLENAME+";";
 	final String Q_SELECTBYREQUESTID = "SELECT * FROM " + TABLENAME + " WHERE " + COL_REQUEST_ID + "= ? ;";
+	final String Q_SELECTBYSENDERID = "SELECT * FROM " + TABLENAME + " WHERE " + COL_SENDER_ID + "= ? ;";
+	final String Q_SELECTBYRECIPIENTID = "SELECT * FROM " + TABLENAME + " WHERE " + COL_RECIPIENT_ID + "= ? ;";
 	final String Q_UPDATEREQUEST = "UPDATE " + TABLENAME + " SET " + COL_STATUS + "=? WHERE " + COL_REQUEST_ID + "=?;";
 	final String Q_DELETEREQUEST = "DELETE FROM " + TABLENAME + " WHERE " + COL_REQUEST_ID + "=?;";
 	final String Q_INSERTREQUEST = "INSERT INTO "+TABLENAME+"("+COL_SENDER_ID+","+COL_RECIPIENT_ID+","+COL_GAME_ID+","+COL_STATUS+") VALUES (?,?,?,?);";
 
 	public List<Request> getAllRequests();
+	
+	public List<Request> getRequestsBySenderId(int userId);
+	
+	public List<Request> getRequestsByRecipientId(int userId);
 
 	public Request getRequestById(int request_id);
 

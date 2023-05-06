@@ -131,6 +131,22 @@
     <servlet-name>TeamsByUserIdServlet</servlet-name>
     <url-pattern>/TeamsByUserIdServlet</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>RequestsServlet</servlet-name>
+    <servlet-class>Servlets.RequestsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RequestsServlet</servlet-name>
+    <url-pattern>/RequestsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ManageRequestServlet</servlet-name>
+    <servlet-class>Servlets.ManageRequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageRequestServlet</servlet-name>
+    <url-pattern>/ManageRequestServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
 
 

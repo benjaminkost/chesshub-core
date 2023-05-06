@@ -1,6 +1,9 @@
 package Management;
 
+import java.util.List;
+
 import BusinessObjects.Game;
+import BusinessObjects.Request;
 import DAO.GameDao;
 import DAO.RequestDao;
 
@@ -28,5 +31,12 @@ public class RequestManagement {
 	public static boolean deleteRequest(int request_id) {
 		return RequestDao.getInstance().deleteRequest(request_id);
 	}
-
+	
+	public static List<Request> getRequestsBySenderId(int userId) {
+		return RequestDao.getInstance().getRequestsBySenderId(userId);
+	}
+	
+	public static List<Request> getRequestsByRecipientId(int userId) {
+		return RequestDao.getInstance().getRequestsByRecipientId(userId);
+	}
 }
