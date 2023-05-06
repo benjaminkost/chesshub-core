@@ -4,6 +4,8 @@ import BusinessObjects.*;
 import static Management.ClubManagement.getManagedClubByUserID;
 import static Management.TeamManagement.getManagedTeamByUserID;
 import static Management.UserManagement.*;
+import static Servlets.LoginServlet.session;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
@@ -32,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 			session = req.getSession();
 			session.setAttribute("userId", login);
 			session.setAttribute("welcome", "Log in successfully! Welcome "+ getUserById(login).getFullName());
-
+			session.setAttribute("teams", getTeamsByUserId(login));
 
 			//if User leads a team
 			Team managedTeam = getManagedTeamByUserID(login);

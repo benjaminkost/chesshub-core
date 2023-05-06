@@ -4,8 +4,11 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+
 import org.apache.commons.fileupload.FileItem;
+
 import BusinessObjects.Game;
+import BusinessObjects.Team;
 import DAO.GameDao;
 import DAO.UserDao;
 
@@ -29,6 +32,16 @@ public class GameManagement {
 		}
 		return "";
 	}
+	
+	public static String gameByTeamId(List<Team> teams, String gameId) {
+		Game partie = GameDao.getInstance().getGameById(Integer.parseInt(gameId));
+		for (Team team : teams) {
+		for (Game partieVergleich : GameDao.getInstance().getGamesByTeamId(team.getTeam_ID())) {
+			if (partie.getGame_ID() == partieVergleich.getGame_ID()) {
+				return partie.getGame();
+			}
+		}
+	}return "";}
 
 	/**
 	 * //TODO @Ben bitte kommentieren
