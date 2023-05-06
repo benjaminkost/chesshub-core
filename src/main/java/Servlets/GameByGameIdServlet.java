@@ -24,12 +24,14 @@ public class GameByGameIdServlet extends HttpServlet {
 		if (game.isEmpty() != true) {
 			req.setAttribute("game", game);
 			req.getRequestDispatcher("PGN_Viewer.jsp").forward(req, res);
-		} 
-		
+		}
+		else {
 		game = gameByTeamId((List<Team>) session.getAttribute("teams"), req.getParameter("gameId"));
 		if (game.isEmpty() != true) {
 			req.setAttribute("game", game);
 			req.getRequestDispatcher("PGN_Viewer.jsp").forward(req, res);
-		}
-	}
+		}else {
+		req.setAttribute("message", "I'm sorry, but I have to inform you that this is prohibited!");
+		req.getRequestDispatcher("Message.jsp").forward(req, res);
+	}}}
 }
