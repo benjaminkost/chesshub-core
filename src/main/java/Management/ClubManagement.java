@@ -7,18 +7,35 @@ import static Management.TeamManagement.removeTeam;
 
 public class ClubManagement {
 
-    public static void addTeamToClub(Club club, Team newTeam){
-        TeamDao.getInstance().getTeamById(newTeam.getTeam_ID()).setClub(club);
-    }
-
-    public static void removeAllTeamsFromClub(Club club){
+    /**
+     * This method removes a club including all his teams
+     *
+     * @param club - club which should be deleted
+     *
+     * @author Lukas Zander
+     */
+    public static void removeClub(Club club){
+        //First: Deleting all Teams
         for (Team t : getAllTeamsOfClub(club)){
             removeTeam(t);
         }
+        //Second: Delete club
+        ClubDao.getInstance().deleteClub(club);
     }
 
+    /**
+     * This method changes the president of a club
+     *
+     * @param club - club, which gets updated with a new leader
+     * @param newPresident - given User
+     *
+     * @author Lukas Zander
+     */
     public static void changeClubPresident(Club club, User newPresident){
-        ClubDao.getInstance().getClubById(club.getClub_ID()).setPresident(newPresident);
+        Club update = club;
+        update.setPresident(newPresident);
+
+        ClubDao.getInstance().updateClub(update);
     }
 
     /**
@@ -43,14 +60,6 @@ public class ClubManagement {
         return ClubDao.getInstance().getAllClubs();
     }
 
-    public static List<User> getAllPresidents(){
-        List<User> presidents = new ArrayList<>();
-        for (Club c : ClubDao.getInstance().getAllClubs()){
-            presidents.add(c.getPresident());
-        }
-        return presidents;
-    }
-
     /**
      * This method returns the club, a given user manage (if exists)
      *
@@ -62,6 +71,44 @@ public class ClubManagement {
     public static Club getManagedClubByUserID(int userID){
         for(Club c: ClubDao.getInstance().getAllClubs()){
             if(c.getPresident().getUser_Id()==userID){
+                return c;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * This method returns true, if a given name is already used as club name
+     *
+     * @param newName - given name
+     * @return if name is used
+     *
+     * @author Lukas Zander
+     */
+    public static boolean clubNameAlreadyExists (String newName){
+        for(Club c: getAllClubs()){
+            if(c.getName().equals(newName)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void createClub(Club newClub){
+        ClubDao.getInstance().insertClub(newClub);
+    }
+
+    /**
+     * This method returns a club, identified by its ID
+     *
+     * @param ID - search parameter
+     * @return club, if exists; else null
+     *
+     * @author Lukas Zander
+     */
+    public static Club getClubByID(int ID){
+        for (Club c: getAllClubs()){
+            if (c.getClub_ID()==ID){
                 return c;
             }
         }

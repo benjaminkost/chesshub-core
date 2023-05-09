@@ -52,6 +52,13 @@ public class LoginServlet extends HttpServlet {
 			else {
 				session.setAttribute("club", null);
 			}
+			//if User is Admin
+			if(getUserById(login).getEmail().equals("administrator@management.com")){
+				session.setAttribute("admin", true);
+			}
+			else {
+				session.setAttribute("admin", false);
+			}
 
 			req.getRequestDispatcher("Menu.jsp").forward(req, res);
 		}

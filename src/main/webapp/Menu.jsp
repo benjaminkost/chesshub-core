@@ -87,6 +87,7 @@
 							<a href=GameToPGN.jsp>Game to PGN</a> <br>
 							<a href=GamesWithoutOpponentServlet>Games without registered opponent</a> <br>
 							<a href=RequestsServlet>Requests</a> <br>
+							<a href=UserServlet>Edit your profile</a> <br>
 
 							<!-- Condition for Team Management -->
 							<% if(session.getAttribute("team")!=null){
@@ -100,7 +101,10 @@
 							<a href="ClubServlet"> Club Management </a> <br>
 							<%}%>
 
-							<a href=UserServlet>Edit your profile</a> <br>
+							<!-- Condition for Administration -->
+							<% if((boolean)session.getAttribute("admin")){%>
+								<a href="AdminServlet"> Administration Area</a> <br>
+							<%}%>
 
 						<br><br><br><br>
 					</div>

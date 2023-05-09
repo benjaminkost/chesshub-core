@@ -147,6 +147,14 @@
     <servlet-name>ManageRequestServlet</servlet-name>
     <url-pattern>/ManageRequestServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>AdminServlet</servlet-name>
+    <servlet-class>Servlets.AdminServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>/AdminServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
 
 

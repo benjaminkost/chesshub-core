@@ -101,7 +101,7 @@ public class TeamServlet extends HttpServlet {
 
         }
         else {
-            req.setAttribute("message", "Error: Unkown issue");
+            req.setAttribute("message", "Error: Unknown issue");
             req.getRequestDispatcher("Message.jsp").forward(req, res);
         }
 
