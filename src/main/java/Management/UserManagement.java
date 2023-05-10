@@ -55,7 +55,7 @@ public class UserManagement {
 		// Check, if Email is already used
 		for (User u : UserDao.getInstance().getAllUser()) {
 			if (u.getEmail().equals(newUser.getEmail())) {
-				System.out.println("Error: Email already used");
+				//System.out.println("Error: Email already used");
 				return false;
 			}
 		}

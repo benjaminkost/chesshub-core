@@ -26,11 +26,12 @@ public class RegistrationServlet extends HttpServlet {
 		boolean registrationSucceed = saveNewUser(new User(Lastname,Firstname,email,password,dateString,teams));
 
 		if(registrationSucceed){
-			req.getRequestDispatcher("Login.jsp").forward(req, res);
+			req.setAttribute("messageBeforeLogin", "Your registration was successful!");
+			req.getRequestDispatcher("MessageBeforeLogin.jsp").forward(req, res);
 		}
 		else{
-			req.setAttribute("message", "Error: Registration failed. Please contact Lukas!");
-			req.getRequestDispatcher("Message.jsp").forward(req, res);
+			req.setAttribute("messageBeforeLogin", "Error: Registration failed! Account with this e-mail already exists!");
+			req.getRequestDispatcher("MessageBeforeLogin.jsp").forward(req, res);
 		}
 	}
 

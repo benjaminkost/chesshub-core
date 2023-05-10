@@ -24,12 +24,12 @@ public class LoginServlet extends HttpServlet {
 		int login = loginUser(i_mail,i_password);
 		
 		if(login==-1){
-			req.setAttribute("message", "Error: User doesn't exist!");
-			req.getRequestDispatcher("Message.jsp").forward(req, res);
+			req.setAttribute("messageBeforeLogin", "Error: User doesn't exist!");
+			req.getRequestDispatcher("MessageBeforeLogin.jsp").forward(req, res);
 		}
 		else if (login==-2) {
-			req.setAttribute("message", "Error: Wrong password!");
-			req.getRequestDispatcher("Message.jsp").forward(req, res);
+			req.setAttribute("messageBeforeLogin", "Error: Wrong password!");
+			req.getRequestDispatcher("MessageBeforeLogin.jsp").forward(req, res);
 		}else {
 			session = req.getSession();
 			session.setAttribute("userId", login);
