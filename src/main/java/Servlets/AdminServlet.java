@@ -81,7 +81,7 @@ public class AdminServlet extends HttpServlet {
             Club changedClub = getClubByID(clubID);
 
             if(changedClub==null){
-                req.setAttribute("message", "Error: Team doesn't exist!");
+                req.setAttribute("message", "Error: Club doesn't exist!");
                 req.getRequestDispatcher("Message.jsp").forward(req, res);
             } else if (newLeader != null) {
                 if(getManagedClubByUserID(newLeader.getUser_Id())!=null){
