@@ -102,7 +102,7 @@
 			<div class="row justify-content-center">
 				<div class="col-md-12">
 					<div class="card">
-						<div class="card-header"> GAMES WITHOUT OPPONENT </div> 
+						<div class="card-header"> GAMES WITHOUT OPPONENT - to send a request click on the affected game </div> 
 						<div class="card-body">
 
 							<div style="margin-bottom: 20px;">
