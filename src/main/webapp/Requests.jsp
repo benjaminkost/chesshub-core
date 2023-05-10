@@ -75,6 +75,7 @@
 	<!-- banner section start -->
 	<div class="banner_section layout_padding">
 		<div class="container">
+			<form action="ManageRequestServlet" action="get">
 			<h1>Requests</h1>
 			<br>
 			<h2>Sent requests:</h2>
@@ -87,10 +88,15 @@
 			%>
 			<a class="nav-item"> <%
  for (Request req : requests) {
- 	out.println("<input type='radio' name='request' value='3'> Affected: "
+ 	out.println("<input type='radio' name='request' value='"+ req.getRequest_ID() +"' required> Affected: "
  	+ getUserById((int) req.getRecipient_ID()).getFullName() + " (Game-ID " + req.getGame_ID() + ") | Status: "
- 	+ req.getStatus());
- }
+ 	+ req.getStatus() + "<br>");
+ } %>
+ 			<br>
+ 			<h2>
+			<a> <button name="action" type="submit" value="3">DELETE&emsp;</button> </a>
+			</h2>
+ <%
  }
  %>
 			</a> <br> <br>
@@ -103,21 +109,20 @@
 			%>
 			<a class="nav-item"> <%
  for (Request req : requests) {
- 	out.println("<input type='radio' name='request' value='3'> From: "
+ 	out.println("<input type='radio' name='request' value='"+ req.getRequest_ID() +"' required> From: "
  	+ getUserById((int) req.getSender_ID()).getFullName() + "<a href='./GameByGameIdServlet?gameId="
- 	+ req.getGame_ID() + "'> (Game-ID " + req.getGame_ID() + ")</a> | Status: " + req.getStatus());
+ 	+ req.getGame_ID() + "'> (Game-ID " + req.getGame_ID() + ")</a> | Status: " + req.getStatus() + "<br>");
  }
+			%>
+ 			<br>
+ 			<h2>
+			<a> <button name="action" type="submit" value="1">ACCEPT&emsp;</button> </a> 
+			<a> <button name="action" type="submit" value="2">DENY&emsp;</button> </a>
+			</h2>
+ <%
  }
  %>
-			</a> <br>
-			<br>
-
-			<form action="ManageRequestServlet">
-			<h2>
-				<a> <button type="submit">ACCEPT</button> </a> 
-				<a> <button type="submit">DENY</button> </a>
-				<a> <button type="submit">DELETE</button> </a>
-			</h2>
+			</a> 
 			</form>
 
 		</div>
@@ -132,20 +137,6 @@
 	</div>
 	<!--  footer section end -->
 	<!-- Javascript files-->
-
-	<script type="text/javascript">
-		var rdBtn = document.querySelectorAll("input[name='request']");
-		var output = document.getElementById("output");
-
-		for (var i = 0; i < rdBtn.length; i++) {
-			rdBtn[i].addEventListener("change", checkRd);
-		}
-
-		function checkRd(evt) {
-			output.innerHTML = evt.currentTarget.value;
-		}
-	</script>
-
 	<script src="js/jquery.min.js"></script>
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.bundle.min.js"></script>
