@@ -8,29 +8,24 @@ public class User{
 	private String Firstname;
 	private String Email;
 	private String password;
-	private String dateString;
 	private List<Team> teams = new ArrayList<>();
 
-	public User( int user_Id, String lastname, String firstname, String email, String password,
-			String dateString, List<Team> teams) {
+	public User( int user_Id, String lastname, String firstname, String email, String password, List<Team> teams) {
 		super();
 		this.user_Id = user_Id;
 		Lastname = lastname;
 		Firstname = firstname;
 		Email = email;
 		this.password = password;
-		this.dateString = dateString;
 		this.teams = teams;
 	}
 
-	public User(String lastname, String firstname, String email, String password,
-				 String dateString, List<Team> teams) {
+	public User(String lastname, String firstname, String email, String password, List<Team> teams) {
 		super();
 		Lastname = lastname;
 		Firstname = firstname;
 		Email = email;
 		this.password = password;
-		this.dateString = dateString;
 		this.teams = teams;
 	}
 
@@ -74,14 +69,6 @@ public class User{
 		this.password = password;
 	}
 
-	public String getDateString() {
-		return this.dateString;
-	}
-
-	public void setDateString(String dateString) {
-		this.dateString = dateString;
-	}
-
 	public int getUser_Id() {
 		return this.user_Id;
 	}
@@ -109,8 +96,8 @@ public class User{
 	/***
 	 * Needed for checking if user is part of list<user>
 	 *
-	 * @param obj
-	 * @return boolean
+	 * @param obj - object, which should be compared
+	 * @return boolean - true, if objects are the same, identified by ID
 	 *
 	 * @author Lukas Zander
 	 */

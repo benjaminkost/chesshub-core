@@ -7,30 +7,29 @@ import BusinessObjects.User;
 
 public interface UserTeamDaoIF {
 
-	final String TABLENAME = "user_has_Teams";
+	String TABLENAME = "user_has_Teams";
 	// Collumnames
-	final String COL_USER_ID = "User_ID";
-	final String COL_TEAM_ID = "Team_ID";
+	String COL_USER_ID = "User_ID";
+	String COL_TEAM_ID = "Team_ID";
 
-//	 Queries
-	final String Q_SELECTALLUSERTEAMS = "SELECT * FROM " + TABLENAME+";";
-	final String Q_SELECTTEAMSBYUSERID = "SELECT * FROM " + TABLENAME + " WHERE " + COL_USER_ID + " = ? ;";
-	final String Q_SELECTUSERSBYTEAMID = "SELECT * FROM " + TABLENAME + " WHERE " + COL_TEAM_ID + " = ? ;";
-	final String Q_UPDATEUSERTEAM = "UPDATE " + TABLENAME + " SET " + COL_TEAM_ID + "=? WHERE " + COL_USER_ID
+	//	 Queries
+	String Q_SELECTALLUSERTEAMS = "SELECT * FROM " + TABLENAME+";";
+	String Q_SELECTTEAMSBYUSERID = "SELECT * FROM " + TABLENAME + " WHERE " + COL_USER_ID + " = ? ;";
+	String Q_SELECTUSERSBYTEAMID = "SELECT * FROM " + TABLENAME + " WHERE " + COL_TEAM_ID + " = ? ;";
+	String Q_UPDATEUSERTEAM = "UPDATE " + TABLENAME + " SET " + COL_TEAM_ID + "=? WHERE " + COL_USER_ID
 			+ "=? AND " + COL_TEAM_ID + "=?;";
-	final String Q_DELETEUSERFROMTEAM = "DELETE FROM " + TABLENAME + " WHERE " + COL_USER_ID + "=? AND " + COL_TEAM_ID
+	String Q_DELETEUSERFROMTEAM = "DELETE FROM " + TABLENAME + " WHERE " + COL_USER_ID + "=? AND " + COL_TEAM_ID
 			+ "=?;";
-	final String Q_INSERTUSERINTEAM = "INSERT INTO " + TABLENAME + "(" + COL_USER_ID + "," + COL_TEAM_ID
+	String Q_INSERTUSERINTEAM = "INSERT INTO " + TABLENAME + "(" + COL_USER_ID + "," + COL_TEAM_ID
 			+ ") VALUES (?,?);";
 
-	public List<Team> getTeamsByUserId(int userID);
+	List<Team> getTeamsByUserId(int userID);
 	
-	public List<User> getUsersByTeamId(Team team);
+	List<User> getUsersByTeamId(Team team);
 
-	public boolean updateUserInTeam(User user, Team fromTeam, Team toTeam);
+	boolean updateUserInTeam(User user, Team fromTeam, Team toTeam);
 
-	public boolean deleteUserFromTeam(User user, Team team);
+	boolean deleteUserFromTeam(User user, Team team);
 
-	public boolean insertUserInTeam(User user, Team team);
-
+	boolean insertUserInTeam(User user, Team team);
 }

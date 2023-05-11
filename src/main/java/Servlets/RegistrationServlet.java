@@ -20,10 +20,9 @@ public class RegistrationServlet extends HttpServlet {
 		String password = encryptString(req.getParameter("password"));
 		String Lastname = req.getParameter("lastname");
 		String Firstname = req.getParameter("firstname");
-		String dateString = Calendar.getInstance().getTime().toString();
 		List<Team> teams = new ArrayList<>();
 
-		boolean registrationSucceed = saveNewUser(new User(Lastname,Firstname,email,password,dateString,teams));
+		boolean registrationSucceed = saveNewUser(new User(Lastname,Firstname,email,password,teams));
 
 		if(registrationSucceed){
 			req.setAttribute("messageBeforeLogin", "Your registration was successful!");
