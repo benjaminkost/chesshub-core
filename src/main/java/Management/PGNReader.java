@@ -74,11 +74,12 @@ public class PGNReader {
     }
 
     /**
-     * //TODO @Ben bitte kommentieren
+     * This method updates the attributes of a game, depending on the input values
      *
-     * @param attrName
-     * @param attrValue
-     * @throws ParseException
+     * @param attrName - attribut, which should be set
+     * @param attrValue - new value for attribut
+     *
+     * @throws ParseException if parsing Date fails
      *
      * @author Benjamin Kostka
      */

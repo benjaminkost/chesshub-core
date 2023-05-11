@@ -16,10 +16,11 @@ public class GameManagement {
 
 
 	/**
-	 * 	//TODO @Ben bitte kommentieren
-	 * @param userId
-	 * @param gameId
-	 * @return
+	 * This method returns a game as string, identified by its ID
+	 *
+	 * @param userId - user, which belongs to the game
+	 * @param gameId - search parameter for the game
+	 * @return game as string, "" if game was not found
 	 *
 	 * @author Ben Kostka
 	 */
@@ -44,7 +45,7 @@ public class GameManagement {
 	}return "";}
 
 	/**
-	 * //TODO @Ben bitte kommentieren
+	 * //TODO @Ben bitte "Game Download" kommentieren
 	 * @param game
 	 * @param moves
 	 *
@@ -68,17 +69,18 @@ public class GameManagement {
 	}
 
 	/**
-	 * //TODO @Ben bitte kommentieren
+	 * This methods creates a game with metadata, which is given through input
 	 *
-	 * @param color
-	 * @param userId
-	 * @param result
-	 * @param date
-	 * @param round
-	 * @param event
-	 * @param site
-	 * @param opponent
-	 * @return
+	 * @param color - color of the player, who creates the Game
+	 * @param userId - ID of the player, who creates the Game
+	 * @param result - result of game
+	 * @param date - date of game
+	 * @param round - round, in which the game was played
+	 * @param event - event, which belongs to the game
+	 * @param site - site, where game was playes
+	 * @param opponent - user, who played against the user (userId)
+	 *
+	 * @return new Game with metadata
 	 *
 	 * @author Ben Kostka
 	 */
@@ -109,11 +111,13 @@ public class GameManagement {
 	}
 
 	/**
-	 * //TODO @Ben bitte kommentieren
-	 * @param uploadItems
-	 * @param color
-	 * @param userId
-	 * @return
+	 * This method creates a PGN through a PGN-file, input color & userID
+	 *
+	 * @param uploadItems - uploaded files, which should be PGN-files
+	 * @param color - selected color by user
+	 * @param userId - userId of the user, who uploaded the game
+	 *
+	 * @return PGN as String
 	 *
 	 * @author Ben Kostka
 	 */
