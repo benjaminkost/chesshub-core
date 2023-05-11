@@ -22,7 +22,7 @@ public class GameManagement {
 	 * @param gameId - search parameter for the game
 	 * @return game as string, "" if game was not found
 	 *
-	 * @author Ben Kostka
+	 * @author Filip Topa
 	 */
 	public static String gameByGameId(int userId, String gameId) {
 		Game partie = GameDao.getInstance().getGameById(Integer.parseInt(gameId));
@@ -33,7 +33,17 @@ public class GameManagement {
 		}
 		return "";
 	}
-	
+
+	/**
+	 * This method returns a game as string, identified by its ID
+	 *
+	 * @param teams - list of teams
+	 * @param gameId - search parameter for the game
+	 *
+	 * @return game as string, "" if game was not found
+	 *
+	 * @author Filip Topa
+	 */
 	public static String gameByTeamId(List<Team> teams, String gameId) {
 		Game partie = GameDao.getInstance().getGameById(Integer.parseInt(gameId));
 		for (Team team : teams) {
@@ -45,11 +55,12 @@ public class GameManagement {
 	}return "";}
 
 	/**
-	 * //TODO @Ben bitte "Game Download" kommentieren
-	 * @param game
-	 * @param moves
+	 * This method updates the moves for a Game
 	 *
-	 * @author Ben Kostka
+	 * @param game - game which gets moves
+	 * @param moves - moves, which need to be added
+	 *
+	 * @author Filip Topa
 	 */
 	public static void gameDownload(Game game, String moves) {
 		game.setMoves(moves);
@@ -82,7 +93,7 @@ public class GameManagement {
 	 *
 	 * @return new Game with metadata
 	 *
-	 * @author Ben Kostka
+	 * @author Filip Topa
 	 */
 	public static Game gameToPGN(String color, int userId, String result, String date, String round, String event,
 			String site, String opponent) {
@@ -119,7 +130,7 @@ public class GameManagement {
 	 *
 	 * @return PGN as String
 	 *
-	 * @author Ben Kostka
+	 * @author Filip Topa
 	 */
 	public static String PGN(List<FileItem> uploadItems, String color, int userId) {
 
