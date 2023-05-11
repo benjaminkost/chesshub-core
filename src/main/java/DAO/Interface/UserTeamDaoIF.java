@@ -7,7 +7,7 @@ import BusinessObjects.User;
 
 public interface UserTeamDaoIF {
 
-	final String TABLENAME = "User_has_Teams";
+	final String TABLENAME = "user_has_Teams";
 	// Collumnames
 	final String COL_USER_ID = "User_ID";
 	final String COL_TEAM_ID = "Team_ID";

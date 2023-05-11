@@ -5,7 +5,7 @@ import BusinessObjects.Request;
 
 public interface RequestDaoIF {
 	
-	final String TABLENAME = "Requests";
+	final String TABLENAME = "requests";
 
 	// Collumnnames of Databasetable
 	final String COL_REQUEST_ID = "Request_ID";
