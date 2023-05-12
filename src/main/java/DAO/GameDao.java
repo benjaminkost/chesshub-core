@@ -59,7 +59,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
                 Game game = new Game();
                 game.setGame_ID(rs.getInt(COL_GAME_ID));
                 game.setEvent(rs.getString(COL_EVENT));
-                game.setRound(rs.getInt(COL_ROUND));
+                game.setRound(rs.getString(COL_ROUND));
                 game.setSite(rs.getString(COL_SITE));
                 game.setDate(rs.getDate(COL_DATE));
                 game.setResult(rs.getString(COL_RESULT));
@@ -95,7 +95,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
             if (rs.next()) {
                 game.setGame_ID(rs.getInt(COL_GAME_ID));
                 game.setEvent(rs.getString(COL_EVENT));
-                game.setRound(rs.getInt(COL_ROUND));
+                game.setRound(rs.getString(COL_ROUND));
                 game.setSite(rs.getString(COL_SITE));
                 game.setDate(rs.getDate(COL_DATE));
                 game.setResult(rs.getString(COL_RESULT));
@@ -131,7 +131,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
                 Game game = new Game();
                 game.setGame_ID(rs.getInt(COL_GAME_ID));
                 game.setEvent(rs.getString(COL_EVENT));
-                game.setRound(rs.getInt(COL_ROUND));
+                game.setRound(rs.getString(COL_ROUND));
                 game.setSite(rs.getString(COL_SITE));
                 game.setDate(rs.getDate(COL_DATE));
                 game.setResult(rs.getString(COL_RESULT));
@@ -168,7 +168,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
                 Game game = new Game();
                 game.setGame_ID(rs.getInt(COL_GAME_ID));
                 game.setEvent(rs.getString(COL_EVENT));
-                game.setRound(rs.getInt(COL_ROUND));
+                game.setRound(rs.getString(COL_ROUND));
                 game.setSite(rs.getString(COL_SITE));
                 game.setDate(rs.getDate(COL_DATE));
                 game.setResult(rs.getString(COL_RESULT));
@@ -206,7 +206,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
                 Game game = new Game();
                 game.setGame_ID(rs.getInt(COL_GAME_ID));
                 game.setEvent(rs.getString(COL_EVENT));
-                game.setRound(rs.getInt(COL_ROUND));
+                game.setRound(rs.getString(COL_ROUND));
                 game.setSite(rs.getString(COL_SITE));
                 game.setDate(rs.getDate(COL_DATE));
                 game.setResult(rs.getString(COL_RESULT));

@@ -100,7 +100,7 @@ public class GameManagement {
 			game.setDate(new SimpleDateFormat("yyyy.MM.dd").parse(date));
 		} catch (ParseException e) {
 		}
-		game.setRound(Integer.parseInt(round));
+		game.setRound(round);
 		game.setEvent(event);
 		game.setSite(site);
 		game.setComment(opponent);

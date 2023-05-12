@@ -100,7 +100,7 @@ public class PGNReader {
                 importedGame.setDate(dateAttr);
                 break;
             case "round":
-                importedGame.setRound(Integer.parseInt(attrValue));
+                importedGame.setRound(attrValue);
                 break;
             case "white":
                 importedGame.setCommentWhite(attrValue);
