@@ -115,7 +115,7 @@ public class UserManagement {
 		String password = getUserById(userID).getPassword();
 
 		//Updating user
-		UserDao.getInstance().updateUser(new User(userID,lastName,firstName,mail,password,null,teams));
+		UserDao.getInstance().updateUser(new User(userID,lastName,firstName,mail,password,teams));
 		return true;
 	}
 	
