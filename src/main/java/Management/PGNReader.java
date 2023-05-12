@@ -28,8 +28,7 @@ public class PGNReader {
         }
 
         if (!f.isFile()) {
-            throw new IllegalArgumentException("f should not be a directo"
-                    + "ry, but was: " + f);
+            throw new IllegalArgumentException("f should not be a directory, but was: " + f);
         }
 
         if (!f.getName().toLowerCase().endsWith(".pgn")) {

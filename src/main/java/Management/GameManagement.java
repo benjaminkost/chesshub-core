@@ -180,10 +180,8 @@ public class GameManagement {
 			}
 			else{
 				s = "File must end with .pgn";
-				System.out.print(e.getMessage());
 			}
 		}
 		return s;
 	}
-	
 }

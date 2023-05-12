@@ -60,8 +60,6 @@ public class DatabaseConnector implements DatabaseConnectorIF{
     public synchronized void connect() throws SQLException {
         String url = "jdbc:mariadb://" + HOST + "/" + DATABASENAME; //unsicher ob das richtig ist
         connection = DriverManager.getConnection(url, DBUSER, DBPW);
-        System.out.println(connection);
-        System.out.println(url +" "+DBUSER+" "+DBPW);
     }
 
     public synchronized ResultSet executeQuery(String query, Object... params) throws SQLException {
