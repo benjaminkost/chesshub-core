@@ -18,7 +18,7 @@ public class Game {
 	private String commentWhite;
 	private String commentBlack;
 
-	public Game(int game_ID, String event, String site, Date date, String round, User whitie, User black, String result,
+	public Game(int game_ID, String event, String site, Date date, String round, User white, User black, String result,
 			String moves, String comment) {
 		super();
 		this.game_ID = game_ID;
@@ -26,7 +26,7 @@ public class Game {
 		this.site = site;
 		this.date = date;
 		this.round = round;
-		this.white = whitie;
+		this.white = white;
 		this.black = black;
 		this.result = result;
 		this.moves = moves;
