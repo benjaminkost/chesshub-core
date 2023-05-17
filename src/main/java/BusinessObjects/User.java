@@ -4,27 +4,27 @@ import java.util.*;
 
 public class User{
 	private int user_Id;
-	private String Lastname;
-	private String Firstname;
-	private String Email;
+	private String lastname;
+	private String firstname;
+	private String email;
 	private String password;
 	private List<Team> teams = new ArrayList<>();
 
 	public User( int user_Id, String lastname, String firstname, String email, String password, List<Team> teams) {
 		super();
 		this.user_Id = user_Id;
-		Lastname = lastname;
-		Firstname = firstname;
-		Email = email;
+		this.lastname = lastname;
+		this.firstname = firstname;
+		this.email = email;
 		this.password = password;
 		this.teams = teams;
 	}
 
 	public User(String lastname, String firstname, String email, String password, List<Team> teams) {
 		super();
-		Lastname = lastname;
-		Firstname = firstname;
-		Email = email;
+		this.lastname = lastname;
+		this.firstname = firstname;
+		this.email = email;
 		this.password = password;
 		this.teams = teams;
 	}
@@ -34,31 +34,31 @@ public class User{
 	}
 
 	public String getLastname() {
-		return this.Lastname;
+		return this.lastname;
 	}
 
 	public void setLastname(String lastname) {
-		Lastname = lastname;
+		this.lastname = lastname;
 	}
 
 	public String getFirstname() {
-		return this.Firstname;
+		return this.firstname;
 	}
 
 	public void setFirstname(String firstname) {
-		Firstname = firstname;
+		this.firstname = firstname;
 	}
 	
 	public String getFullName() {
-		return this.Firstname + " " + this.Lastname;
+		return this.firstname + " " + this.lastname;
 	}
 
 	public String getEmail() {
-		return this.Email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
 
 	public String getPassword() {
