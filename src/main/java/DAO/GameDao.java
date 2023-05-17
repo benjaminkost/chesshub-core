@@ -45,7 +45,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
     }
 
     /**
-     * Returns a list of all games in the databse
+     * Returns a list of all games in the database
      *
      * @return List of all Games
      */
@@ -84,14 +84,14 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
     /**
      * Returns the game with the specified ID from Database.
      *
-     * @param game_id
-     * @return game with specidied ID
+     * @param gameId
+     * @return game with specified ID
      */
     @Override
-    public Game getGameById(int game_id) {
+    public Game getGameById(int gameId) {
         Game game = new Game();
         try {
-            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYGAMEID, game_id); // Execute SELECT query to retrieve a game
+            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYGAMEID, gameId); // Execute SELECT query to retrieve a game
             if (rs.next()) {
                 game.setGame_ID(rs.getInt(COL_GAME_ID));
                 game.setEvent(rs.getString(COL_EVENT));
@@ -117,16 +117,16 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
     }
 
     /**
-     * Returns List of Games with specidied Id from Database
+     * Returns List of Games with specified Id from Database
      *
-     * @param user_id
+     * @param userId
      * @return List of Game-Objects with specified ID
      */
     @Override
-    public List<Game> getGamesByUserId(int user_id) {
+    public List<Game> getGamesByUserId(int userId) {
         List<Game> gameList = new ArrayList<Game>();
         try {
-            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTGAMEBYUSERID, user_id, user_id);
+            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTGAMEBYUSERID, userId, userId);
             while (rs.next()) {
                 Game game = new Game();
                 game.setGame_ID(rs.getInt(COL_GAME_ID));
@@ -142,7 +142,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
                 gameList.add(game);
             }
         } catch (SQLException e) {
-            System.err.println("An error occurred while retrieving the games by UserId (" + user_id + ") : " + e.getMessage());
+            System.err.println("An error occurred while retrieving the games by UserId (" + userId + ") : " + e.getMessage());
         } finally {
             try {
                 DatabaseConnector.getInstance().closeStatement();
@@ -156,14 +156,14 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
     /**
      * Returns a List of Games with Players in a specific Team from Database
      *
-     * @param team_id
+     * @param teamId
      * @return List of Games-Object with specified Team ID
      */
     @Override
-    public List<Game> getGamesByTeamId(int team_id) {
+    public List<Game> getGamesByTeamId(int teamId) {
         List<Game> gameList = new ArrayList<Game>();
         try {
-            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTGAMEBYTEAMID, team_id, team_id);
+            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTGAMEBYTEAMID, teamId, teamId);
             while (rs.next()) {
                 Game game = new Game();
                 game.setGame_ID(rs.getInt(COL_GAME_ID));
@@ -179,7 +179,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
                 gameList.add(game);
             }
         } catch (SQLException e) {
-            System.err.println("An error occurred while retrieving the games by TeamId (" + team_id + ") : " + e.getMessage());
+            System.err.println("An error occurred while retrieving the games by TeamId (" + teamId + ") : " + e.getMessage());
         } finally {
             try {
                 DatabaseConnector.getInstance().closeStatement();
@@ -191,17 +191,17 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
     }
 
     /**
-     * Return List of Games with without registred Opponent from Database
+     * Return List of Games with without registered Opponent from Database
      *
-     * @param user_id
-     * @return List of Games with without registred Opponent
+     * @param userId
+     * @return List of Games with without registered Opponent
      */
 
     @Override
-    public List<Game> getGamesWithoutOpponent(int user_id) {
+    public List<Game> getGamesWithoutOpponent(int userId) {
         List<Game> gameList = new ArrayList<Game>();
         try {
-            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTGAMESWITHOUTOPPONENT, user_id, user_id);
+            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTGAMESWITHOUTOPPONENT, userId, userId);
             while (rs.next()) {
                 Game game = new Game();
                 game.setGame_ID(rs.getInt(COL_GAME_ID));
@@ -217,7 +217,7 @@ public class GameDao implements GameDaoIF, DatabaseConnectorIF {
                 gameList.add(game);
             }
         } catch (SQLException e) {
-            System.err.println("An error occurred while retrieving the games by UserId (" + user_id + ") : " + e.getMessage());
+            System.err.println("An error occurred while retrieving the games by UserId (" + userId + ") : " + e.getMessage());
         } finally {
             try {
                 DatabaseConnector.getInstance().closeStatement();

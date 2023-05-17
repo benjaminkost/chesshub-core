@@ -42,14 +42,14 @@ public class UserTeamDao implements UserTeamDaoIF {
     /**
      * Method that returns a list of teams associated with a particular user id.
      *
-     * @param userID id of the user
+     * @param userId id of the user
      * @return list of teams associated with the user
      */
     @Override
-    public List<Team> getTeamsByUserId(int userID) {
+    public List<Team> getTeamsByUserId(int userId) {
         List<Team> TeamList = new ArrayList<Team>();
         try {
-            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTTEAMSBYUSERID, userID);
+            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTTEAMSBYUSERID, userId);
             while (rs.next()) {
                 Team team = new Team();
                 team = TeamDao.getInstance().getTeamById(rs.getInt(COL_TEAM_ID));
@@ -97,15 +97,15 @@ public class UserTeamDao implements UserTeamDaoIF {
      * Method that updates a user's team.
      *
      * @param user     user to update
-     * @param fromteam team to move user from
+     * @param fromTeam team to move user from
      * @param toTeam   team to move user to
      * @return true if the update was successful, false otherwise
      */
     @Override
-    public boolean updateUserInTeam(User user, Team fromteam, Team toTeam) {
+    public boolean updateUserInTeam(User user, Team fromTeam, Team toTeam) {
         boolean result = false;
         try {
-            if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEUSERTEAM, toTeam.getTeam_ID(), user.getUser_Id(), fromteam.getTeam_ID()) > 0) {
+            if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEUSERTEAM, toTeam.getTeam_ID(), user.getUser_Id(), fromTeam.getTeam_ID()) > 0) {
                 result = true;
             } else {
                 result = false;

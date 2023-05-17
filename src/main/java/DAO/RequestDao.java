@@ -136,14 +136,14 @@ public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
     /**
      * Retrieves a Request object by its ID.
      *
-     * @param request_id the ID of the Request to retrieve
+     * @param requestId the ID of the Request to retrieve
      * @return the Request object with the given ID
      */
     @Override
-    public Request getRequestById(int request_id) {
+    public Request getRequestById(int requestId) {
         Request request = new Request();
         try {
-            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYREQUESTID, request_id);
+            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYREQUESTID, requestId);
             if (rs.next()) {
                 request.setRequest_ID(rs.getInt(COL_REQUEST_ID));
                 request.setSender_ID(rs.getInt(COL_SENDER_ID));
@@ -166,15 +166,15 @@ public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
     /**
      * Updates the status of a Request in the database.
      *
-     * @param request_id the ID of the Request to update
+     * @param requestId the ID of the Request to update
      * @param status     the new status of the Request
      * @return true if the update was successful, false otherwise
      */
     @Override
-    public boolean updateRequest(int request_id, String status) {
+    public boolean updateRequest(int requestId, String status) {
         boolean result = false;
         try {
-            if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEREQUEST, status, request_id) > 0) {
+            if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEREQUEST, status, requestId) > 0) {
                 result = true;
             } else {
                 result = false;
@@ -194,14 +194,14 @@ public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
     /**
      * Deletes a Request from the database.
      *
-     * @param request_id
+     * @param requestId
      * @return true if the delete was successful, false otherwise
      */
     @Override
-    public boolean deleteRequest(int request_id) {
+    public boolean deleteRequest(int requestId) {
         boolean result = false;
         try {
-            if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEREQUEST, request_id) > 0) {
+            if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEREQUEST, requestId) > 0) {
                 result = true;
             } else {
                 result = false;
@@ -221,17 +221,17 @@ public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
     /**
      * Insert a Request to the database.
      *
-     * @param sender_ID
-     * @param recipient_ID
-     * @param game_ID
+     * @param senderId
+     * @param recipientId
+     * @param gameId
      * @param status
      * @return true if the insert was successful, false otherwise
      */
     @Override
-    public boolean insertRequest(int sender_ID, int recipient_ID, int game_ID, String status) {
+    public boolean insertRequest(int senderId, int recipientId, int gameId, String status) {
         boolean result = false;
         try {
-            if (DatabaseConnector.getInstance().executeUpdate(Q_INSERTREQUEST, sender_ID, recipient_ID, game_ID,
+            if (DatabaseConnector.getInstance().executeUpdate(Q_INSERTREQUEST, senderId, recipientId, gameId,
                     status) > 0) {
                 ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
                 result = true;

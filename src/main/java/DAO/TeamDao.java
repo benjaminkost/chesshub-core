@@ -72,14 +72,14 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
     /**
      * Retrieves a team from the database by its team ID.
      *
-     * @param Team_id The ID of the team to retrieve.
+     * @param teamId the ID of the team to retrieve.
      * @return The Team object corresponding to the given team ID.
      */
     @Override
-    public Team getTeamById(int Team_id) {
+    public Team getTeamById(int team_id) {
         Team team = new Team();
         try {
-            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYTEAMID, Team_id);
+            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYTEAMID, team_id);
             if (rs.next()) {
                 team.setTeam_ID(rs.getInt(COL_TEAM_ID));
                 team.setName(rs.getString(COL_NAME));
@@ -108,22 +108,22 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
     /**
      * Updates a team in the database.
      *
-     * @param Team The Team object to update.
+     * @param team the Team object to update.
      * @return True if the team was updated successfully, false otherwise.
      */
     @Override
-    public boolean updateTeam(Team Team) {
+    public boolean updateTeam(Team team) {
         boolean result = false;
         Integer leaderID = null;
         Integer clubID = null;
-        if (Team.getLeader() != null && Team.getLeader().getUser_Id() != 0) {
-            leaderID = Team.getLeader().getUser_Id();
+        if (team.getLeader() != null && team.getLeader().getUser_Id() != 0) {
+            leaderID = team.getLeader().getUser_Id();
         }
-        if (Team.getClub() != null && Team.getClub().getClub_ID() != 0) {
-            clubID = Team.getClub().getClub_ID();
+        if (team.getClub() != null && team.getClub().getClub_ID() != 0) {
+            clubID = team.getClub().getClub_ID();
         }
         try {
-            if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATETEAM, Team.getName(), clubID, leaderID, Team.getTeam_ID()) > 0) {
+            if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATETEAM, team.getName(), clubID, leaderID, team.getTeam_ID()) > 0) {
                 result = true;
             } else {
                 result = false;
@@ -143,7 +143,7 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
     /**
      * Delete a team from the database.
      *
-     * @param team The Team object to delete.
+     * @param team the Team object to delete.
      * @return True if the team was deleted successfully, false otherwise.
      */
     @Override
@@ -171,27 +171,27 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
     /**
      * sert a team in the database.
      *
-     * @param Team The Team object to insert.
+     * @param team the Team object to insert.
      * @return True if the team was inserted successfully, false otherwise.
      */
     @Override
-    public boolean insertTeam(Team Team) {
+    public boolean insertTeam(Team team) {
         boolean result = false;
         Integer leaderID = null;
         Integer clubID = null;
-        if (Team.getLeader() != null) {
-            leaderID = Team.getLeader().getUser_Id();
+        if (team.getLeader() != null) {
+            leaderID = team.getLeader().getUser_Id();
         }
-        if (Team.getClub() != null) {
-            clubID = Team.getClub().getClub_ID();
+        if (team.getClub() != null) {
+            clubID = team.getClub().getClub_ID();
         }
 
         try {
             if (DatabaseConnector.getInstance()
-                    .executeUpdate(Q_INSERTTEAM, Team.getName(), clubID, leaderID) > 0) {
+                    .executeUpdate(Q_INSERTTEAM, team.getName(), clubID, leaderID) > 0) {
                 ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
                 if (rs.next()) {
-                    Team.setTeam_ID(rs.getInt(1));
+                    team.setTeam_ID(rs.getInt(1));
                 }
                 result = true;
             } else {
