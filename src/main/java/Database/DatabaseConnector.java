@@ -103,6 +103,4 @@ public class DatabaseConnector implements DatabaseConnectorIF{
         	statement.close();
         }
     }
-
-
     }
