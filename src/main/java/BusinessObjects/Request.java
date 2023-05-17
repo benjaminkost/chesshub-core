@@ -3,21 +3,21 @@ package BusinessObjects;
 public class Request {
 
 	private int request_ID;
-	private int sender_ID;
-	private int recipient_ID;
-	private int game_ID;
+	private User sender;
+	private User recipient;
+	private Game game;
 	private String status;
 
 	public Request() {
 		super();
 	}
 
-	public Request(int request_ID, int sender_ID, int recipient_ID, int game_ID, String status) {
+	public Request(int request_ID, User sender, User recipient, Game game, String status) {
 		super();
 		this.request_ID = request_ID;
-		this.sender_ID = sender_ID;
-		this.recipient_ID = recipient_ID;
-		this.game_ID = game_ID;
+		this.sender = sender;
+		this.recipient = recipient;
+		this.game = game;
 		this.status = status;
 	}
 
@@ -29,28 +29,28 @@ public class Request {
 		this.request_ID = request_ID;
 	}
 
-	public int getSender_ID() {
-		return sender_ID;
+	public User getSender() {
+		return sender;
 	}
 
-	public void setSender_ID(int sender_ID) {
-		this.sender_ID = sender_ID;
+	public void setSender(User sender) {
+		this.sender = sender;
 	}
 
-	public int getRecipient_ID() {
-		return recipient_ID;
+	public User getRecipient() {
+		return recipient;
 	}
 
-	public void setRecipient_ID(int recipient_ID) {
-		this.recipient_ID = recipient_ID;
+	public void setRecipient(User recipient) {
+		this.recipient = recipient;
 	}
 
-	public int getGame_ID() {
-		return game_ID;
+	public Game getGame() {
+		return game;
 	}
 
-	public void setGame_ID(int game_ID) {
-		this.game_ID = game_ID;
+	public void setGame(Game game) {
+		this.game = game;
 	}
 	
 	public String getStatus() {

@@ -12,7 +12,7 @@ public class Game {
 	private String round;
 	private User white;
 	private User black;
-	private String Result;
+	private String result;
 	private String moves;
 	private String comment;
 	private String commentWhite;
@@ -28,7 +28,7 @@ public class Game {
 		this.round = round;
 		this.white = whitie;
 		this.black = black;
-		Result = result;
+		this.result = result;
 		this.moves = moves;
 		this.comment = comment;
 	}
@@ -94,11 +94,11 @@ public class Game {
 	}
 
 	public String getResult() {
-		return Result;
+		return result;
 	}
 
 	public void setResult(String result) {
-		Result = result;
+		this.result = result;
 	}
 
 	public String getMoves() {
@@ -137,7 +137,7 @@ public class Game {
 	public String toString() {
 		return "Game{" + "\ngame_ID=" + game_ID + "\n, event='" + event + '\'' + "\n, site='" + site + '\''
 				+ "\n, date=" + date + "\n, round=" + round + "\n, white=" + white + "\n, black=" + black
-				+ "\n, Result='" + Result + '\'' + "\n, moves='" + moves + '\'' + "\n, comment='" + comment + '\''
+				+ "\n, Result='" + result + '\'' + "\n, moves='" + moves + '\'' + "\n, comment='" + comment + '\''
 				+ '}';
 	}
 
@@ -194,14 +194,14 @@ public class Game {
 
 	public String getGame() {
 		if (white.getUser_Id() == 0)
-			return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event
+			return "[Result \"" + result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event
 					+ "\"] [Black \"" + black.getFullName() + "\"] [White \"" + comment + "\"] [Site \"" + site + "\"]"
 					+ moves;
 		if (black.getUser_Id() == 0)
-			return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event
+			return "[Result \"" + result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event
 					+ "\"] [Black \"" + comment + "\"] [White \"" + white.getFullName() + "\"] [Site \"" + site + "\"]"
 					+ moves;
-		return "[Result \"" + Result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event
+		return "[Result \"" + result + "\"] [Date \"" + date + "\"] [Round \"" + round + "\"] [Event \"" + event
 				+ "\"] [Black \"" + black.getFullName() + "\"] [White \"" + white.getFullName() + "\"] [Site \"" + site
 				+ "\"]" + moves;
 	}

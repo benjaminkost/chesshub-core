@@ -1,7 +1,10 @@
 package DAO.Interface;
 
 import java.util.List;
+
+import BusinessObjects.Game;
 import BusinessObjects.Request;
+import BusinessObjects.User;
 
 public interface RequestDaoIF {
 	
@@ -25,9 +28,9 @@ public interface RequestDaoIF {
 
 	List<Request> getAllRequests();
 	
-	List<Request> getRequestsBySenderId(int userId);
+	List<Request> getRequestsBySenderId(User sender);
 	
-	List<Request> getRequestsByRecipientId(int userId);
+	List<Request> getRequestsByRecipientId(User recipient);
 
 	Request getRequestById(int request_id);
 
@@ -35,5 +38,5 @@ public interface RequestDaoIF {
 
 	boolean deleteRequest(int request_id);
 
-	boolean insertRequest(int sender_ID, int recipient_ID, int game_ID, String status);
+	boolean insertRequest(User sender, User recipient, Game game, String status);
 }
