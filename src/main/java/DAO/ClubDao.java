@@ -79,14 +79,14 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
     /**
      * Returns the club with the specified ID.
      *
-     * @param club_id the ID of the club to retrieve
+     * @param clubId the ID of the club to retrieve
      * @return the club with the specified ID
      */
     @Override
-    public Club getClubById(int club_id) {
+    public Club getClubById(int clubId) {
         Club club = new Club();
         try {
-            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYCLUBID, club_id); // Execute SELECT query to retrieve club with the specified ID
+            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYCLUBID, clubId); // Execute SELECT query to retrieve club with the specified ID
             if (rs.next()) {
                 // Set the properties of the club object from the database result
                 club.setClub_ID(rs.getInt(COL_CLUB_ID));
@@ -172,18 +172,18 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
      * @return true if the Club was successfully inserted, false otherwise.
      */
     @Override
-    public boolean insertClub(Club Club) {
+    public boolean insertClub(Club club) {
         boolean result = false;
         Integer presidentID = null;
-        if (Club.getPresident() != null && Club.getPresident().getUser_Id() != 0) {
-            presidentID = Club.getPresident().getUser_Id();
+        if (club.getPresident() != null && club.getPresident().getUser_Id() != 0) {
+            presidentID = club.getPresident().getUser_Id();
         }
         try {
             if (DatabaseConnector.getInstance()
-                    .executeUpdate(Q_INSERTCLUB, Club.getName(), presidentID) > 0) { // Execute UPDATE query to Insert
+                    .executeUpdate(Q_INSERTCLUB, club.getName(), presidentID) > 0) { // Execute UPDATE query to Insert
                 ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
                 if (rs.next()) {
-                    Club.setClub_ID(rs.getInt(1));
+                    club.setClub_ID(rs.getInt(1));
                 }
                 result = true;
             } else {

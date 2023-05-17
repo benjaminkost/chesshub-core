@@ -59,7 +59,7 @@ public class GameDaoTest {
 		userDao = UserDao.getInstance();
 		gameDao = GameDao.getInstance();
 		testGame.setEvent("Test Game");
-		testGame.setRound(1);
+		testGame.setRound("1");
 		testGame.setSite("Test Site");
 		testGame.setDate(Date.valueOf(LocalDate.now()));
 		testGame.setResult("1/2-1/2");
@@ -103,7 +103,7 @@ public class GameDaoTest {
 		userDao = UserDao.getInstance();
 		gameDao = GameDao.getInstance();
 		testGame.setEvent("Test Game");
-		testGame.setRound(1);
+		testGame.setRound("1");
 		testGame.setSite("Test Site");
 		testGame.setDate(Date.valueOf(LocalDate.now()));
 		testGame.setResult("1/2-1/2");
@@ -142,7 +142,7 @@ public class GameDaoTest {
 		userDao = UserDao.getInstance();
 		gameDao = GameDao.getInstance();
 		testGame.setEvent("Test Game");
-		testGame.setRound(1);
+		testGame.setRound("1");
 		testGame.setSite("Test Site");
 		testGame.setDate(Date.valueOf(LocalDate.now()));
 		testGame.setResult("1/2-1/2");
@@ -177,7 +177,7 @@ public class GameDaoTest {
 		userDao = UserDao.getInstance();
 		gameDao = GameDao.getInstance();
 		testGame.setEvent("Test Game");
-		testGame.setRound(1);
+		testGame.setRound("1");
 		testGame.setSite("Test Site");
 		testGame.setDate(Date.valueOf(LocalDate.now()));
 		testGame.setResult("1/2-1/2");

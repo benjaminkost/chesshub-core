@@ -78,14 +78,14 @@ public class UserDao implements UserDaoIF, DatabaseConnectorIF {
     /**
      * Retrieves a user with the specified user_id from the database and returns it as a User object.
      *
-     * @param User_id User ID of the user to retrieve.
-     * @return User object with the specified user_id.
+     * @param userId User ID of the user to retrieve.
+     * @return User object with the specified userId.
      */
     @Override
-    public User getUserById(int User_id) {
+    public User getUserById(int userId) {
         User user = new User();
         try {
-            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYUSERID, User_id);
+            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYUSERID, userId);
             if (rs.next()) {
                 user.setUser_Id(rs.getInt(COL_USER_ID));
                 user.setFirstname(rs.getString(COL_FIRSTNAME));

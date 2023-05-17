@@ -28,8 +28,7 @@ public class PGNReader {
         }
 
         if (!f.isFile()) {
-            throw new IllegalArgumentException("f should not be a directo"
-                    + "ry, but was: " + f);
+            throw new IllegalArgumentException("f should not be a directory, but was: " + f);
         }
 
         if (!f.getName().toLowerCase().endsWith(".pgn")) {
@@ -74,11 +73,12 @@ public class PGNReader {
     }
 
     /**
-     * //TODO @Ben bitte kommentieren
+     * This method updates the attributes of a game, depending on the input values
      *
-     * @param attrName
-     * @param attrValue
-     * @throws ParseException
+     * @param attrName - attribut, which should be set
+     * @param attrValue - new value for attribut
+     *
+     * @throws ParseException if parsing Date fails
      *
      * @author Benjamin Kostka
      */
@@ -100,7 +100,7 @@ public class PGNReader {
                 importedGame.setDate(dateAttr);
                 break;
             case "round":
-                importedGame.setRound(Integer.parseInt(attrValue));
+                importedGame.setRound(attrValue);
                 break;
             case "white":
                 importedGame.setCommentWhite(attrValue);

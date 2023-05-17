@@ -55,12 +55,6 @@
 						<li class="nav-item"><a class="nav-link"
 							href="impressum.html">Imprint</a></li>
 					</ul>
-					<div class="search_icon">
-						<ul>
-							<li class="nav-item"><a class="nav-link"
-								href="LogoutServlet">LOGOUT</a></li>
-						</ul>
-					</div>
 				</div>
 			</nav>
 		</div>

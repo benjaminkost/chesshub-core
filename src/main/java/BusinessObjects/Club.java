@@ -1,7 +1,5 @@
 package BusinessObjects;
 
-import java.util.List;
-
 public class Club {
 	private int club_ID;
 	private String name;

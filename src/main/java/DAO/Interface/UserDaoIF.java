@@ -6,30 +6,28 @@ import BusinessObjects.User;
 
 public interface UserDaoIF {
 
-	final String TABLENAME = "user";
+	String TABLENAME = "user";
 	// Collumnames
-	final String COL_USER_ID = "User_ID";
-	final String COL_FIRSTNAME = "Firstname";
-	final String COL_LASTNAME = "Lastname";
-	final String COL_EMAIL = "Email";
-	final String COL_PASSWORD = "Password";
-	final String COL_LASTLOGIN = "LastLogin";
+	String COL_USER_ID = "User_ID";
+	String COL_FIRSTNAME = "Firstname";
+	String COL_LASTNAME = "Lastname";
+	String COL_EMAIL = "Email";
+	String COL_PASSWORD = "Password";
 
 //	 Queries
-	final String Q_SELECTALLUSERS = "SELECT * FROM " +TABLENAME+";";
-	final String Q_SELECTBYUSERID = "SELECT * FROM "+TABLENAME+ " WHERE "+COL_USER_ID+" = ? ;";
-	final String Q_UPDATEUSER = "UPDATE "+TABLENAME+" SET "+COL_FIRSTNAME+"=?, "+COL_LASTNAME+"=?, "+COL_EMAIL+"=?, "+COL_PASSWORD+"=? WHERE "+ COL_USER_ID+"=?;";
-	final String Q_DELETEUSER = "DELETE FROM "+TABLENAME+" WHERE "+COL_USER_ID+"=?;";
-	final String Q_INSERTUSER = "INSERT INTO "+TABLENAME+"("+COL_FIRSTNAME+","+COL_LASTNAME+","+COL_EMAIL+","+COL_PASSWORD+") VALUES (?,?,?,?);";
+	String Q_SELECTALLUSERS = "SELECT * FROM " +TABLENAME+";";
+	String Q_SELECTBYUSERID = "SELECT * FROM "+TABLENAME+ " WHERE "+COL_USER_ID+" = ? ;";
+	String Q_UPDATEUSER = "UPDATE "+TABLENAME+" SET "+COL_FIRSTNAME+"=?, "+COL_LASTNAME+"=?, "+COL_EMAIL+"=?, "+COL_PASSWORD+"=? WHERE "+ COL_USER_ID+"=?;";
+	String Q_DELETEUSER = "DELETE FROM "+TABLENAME+" WHERE "+COL_USER_ID+"=?;";
+	String Q_INSERTUSER = "INSERT INTO "+TABLENAME+"("+COL_FIRSTNAME+","+COL_LASTNAME+","+COL_EMAIL+","+COL_PASSWORD+") VALUES (?,?,?,?);";
 
-	public List<User> getAllUser();
+	List<User> getAllUser();
 
-	public User getUserById(int User_id);
+	User getUserById(int User_id);
 
-	public boolean updateUser(User user);
+	boolean updateUser(User user);
 
-	public boolean deleteUser(User user);
+	boolean deleteUser(User user);
 
-	public boolean insertUser(User user);
-
+	boolean insertUser(User user);
 }

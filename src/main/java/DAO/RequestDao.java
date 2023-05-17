@@ -5,7 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import BusinessObjects.Game;
 import BusinessObjects.Request;
+import BusinessObjects.User;
 import DAO.Interface.RequestDaoIF;
 import Database.DatabaseConnector;
 import Database.DatabaseConnectorIF;
@@ -76,16 +78,16 @@ public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
      * @return a list of Request objects
      */
     @Override
-    public List<Request> getRequestsBySenderId(int userId) {
+    public List<Request> getRequestsBySenderId(User sender) {
         List<Request> requestList = new ArrayList<Request>();
         try {
-            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYSENDERID, userId);
+            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYSENDERID, sender.getUser_Id());
             while (rs.next()) {
                 Request request = new Request();
                 request.setRequest_ID(rs.getInt(COL_REQUEST_ID));
-                request.setSender_ID(rs.getInt(COL_SENDER_ID));
-                request.setRecipient_ID(rs.getInt(COL_RECIPIENT_ID));
-                request.setGame_ID(rs.getInt(COL_GAME_ID));
+                request.setSender(UserDao.getInstance().getUserById(rs.getInt(COL_SENDER_ID)));
+                request.setRecipient(UserDao.getInstance().getUserById(rs.getInt(COL_RECIPIENT_ID)));
+                request.setGame(GameDao.getInstance().getGameById(rs.getInt(COL_GAME_ID)));
                 request.setStatus(rs.getString(COL_STATUS));
                 requestList.add(request);
             }
@@ -108,16 +110,16 @@ public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
      * @return a list of Request objects
      */
     @Override
-    public List<Request> getRequestsByRecipientId(int userId) {
+    public List<Request> getRequestsByRecipientId(User recipient) {
         List<Request> requestList = new ArrayList<Request>();
         try {
-            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYRECIPIENTID, userId);
+            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYRECIPIENTID, recipient.getUser_Id());
             while (rs.next()) {
                 Request request = new Request();
                 request.setRequest_ID(rs.getInt(COL_REQUEST_ID));
-                request.setSender_ID(rs.getInt(COL_SENDER_ID));
-                request.setRecipient_ID(rs.getInt(COL_RECIPIENT_ID));
-                request.setGame_ID(rs.getInt(COL_GAME_ID));
+                request.setSender(UserDao.getInstance().getUserById(rs.getInt(COL_SENDER_ID)));
+                request.setRecipient(UserDao.getInstance().getUserById(rs.getInt(COL_RECIPIENT_ID)));
+                request.setGame(GameDao.getInstance().getGameById(rs.getInt(COL_GAME_ID)));
                 request.setStatus(rs.getString(COL_STATUS));
                 requestList.add(request);
             }
@@ -136,19 +138,19 @@ public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
     /**
      * Retrieves a Request object by its ID.
      *
-     * @param request_id the ID of the Request to retrieve
+     * @param requestId the ID of the Request to retrieve
      * @return the Request object with the given ID
      */
     @Override
-    public Request getRequestById(int request_id) {
+    public Request getRequestById(int requestId) {
         Request request = new Request();
         try {
-            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYREQUESTID, request_id);
+            ResultSet rs = DatabaseConnector.getInstance().executeQuery(Q_SELECTBYREQUESTID, requestId);
             if (rs.next()) {
                 request.setRequest_ID(rs.getInt(COL_REQUEST_ID));
-                request.setSender_ID(rs.getInt(COL_SENDER_ID));
-                request.setRecipient_ID(rs.getInt(COL_RECIPIENT_ID));
-                request.setGame_ID(rs.getInt(COL_GAME_ID));
+                request.setSender(UserDao.getInstance().getUserById(rs.getInt(COL_SENDER_ID)));
+                request.setRecipient(UserDao.getInstance().getUserById(rs.getInt(COL_RECIPIENT_ID)));
+                request.setGame(GameDao.getInstance().getGameById(rs.getInt(COL_GAME_ID)));
                 request.setStatus(rs.getString(COL_STATUS));
             }
         } catch (SQLException e) {
@@ -166,15 +168,15 @@ public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
     /**
      * Updates the status of a Request in the database.
      *
-     * @param request_id the ID of the Request to update
+     * @param requestId the ID of the Request to update
      * @param status     the new status of the Request
      * @return true if the update was successful, false otherwise
      */
     @Override
-    public boolean updateRequest(int request_id, String status) {
+    public boolean updateRequest(int requestId, String status) {
         boolean result = false;
         try {
-            if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEREQUEST, status, request_id) > 0) {
+            if (DatabaseConnector.getInstance().executeUpdate(Q_UPDATEREQUEST, status, requestId) > 0) {
                 result = true;
             } else {
                 result = false;
@@ -194,14 +196,14 @@ public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
     /**
      * Deletes a Request from the database.
      *
-     * @param request_id
+     * @param requestId
      * @return true if the delete was successful, false otherwise
      */
     @Override
-    public boolean deleteRequest(int request_id) {
+    public boolean deleteRequest(int requestId) {
         boolean result = false;
         try {
-            if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEREQUEST, request_id) > 0) {
+            if (DatabaseConnector.getInstance().executeUpdate(Q_DELETEREQUEST, requestId) > 0) {
                 result = true;
             } else {
                 result = false;
@@ -221,17 +223,17 @@ public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
     /**
      * Insert a Request to the database.
      *
-     * @param sender_ID
-     * @param recipient_ID
-     * @param game_ID
+     * @param senderId
+     * @param recipientId
+     * @param gameId
      * @param status
      * @return true if the insert was successful, false otherwise
      */
     @Override
-    public boolean insertRequest(int sender_ID, int recipient_ID, int game_ID, String status) {
+    public boolean insertRequest(User sender, User recipient, Game game, String status) {
         boolean result = false;
         try {
-            if (DatabaseConnector.getInstance().executeUpdate(Q_INSERTREQUEST, sender_ID, recipient_ID, game_ID,
+            if (DatabaseConnector.getInstance().executeUpdate(Q_INSERTREQUEST, sender.getUser_Id(), recipient.getUser_Id(), game.getGame_ID(),
                     status) > 0) {
                 ResultSet rs = DatabaseConnector.getInstance().getStatement().getGeneratedKeys();
                 result = true;
