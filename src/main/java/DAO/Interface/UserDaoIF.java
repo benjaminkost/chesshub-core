@@ -23,7 +23,7 @@ public interface UserDaoIF {
 
 	List<User> getAllUser();
 
-	User getUserById(int User_id);
+	User getUserById(int user_id);
 
 	boolean updateUser(User user);
 

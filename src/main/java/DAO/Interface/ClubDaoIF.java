@@ -29,6 +29,6 @@ public interface ClubDaoIF {
 
 	boolean deleteClub(Club club);
 
-	boolean insertClub(Club Club);
+	boolean insertClub(Club club);
 
 }
