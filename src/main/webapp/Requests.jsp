@@ -76,53 +76,38 @@
 	<div class="banner_section layout_padding">
 		<div class="container">
 			<form action="ManageRequestServlet" action="get">
-			<h1>Requests</h1>
-			<br>
-			<h2>Sent requests:</h2>
+				<h1>Requests</h1>
+				<br>
+				<h2>Sent requests:</h2>
+				<a class="nav-item"> <%
+ List<String> senderRequests = (List<String>) request.getAttribute("senderRequests");
+ for (String req : senderRequests) {
+ 	out.println(req);
+ }
+ %> <br>
+					<h2>
+						<a>
+							<button name="action" type="submit" value="3">DELETE&emsp;</button>
+						</a>
+					</h2>
 
-			<%
-			List<Request> requests = (List<Request>) request.getAttribute("senderRequests");
-			if (requests.isEmpty()) {
-				out.println("You currently have no such requests!");
-			} else {
-			%>
-			<a class="nav-item"> <%
- for (Request req : requests) {
- 	out.println("<input type='radio' name='request' value='"+ req.getRequest_ID() +"' required> Affected: "
- 	+ req.getRecipient().getFullName() + " (Game-ID " + req.getGame().getGame_ID() + ") | Status: "
- 	+ req.getStatus() + "<br>");
- } %>
- 			<br>
- 			<h2>
-			<a> <button name="action" type="submit" value="3">DELETE&emsp;</button> </a>
-			</h2>
- <%
+				</a> <br> <br>
+				<h2>Received requests:</h2>
+				<a class="nav-item"> <%
+ List<String> recipientRequests = (List<String>) request.getAttribute("recipientRequests");
+ for (String req : recipientRequests) {
+ 	out.println(req.toString());
  }
- %>
-			</a> <br> <br>
-			<h2>Received requests:</h2>
-			<%
-			requests = (List<Request>) request.getAttribute("recipientRequests");
-			if (requests.isEmpty()) {
-				out.println("You currently have no such requests!");
-			} else {
-			%>
-			<a class="nav-item"> <%
- for (Request req : requests) {
- 	out.println("<input type='radio' name='request' value='"+ req.getRequest_ID() +"' required> From: "
- 	+ req.getSender().getFullName() + "<a href='./GameByGameIdServlet?gameId="
- 	+ req.getGame().getGame_ID() + "'> (Game-ID " + req.getGame().getGame_ID() + ")</a> | Status: " + req.getStatus() + "<br>");
- }
-			%>
- 			<br>
- 			<h2>
-			<a> <button name="action" type="submit" value="1">ACCEPT&emsp;</button> </a> 
-			<a> <button name="action" type="submit" value="2">DENY&emsp;</button> </a>
-			</h2>
- <%
- }
- %>
-			</a> 
+ %> <br>
+					<h2>
+						<a>
+							<button name="action" type="submit" value="1">ACCEPT&emsp;</button>
+						</a> <a>
+							<button name="action" type="submit" value="2">DENY&emsp;</button>
+						</a>
+					</h2>
+
+				</a>
 			</form>
 
 		</div>
