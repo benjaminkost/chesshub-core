@@ -89,7 +89,7 @@
 			<a class="nav-item"> <%
  for (Request req : requests) {
  	out.println("<input type='radio' name='request' value='"+ req.getRequest_ID() +"' required> Affected: "
- 	+ getUserById((int) req.getRecipient_ID()).getFullName() + " (Game-ID " + req.getGame_ID() + ") | Status: "
+ 	+ req.getRecipient().getFullName() + " (Game-ID " + req.getGame().getGame_ID() + ") | Status: "
  	+ req.getStatus() + "<br>");
  } %>
  			<br>
@@ -110,8 +110,8 @@
 			<a class="nav-item"> <%
  for (Request req : requests) {
  	out.println("<input type='radio' name='request' value='"+ req.getRequest_ID() +"' required> From: "
- 	+ getUserById((int) req.getSender_ID()).getFullName() + "<a href='./GameByGameIdServlet?gameId="
- 	+ req.getGame_ID() + "'> (Game-ID " + req.getGame_ID() + ")</a> | Status: " + req.getStatus() + "<br>");
+ 	+ req.getSender().getFullName() + "<a href='./GameByGameIdServlet?gameId="
+ 	+ req.getGame().getGame_ID() + "'> (Game-ID " + req.getGame().getGame_ID() + ")</a> | Status: " + req.getStatus() + "<br>");
  }
 			%>
  			<br>
