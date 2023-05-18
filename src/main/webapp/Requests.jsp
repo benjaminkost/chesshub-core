@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8" import="BusinessObjects.Request"
-	import="BusinessObjects.User"
-	import="static Management.UserManagement.getUserById"
-	import="java.util.List"%>
+	pageEncoding="utf-8" import="java.util.List"%>
 <html>
 <head>
 <!-- basic -->
@@ -96,7 +93,7 @@
 				<a class="nav-item"> <%
  List<String> recipientRequests = (List<String>) request.getAttribute("recipientRequests");
  for (String req : recipientRequests) {
- 	out.println(req.toString());
+ 	out.println(req);
  }
  %> <br>
 					<h2>
