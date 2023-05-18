@@ -7,61 +7,111 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DatabaseConnector implements DatabaseConnectorIF{
-    
+/**
+ * The DatabaseConnector class is responsible for connecting to the database,
+ * executing queries, and managing the database connection.
+ */
+public class DatabaseConnector implements DatabaseConnectorIF {
+
     private static DatabaseConnector instance;
     private Connection connection;
     private PreparedStatement statement;
 
+    /**
+     * Private constructor to restrict the instantiation of the class.
+     */
     private DatabaseConnector() {
-    	try {
-			Class.forName("org.mariadb.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
-    
+
+    /**
+     * Returns the singleton instance of the DatabaseConnector.
+     *
+     * @return The DatabaseConnector instance.
+     */
     public static synchronized DatabaseConnector getInstance() {
         if (instance == null) {
             instance = new DatabaseConnector();
         }
         return instance;
     }
-    
+
+    /**
+     * Retrieves the prepared statement.
+     *
+     * @return The prepared statement.
+     */
     public PreparedStatement getStatement() {
-		return statement;
-	}
+        return statement;
+    }
 
-	public void setStatement(PreparedStatement statement) {
-		this.statement = statement;
-	}
+    /**
+     * Sets the prepared statement.
+     *
+     * @param statement The prepared statement.
+     */
+    public void setStatement(PreparedStatement statement) {
+        this.statement = statement;
+    }
 
-	public String getHost() {
-		return HOST;
-	}
+    /**
+     * Retrieves the host of the database.
+     *
+     * @return The host of the database.
+     */
+    public String getHost() {
+        return HOST;
+    }
 
+    /**
+     * Retrieves the name of the database.
+     *
+     * @return The name of the database.
+     */
+    public String getDatabaseName() {
+        return DATABASENAME;
+    }
 
+    /**
+     * Retrieves the username for the database connection.
+     *
+     * @return The username for the database connection.
+     */
+    public String getUsername() {
+        return DBUSER;
+    }
 
-	public String getDatabaseName() {
-		return DATABASENAME;
-	}
+    /**
+     * Retrieves the password for the database connection.
+     *
+     * @return The password for the database connection.
+     */
+    public String getPassword() {
+        return DBPW;
+    }
 
-
-	public String getUsername() {
-		return DBUSER;
-	}
-
-	public String getPassword() {
-		return DBPW;
-	}
-
-
-
+    /**
+     * Establishes a connection to the database.
+     *
+     * @throws SQLException if a database access error occurs.
+     */
     public synchronized void connect() throws SQLException {
-        String url = "jdbc:mariadb://" + HOST + "/" + DATABASENAME; //unsicher ob das richtig ist
+        String url = "jdbc:mariadb://" + HOST + "/" + DATABASENAME;
         connection = DriverManager.getConnection(url, DBUSER, DBPW);
     }
 
+    /**
+     * Executes a query on the database and returns the result set.
+     *
+     * @param query  The SQL query to be executed.
+     * @param params The parameters to be set in the prepared statement.
+     * @return The result set of the query.
+     * @throws SQLException if a database access error occurs.
+     */
     public synchronized ResultSet executeQuery(String query, Object... params) throws SQLException {
         statement = null;
         try {
@@ -71,13 +121,27 @@ public class DatabaseConnector implements DatabaseConnectorIF{
             }
             return statement.executeQuery();
         } finally {
+            // Perform any necessary cleanup or resource release here
+        }
+    }
 
-    }}
-
+    /**
+     * Retrieves the connection to the database.
+     *
+     * @return The database connection.
+     */
     public synchronized Connection getConnection() {
         return connection;
     }
 
+    /**
+     * Executes an update statement on the database.
+     *
+     * @param query  The SQL query to be executed.
+     * @param params The parameters to be set in the prepared statement.
+     * @return The number of rows affected by the update.
+     * @throws SQLException if a database access error occurs.
+     */
     public synchronized int executeUpdate(String query, Object... params) throws SQLException {
         statement = null;
         try {
@@ -87,18 +151,29 @@ public class DatabaseConnector implements DatabaseConnectorIF{
             }
             return statement.executeUpdate();
         } finally {
+            // Perform any necessary cleanup or resource release here
         }
     }
-    
-	public synchronized void closeConnection() throws SQLException {
+
+    /**
+     * Closes the database connection.
+     *
+     * @throws SQLException if a database access error occurs.
+     */
+    public synchronized void closeConnection() throws SQLException {
         if (connection != null) {
             connection.close();
         }
     }
-	
-	public synchronized void closeStatement() throws SQLException {
+
+    /**
+     * Closes the prepared statement.
+     *
+     * @throws SQLException if a database access error occurs.
+     */
+    public synchronized void closeStatement() throws SQLException {
         if (statement != null) {
-        	statement.close();
+            statement.close();
         }
     }
-    }
+}
