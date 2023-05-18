@@ -72,10 +72,6 @@ public class GameManagement {
 		return GameDao.getInstance().getGamesByTeamId(teamId);
 	}
 
-	public static List<Game> gamesWithoutOpponent(int userId) {
-		return GameDao.getInstance().getGamesWithoutOpponent(userId);
-	}
-
 	/**
 	 * This methods creates a game with metadata, which is given through input
 	 *
@@ -182,7 +178,7 @@ public class GameManagement {
 		return s;
 	}
 
-	public static String[][] getMyGamesForJSP(int userId) {
+	public static String[][] getMyGamesJSP(int userId) {
 		List<Game> myGames = GameDao.getInstance().getGamesByUserId(userId);
 		if (myGames.isEmpty()) {
 			String[][] myGamesJSP = { { "You don't have any games!" } };
@@ -203,5 +199,26 @@ public class GameManagement {
 			i++;
 		}
 		return myGamesJSP;
+	}
+	
+	public static String[][] getGamesWithoutOpponentJSP(int userId) {
+		List<Game> gamesWithoutOpponent = GameDao.getInstance().getGamesWithoutOpponent(userId);
+		if (gamesWithoutOpponent.isEmpty()) {
+			String[][] gamesWithoutOpponentJSP = { { "There are currently no such games!" } };
+			return gamesWithoutOpponentJSP;
+		}
+		String[][] gamesWithoutOpponentJSP = new String[gamesWithoutOpponent.size()][7];
+		int i=0;
+		for (Game gameWithoutOpponent : gamesWithoutOpponent) {
+			gamesWithoutOpponentJSP[i][0] = "<tr class=normal onmouseover=this.className='spezial'; onmouseout=this.className='normal'; onclick=window.location.href='./SendRequestServlet?gameId=" + gameWithoutOpponent.getGame_ID() +"&recipientId=" + gameWithoutOpponent.getRecipient() + "';>";
+			gamesWithoutOpponentJSP[i][1] = gameWithoutOpponent.getOpponent(0);
+			gamesWithoutOpponentJSP[i][2] = String.valueOf(gameWithoutOpponent.getDate());
+			gamesWithoutOpponentJSP[i][3] = gameWithoutOpponent.getResult();
+			gamesWithoutOpponentJSP[i][4] = gameWithoutOpponent.getEvent();
+			gamesWithoutOpponentJSP[i][5] = gameWithoutOpponent.getRound();
+			gamesWithoutOpponentJSP[i][6] = gameWithoutOpponent.getMoves().substring(0,(int) Math.round(gameWithoutOpponent.getMoves().length()*0.25))+" ...";
+			i++;
+		}
+		return gamesWithoutOpponentJSP;
 	}
 }

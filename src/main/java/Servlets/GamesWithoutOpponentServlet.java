@@ -1,7 +1,7 @@
 package Servlets;
 
 import static Servlets.LoginServlet.session;
-import static Management.GameManagement.gamesWithoutOpponent;
+import static Management.GameManagement.getGamesWithoutOpponentJSP;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class GamesWithoutOpponentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		req.setAttribute("gamesWithoutOpponent", gamesWithoutOpponent((int) session.getAttribute("userId")));
+		req.setAttribute("gamesWithoutOpponent", getGamesWithoutOpponentJSP((int) session.getAttribute("userId")));
 		req.getRequestDispatcher("GamesWithoutOpponent.jsp").forward(req, res);
 	}
 
