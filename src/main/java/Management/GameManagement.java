@@ -14,7 +14,6 @@ import DAO.UserDao;
 
 public class GameManagement {
 
-
 	/**
 	 * This method returns a game as string, identified by its ID
 	 *
@@ -37,7 +36,7 @@ public class GameManagement {
 	/**
 	 * This method returns a game as string, identified by its ID
 	 *
-	 * @param teams - list of teams
+	 * @param teams  - list of teams
 	 * @param gameId - search parameter for the game
 	 *
 	 * @return game as string, "" if game was not found
@@ -47,17 +46,19 @@ public class GameManagement {
 	public static String gameByTeamId(List<Team> teams, String gameId) {
 		Game partie = GameDao.getInstance().getGameById(Integer.parseInt(gameId));
 		for (Team team : teams) {
-		for (Game partieVergleich : GameDao.getInstance().getGamesByTeamId(team.getTeam_ID())) {
-			if (partie.getGame_ID() == partieVergleich.getGame_ID()) {
-				return partie.getGame();
+			for (Game partieVergleich : GameDao.getInstance().getGamesByTeamId(team.getTeam_ID())) {
+				if (partie.getGame_ID() == partieVergleich.getGame_ID()) {
+					return partie.getGame();
+				}
 			}
 		}
-	}return "";}
+		return "";
+	}
 
 	/**
 	 * This method updates the moves for a Game
 	 *
-	 * @param game - game which gets moves
+	 * @param game  - game which gets moves
 	 * @param moves - moves, which need to be added
 	 *
 	 * @author Filip Topa
@@ -67,10 +68,6 @@ public class GameManagement {
 		GameDao.getInstance().insertGame(game);
 	}
 
-	public static List<Game> gamesByUserId(int userId) {
-		return GameDao.getInstance().getGamesByUserId(userId);
-	}
-	
 	public static List<Game> gamesByTeamId(int teamId) {
 		return GameDao.getInstance().getGamesByTeamId(teamId);
 	}
@@ -82,13 +79,13 @@ public class GameManagement {
 	/**
 	 * This methods creates a game with metadata, which is given through input
 	 *
-	 * @param color - color of the player, who creates the Game
-	 * @param userId - ID of the player, who creates the Game
-	 * @param result - result of game
-	 * @param date - date of game
-	 * @param round - round, in which the game was played
-	 * @param event - event, which belongs to the game
-	 * @param site - site, where game was playes
+	 * @param color    - color of the player, who creates the Game
+	 * @param userId   - ID of the player, who creates the Game
+	 * @param result   - result of game
+	 * @param date     - date of game
+	 * @param round    - round, in which the game was played
+	 * @param event    - event, which belongs to the game
+	 * @param site     - site, where game was playes
 	 * @param opponent - user, who played against the user (userId)
 	 *
 	 * @return new Game with metadata
@@ -125,8 +122,8 @@ public class GameManagement {
 	 * This method creates a PGN through a PGN-file, input color & userID
 	 *
 	 * @param uploadItems - uploaded files, which should be PGN-files
-	 * @param color - selected color by user
-	 * @param userId - userId of the user, who uploaded the game
+	 * @param color       - selected color by user
+	 * @param userId      - userId of the user, who uploaded the game
 	 *
 	 * @return PGN as String
 	 *
@@ -169,19 +166,42 @@ public class GameManagement {
 
 					// safe game with DAO in Database
 					GameDao.getInstance().insertGame(parsedFile);
-					s = "<a href='./GameByGameIdServlet?gameId=" + parsedFile.getGame_ID() +"'> The file was successfully uploaded and parsed. <br> Click here if you want to see it.</a>";
+					s = "<a href='./GameByGameIdServlet?gameId=" + parsedFile.getGame_ID()
+							+ "'> The file was successfully uploaded and parsed. <br> Click here if you want to see it.</a>";
 
 				}
 			}
 
 		} catch (Exception e) {
-			if (e.getMessage().isEmpty()){
+			if (e.getMessage().isEmpty()) {
 				s = "No file uploaded.";
-			}
-			else{
+			} else {
 				s = "File must end with .pgn";
 			}
 		}
 		return s;
+	}
+
+	public static String[][] getMyGamesForJSP(int userId) {
+		List<Game> myGames = GameDao.getInstance().getGamesByUserId(userId);
+		if (myGames.isEmpty()) {
+			String[][] myGamesJSP = { { "You don't have any games!" } };
+			return myGamesJSP;
+		}
+		String[][] myGamesJSP = new String[myGames.size()][7];
+		int i=0;
+		for (Game myGame : myGames) {
+			myGamesJSP[i][0] = "<tr class=normal onmouseover=this.className='spezial'; onmouseout=this.className='normal'; onclick=window.location.href='./GameByGameIdServlet?gameId="
+					+ myGame.getGame_ID() + "';>";
+			myGamesJSP[i][1] = myGame.getPlayer(userId);
+			myGamesJSP[i][2] = myGame.getOpponent(userId);
+			myGamesJSP[i][3] = myGame.getEvent();
+			myGamesJSP[i][4] = String.valueOf(myGame.getDate());
+			myGamesJSP[i][5] = myGame.getResult();
+			myGamesJSP[i][6] = myGame.getMoves().substring(0, (int) Math.round(myGame.getMoves().length() * 0.25))
+					+ " ...";
+			i++;
+		}
+		return myGamesJSP;
 	}
 }
