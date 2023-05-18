@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="BusinessObjects.Game" import="BusinessObjects.Team" import = "static Management.TeamManagement.isUserPartofTeam"
-	import="java.util.List"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,6 +105,13 @@
 						<div class="card-body">
 
 							<div style="margin-bottom: 20px;">
+							
+							<%
+									String[][] teamGames = (String[][]) request.getAttribute("teamGames");
+									if (teamGames[0][0].equals("This team don't have any games!")) {
+										out.println(teamGames[0][0]);
+									} else {
+									%>
 
 								<input type="text" id="filter0" placeholder="Filter By White">
 								<input type="text" id="filter1" placeholder="Filter By Black">
@@ -116,13 +122,6 @@
 							</div>
 
 							<table id="filter" class="table">
-
-								<%
-								List<Game> partien = (List<Game>) request.getAttribute("partien");
-								if (partien.isEmpty()) {
-									out.println("You don't have any games!");
-								} else {
-								%>
 
 								<thead>
 									<tr>
@@ -137,53 +136,44 @@
 								<tbody>
 
 									<%
-									for (Game partie : partien) {
+									for (int i = 0; i < teamGames.length; i++) {
 
-										out.println(
-										"<tr class=normal onmouseover=this.className='spezial'; onmouseout=this.className='normal'; onclick=window.location.href='./GameByGameIdServlet?gameId="
-												+ partie.getGame_ID() + "';>");
-									
-										if (isUserPartofTeam(partie.getWhite(), (Team) request.getAttribute("team"))){out.println("<td bgcolor='green'>");}
-										else{out.println("<td>");}
-										out.println(partie.getWhitePlayer());
+										out.println(teamGames[i][0]);
+										out.println(teamGames[i][1]);
+										out.println(teamGames[i][2]);
 										%>
 									</td>
 										<%
-										if (isUserPartofTeam(partie.getBlack(), (Team) request.getAttribute("team"))){out.println("<td bgcolor='green'>");}
-										else{out.println("<td>");}
-										out.println(partie.getBlackPlayer());
+										out.println(teamGames[i][3]);
+										out.println(teamGames[i][4]);
 										%>
 									</td>
 									<td>
 										<%
-										out.println(partie.getEvent());
+										out.println(teamGames[i][5]);
 										%>
 									</td>
 									<td>
 										<%
-										out.println(partie.getDate());
+										out.println(teamGames[i][6]);
 										%>
 									</td>
 									<td>
 										<%
-										out.println(partie.getResult());
+										out.println(teamGames[i][7]);
 										%>
 									</td>
 									<td>
 										<%
-										out.println(partie.getMoves().substring(0,(int) Math.round(partie.getMoves().length()*0.25))+" ...");
+										out.println(teamGames[i][8]);
 										%>
 									</td>
 									</tr>
 									<%
-									}
+									}}
 									%>
-
 								</tbody>
 							</table>
-							<%
-							}
-							%>
 						</div>
 					</div>
 				</div>

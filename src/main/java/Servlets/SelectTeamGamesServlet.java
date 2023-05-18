@@ -1,7 +1,7 @@
 package Servlets;
 
 import static Servlets.LoginServlet.session;
-import static Management.GameManagement.gamesByTeamId;
+import static Management.GameManagement.getTeamGamesJSP;
 import static Management.TeamManagement.getTeamByID;
 import java.io.IOException;
 import java.util.List;
@@ -21,8 +21,7 @@ public class SelectTeamGamesServlet extends HttpServlet {
 		for (Team team : (List<Team>) session.getAttribute("teams")) {
 			if (Integer.parseInt(req.getParameter("teamId")) == team.getTeam_ID()) {
 				tester++;
-				req.setAttribute("partien", gamesByTeamId(team.getTeam_ID()));
-				req.setAttribute("team", getTeamByID(team.getTeam_ID()));
+				req.setAttribute("teamGames", getTeamGamesJSP(team.getTeam_ID(), getTeamByID(team.getTeam_ID())));
 				req.setAttribute("teamName", getTeamByID(team.getTeam_ID()).getName());
 				req.getRequestDispatcher("TeamGameAnsicht.jsp").forward(req, res);
 			}

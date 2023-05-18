@@ -1,8 +1,8 @@
 package Servlets;
 
 import static Servlets.LoginServlet.session;
-import static Management.RequestManagement.getRequestsBySenderId;
-import static Management.RequestManagement.getRequestsByRecipientId;
+import static Management.RequestManagement.getSenderRequestsForJSP;
+import static Management.RequestManagement.getRecipientRequestsForJSP;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,8 +14,8 @@ public class RequestsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		req.setAttribute("senderRequests", getRequestsBySenderId((int) session.getAttribute("userId")));
-		req.setAttribute("recipientRequests", getRequestsByRecipientId((int) session.getAttribute("userId")));
+		req.setAttribute("senderRequests", getSenderRequestsForJSP((int) session.getAttribute("userId")));
+		req.setAttribute("recipientRequests", getRecipientRequestsForJSP((int) session.getAttribute("userId")));
 		req.getRequestDispatcher("Requests.jsp").forward(req, res);
 	}
 

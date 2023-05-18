@@ -59,7 +59,7 @@
 <title>Games without opponent</title>
 </head>
 <body>
-<!-- header section start -->
+	<!-- header section start -->
 	<div class="header_section">
 		<div class="container-fluid">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -92,107 +92,106 @@
 	<!-- header section end -->
 	<!-- banner section start -->
 	<div class="banner_section layout_padding">
-		
-			
 
-	<main class="py-4">
 
-		<div class="container">
 
-			<div class="row justify-content-center">
-				<div class="col-md-12">
-					<div class="card">
-						<div class="card-header"> GAMES WITHOUT OPPONENT - to send a request click on the affected game </div> 
-						<div class="card-body">
+		<main class="py-4">
 
-							<div style="margin-bottom: 20px;">
+			<div class="container">
 
-								<input type="text" id="filter0" placeholder="Filter By Owner">
-								<input type="text" id="filter1" placeholder="Filter By Date">
-								<input type="text" id="filter2" placeholder="Filter By Result">
-								<input type="text" id="filter3" placeholder="Filter By Event">
+				<div class="row justify-content-center">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header">GAMES WITHOUT OPPONENT - to send a
+								request click on the affected game</div>
+							<div class="card-body">
 
-							</div>
-
-							<table id="filter" class="table">
-
-								<%
-	List<Game> partien = (List<Game>) request.getAttribute("gamesWithoutOpponent");
-	if (partien.isEmpty()) {
-		out.println("There are currently no such games!");
-	} else {
-	%>
-
-								<thead>
-									<tr>
-			<th>Owner</th>
-			<th>Date</th>
-			<th>Result</th>
-			<th>Event</th>
-			<th>Round</th>
-			<th>Moves</th>
-		</tr>
-								</thead>
-								<tbody>
+								<div style="margin-bottom: 20px;">
 
 									<%
-			for (Game partie : partien) {
-				out.println("<tr class=normal onmouseover=this.className='spezial'; onmouseout=this.className='normal'; onclick=window.location.href='./SendRequestServlet?gameId=" + partie.getGame_ID() +"&recipientId=" + partie.getRecipient() + "';>");
-			%>
-			<td>
-				<%
-				out.println(partie.getOpponent(0));
-				%>
-			</td>
-			<td>
-				<%
-				out.println(partie.getDate());
-				%>
-			</td>
-			<td>
-				<%
-				out.println(partie.getResult());
-				%>
-			</td>
-			<td>
-				<%
-				out.println(partie.getEvent());
-				%>
-			</td>
-			<td>
-				<%
-				out.println(partie.getRound());
-				%>
-			</td>
-			<td>
-				<%
-				out.println(partie.getMoves().substring(0,(int) Math.round(partie.getMoves().length()*0.25))+" ...");
-				%>
-			</td>
-		</tr>
-		<%
-		}
-		%>
-		</tbody>
-	</table>
-	<%
-	}
-	%>
+									String[][] gamesWithoutOpponent = (String[][]) request.getAttribute("gamesWithoutOpponent");
+									if (gamesWithoutOpponent[0][0].equals("There are currently no such games!")) {
+										out.println(gamesWithoutOpponent[0][0]);
+									} else {
+									%>
+
+									<input type="text" id="filter0" placeholder="Filter By Owner">
+									<input type="text" id="filter1" placeholder="Filter By Date">
+									<input type="text" id="filter2" placeholder="Filter By Result">
+									<input type="text" id="filter3" placeholder="Filter By Event">
+
+								</div>
+
+								<table id="filter" class="table">
+
+									<thead>
+										<tr>
+											<th>Owner</th>
+											<th>Date</th>
+											<th>Result</th>
+											<th>Event</th>
+											<th>Round</th>
+											<th>Moves</th>
+										</tr>
+									</thead>
+									<tbody>
+
+										<%
+										for (int i = 0; i < gamesWithoutOpponent.length; i++) {
+											out.println(gamesWithoutOpponent[i][0]);
+										%>
+										<td>
+											<%
+											out.println(gamesWithoutOpponent[i][1]);
+											%>
+										</td>
+										<td>
+											<%
+											out.println(gamesWithoutOpponent[i][2]);
+											%>
+										</td>
+										<td>
+											<%
+											out.println(gamesWithoutOpponent[i][3]);
+											%>
+										</td>
+										<td>
+											<%
+											out.println(gamesWithoutOpponent[i][4]);
+											%>
+										</td>
+										<td>
+											<%
+											out.println(gamesWithoutOpponent[i][5]);
+											%>
+										</td>
+										<td>
+											<%
+											out.println(gamesWithoutOpponent[i][6]);
+											%>
+										</td>
+										</tr>
+										<%
+										}
+										}
+										%>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
+
+
 			</div>
 
+		</main>
 
-		</div>
+	</div>
 
-	</main>
-					
-				</div>
-		
-	
 
-<!-- footer section start -->
+
+	<!-- footer section start -->
 	<div class="footer_section layout_padding">
 		<center>At the end of this project it should be possible for
 			every chess player to store and manage your chess scoresheet in your
@@ -215,8 +214,8 @@
 	<script
 		src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 	<script src="./js/TableFilter.min.js" defer></script>
-	
-	
+
+
 
 </body>
 </html>
