@@ -2,12 +2,12 @@
 package juTest;
 
 import java.util.List;
-import static Management.StringEncrypter.encryptString;
+import static management.StringEncrypter.encryptString;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import BusinessObjects.User;
-import DAO.UserDao;
+import businessObjects.User;
+import dao.UserDao;
 
 /**
 

@@ -1,0 +1,44 @@
+package servlets;
+
+import businessObjects.User;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import static management.UserManagement.*;
+import static servlets.LoginServlet.session;
+
+public class UserServlet extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    public void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+        User loggedInUser = getUserById((int) session.getAttribute("userId"));
+        req.setAttribute("user", loggedInUser);
+        req.getRequestDispatcher("EditProfile.jsp").forward(req, res);
+    }
+
+    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        int userID = (int) session.getAttribute("userId");
+
+        String firstName = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
+        String mail = req.getParameter("mail").toLowerCase();
+
+        if(getUserByMail(mail)!=null&&getUserByMail(mail).getUser_Id()!=userID){
+            req.setAttribute("message", "Error: Mail is already used!");
+            req.getRequestDispatcher("Message.jsp").forward(req, res);
+        } else if (updateUser(userID,firstName,lastName,mail)) {
+            req.setAttribute("message", "Profile updated!");
+            req.getRequestDispatcher("Message.jsp").forward(req, res);
+        } else {
+            req.setAttribute("message", "Error: Update failed");
+            req.getRequestDispatcher("Message.jsp").forward(req, res);
+        }
+
+
+    }
+}

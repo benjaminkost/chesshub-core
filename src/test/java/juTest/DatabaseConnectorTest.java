@@ -2,7 +2,7 @@ package juTest;
 
 import org.junit.*;
 
-import Database.DatabaseConnector;
+import database.DatabaseConnector;
 
 import static org.junit.Assert.*;
 import java.sql.*;

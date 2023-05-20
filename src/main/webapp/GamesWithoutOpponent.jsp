@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="BusinessObjects.Game"
+	pageEncoding="ISO-8859-1" import="businessObjects.Game"
 	import="java.util.List"%>
 <!DOCTYPE html>
 <html>

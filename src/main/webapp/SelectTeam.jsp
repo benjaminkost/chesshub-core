@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8" import="BusinessObjects.Team"
+	pageEncoding="utf-8" import="businessObjects.Team"
 	import="java.util.List"%>
 <html>
 <head>

@@ -6,10 +6,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.*;
 
-import BusinessObjects.Game;
-import BusinessObjects.User;
-import DAO.GameDao;
-import DAO.UserDao;
+import businessObjects.Game;
+import businessObjects.User;
+import dao.GameDao;
+import dao.UserDao;
 
 /**
  * Test class for GameDao.

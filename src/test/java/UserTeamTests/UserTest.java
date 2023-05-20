@@ -1,7 +1,7 @@
 package UserTeamTests;
 
-import BusinessObjects.User;
-import DAO.UserDao;
+import businessObjects.User;
+import dao.UserDao;
 
 public class UserTest {
 

@@ -1,4 +1,4 @@
-<%@ page import="BusinessObjects.Game" %>
+<%@ page import="businessObjects.Game" %>
 <html>
 <head>
 <!-- basic -->

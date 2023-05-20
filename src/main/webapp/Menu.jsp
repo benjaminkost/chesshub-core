@@ -89,16 +89,16 @@
 							<a href=RequestsServlet>Requests</a> <br>
 							<a href=UserServlet>Edit your profile</a> <br>
 
-							<!-- Condition for Team Management -->
+							<!-- Condition for Team management -->
 							<% if(session.getAttribute("team")!=null){
 								%>
-								<a href="TeamServlet"> Team Management </a> <br>
+								<a href="TeamServlet"> Team management </a> <br>
 							<%}%>
 
-							<!-- Condition for Club Management -->
+							<!-- Condition for Club management -->
 							<% if(session.getAttribute("club")!=null){
 							%>
-							<a href="ClubServlet"> Club Management </a> <br>
+							<a href="ClubServlet"> Club management </a> <br>
 							<%}%>
 
 							<!-- Condition for Administration -->

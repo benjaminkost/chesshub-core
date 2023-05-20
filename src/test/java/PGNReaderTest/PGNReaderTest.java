@@ -1,7 +1,7 @@
 package PGNReaderTest;
 
-import BusinessObjects.Game;
-import Management.PGNReader;
+import businessObjects.Game;
+import management.PGNReader;
 import org.junit.Test;
 
 import java.io.File;

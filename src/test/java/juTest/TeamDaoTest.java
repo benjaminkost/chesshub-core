@@ -2,15 +2,15 @@ package juTest;
 
 import java.util.List;
 
-import BusinessObjects.Club;
-import BusinessObjects.User;
-import DAO.ClubDao;
-import DAO.UserDao;
+import businessObjects.Club;
+import businessObjects.User;
+import dao.ClubDao;
+import dao.UserDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import BusinessObjects.Team;
-import DAO.TeamDao;
+import businessObjects.Team;
+import dao.TeamDao;
 
 /**
  * Tests for the TeamDao class.
