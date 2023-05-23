@@ -105,6 +105,8 @@
 							<% if((boolean)session.getAttribute("admin")){%>
 								<a href="AdminServlet"> Administration Area</a> <br>
 							<%}%>
+							
+							<a href="https://discord.gg/p6ahQhd7qJ">Bugreport</a> <br>
 
 						<br><br><br><br>
 					</div>

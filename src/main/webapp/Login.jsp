@@ -78,7 +78,7 @@
 			<button type="submit">Login</button>
 		
 	</form>
-	<button type="submit"><a href="#">Forgot password?</a></button>
+	
 <br><br><br>
 </div>
 	</div>
