@@ -93,7 +93,7 @@
             <input type="radio" name="color" value="Black" /> Black <br> <br>
             Opponent: <input type=text name=opponent> <br>
             Result: <input type=text name=result> <br>
-            Date: <input type=text name=date> <br>
+            Date: <input type=date name=date> <br>
             Round: <input type=text name=round> <br>
             Event: <input type=text name=event> <br>
             Site: <input type=text name=site> <br> <br>
