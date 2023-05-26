@@ -4,10 +4,10 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: BenChessterApp
-    ports:
-      - 8080:8080
     links:
       - mysql1
+    ports:
+      - 8080:8080
 
   mysql1:
     image: mysql
