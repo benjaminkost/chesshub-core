@@ -8,9 +8,9 @@ import java.util.List;
 import businessObjects.Team;
 import businessObjects.User;
 import database.DatabaseConnector;
-import dao.daoInterfaces.UserTeamDaoIF;
+import dao.daoInterfaces.IUserTeamDao;
 
-public class UserTeamDao implements UserTeamDaoIF {
+public class UserTeamDao implements IUserTeamDao {
 
     private static UserTeamDao instance; //Singleton instance of the UserDao class.
 

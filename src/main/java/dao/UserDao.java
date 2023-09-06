@@ -5,8 +5,8 @@ import java.util.List;
 
 import businessObjects.User;
 import database.DatabaseConnector;
-import database.DatabaseConnectorIF;
-import dao.daoInterfaces.UserDaoIF;
+import database.IDatabaseConnector;
+import dao.daoInterfaces.IUserDao;
 
 import java.sql.*;
 
@@ -15,7 +15,7 @@ import java.sql.*;
  * to perform CRUD (Create, Read, Update, Delete) operations on Team objects.
  * This class also implements the DatabaseConnectorIF interface for database connection management.
  */
-public class UserDao implements UserDaoIF, DatabaseConnectorIF {
+public class UserDao implements IUserDao, IDatabaseConnector {
 
     private static UserDao instance; //Singleton instance of the UserDao class.
 

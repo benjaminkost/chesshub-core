@@ -4,7 +4,7 @@ import java.util.List;
 
 import businessObjects.Game;
 
-public interface GameDaoIF {
+public interface IGameDao {
 
 	String TABLENAME = "game";
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import businessObjects.Club;
 
-public interface ClubDaoIF {
+public interface IClubDao {
 
 	String TABLENAME = "club";
 

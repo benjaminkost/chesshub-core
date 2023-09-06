@@ -6,12 +6,12 @@ import java.util.List;
 
 import businessObjects.Team;
 import database.DatabaseConnector;
-import database.DatabaseConnectorIF;
-import dao.daoInterfaces.TeamDaoIF;
+import database.IDatabaseConnector;
+import dao.daoInterfaces.ITeamDao;
 
 import java.sql.*;
 
-public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
+public class TeamDao implements ITeamDao, IDatabaseConnector {
 
     private static TeamDao instance; //Singleton instance of the TeamDao class.
 
@@ -72,7 +72,7 @@ public class TeamDao implements TeamDaoIF, DatabaseConnectorIF {
     /**
      * Retrieves a team from the database by its team ID.
      *
-     * @param teamId the ID of the team to retrieve.
+     * @param team_id the ID of the team to retrieve.
      * @return The Team object corresponding to the given team ID.
      */
     @Override

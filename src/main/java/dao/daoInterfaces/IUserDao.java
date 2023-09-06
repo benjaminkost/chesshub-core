@@ -4,7 +4,7 @@ import java.util.List;
 
 import businessObjects.User;
 
-public interface UserDaoIF {
+public interface IUserDao {
 
 	String TABLENAME = "user";
 	// Collumnames

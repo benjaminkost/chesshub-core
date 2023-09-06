@@ -8,15 +8,15 @@ import java.util.List;
 import businessObjects.Game;
 import businessObjects.Request;
 import businessObjects.User;
-import dao.daoInterfaces.RequestDaoIF;
+import dao.daoInterfaces.IRequestDao;
 import database.DatabaseConnector;
-import database.DatabaseConnectorIF;
+import database.IDatabaseConnector;
 
 /**
  * The RequestDao class implements the RequestDaoIF and the DatabaseConnectorIF interfaces
  * and provides methods for performing CRUD operations on the Request table in the database.
  */
-public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
+public class RequestDao implements IRequestDao, IDatabaseConnector {
 
     private static RequestDao instance; //Singleton instance of the ReequestDao class.
 
@@ -74,7 +74,7 @@ public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
     /**
      * Gets all requests from the Request table in the database that were sent by a specific user.
      *
-     * @param userId the ID of the user who sent the requests
+     * @param sender the ID of the user who sent the requests
      * @return a list of Request objects
      */
     @Override
@@ -106,7 +106,7 @@ public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
     /**
      * Gets all requests from the Request table in the database that were received by a specific user.
      *
-     * @param userId the ID of the user who received the requests
+     * @param recipient the ID of the user who received the requests
      * @return a list of Request objects
      */
     @Override
@@ -223,9 +223,8 @@ public class RequestDao implements RequestDaoIF, DatabaseConnectorIF {
     /**
      * Insert a Request to the database.
      *
-     * @param senderId
-     * @param recipientId
-     * @param gameId
+     * @param sender
+     * @param recipient
      * @param status
      * @return true if the insert was successful, false otherwise
      */

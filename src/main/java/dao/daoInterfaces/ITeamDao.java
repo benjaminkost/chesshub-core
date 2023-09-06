@@ -4,7 +4,7 @@ import java.util.List;
 
 import businessObjects.Team;
 
-public interface TeamDaoIF {
+public interface ITeamDao {
 
 	String TABLENAME = "team";
 

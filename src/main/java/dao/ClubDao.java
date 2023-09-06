@@ -6,8 +6,8 @@ import java.util.List;
 
 import businessObjects.Club;
 import database.DatabaseConnector;
-import database.DatabaseConnectorIF;
-import dao.daoInterfaces.ClubDaoIF;
+import database.IDatabaseConnector;
+import dao.daoInterfaces.IClubDao;
 
 import java.sql.*;
 
@@ -16,7 +16,7 @@ import java.sql.*;
  * It implements the ClubDaoIF and DatabaseConnectorIF interfaces.
  */
 
-public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
+public class ClubDao implements IClubDao, IDatabaseConnector {
 
     private static ClubDao instance; // singleton instance of the class
 
@@ -62,7 +62,6 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
                 club.setName(rs.getString(COL_NAME));
                 club.setPresident(UserDao.getInstance().getUserById(rs.getInt(COL_PRESIDENT)));
                 clubList.add(club);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -168,7 +167,7 @@ public class ClubDao implements ClubDaoIF, DatabaseConnectorIF {
     /**
      * Inserts the specified Club object into the database.
      *
-     * @param Club The Club object to insert into the database.
+     * @param club The Club object to insert into the database.
      * @return true if the Club was successfully inserted, false otherwise.
      */
     @Override

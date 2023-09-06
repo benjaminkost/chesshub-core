@@ -1,5 +1,5 @@
 
-package juTest;
+package dao;
 
 import java.util.List;
 import static management.StringEncrypter.encryptString;
@@ -7,13 +7,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import businessObjects.User;
-import dao.UserDao;
 
 /**
 
  Test class for UserDao.
  */
-public class UserDaoTest {
+public class UserDaoTests {
 
     /**
 

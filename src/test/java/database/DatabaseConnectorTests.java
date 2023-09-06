@@ -1,4 +1,4 @@
-package juTest;
+package database;
 
 import org.junit.*;
 
@@ -10,7 +10,7 @@ import java.sql.*;
 /**
  * Test class for DatabaseConnector.
  */
-public class DatabaseConnectorTest {
+public class DatabaseConnectorTests {
 	private static final String CREATE_TABLE_QUERY = "CREATE TABLE test_table(id INTEGER PRIMARY KEY, name VARCHAR(255))";
 	private static final String INSERT_QUERY = "INSERT INTO test_table(id, name) VALUES (?, ?)";
 	private static final String SELECT_QUERY = "SELECT COUNT(*) FROM test_table";

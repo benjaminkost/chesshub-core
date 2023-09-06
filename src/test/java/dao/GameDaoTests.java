@@ -1,4 +1,4 @@
-package juTest;
+package dao;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -8,13 +8,11 @@ import org.junit.jupiter.api.*;
 
 import businessObjects.Game;
 import businessObjects.User;
-import dao.GameDao;
-import dao.UserDao;
 
 /**
  * Test class for GameDao.
  */
-public class GameDaoTest {
+public class GameDaoTests {
 
 	private static UserDao userDao;
 	private static GameDao gameDao;

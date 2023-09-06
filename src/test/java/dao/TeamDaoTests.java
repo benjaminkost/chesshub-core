@@ -1,21 +1,18 @@
-package juTest;
+package dao;
 
 import java.util.List;
 
 import businessObjects.Club;
 import businessObjects.User;
-import dao.ClubDao;
-import dao.UserDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import businessObjects.Team;
-import dao.TeamDao;
 
 /**
  * Tests for the TeamDao class.
  */
-public class TeamDaoTest {
+public class TeamDaoTests {
 
     /**
      * Test case for inserting a team into the database.

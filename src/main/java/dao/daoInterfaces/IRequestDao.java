@@ -6,7 +6,7 @@ import businessObjects.Game;
 import businessObjects.Request;
 import businessObjects.User;
 
-public interface RequestDaoIF {
+public interface IRequestDao {
 	
 	 String TABLENAME = "requests";
 

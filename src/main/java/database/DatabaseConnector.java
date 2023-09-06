@@ -11,7 +11,7 @@ import java.sql.Statement;
  * The DatabaseConnector class is responsible for connecting to the database,
  * executing queries, and managing the database connection.
  */
-public class DatabaseConnector implements DatabaseConnectorIF {
+public class DatabaseConnector implements IDatabaseConnector {
 
     private static DatabaseConnector instance;
     private Connection connection;

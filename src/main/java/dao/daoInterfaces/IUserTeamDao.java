@@ -5,7 +5,7 @@ import java.util.List;
 import businessObjects.Team;
 import businessObjects.User;
 
-public interface UserTeamDaoIF {
+public interface IUserTeamDao {
 
 	String TABLENAME = "user_has_Teams";
 	// Collumnames
