@@ -40,7 +40,7 @@
 		<div class="container-fluid">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="logo">
-					<a href="Menu.jsp"><img src="images/logo.png"></a>
+					<a href="index.jsp"><img src="images/logo.png"></a>
 				</div>
 				<button class="navbar-toggler" type="button" data-toggle="collapse"
 					data-target="#navbarSupportedContent"
