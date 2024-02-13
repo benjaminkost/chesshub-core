@@ -60,6 +60,8 @@
 							href="Registration.jsp">Registration</a></li>
 						<li class="nav-item"><a class="nav-link" href="Login.jsp">Login</a>
 						</li>
+						<li class="nav-item"><a class="nav-link" href="EBusiness.jsp">E-Business</a>
+						</li>
 					</ul>
 					<div class="search_icon">
 						<ul>

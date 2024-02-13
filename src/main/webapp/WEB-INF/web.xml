@@ -155,6 +155,14 @@
     <servlet-name>AdminServlet</servlet-name>
     <url-pattern>/AdminServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>EBusinessServlet</servlet-name>
+    <servlet-class>servlets.EBusinessServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EBusinessServlet</servlet-name>
+    <url-pattern>/EBusinessServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
 
 

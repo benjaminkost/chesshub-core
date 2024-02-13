@@ -54,6 +54,8 @@
 							href="datenschutz.html">Data protection</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="impressum.html">Imprint</a></li>
+						<li class="nav-item"><a class="nav-link" href="EBusiness.jsp">E-Business</a>
+						</li>
 					</ul>
 					<div class="search_icon">
 						<ul>
