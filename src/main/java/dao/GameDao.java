@@ -7,15 +7,15 @@ import java.util.List;
 
 import businessObjects.Game;
 import database.DatabaseConnector;
-import database.DatabaseConnectorIF;
-import dao.daoInterfaces.GameDaoIF;
+import database.IDatabaseConnector;
+import dao.daoInterfaces.IGameDao;
 
 /**
  * The GameDao class implements the GameDaoIF interface and the DatabaseConnectorIF interface, providing access to the
  * game data stored in the database. It contains methods to retrieve games by ID, user ID, team ID, and games that don't have an opponent.
  * The class is a singleton, using the getInstance method to obtain the instance of the class.
  */
-public class GameDao implements GameDaoIF, DatabaseConnectorIF {
+public class GameDao implements IGameDao, IDatabaseConnector {
 
     private static GameDao instance;
 
