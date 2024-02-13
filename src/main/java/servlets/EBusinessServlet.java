@@ -5,6 +5,8 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.*;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -37,11 +39,18 @@ public class EBusinessServlet extends HttpServlet {
                             .build();
                     HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
-                    //Antwort im JSON-Format, die bestMove enthält
-                    JSONObject json_Response = new JSONObject(response.body());
+                    String bestMove = "";
 
-                    //String bestMove auslesen
-                    String bestMove = json_Response.getString("bestmove");
+                    try{
+                        //Antwort im JSON-Format, die bestMove enthält
+                        JSONObject json_Response = new JSONObject(response.body());
+                        //String bestMove auslesen
+                        bestMove = json_Response.getString("bestmove");
+                    }
+                    catch (JSONException j){
+                        req.setAttribute("message", "Please insert the current position as FEN");
+                        req.getRequestDispatcher("Message.jsp").forward(req, res);
+                    }
 
                     // Besten Move als Attribut speichern
                     req.setAttribute("best_move", bestMove);
@@ -58,7 +67,15 @@ public class EBusinessServlet extends HttpServlet {
             }
 
             case "evaluation": {
-                int depth_input = Integer.parseInt(req.getParameter("depth"));
+                int depth_input = -1;
+                try {
+                    depth_input = Integer.parseInt(req.getParameter("depth"));
+                }
+                catch (NumberFormatException e){
+                    req.setAttribute("message", "Please insert depth as a number <14");
+                    req.getRequestDispatcher("Message.jsp").forward(req, res);
+                }
+
                 if(depth_input>13){
                     req.setAttribute("message", "Depth to high, please use depth <14");
                     req.getRequestDispatcher("Message.jsp").forward(req, res);
@@ -84,8 +101,15 @@ public class EBusinessServlet extends HttpServlet {
                     reader.close();
 
                     //Antwort ist im JSON-Format, darin muss die Evaluation mit dem Key "data" ausgelesen werden.
-                    JSONObject json_Response = new JSONObject(response.toString());
-                    String evaluation = json_Response.getString("data");
+                    String evaluation = "";
+                    try{
+                        JSONObject json_Response = new JSONObject(response.toString());
+                        evaluation = json_Response.getString("data");
+                    }
+                    catch (JSONException j){
+                        req.setAttribute("message", "Please insert the current position as FEN");
+                        req.getRequestDispatcher("Message.jsp").forward(req, res);
+                    }
 
                     // Verbindung schließen
                     connection.disconnect();
