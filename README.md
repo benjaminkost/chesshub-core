@@ -7,6 +7,6 @@ Furthermore, it should be possible to display every move on a chess board and to
 
 If you are part of a team, your own games and the team games will be displayed separately to create a better overview.
 
-## Build + Start Project
+## Build + Start Project (with Docker)
 1. Build Artifacte from project
 2. Navigate to the directory, where the project is located and type in the Command Line: docker compose up
