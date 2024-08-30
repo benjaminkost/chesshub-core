@@ -1,25 +1,34 @@
 package de.ben_kostka.benchesster.model;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class User{
-	private int user_Id;
-	private String lastname;
-	private String firstname;
-	private String email;
-	private String password;
-	private List<Team> teams = new ArrayList<>();
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 
-	public User( int user_Id, String lastname, String firstname, String email, String password, List<Team> teams) {
-		super();
-		this.user_Id = user_Id;
-		this.lastname = lastname;
-		this.firstname = firstname;
-		this.email = email;
-		this.password = password;
-		this.teams = teams;
-	}
+@Entity
+@Table
+public class User{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int user_Id;
+	@Column
+	private String lastname;
+	@Column
+	private String firstname;
+	@Column
+	private String email;
+	@Column
+	private String password;
+	@ManyToMany
+	@Column
+	private List<Team> teams = new ArrayList<>();
 
 	public User(String lastname, String firstname, String email, String password, List<Team> teams) {
 		super();
@@ -28,66 +37,6 @@ public class User{
 		this.email = email;
 		this.password = password;
 		this.teams = teams;
-	}
-
-	public User() {
-		super();
-	}
-
-	public String getLastname() {
-		return this.lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
-	public String getFirstname() {
-		return this.firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-	
-	public String getFullName() {
-		return this.firstname + " " + this.lastname;
-	}
-
-	public String getEmail() {
-		return this.email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return this.password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public int getUser_Id() {
-		return this.user_Id;
-	}
-
-	public void setUser_Id(int user_Id) {
-		this.user_Id = user_Id;
-	}
-
-	public List<Team> getTeams() {
-		return this.teams;
-	}
-
-	public void setTeams(List<Team> teams) {
-		this.teams = teams;
-	}
-
-	public void addTeam(Team newTeam){
-		this.teams.add(newTeam);
 	}
 
 	public void removeTeam(Team oldTeam){

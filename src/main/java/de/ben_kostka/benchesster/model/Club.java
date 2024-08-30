@@ -1,42 +1,24 @@
 package de.ben_kostka.benchesster.model;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
+@Entity
+@Table
 public class Club {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int club_ID;
+	@Column
 	private String name;
+	@OneToOne
+	@PrimaryKeyJoinColumn
 	private User president;
-
-	public Club(String name, User president) {
-		super();
-		this.name = name;
-		this.president = president;
-	}
-
-	public Club() {
-		super();
-	}
-
-	public int getClub_ID() {
-		return club_ID;
-	}
-
-	public void setClub_ID(int club_ID) {
-		this.club_ID = club_ID;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public User getPresident() {
-		return president;
-	}
-
-	public void setPresident(User president) {
-		this.president = president;
-	}
 
 }
