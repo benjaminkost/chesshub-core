@@ -7,16 +7,27 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="BenChesster" />
+        <module name="client" />
+        <module name="api" />
+      </profile>
+      <profile name="Annotation profile for BenChesster" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
+        </processorPath>
+        <module name="service" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ChessGameManagement" target="11" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="17" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="BenChesster" options="-parameters" />
+      <module name="BenChesster" options="" />
+      <module name="client" options="-parameters" />
+      <module name="service" options="-parameters" />
     </option>
   </component>
 </project>

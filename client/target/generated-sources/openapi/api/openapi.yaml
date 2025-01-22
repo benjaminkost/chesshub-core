@@ -1,0 +1,455 @@
+openapi: 3.0.2
+info:
+  contact:
+    email: mail@ben-kostka.de
+  description: "This is a ChessGameManagement Server based on the OpenAPI 3.0 specification.\
+    \ \nAt the end of this project it should be possible for every chess player \n\
+    to store and manage your chess scoresheet in your own account. Furthermore, \n\
+    it should be possible to display every move on a chess board and to analyze the\
+    \ individual moves."
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: ChessGameManagement - OpenAPI 3.0
+  version: 1.0.0-SNAPSHOT
+servers:
+- url: /benchesster.ben_kostka.de
+tags:
+- description: Operations about user
+  name: user
+paths:
+  /home:
+    get:
+      operationId: getHome
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Successful response with the homepage sections
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Returns the main structure of the homepage with sections
+      x-accepts:
+      - application/json
+  /settings:
+    get:
+      description: Returns all possible settings options
+      operationId: getSettingsoptions
+      responses:
+        "200":
+          content:
+            text/*:
+              schema:
+                type: string
+          description: successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Account not found
+      summary: See options panel
+      x-accepts:
+      - text/*
+  /requests/{user_ID}:
+    get:
+      description: Get all games that are requested to be played with partner
+      operationId: getRequestedGames
+      parameters:
+      - description: 'The name that needs to be fetched. Use user1 for testing. '
+        explode: false
+        in: path
+        name: user_ID
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: successful operation
+        "400":
+          description: Invalid username supplied
+        "404":
+          description: User not found
+      summary: Get all requested games
+      x-accepts:
+      - application/json
+      - application/xml
+  /user:
+    post:
+      description: This can only be done by the logged in user.
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Created user object
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: successful operation
+      summary: Create user
+      tags:
+      - user
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+      - application/xml
+  /user/createWithList:
+    post:
+      description: Creates list of users with given input array
+      operationId: createUsersWithListInput
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/User'
+              type: array
+      responses:
+        "200":
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Successful operation
+        default:
+          description: successful operation
+      summary: Creates list of users with given input array
+      tags:
+      - user
+      x-swagger-router-controller: UserController
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+      - application/xml
+  /user/login:
+    get:
+      description: ""
+      operationId: loginUser
+      parameters:
+      - description: The user name for login
+        explode: true
+        in: query
+        name: username
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The password for login in clear text
+        explode: true
+        in: query
+        name: password
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/xml:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              explode: false
+              schema:
+                format: int32
+                type: integer
+              style: simple
+            X-Expires-After:
+              description: date in UTC when token expires
+              explode: false
+              schema:
+                format: date-time
+                type: string
+              style: simple
+        "400":
+          description: Invalid username/password supplied
+      summary: Logs user into the system
+      tags:
+      - user
+      x-accepts:
+      - application/json
+      - application/xml
+  /user/logout:
+    get:
+      description: ""
+      operationId: logoutUser
+      parameters: []
+      responses:
+        default:
+          description: successful operation
+      summary: Logs out current logged in user session
+      tags:
+      - user
+      x-accepts:
+      - application/json
+  /user/{user_ID}:
+    delete:
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+      - description: 'The name that needs to be fetched. Use user1 for testing. '
+        explode: false
+        in: path
+        name: user_ID
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "400":
+          description: Invalid user id supplied
+        "404":
+          description: User not found
+      summary: Delete user
+      tags:
+      - user
+      x-accepts:
+      - application/json
+    get:
+      description: ""
+      operationId: getUserByName
+      parameters:
+      - description: 'The name that needs to be fetched. Use user1 for testing. '
+        explode: false
+        in: path
+        name: user_ID
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: successful operation
+        "400":
+          description: Invalid user id supplied
+        "404":
+          description: User not found
+      summary: Get user by user name
+      tags:
+      - user
+      x-accepts:
+      - application/json
+      - application/xml
+    put:
+      description: This can only be done by the logged in user.
+      operationId: updateUser
+      parameters:
+      - description: 'The name that needs to be fetched. Use user1 for testing. '
+        explode: false
+        in: path
+        name: user_ID
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Update an existent user in the store
+      responses:
+        default:
+          description: successful operation
+      summary: Update user
+      tags:
+      - user
+      x-swagger-router-controller: UserController
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+components:
+  requestBodies:
+    UserArray:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/User'
+            type: array
+      description: List of user object
+  schemas:
+    Game:
+      properties:
+        game_ID:
+          example: 10
+          format: int64
+          type: integer
+        event:
+          example: World Chess Championship
+          type: string
+        site:
+          example: Germany
+          type: string
+        date:
+          format: date
+          type: string
+        round:
+          example: "6"
+          type: string
+        white:
+          $ref: '#/components/schemas/User'
+        black:
+          $ref: '#/components/schemas/User'
+        result:
+          example: 1-0
+          type: string
+        moves:
+          example: 1. d4 d5 *
+          type: string
+        comment:
+          example: "{\"Okay Game\":null}"
+          type: string
+        commentWhite:
+          example: "{\"Good move\":null}"
+          type: string
+        commentBlack:
+          example: "{\"Bad move\":null}"
+          type: string
+    Club:
+      properties:
+        club_ID:
+          example: 10
+          format: int32
+          type: integer
+        name:
+          example: name
+          type: string
+        president:
+          $ref: '#/components/schemas/User'
+    Team:
+      properties:
+        team_ID:
+          example: 10
+          format: int32
+          type: integer
+        name:
+          example: name
+          type: string
+        club:
+          $ref: '#/components/schemas/Club'
+        leader:
+          $ref: '#/components/schemas/User'
+    Request:
+      properties:
+        request_ID:
+          example: 10
+          format: int32
+          type: integer
+        sender:
+          $ref: '#/components/schemas/User'
+        recipient:
+          $ref: '#/components/schemas/User'
+        game:
+          $ref: '#/components/schemas/Game'
+        status:
+          example: done
+          type: string
+    User:
+      example:
+        firstName: John
+        lastName: James
+        password: "12345"
+        userStatus: 1
+        user_ID: 10
+        phone: "12345"
+        email: john@email.com
+        username: theUser
+      properties:
+        user_ID:
+          example: 10
+          format: int32
+          type: integer
+        username:
+          example: theUser
+          type: string
+        firstName:
+          example: John
+          type: string
+        lastName:
+          example: James
+          type: string
+        email:
+          example: john@email.com
+          type: string
+        password:
+          example: "12345"
+          type: string
+        phone:
+          example: "12345"
+          type: string
+        userStatus:
+          description: User Status
+          example: 1
+          format: int32
+          type: integer
+      type: object
+      xml:
+        name: user
+      x-swagger-router-model: io.swagger.petstore.model.User
+  securitySchemes:
+    petstore_auth:
+      flows:
+        implicit:
+          authorizationUrl: https://petstore.swagger.io/oauth/authorize
+          scopes:
+            write:pets: modify pets in your account
+            read:pets: read your pets
+      type: oauth2
+    api_key:
+      in: header
+      name: api_key
+      type: apiKey
+

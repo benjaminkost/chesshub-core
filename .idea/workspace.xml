@@ -4,9 +4,96 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a036ed85-b632-4943-b0de-99da063d88ce" name="Changes" comment="Service Controller Klassen erstmals erstellt">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/openapi.yaml" afterDir="false" />
+    <list default="true" id="a036ed85-b632-4943-b0de-99da063d88ce" name="Changes" comment="Starting with Openapi Spec and using petstore.yaml as example to start designing">
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/src/main/resources/openapi.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/api/ApiUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/api/HomeApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/api/RequestsApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/api/SettingsApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/api/UserApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/controller/HomeApiController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/controller/RequestsApiController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/controller/SettingsApiController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/controller/UserApiController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/delegate/HomeApiDelegate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/delegate/RequestsApiDelegate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/delegate/SettingsApiDelegate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/delegate/UserApiDelegate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/exception/FileEmptyException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/test/java/de/ben_kostka/benchesster/service/UploadGameServiceTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/src/test/resources/FullPGN.pgn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/BenChessterApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/BenChessterApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/controller/ClubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/controller/ClubApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/controller/UploadGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/controller/UploadGameApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/model/Club.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Club.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/model/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/model/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/model/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/payload/ClubDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/ClubDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/payload/GameDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/GameDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/payload/GroupDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/GroupDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/payload/RequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/RequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/payload/RoleDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/RoleDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/payload/TeamDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/TeamDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/payload/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/repository/ClubRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/repository/ClubRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/repository/GameRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/repository/GameRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/repository/RequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/repository/RequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/repository/TeamRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/repository/TeamRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/service/ClubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/service/ClubService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/service/UploadGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/service/UploadGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/service/impl/ClubServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/service/impl/ClubServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/openapi.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/de/ben_kostka/benchesster/BenChessterApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/java/de/ben_kostka/benchesster/BenChessterApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/BenChessterApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/controller/ClubController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/controller/UploadGameController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/exception/ResourceNotFoundException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/model/Club.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/model/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/model/Group.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/model/Request.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/model/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/model/Team.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/model/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/payload/ClubDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/payload/GameDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/payload/GroupDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/payload/RequestDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/payload/RoleDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/payload/TeamDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/payload/UserDto.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/repository/ClubRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/repository/GameRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/repository/RequestRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/repository/TeamRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/repository/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/service/ClubService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/service/UploadGameService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/service/impl/ClubServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/de/ben_kostka/benchesster/BenChessterApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,31 +105,39 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "benjaminkost"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;benjaminkost&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/benjaminkost/ChessGameManagement.git",
-    "accountId": "1fd29c45-21b2-41a7-aad6-6cd453ce3f66"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/benjaminkost/ChessGameManagement.git&quot;,
+    &quot;accountId&quot;: &quot;1fd29c45-21b2-41a7-aad6-6cd453ce3f66&quot;
   }
-}]]></component>
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2k3XHkmmwZkTIdPj0hXPTU6W95V" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -50,6 +145,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.UploadGameServiceTests.executor": "Run",
+    "JUnit.UploadGameServiceTests.uploadFromFile_EmptyPGNFile_ReturnsErrorMessage.executor": "Run",
+    "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsDateContent_ReturnsObjectWithCorrectDateContent.executor": "Run",
+    "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent (1).executor": "Run",
+    "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent.executor": "Run",
+    "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsMovesContent_ReturnsObjectWithCorrectMovesContent.executor": "Run",
+    "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsResultContent_ReturnsObjectWithCorrectResultContent (1).executor": "Run",
+    "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsResultContent_ReturnsObjectWithCorrectResultContent.executor": "Run",
+    "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsRoundContent_ReturnsObjectWithCorrectRoundContent (1).executor": "Run",
+    "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsRoundContent_ReturnsObjectWithCorrectRoundContent.executor": "Run",
+    "JUnit.UploadGameServiceTests.uploadFromFile_noPGNFile_ReturnsErrorMessage.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -57,23 +163,42 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.BenChessterApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "migration-jakartaee-to-springboot",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/benkostka/Documents/BenChesster/ChessGameManagement",
+    "last_opened_file_path": "/Users/benkostka/Documents/BenChesster/ChessGameManagement/service/src/main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.31034482",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
     "spring.configuration.checksum": "4493a8d9415cd906782f8c7e5a95c0a0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service/src/main" />
+      <recent name="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model" />
+      <recent name="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/controller" />
+      <recent name="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster" />
       <recent name="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/payload" />
-      <recent name="$PROJECT_DIR$/src/main/java/de/ben_kostka/benchesster/model" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model" />
+      <recent name="$PROJECT_DIR$/api/src/main/recources" />
+      <recent name="$PROJECT_DIR$/service" />
+      <recent name="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/service/api" />
+      <recent name="$PROJECT_DIR$/target/classes/de/ben_kostka/benchesster/service/model" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="de.ben_kostka.benchesster" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -83,7 +208,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.UploadGameServiceTests.uploadFromFile_fileContainsSiteContent_ReturnsObjectWithCorrectSiteContent">
     <configuration default="true" type="DjangoTestsConfigurationType">
       <module name="ChessGameManagement" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -116,6 +241,85 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="ADDITIONAL_ARGS" value="" />
       <method v="2" />
+    </configuration>
+    <configuration name="UploadGameServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.ben_kostka.benchesster.service" />
+      <option name="MAIN_CLASS_NAME" value="de.ben_kostka.benchesster.service.UploadGameServiceTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.ben_kostka.benchesster.service" />
+      <option name="MAIN_CLASS_NAME" value="de.ben_kostka.benchesster.service.UploadGameServiceTests" />
+      <option name="METHOD_NAME" value="uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent(java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.ben_kostka.benchesster.service" />
+      <option name="MAIN_CLASS_NAME" value="de.ben_kostka.benchesster.service.UploadGameServiceTests" />
+      <option name="METHOD_NAME" value="uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UploadGameServiceTests.uploadFromFile_fileContainsResultContent_ReturnsObjectWithCorrectResultContent (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.ben_kostka.benchesster.service" />
+      <option name="MAIN_CLASS_NAME" value="de.ben_kostka.benchesster.service.UploadGameServiceTests" />
+      <option name="METHOD_NAME" value="uploadFromFile_fileContainsResultContent_ReturnsObjectWithCorrectResultContent" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UploadGameServiceTests.uploadFromFile_fileContainsSiteContent_ReturnsObjectWithCorrectSiteContent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.ben_kostka.benchesster.service" />
+      <option name="MAIN_CLASS_NAME" value="de.ben_kostka.benchesster.service.UploadGameServiceTests" />
+      <option name="METHOD_NAME" value="uploadFromFile_fileContainsSiteContent_ReturnsObjectWithCorrectSiteContent(java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="ChessGameManagement" />
@@ -168,7 +372,9 @@
       <method v="2" />
     </configuration>
     <configuration name="BenChessterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="BenChesster" />
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="de.ben_kostka.benchesster.BenChessterApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -223,11 +429,20 @@
       <option name="USE_PATTERN" value="false" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_fileContainsSiteContent_ReturnsObjectWithCorrectSiteContent" />
+        <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent (1)" />
+        <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent" />
+        <item itemvalue="JUnit.UploadGameServiceTests" />
+        <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_fileContainsResultContent_ReturnsObjectWithCorrectResultContent (1)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.145" />
+        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.218" />
       </set>
     </attachedChunks>
   </component>
@@ -251,6 +466,20 @@
       <workItem from="1726513452836" duration="129000" />
       <workItem from="1731857720433" duration="8000" />
       <workItem from="1735089212821" duration="3647000" />
+      <workItem from="1735093256438" duration="162000" />
+      <workItem from="1735139132262" duration="53000" />
+      <workItem from="1735139216049" duration="15275000" />
+      <workItem from="1735238879899" duration="5875000" />
+      <workItem from="1735669705398" duration="4991000" />
+      <workItem from="1736024158433" duration="2136000" />
+      <workItem from="1736151176073" duration="66000" />
+      <workItem from="1736324058599" duration="10094000" />
+      <workItem from="1736342627422" duration="10471000" />
+      <workItem from="1736355503063" duration="299000" />
+      <workItem from="1737051656409" duration="1573000" />
+      <workItem from="1737361134518" duration="6942000" />
+      <workItem from="1737373011515" duration="785000" />
+      <workItem from="1737533587423" duration="15315000" />
     </task>
     <task id="LOCAL-00001" summary="Initales SetUp für Migration von JakartaEE zu Spring Boot">
       <created>1722514416565</created>
@@ -266,7 +495,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725020470221</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Starting with Openapi Spec and using petstore.yaml as example to start designing">
+      <option name="closed" value="true" />
+      <created>1735093390907</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1735093390908</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,6 +535,21 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initales SetUp für Migration von JakartaEE zu Spring Boot" />
     <MESSAGE value="Service Controller Klassen erstmals erstellt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Service Controller Klassen erstmals erstellt" />
+    <MESSAGE value="Starting with Openapi Spec and using petstore.yaml as example to start designing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Starting with Openapi Spec and using petstore.yaml as example to start designing" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.hibernate.MappingException" package="org.hibernate" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
