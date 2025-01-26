@@ -4,32 +4,128 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a036ed85-b632-4943-b0de-99da063d88ce" name="Changes" comment="Error in Last push -&gt; Maven properties can be used with plugin now Maven property is used in application.properties">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/diff-generator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/service.iml" afterDir="false" />
+    <list default="true" id="a036ed85-b632-4943-b0de-99da063d88ce" name="Changes" comment="Added Upload Game from File function, added Tests and changed the entities/ models so that a game hat the plain name of the black and white players and the mapping to a user">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/GameDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/GameDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/resources/uploads_temp/test_file.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/resources/uploads_temp/test_file.pgn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/test/java/de/ben_kostka/benchesster/service/UploadGameServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/java/de/ben_kostka/benchesster/service/UploadGameServiceTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/test/resources/FullPGN.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/resources/FullPGN.pgn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Request.class" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Request.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/payload/GameDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/payload/GameDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/target/classes/uploads_temp/Brecker (993 DWZ) vs Kostka.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/uploads_temp/Brecker (993 DWZ) vs Kostka.pgn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/target/classes/uploads_temp/test_file.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/uploads_temp/test_file.pgn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/target/test-classes/FullPGN.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/test-classes/FullPGN.pgn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/target/test-classes/de/ben_kostka/benchesster/service/UploadGameServiceTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/test-classes/de/ben_kostka/benchesster/service/UploadGameServiceTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/web-app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/BenChessterApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/BenChessterApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/api/ApiUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/api/ApiUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/api/HomeApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/api/HomeApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/api/RequestsApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/api/RequestsApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/api/SettingsApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/api/SettingsApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/api/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/api/UserApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/controller/ClubApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/controller/ClubApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/controller/HomeApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/controller/HomeApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/controller/RequestsApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/controller/RequestsApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/controller/SettingsApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/controller/SettingsApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/controller/UploadGameApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/controller/UploadGameApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/controller/UserApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/controller/UserApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/delegate/HomeApiDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/delegate/HomeApiDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/delegate/RequestsApiDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/delegate/RequestsApiDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/delegate/SettingsApiDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/delegate/SettingsApiDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/delegate/UserApiDelegate.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/delegate/UserApiDelegate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/exception/FileEmptyException.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/exception/FileEmptyException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Club.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/model/Club.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/model/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/model/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/model/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/model/Team.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/ClubDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/payload/ClubDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/GameDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/payload/GameDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/GroupDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/payload/GroupDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/RequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/payload/RequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/RoleDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/payload/RoleDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/TeamDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/payload/TeamDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/payload/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/repository/ClubRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/repository/ClubRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/repository/GameRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/repository/GameRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/repository/RequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/repository/RequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/repository/TeamRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/repository/TeamRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/service/ClubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/service/ClubService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/service/UploadGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/service/UploadGameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/service/impl/ClubServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/service/impl/ClubServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/resources/uploads_temp/Brecker (993 DWZ) vs Kostka.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/resources/uploads_temp/Brecker (993 DWZ) vs Kostka.pgn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/resources/uploads_temp/temp_file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/resources/uploads_temp/temp_file.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/resources/uploads_temp/test_file.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/resources/uploads_temp/test_file.pgn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/resources/uploads_temp/test_file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/main/resources/uploads_temp/test_file.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/java/de/ben_kostka/benchesster/BenChessterApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/test/java/de/ben_kostka/benchesster/BenChessterApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/java/de/ben_kostka/benchesster/service/UploadGameServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/test/java/de/ben_kostka/benchesster/service/UploadGameServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/resources/FullPGN.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/src/test/resources/FullPGN.pgn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/BenChessterApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/BenChessterApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/api/ApiUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/api/ApiUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/api/HomeApi$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/api/HomeApi$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/api/HomeApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/api/HomeApi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/api/RequestsApi$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/api/RequestsApi$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/api/RequestsApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/api/RequestsApi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/api/SettingsApi$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/api/SettingsApi$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/api/SettingsApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/api/SettingsApi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/api/UserApi$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/api/UserApi$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/api/UserApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/api/UserApi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/controller/ClubApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/controller/ClubApiController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/controller/HomeApiController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/controller/HomeApiController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/controller/HomeApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/controller/HomeApiController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/controller/RequestsApiController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/controller/RequestsApiController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/controller/RequestsApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/controller/RequestsApiController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/controller/SettingsApiController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/controller/SettingsApiController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/controller/SettingsApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/controller/SettingsApiController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/controller/UploadGameApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/controller/UploadGameApiController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/controller/UserApiController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/controller/UserApiController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/controller/UserApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/controller/UserApiController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/delegate/HomeApiDelegate.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/delegate/HomeApiDelegate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/delegate/RequestsApiDelegate.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/delegate/RequestsApiDelegate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/delegate/SettingsApiDelegate.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/delegate/SettingsApiDelegate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/delegate/UserApiDelegate.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/delegate/UserApiDelegate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/exception/FileEmptyException.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/exception/FileEmptyException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/exception/ResourceNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/exception/ResourceNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Club.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/model/Club.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/model/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Group.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/model/Group.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Request.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/model/Request.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/model/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Team.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/model/Team.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/payload/ClubDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/payload/ClubDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/payload/GameDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/payload/GameDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/payload/GroupDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/payload/GroupDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/payload/RequestDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/payload/RequestDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/payload/RoleDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/payload/RoleDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/payload/TeamDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/payload/TeamDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/payload/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/payload/UserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/repository/ClubRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/repository/ClubRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/repository/GameRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/repository/GameRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/repository/RequestRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/repository/RequestRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/repository/TeamRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/repository/TeamRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/repository/UserRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/service/ClubService.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/service/ClubService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/service/UploadGameService.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/service/UploadGameService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/service/impl/ClubServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/service/impl/ClubServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/uploads_temp/Brecker (993 DWZ) vs Kostka.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/uploads_temp/Brecker (993 DWZ) vs Kostka.pgn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/uploads_temp/temp_file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/uploads_temp/temp_file.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/uploads_temp/test_file.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/uploads_temp/test_file.pgn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/uploads_temp/test_file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/classes/uploads_temp/test_file.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/service-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/service-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/surefire-reports/TEST-de.ben_kostka.benchesster.service.UploadGameServiceTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/surefire-reports/TEST-de.ben_kostka.benchesster.service.UploadGameServiceTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/surefire-reports/de.ben_kostka.benchesster.service.UploadGameServiceTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/surefire-reports/de.ben_kostka.benchesster.service.UploadGameServiceTests.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/test-classes/FullPGN.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/test-classes/FullPGN.pgn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/test-classes/de/ben_kostka/benchesster/BenChessterApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/test-classes/de/ben_kostka/benchesster/BenChessterApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/test-classes/de/ben_kostka/benchesster/service/UploadGameServiceTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/web-app/target/test-classes/de/ben_kostka/benchesster/service/UploadGameServiceTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +189,7 @@
     "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsRoundContent_ReturnsObjectWithCorrectRoundContent (1).executor": "Run",
     "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsRoundContent_ReturnsObjectWithCorrectRoundContent.executor": "Run",
     "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsSiteContent_ReturnsObjectWithCorrectSiteContent.executor": "Run",
-    "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsWhitePlayerContent_ReturnsObjectWithCorrectWhitePlayer.executor": "Run",
+    "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsWhitePlayerContent_ReturnsObjectWithCorrectWhitePlayer.executor": "Debug",
     "JUnit.UploadGameServiceTests.uploadFromFile_noPGNFile_ReturnsErrorMessage.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -188,7 +284,7 @@
       <method v="2" />
     </configuration>
     <configuration name="UploadGameServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="service" />
+      <module name="web-app" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
@@ -203,7 +299,7 @@
       </method>
     </configuration>
     <configuration name="UploadGameServiceTests.uploadFromFile_EmptyPGNFile_ReturnsExceptionMesssage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="service" />
+      <module name="web-app" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
@@ -219,7 +315,7 @@
       </method>
     </configuration>
     <configuration name="UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="service" />
+      <module name="web-app" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
@@ -235,7 +331,7 @@
       </method>
     </configuration>
     <configuration name="UploadGameServiceTests.uploadFromFile_fileContainsSiteContent_ReturnsObjectWithCorrectSiteContent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="service" />
+      <module name="web-app" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
@@ -251,7 +347,7 @@
       </method>
     </configuration>
     <configuration name="UploadGameServiceTests.uploadFromFile_fileContainsWhitePlayerContent_ReturnsObjectWithCorrectWhitePlayer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="service" />
+      <module name="web-app" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
@@ -319,7 +415,7 @@
     <configuration name="BenChessterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <module name="service" />
+      <module name="web-app" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="de.ben_kostka.benchesster.BenChessterApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -336,6 +432,30 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="ccruntests" factoryName="Run Study Tests">
+      <module name="web-app" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <option name="studyTest" value="" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Autodetect">
@@ -377,8 +497,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.UploadGameServiceTests" />
-        <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_EmptyPGNFile_ReturnsExceptionMesssage" />
         <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_fileContainsWhitePlayerContent_ReturnsObjectWithCorrectWhitePlayer" />
+        <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_EmptyPGNFile_ReturnsExceptionMesssage" />
         <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_fileContainsSiteContent_ReturnsObjectWithCorrectSiteContent" />
         <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent (1)" />
       </list>
@@ -429,7 +549,7 @@
       <workItem from="1737665963935" duration="3516000" />
       <workItem from="1737743492083" duration="2518000" />
       <workItem from="1737849509615" duration="70000" />
-      <workItem from="1737887383600" duration="3277000" />
+      <workItem from="1737887383600" duration="5357000" />
     </task>
     <task id="LOCAL-00001" summary="Initales SetUp für Migration von JakartaEE zu Spring Boot">
       <created>1722514416565</created>
@@ -477,7 +597,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737559480939</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added Upload Game from File function, added Tests and changed the entities/ models so that a game hat the plain name of the black and white players and the mapping to a user">
+      <option name="closed" value="true" />
+      <created>1737892466919</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1737892466919</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -513,7 +641,8 @@
     <MESSAGE value="Very big push with Controllers, Services, payloads, Exceptions and Tests (next time I will push earlier ;) )" />
     <MESSAGE value="Same files missed in last push" />
     <MESSAGE value="Error in Last push -&gt; Maven properties can be used with plugin now Maven property is used in application.properties" />
-    <option name="LAST_COMMIT_MESSAGE" value="Error in Last push -&gt; Maven properties can be used with plugin now Maven property is used in application.properties" />
+    <MESSAGE value="Added Upload Game from File function, added Tests and changed the entities/ models so that a game hat the plain name of the black and white players and the mapping to a user" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Upload Game from File function, added Tests and changed the entities/ models so that a game hat the plain name of the black and white players and the mapping to a user" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -522,6 +651,11 @@
           <properties class="org.hibernate.MappingException" package="org.hibernate" />
           <option name="timeStamp" value="2" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/web-app/src/main/java/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
