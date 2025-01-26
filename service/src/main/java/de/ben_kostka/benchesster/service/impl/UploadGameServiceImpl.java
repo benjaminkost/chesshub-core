@@ -88,12 +88,14 @@ public class UploadGameServiceImpl implements UploadGameService {
         gameDto.setDate(game.getDate());
         gameDto.setEvent(game.getEvent());
         gameDto.setComment(game.getComment());
-        gameDto.setBlack(game.getBlack());
+        gameDto.setBlack_user(game.getBlack_user());
         gameDto.setResult(game.getResult());
         gameDto.setRound(game.getRound());
         gameDto.setSite(game.getSite());
-        gameDto.setWhite(game.getWhite());
+        gameDto.setWhite_user(game.getWhite_user());
         gameDto.setMoves(game.getMoves());
+        gameDto.setBlack_player_name(game.getBlack_player_name());
+        gameDto.setWhite_player_name(game.getWhite_player_name());
         return gameDto;
     }
 
@@ -103,12 +105,14 @@ public class UploadGameServiceImpl implements UploadGameService {
         game.setDate(gameDto.getDate());
         game.setEvent(gameDto.getEvent());
         game.setComment(gameDto.getComment());
-        game.setBlack(gameDto.getBlack());
+        game.setBlack_user(gameDto.getBlack_user());
         game.setResult(gameDto.getResult());
         game.setRound(gameDto.getRound());
         game.setSite(gameDto.getSite());
-        game.setWhite(gameDto.getWhite());
+        game.setWhite_user(gameDto.getWhite_user());
         game.setMoves(gameDto.getMoves());
+        game.setBlack_player_name(gameDto.getBlack_player_name());
+        game.setWhite_player_name(gameDto.getWhite_player_name());
         return game;
     }
 
@@ -176,6 +180,12 @@ public class UploadGameServiceImpl implements UploadGameService {
         attrName = attrName.toLowerCase();
 
         switch (attrName) {
+            case "black":
+                gameDto.setBlack_player_name(attrValue);
+                break;
+            case "white":
+                gameDto.setWhite_player_name(attrValue);
+                break;
             case "event":
                 gameDto.setEvent(attrValue);
                 break;

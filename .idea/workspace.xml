@@ -4,8 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a036ed85-b632-4943-b0de-99da063d88ce" name="Changes" comment="Same files missed in last push">
+    <list default="true" id="a036ed85-b632-4943-b0de-99da063d88ce" name="Changes" comment="Error in Last push -&gt; Maven properties can be used with plugin now Maven property is used in application.properties">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/diff-generator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/service.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/GameDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/payload/GameDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/resources/uploads_temp/test_file.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/resources/uploads_temp/test_file.pgn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/java/de/ben_kostka/benchesster/service/UploadGameServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/java/de/ben_kostka/benchesster/service/UploadGameServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/test/resources/FullPGN.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/resources/FullPGN.pgn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Request.class" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/Request.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/payload/GameDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/payload/GameDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/de/ben_kostka/benchesster/service/impl/UploadGameServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/uploads_temp/Brecker (993 DWZ) vs Kostka.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/uploads_temp/Brecker (993 DWZ) vs Kostka.pgn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/classes/uploads_temp/test_file.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/classes/uploads_temp/test_file.pgn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/test-classes/FullPGN.pgn" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/test-classes/FullPGN.pgn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/target/test-classes/de/ben_kostka/benchesster/service/UploadGameServiceTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/service/target/test-classes/de/ben_kostka/benchesster/service/UploadGameServiceTests.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +39,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -59,6 +83,7 @@
   "keyToString": {
     "JUnit.UploadGameServiceTests.executor": "Run",
     "JUnit.UploadGameServiceTests.uploadFromFile_EmptyPGNFile_ReturnsErrorMessage.executor": "Run",
+    "JUnit.UploadGameServiceTests.uploadFromFile_EmptyPGNFile_ReturnsExceptionMesssage.executor": "Run",
     "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsDateContent_ReturnsObjectWithCorrectDateContent.executor": "Run",
     "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent (1).executor": "Run",
     "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent.executor": "Run",
@@ -68,6 +93,7 @@
     "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsRoundContent_ReturnsObjectWithCorrectRoundContent (1).executor": "Run",
     "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsRoundContent_ReturnsObjectWithCorrectRoundContent.executor": "Run",
     "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsSiteContent_ReturnsObjectWithCorrectSiteContent.executor": "Run",
+    "JUnit.UploadGameServiceTests.uploadFromFile_fileContainsWhitePlayerContent_ReturnsObjectWithCorrectWhitePlayer.executor": "Run",
     "JUnit.UploadGameServiceTests.uploadFromFile_noPGNFile_ReturnsErrorMessage.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -87,12 +113,18 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.31034482",
     "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
     "spring.configuration.checksum": "4493a8d9415cd906782f8c7e5a95c0a0",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql_aurora",
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -121,7 +153,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.BenChessterApplication">
+  <component name="RunManager" selected="JUnit.UploadGameServiceTests">
     <configuration default="true" type="DjangoTestsConfigurationType">
       <module name="ChessGameManagement" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -170,6 +202,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UploadGameServiceTests.uploadFromFile_EmptyPGNFile_ReturnsExceptionMesssage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.ben_kostka.benchesster.service" />
+      <option name="MAIN_CLASS_NAME" value="de.ben_kostka.benchesster.service.UploadGameServiceTests" />
+      <option name="METHOD_NAME" value="uploadFromFile_EmptyPGNFile_ReturnsExceptionMesssage" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="service" />
       <extension name="coverage">
@@ -186,38 +234,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="de.ben_kostka.benchesster.service" />
-      <option name="MAIN_CLASS_NAME" value="de.ben_kostka.benchesster.service.UploadGameServiceTests" />
-      <option name="METHOD_NAME" value="uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UploadGameServiceTests.uploadFromFile_fileContainsResultContent_ReturnsObjectWithCorrectResultContent (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="de.ben_kostka.benchesster.service" />
-      <option name="MAIN_CLASS_NAME" value="de.ben_kostka.benchesster.service.UploadGameServiceTests" />
-      <option name="METHOD_NAME" value="uploadFromFile_fileContainsResultContent_ReturnsObjectWithCorrectResultContent" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="UploadGameServiceTests.uploadFromFile_fileContainsSiteContent_ReturnsObjectWithCorrectSiteContent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="service" />
       <extension name="coverage">
@@ -229,6 +245,22 @@
       <option name="PACKAGE_NAME" value="de.ben_kostka.benchesster.service" />
       <option name="MAIN_CLASS_NAME" value="de.ben_kostka.benchesster.service.UploadGameServiceTests" />
       <option name="METHOD_NAME" value="uploadFromFile_fileContainsSiteContent_ReturnsObjectWithCorrectSiteContent(java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UploadGameServiceTests.uploadFromFile_fileContainsWhitePlayerContent_ReturnsObjectWithCorrectWhitePlayer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.ben_kostka.benchesster.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.ben_kostka.benchesster.service" />
+      <option name="MAIN_CLASS_NAME" value="de.ben_kostka.benchesster.service.UploadGameServiceTests" />
+      <option name="METHOD_NAME" value="uploadFromFile_fileContainsWhitePlayerContent_ReturnsObjectWithCorrectWhitePlayer(java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -344,11 +376,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UploadGameServiceTests" />
+        <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_EmptyPGNFile_ReturnsExceptionMesssage" />
+        <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_fileContainsWhitePlayerContent_ReturnsObjectWithCorrectWhitePlayer" />
         <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_fileContainsSiteContent_ReturnsObjectWithCorrectSiteContent" />
         <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent (1)" />
-        <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_fileContainsEventContent_ReturnsObjectWithCorrectEventContent" />
-        <item itemvalue="JUnit.UploadGameServiceTests" />
-        <item itemvalue="JUnit.UploadGameServiceTests.uploadFromFile_fileContainsResultContent_ReturnsObjectWithCorrectResultContent (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -392,7 +424,12 @@
       <workItem from="1737051656409" duration="1573000" />
       <workItem from="1737361134518" duration="6942000" />
       <workItem from="1737373011515" duration="785000" />
-      <workItem from="1737533587423" duration="18233000" />
+      <workItem from="1737533587423" duration="18893000" />
+      <workItem from="1737560562974" duration="104000" />
+      <workItem from="1737665963935" duration="3516000" />
+      <workItem from="1737743492083" duration="2518000" />
+      <workItem from="1737849509615" duration="70000" />
+      <workItem from="1737887383600" duration="3277000" />
     </task>
     <task id="LOCAL-00001" summary="Initales SetUp für Migration von JakartaEE zu Spring Boot">
       <created>1722514416565</created>
@@ -432,7 +469,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737558517976</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Error in Last push -&gt; Maven properties can be used with plugin now Maven property is used in application.properties">
+      <option name="closed" value="true" />
+      <created>1737559480939</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1737559480939</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,7 +512,8 @@
     <MESSAGE value="Starting with Openapi Spec and using petstore.yaml as example to start designing" />
     <MESSAGE value="Very big push with Controllers, Services, payloads, Exceptions and Tests (next time I will push earlier ;) )" />
     <MESSAGE value="Same files missed in last push" />
-    <option name="LAST_COMMIT_MESSAGE" value="Same files missed in last push" />
+    <MESSAGE value="Error in Last push -&gt; Maven properties can be used with plugin now Maven property is used in application.properties" />
+    <option name="LAST_COMMIT_MESSAGE" value="Error in Last push -&gt; Maven properties can be used with plugin now Maven property is used in application.properties" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -482,5 +528,10 @@
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ChessGameManagement$UploadGameServiceTests.ic" NAME="UploadGameServiceTests Coverage Results" MODIFIED="1737560606150" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>de.ben_kostka.benchesster.service.*</FILTER>
+    </SUITE>
   </component>
 </project>

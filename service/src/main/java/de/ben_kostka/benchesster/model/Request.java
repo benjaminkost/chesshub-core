@@ -41,9 +41,9 @@ public class Request {
   @JoinColumn(name = "recipient_ID")
   private User recipient;
 
-//  @ManyToOne(cascade = CascadeType.ALL)
-//  @JoinColumn(name = "game_ID", nullable = false)
-//  private Game game;
+  @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+  @JoinColumn(name = "game_ID", nullable = false)
+  private Game game;
 
   @Column
   private String status;

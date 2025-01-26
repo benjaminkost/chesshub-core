@@ -187,8 +187,42 @@ public class UploadGameServiceTests {
         Assertions.assertEquals(site, gameDto.getSite());
     }
 
-    @Test
-    public void uploadFromFile_fileContainsWhitePlayerContent_ReturnsObjectWithCorrectWhitePlayer() throws Exception {
+    @ParameterizedTest
+    @ValueSource(strings = {"Benjamin Kostka"})
+    public void uploadFromFile_fileContainsWhitePlayerContent_ReturnsObjectWithCorrectWhitePlayer(String white) throws Exception {
+        //Arrange
+        String test_file_content = Files.readString(Path.of("src/test/resources/FullPGN.pgn"));
+        MockMultipartFile file = new MockMultipartFile(
+                "test_file",
+                "test_file.pgn",
+                MediaType.TEXT_PLAIN_VALUE,
+                test_file_content.getBytes()
+        );
+
+        //Act
+        GameDto gameDto = uploadGameService.uploadFromFile(file);
+
+        //Assert
+        Assertions.assertEquals(white, gameDto.getWhite_player_name());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"Lukas Zander"})
+    public void uploadFromFile_fileContainsBlackPlayerContent_ReturnsObjectWithCorrectBlackPlayer(String black) throws Exception {
+        //Arrange
+        String test_file_content = Files.readString(Path.of("src/test/resources/FullPGN.pgn"));
+        MockMultipartFile file = new MockMultipartFile(
+                "test_file",
+                "test_file.pgn",
+                MediaType.TEXT_PLAIN_VALUE,
+                test_file_content.getBytes()
+        );
+
+        //Act
+        GameDto gameDto = uploadGameService.uploadFromFile(file);
+
+        //Assert
+        Assertions.assertEquals(black, gameDto.getBlack_player_name());
     }
 
 

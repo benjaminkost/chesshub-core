@@ -13,7 +13,9 @@ public class GameDto {
     private String site;
     private String moves;
     private String result;
-    private User white;
-    private User black;
+    private User white_user;
+    private User black_user;
+    private String white_player_name;
+    private String black_player_name;
     private String comment;
 }

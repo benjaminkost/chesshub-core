@@ -55,9 +55,9 @@ public class User {
   @ManyToMany
   @JoinTable(
           name = "user_has_teams", // Name der Zwischentabelle
-          joinColumns = @JoinColumn(name = "user_ID"), // Spalte, die auf die Student-Entität verweist
-          inverseJoinColumns = @JoinColumn(name = "team_ID") // Spalte, die auf die Course-Entität verweist
+          joinColumns = @JoinColumn(name = "user_ID"), // Spalte, die auf die User-Entität verweist
+          inverseJoinColumns = @JoinColumn(name = "team_ID") // Spalte, die auf die Teams-Entität verweist
   )
-  private Set<Team> courses = new HashSet<>();
+  private Set<Team> teams = new HashSet<>();
 }
 
