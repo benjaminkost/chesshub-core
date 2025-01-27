@@ -39,7 +39,7 @@ import de.ben_kostka.benchesster.client.JSON;
   User.JSON_PROPERTY_PHONE,
   User.JSON_PROPERTY_USER_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-22T16:03:41.005461+01:00[Europe/Berlin]", comments = "Generator version: 7.10.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-01-27T11:52:59.664272+01:00[Europe/Berlin]", comments = "Generator version: 7.10.0")
 public class User {
   public static final String JSON_PROPERTY_USER_I_D = "user_ID";
   @javax.annotation.Nullable

@@ -4,7 +4,7 @@ ChessGameManagement - OpenAPI 3.0
 
 - API version: 1.0.0-SNAPSHOT
 
-- Build date: 2025-01-22T16:03:41.005461+01:00[Europe/Berlin]
+- Build date: 2025-01-27T11:52:59.664272+01:00[Europe/Berlin]
 
 - Generator version: 7.10.0
 
