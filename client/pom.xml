@@ -225,7 +225,7 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
-            <plugin>
+           <!-- <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>7.10.0</version>
@@ -236,18 +236,18 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <!-- specify the OpenAPI spec -->
+                            &lt;!&ndash; specify the OpenAPI spec &ndash;&gt;
                             <inputSpec>${project.parent.basedir}/api/src/main/resources/openapi.yaml</inputSpec>
 
-                            <!-- target to generate java client code -->
+                            &lt;!&ndash; target to generate java client code &ndash;&gt;
                             <generatorName>java</generatorName>
 
-                            <!-- pass any necessary config options -->
+                            &lt;!&ndash; pass any necessary config options &ndash;&gt;
                             <configOptions>
                                 <dateLibrary>joda</dateLibrary>
                             </configOptions>
 
-                            <!-- override the default library to jersey2 -->
+                            &lt;!&ndash; override the default library to jersey2 &ndash;&gt;
                             <library>jersey2</library>
 
                             <packageName>${base-package}.client</packageName>
@@ -257,7 +257,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 </project>
