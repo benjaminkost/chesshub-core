@@ -1,8 +1,7 @@
-name: "🐛 Bug Report / ✨ Feature Request"
-description: "Melde einen Fehler oder schlage eine neue Funktion vor."
-title: "[Bug] Kurze Beschreibung"  # Ändere zu [Feature] für Feature-Requests
+name: "✨ Feature Request"
+description: "Schlage eine neue Funktion oder Verbesserung vor."
+title: "[Feature] Kurze Beschreibung"
 labels:
-  - "bug"
   - "enhancement"
 assignees: []
 
@@ -10,52 +9,40 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## 📝 Beschreibung
-        Eine klare und prägnante Beschreibung des Problems oder der gewünschten Funktion.
+        ## 📝 Feature Beschreibung
+        Eine klare und prägnante Beschreibung der gewünschten Funktion oder Verbesserung.
 
   - type: textarea
-    id: reproduction
+    id: motivation
     attributes:
-      label: "🔍 Schritte zur Reproduktion (nur für Bugs)"
-      description: "Beschreibe die Schritte zur Reproduktion des Fehlers."
-      placeholder: "1. Gehe zu '...'
-2. Klicke auf '...'
-3. Scrolle nach unten zu '...'
-4. Fehler tritt auf"
+      label: "💡 Motivation und Nutzen"
+      description: "Erkläre, warum diese Funktion nützlich ist und welche Probleme sie löst."
+      placeholder: "Dieses Feature würde helfen, indem..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: "🚀 Vorgeschlagene Lösung"
+      description: "Beschreibe eine mögliche Umsetzung oder Herangehensweise."
+      placeholder: "Eine mögliche Lösung wäre..."
     validations:
       required: false
 
-  - type: input
-    id: expected_behavior
+  - type: textarea
+    id: alternatives
     attributes:
-      label: "✅ Erwartetes Verhalten"
-      description: "Beschreibe, was stattdessen passieren sollte."
-    validations:
-      required: false
-
-  - type: input
-    id: actual_behavior
-    attributes:
-      label: "❌ Tatsächliches Verhalten"
-      description: "Beschreibe, was tatsächlich passiert ist."
-    validations:
-      required: false
-
-  - type: input
-    id: technical_details
-    attributes:
-      label: "📦 Technische Details"
-      description: "Gib relevante technische Details an."
-      placeholder: "- Betriebssystem: Windows/macOS/Linux
-- Browser: Chrome/Firefox/Safari
-- Version: v1.2.3"
+      label: "🔄 Alternativen"
+      description: "Hast du alternative Lösungen in Betracht gezogen? Falls ja, beschreibe sie hier."
+      placeholder: "Eine Alternative könnte sein..."
     validations:
       required: false
 
   - type: textarea
     id: additional_info
     attributes:
-      label: "💡 Zusätzliche Informationen"
-      description: "Füge weitere Informationen, Screenshots oder Logs hinzu."
+      label: "📎 Zusätzliche Informationen"
+      description: "Füge weitere Details, Screenshots oder Beispiele hinzu."
     validations:
       required: false
