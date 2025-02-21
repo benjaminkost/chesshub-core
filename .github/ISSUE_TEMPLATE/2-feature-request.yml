@@ -1,0 +1,61 @@
+name: "🐛 Bug Report / ✨ Feature Request"
+description: "Melde einen Fehler oder schlage eine neue Funktion vor."
+title: "[Bug] Kurze Beschreibung"  # Ändere zu [Feature] für Feature-Requests
+labels:
+  - "bug"
+  - "enhancement"
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📝 Beschreibung
+        Eine klare und prägnante Beschreibung des Problems oder der gewünschten Funktion.
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: "🔍 Schritte zur Reproduktion (nur für Bugs)"
+      description: "Beschreibe die Schritte zur Reproduktion des Fehlers."
+      placeholder: "1. Gehe zu '...'
+2. Klicke auf '...'
+3. Scrolle nach unten zu '...'
+4. Fehler tritt auf"
+    validations:
+      required: false
+
+  - type: input
+    id: expected_behavior
+    attributes:
+      label: "✅ Erwartetes Verhalten"
+      description: "Beschreibe, was stattdessen passieren sollte."
+    validations:
+      required: false
+
+  - type: input
+    id: actual_behavior
+    attributes:
+      label: "❌ Tatsächliches Verhalten"
+      description: "Beschreibe, was tatsächlich passiert ist."
+    validations:
+      required: false
+
+  - type: input
+    id: technical_details
+    attributes:
+      label: "📦 Technische Details"
+      description: "Gib relevante technische Details an."
+      placeholder: "- Betriebssystem: Windows/macOS/Linux
+- Browser: Chrome/Firefox/Safari
+- Version: v1.2.3"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_info
+    attributes:
+      label: "💡 Zusätzliche Informationen"
+      description: "Füge weitere Informationen, Screenshots oder Logs hinzu."
+    validations:
+      required: false
