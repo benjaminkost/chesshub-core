@@ -1,0 +1,17 @@
+services:
+  mysql1:
+    image: mysql
+    container_name: mysql1
+    ports:
+      - "3308:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./data:/var/lib/mysql
+  myadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: myadmin
+    links:
+      - mysql1:db
+    ports:
+      - "8081:80"
