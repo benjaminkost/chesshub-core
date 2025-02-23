@@ -1,20 +1,20 @@
 services:
-  mysql1:
+  mysql1: #Datenbank
     image: mysql
     container_name: mysql1
     ports:
-      - "3308:3306"
+      - "3308:3306" #Container ist wie WM mit eigenem Port zur Kommunikation
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=chessmanagement  # Erstelle eine Standard-Datenbank
     volumes:
-      - ./data:/var/lib/mysql
+      - ./data:/var/lib/mysql # erstellt Ordner zur persistenten Speicherung von Tabellen
     restart: always
 
-  myadmin:
+  myadmin: #DBMS
     image: phpmyadmin/phpmyadmin
     container_name: myadmin
     links:
-      - mysql1:db
+      - mysql1:db #Darf auf die Container-Datenbank zugreifen
     ports:
       - "8081:80"
