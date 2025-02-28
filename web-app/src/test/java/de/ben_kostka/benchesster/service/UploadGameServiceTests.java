@@ -1,38 +1,28 @@
 package de.ben_kostka.benchesster.service;
 
-import de.ben_kostka.benchesster.exception.FileEmptyException;
-import de.ben_kostka.benchesster.model.User;
+import de.ben_kostka.benchesster.AbstractTestcontainers;
 import de.ben_kostka.benchesster.payload.GameDto;
-import de.ben_kostka.benchesster.repository.GameRepository;
-import de.ben_kostka.benchesster.service.impl.UploadGameServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @SpringBootTest
-public class UploadGameServiceTests {
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+public class UploadGameServiceTests extends AbstractTestcontainers {
 
     @Autowired
     private UploadGameService uploadGameService;
-
-    @Autowired
-    private GameRepository gameRepository;
 
     @Test
     public void uploadFromFile_EmptyPGNFile_ReturnsExceptionMesssage() {
