@@ -58,3 +58,6 @@ $RECYCLE.BIN/
 *.war
 *.ear
 *.zip
+
+# Docker
+data/
