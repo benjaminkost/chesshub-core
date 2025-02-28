@@ -1,6 +1,6 @@
 name: "✨ Feature Request"
 description: "Schlage eine neue Funktion oder Verbesserung vor."
-title: "[Feature] Kurze Beschreibung"
+title: "[Feature] "
 labels:
   - "enhancement"
 assignees: []
