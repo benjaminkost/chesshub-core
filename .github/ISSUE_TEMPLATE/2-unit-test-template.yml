@@ -1,6 +1,6 @@
 name: "🧪 Unit Test Request"
 description: "Schlage einen neuen Unit Test vor oder melde fehlende Tests."
-title: "[Test] Kurze Beschreibung"
+title: "[Test] "
 labels:
   - "test"
   - "enhancement"
