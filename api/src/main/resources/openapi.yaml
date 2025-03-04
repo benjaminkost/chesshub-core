@@ -420,11 +420,6 @@ components:
         phone:
           type: string
           example: 12345
-        userStatus:
-          type: integer
-          format: int32
-          example: 1
-          description: User Status
       xml:
         name: user
       type: object
