@@ -41,7 +41,6 @@ public class ClubRepositoryTests extends AbstractTestcontainers {
         testUser.setEmail("test@mail.de");
         testUser.setPassword("test_password");
         testUser.setPhone("1234");
-        testUser.setUserStatus(1);
         testUser.setTeams(null);
 
         Club testClub = new Club();
