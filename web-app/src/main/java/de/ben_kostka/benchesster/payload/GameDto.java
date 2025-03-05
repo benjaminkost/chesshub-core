@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Data
 public class GameDto {
-    private int gameID;
+    private Long id;
     private Date date;
     private String round;
     private String event;

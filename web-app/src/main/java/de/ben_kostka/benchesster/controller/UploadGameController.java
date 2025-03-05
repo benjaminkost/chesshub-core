@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/upload")
+@RequestMapping("/api/upload")
 public class UploadGameController {
     private UploadGameService uploadGameService;
     public UploadGameController(UploadGameService uploadGameService){

@@ -84,7 +84,7 @@ public class UploadGameServiceImpl implements UploadGameService {
     // converted entity to DTO
     private GameDto mapToDTO(Game game){
         GameDto gameDto = new GameDto();
-        gameDto.setGameID(game.getGame_ID());
+        gameDto.setId(game.getId());
         gameDto.setDate(game.getDate());
         gameDto.setEvent(game.getEvent());
         gameDto.setComment(game.getComment());
@@ -101,7 +101,7 @@ public class UploadGameServiceImpl implements UploadGameService {
 
     private Game mapToEntity(GameDto gameDto){
         Game game = new Game();
-        game.setGame_ID(gameDto.getGameID());
+        game.setId(gameDto.getId());
         game.setDate(gameDto.getDate());
         game.setEvent(gameDto.getEvent());
         game.setComment(gameDto.getComment());

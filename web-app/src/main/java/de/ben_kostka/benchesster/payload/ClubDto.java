@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class ClubDto {
-    private int club_ID;
+    private Long id;
     private String name;
     private User president;
 }

@@ -49,12 +49,12 @@ public class ClubRepositoryTests extends AbstractTestcontainers {
 
         //When
         underTest.save(testClub);
-        Club savedClub = underTest.findById(1).orElse(null);
+        Club savedClub = underTest.findById(1L).orElse(null);
 
         //Then
         Assertions.assertNotNull(savedClub);
         Assertions.assertEquals("TestClub", savedClub.getName());
-        Assertions.assertEquals(1, savedClub.getPresident().getUser_ID());
+        Assertions.assertEquals(1, savedClub.getPresident().getId());
     }
 
 }
