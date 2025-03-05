@@ -36,7 +36,7 @@ public class ClubServiceImpl implements ClubService {
 
     private ClubDto mapToDto(Club club){
         ClubDto clubDto = new ClubDto();
-        clubDto.setClub_ID(club.getClub_ID());
+        clubDto.setId(club.getId());
         clubDto.setPresident(club.getPresident());
         clubDto.setName(club.getName());
 
@@ -45,7 +45,7 @@ public class ClubServiceImpl implements ClubService {
 
     private Club mapToEntity(ClubDto clubDto){
         Club club = new Club();
-        club.setClub_ID(clubDto.getClub_ID());
+        club.setId(clubDto.getId());
         club.setPresident(clubDto.getPresident());
         club.setName(clubDto.getName());
 

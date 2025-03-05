@@ -14,13 +14,13 @@ import lombok.NoArgsConstructor;
 public class Club {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int club_ID;
+	private Long id;
 
 	@Column
 	private String name;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_ID")
+	@JoinColumn(name = "user_id")
 	private User president;
 
 }
