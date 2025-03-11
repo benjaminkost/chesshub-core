@@ -23,6 +23,7 @@
         <jersey.version>2.34</jersey.version>
         <google-findbugs>3.0.2</google-findbugs>
         <javax-ws>2.0.1</javax-ws>
+        <start-class>de.ben_kostka.benchesster.BenChessterApplication</start-class>
     </properties>
 
     <dependencies>
@@ -53,10 +54,10 @@
             <artifactId>spring-boot-starter-security</artifactId>
             <version>3.4.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-maven-plugin -->
+        <!-- db migration by java code -->
         <dependency>
             <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-maven-plugin</artifactId>
+            <artifactId>flyway-core</artifactId>
             <version>11.3.4</version>
         </dependency>
         <dependency>
@@ -121,7 +122,6 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.7.0</version>
         </dependency>
-
         <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
@@ -189,6 +189,23 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>3.3.2</version>
+                <configuration>
+                    <mainClass>${start-class}</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- db migration run by command-line -->
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>11.3.4</version>
             </plugin>
         </plugins>
     </build>

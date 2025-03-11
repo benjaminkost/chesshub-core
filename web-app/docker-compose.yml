@@ -1,0 +1,40 @@
+services:
+  mysql1: #Datenbank
+    image: mysql
+    container_name: mysql1
+    ports:
+      - "3308:3306" #Container ist wie WM mit eigenem Port zur Kommunikation
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=chessmanagement  # Erstelle eine Standard-Datenbank
+#    volumes:
+#      - ./data:/var/lib/mysql # erstellt Ordner zur persistenten Speicherung von Tabellen
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+  myadmin: #DBMS
+    image: phpmyadmin/phpmyadmin
+    container_name: myadmin
+    links:
+      - mysql1:db #Darf auf die Container-Datenbank zugreifen
+    ports:
+      - "8081:80"
+
+  app:
+    build: .
+    container_name: BenChessterApp
+    links:
+      - mysql1
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql1:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql1:3306/chessmanagement
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
