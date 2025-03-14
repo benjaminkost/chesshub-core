@@ -16,7 +16,7 @@ import java.util.Set;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class ClubRepositoryTests extends AbstractTestcontainers {
+public class ClubRepositoryIT extends AbstractTestcontainers {
 
     @Autowired
     private ClubRepository underTest;
