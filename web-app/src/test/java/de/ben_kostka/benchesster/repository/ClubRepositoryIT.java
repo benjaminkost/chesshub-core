@@ -32,7 +32,7 @@ public class ClubRepositoryIT extends AbstractTestcontainers {
 
     @Test
     public void save_withAllAttributes_ShouldCreateClub() {
-        //Give
+        // Give
         User testUser = new User();
         testUser.setUsername("test_username");
         testUser.setFirstName("Test_firstname");
