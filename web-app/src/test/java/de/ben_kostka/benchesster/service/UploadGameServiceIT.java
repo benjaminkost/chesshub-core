@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class UploadGameServiceTests extends AbstractTestcontainers {
+public class UploadGameServiceIT extends AbstractTestcontainers {
 
     @Autowired
     private UploadGameService uploadGameService;
