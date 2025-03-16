@@ -59,8 +59,8 @@ public class RequestRepositoryIT extends AbstractTestcontainers {
         game = new Game();
         game.setBlack_user(sender);
         game.setWhite_user(recipient);
-        game.setBlack_player_name(faker.name().firstName() + " " + faker.name().lastName());
-        game.setWhite_player_name(faker.name().firstName()+ " " + faker.name().lastName());
+        game.setBlack_player_name(faker.name().fullName());
+        game.setWhite_player_name(faker.name().fullName());
         game.setMoves("1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nc3 Nc6 5. Bb5 Nf6 6. Nge2 Bg4 7. O-O e6 " +
                 "8. f3 Bf5 9. a3 a6 10. Ba4 b5 11. Bb3 Be7 12. Ng3 Bg6 13. f4 Qb6 14. Nce2 Nh5 15. c3 O-O 16. f5 Nxg3 " +
                 "17. Nxg3 exf5 18. Nxf5 Rad8 19. Nxe7+ Nxe7 20. Bg5 f6 21. Bd2 Rfe8 22. Qg4 f5 23. Qg5 a5 1-0");
