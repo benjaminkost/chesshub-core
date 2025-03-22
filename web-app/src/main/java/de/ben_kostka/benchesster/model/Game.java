@@ -19,9 +19,9 @@ public class Game {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private Long id;
-	@Column(name = "date", columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
+	@Column(columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
 	private Date date;
-	@Column(name= "round", columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
+	@Column(columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
 	private String round;
 	@Column(columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
 	private String event;
@@ -43,6 +43,6 @@ public class Game {
 	private String white_player_name;
 	@Column(columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
 	private String comment;
-	@OneToMany(mappedBy = "id", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@OneToMany(mappedBy = "game", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	private List<Request> requests;
 }
