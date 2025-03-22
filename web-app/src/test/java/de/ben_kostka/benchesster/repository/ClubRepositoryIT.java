@@ -92,7 +92,7 @@ public class ClubRepositoryIT extends AbstractTestcontainers {
 
         //When
         underTest.save(testClub);
-        Club savedClub = underTest.findAll().get(0);
+        Club savedClub = underTest.findById(testClub.getId()).orElse(null);
 
         //Then
         Assertions.assertNotNull(savedClub);

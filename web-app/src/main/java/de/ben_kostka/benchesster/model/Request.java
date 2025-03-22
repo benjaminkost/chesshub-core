@@ -33,6 +33,6 @@ public class Request {
   private Game game;
 
   @Column
-  private String status;
+  private boolean accepted;
 }
 
