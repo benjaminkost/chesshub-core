@@ -2,8 +2,9 @@ package de.ben_kostka.benchesster.repository;
 
 import com.github.javafaker.Faker;
 import de.ben_kostka.benchesster.AbstractTestcontainers;
+import de.ben_kostka.benchesster.enums.GameRequestStatus;
 import de.ben_kostka.benchesster.model.Game;
-import de.ben_kostka.benchesster.model.Request;
+import de.ben_kostka.benchesster.model.GameRequest;
 import de.ben_kostka.benchesster.model.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -17,10 +18,10 @@ import java.util.List;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class RequestRepositoryIT extends AbstractTestcontainers {
+public class GameRequestRepositoryIT extends AbstractTestcontainers {
 
     @Autowired
-    private RequestRepository requestRepository;
+    private GameRequestRepository requestRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -65,7 +66,7 @@ public class RequestRepositoryIT extends AbstractTestcontainers {
                 "8. f3 Bf5 9. a3 a6 10. Ba4 b5 11. Bb3 Be7 12. Ng3 Bg6 13. f4 Qb6 14. Nce2 Nh5 15. c3 O-O 16. f5 Nxg3 " +
                 "17. Nxg3 exf5 18. Nxf5 Rad8 19. Nxe7+ Nxe7 20. Bg5 f6 21. Bd2 Rfe8 22. Qg4 f5 23. Qg5 a5 1-0");
 
-        Request request = new Request();
+        GameRequest request = new GameRequest();
         request.setGame(game);
         request.setSender(sender);
         request.setRecipient(recipient);
@@ -77,7 +78,7 @@ public class RequestRepositoryIT extends AbstractTestcontainers {
         gameRepository.save(game);
         requestRepository.save(request);
 
-        Request savedRequest = requestRepository.findById(request.getId()).orElse(null);
+        GameRequest savedRequest = requestRepository.findById(request.getId()).orElse(null);
 
         // Then
 
@@ -92,7 +93,7 @@ public class RequestRepositoryIT extends AbstractTestcontainers {
         // Give
         Faker faker = new Faker();
 
-        Request testRequest = new Request();
+        GameRequest testRequest = new GameRequest();
 
         User sender = new User();
         sender.setUsername(faker.name().username());
@@ -118,7 +119,7 @@ public class RequestRepositoryIT extends AbstractTestcontainers {
 
         // When
         requestRepository.save(testRequest);
-        Request savedRequest = requestRepository.findById(testRequest.getId()).orElse(null);
+        GameRequest savedRequest = requestRepository.findById(testRequest.getId()).orElse(null);
 
         // Then
         Assertions.assertNotNull(savedRequest);
@@ -130,9 +131,9 @@ public class RequestRepositoryIT extends AbstractTestcontainers {
         // Give
 
         // When
-        savedRequest.setAccepted(true);
+        savedRequest.setGameRequestStatus(GameRequestStatus.ACCEPTED);
         requestRepository.save(savedRequest);
-        Request changedSavedRequest = requestRepository.findById(testRequest.getId()).orElse(null);
+        GameRequest changedSavedRequest = requestRepository.findById(testRequest.getId()).orElse(null);
 
         // Then
         Assertions.assertNotNull(changedSavedRequest);
@@ -140,7 +141,7 @@ public class RequestRepositoryIT extends AbstractTestcontainers {
         Assertions.assertEquals(sender.getUsername(), changedSavedRequest.getSender().getUsername());
         Assertions.assertEquals(recipient.getUsername(), changedSavedRequest.getRecipient().getUsername());
         Assertions.assertEquals(sender.getEmail(), changedSavedRequest.getSender().getEmail());
-        Assertions.assertEquals(savedRequest.isAccepted(), changedSavedRequest.isAccepted());
+        Assertions.assertEquals(savedRequest.getGameRequestStatus(), changedSavedRequest.getGameRequestStatus());
     }
 
     @Test
@@ -148,7 +149,7 @@ public class RequestRepositoryIT extends AbstractTestcontainers {
         // Give
         Faker faker = new Faker();
 
-        Request testRequest = new Request();
+        GameRequest testRequest = new GameRequest();
 
         User sender = new User();
         sender.setUsername(faker.name().username());
@@ -176,7 +177,7 @@ public class RequestRepositoryIT extends AbstractTestcontainers {
         userRepository.save(sender);
         userRepository.save(recipient);
         requestRepository.save(testRequest);
-        Request savedRequest = requestRepository.findById(testRequest.getId()).orElse(null);
+        GameRequest savedRequest = requestRepository.findById(testRequest.getId()).orElse(null);
         List<User> users = userRepository.findAll();
 
         // Then
@@ -191,7 +192,7 @@ public class RequestRepositoryIT extends AbstractTestcontainers {
 
         // When
         requestRepository.delete(savedRequest);
-        Request changedSavedRequest = requestRepository.findById(savedRequest.getId()).orElse(null);
+        GameRequest changedSavedRequest = requestRepository.findById(savedRequest.getId()).orElse(null);
         List<User> users2 = userRepository.findAll();
 
         // Then

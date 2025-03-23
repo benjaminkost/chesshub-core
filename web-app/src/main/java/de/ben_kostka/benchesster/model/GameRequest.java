@@ -1,5 +1,6 @@
 package de.ben_kostka.benchesster.model;
 
+import de.ben_kostka.benchesster.enums.GameRequestStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,8 +15,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 @Entity
-@Table
-public class Request {
+@Table(name="game_request")
+public class GameRequest {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -32,7 +33,7 @@ public class Request {
   @JoinColumn(name = "game_id", nullable = false)
   private Game game;
 
-  @Column
-  private boolean accepted;
+  @Column(columnDefinition = "varchar(255) DEFAULT NULL")
+  private GameRequestStatus gameRequestStatus;
 }
 
