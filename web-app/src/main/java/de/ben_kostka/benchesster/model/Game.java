@@ -44,5 +44,5 @@ public class Game {
 	@Column(columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
 	private String comment;
 	@OneToMany(mappedBy = "game", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-	private List<Request> requests;
+	private List<GameRequest> requests;
 }

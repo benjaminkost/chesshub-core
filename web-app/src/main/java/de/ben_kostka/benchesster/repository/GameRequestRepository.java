@@ -1,9 +1,9 @@
 package de.ben_kostka.benchesster.repository;
 
-import de.ben_kostka.benchesster.model.Request;
+import de.ben_kostka.benchesster.model.GameRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RequestRepository extends JpaRepository<Request, Long> {
+public interface GameRequestRepository extends JpaRepository<GameRequest, Long> {
 }
