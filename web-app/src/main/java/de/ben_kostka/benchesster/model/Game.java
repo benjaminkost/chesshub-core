@@ -31,10 +31,10 @@ public class Game {
 	private String moves;
 	@Column(columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
 	private String result;
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="white_user_id")
 	private User white_user;
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="black_user_id")
 	private User black_user;
 	@Column
@@ -43,6 +43,6 @@ public class Game {
 	private String white_player_name;
 	@Column(columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
 	private String comment;
-	@OneToMany(mappedBy = "game", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<GameRequest> requests;
 }
