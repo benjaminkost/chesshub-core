@@ -63,4 +63,4 @@ $RECYCLE.BIN/
 *.png
 
 # huggingface datasets
-/datasets
+**/datasets/
