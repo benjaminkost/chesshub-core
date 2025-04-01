@@ -38,7 +38,7 @@ public class User {
   @Column
   private String phone;
 
-  @ManyToMany
+  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
   @JoinTable(
           name = "user_has_teams", // Name der Zwischentabelle
           joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), // Spalte, die auf die User-Entität verweist
