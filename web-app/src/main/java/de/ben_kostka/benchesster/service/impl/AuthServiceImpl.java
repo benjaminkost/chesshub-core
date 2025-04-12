@@ -3,10 +3,12 @@ package de.ben_kostka.benchesster.service.impl;
 import de.ben_kostka.benchesster.exception.APIException;
 import de.ben_kostka.benchesster.model.Role;
 import de.ben_kostka.benchesster.model.User;
+import de.ben_kostka.benchesster.payload.AuthResponseDto;
 import de.ben_kostka.benchesster.payload.LoginDto;
 import de.ben_kostka.benchesster.payload.RegisterDto;
 import de.ben_kostka.benchesster.repository.RoleRepository;
 import de.ben_kostka.benchesster.repository.UserRepository;
+import de.ben_kostka.benchesster.security.JWTGenerator;
 import de.ben_kostka.benchesster.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,32 +25,40 @@ import java.util.Set;
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    private AuthenticationManager authenticationManager;
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JWTGenerator jwtGenerator;
 
+    @Autowired
     public AuthServiceImpl(AuthenticationManager authenticationManager,
                            UserRepository userRepository,
                            RoleRepository roleRepository,
-                           PasswordEncoder passwordEncoder) {
+                           PasswordEncoder passwordEncoder,
+                           JWTGenerator jwtGenerator) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtGenerator = jwtGenerator;
     }
 
     @Override
-    public String login(LoginDto loginDto) {
-        Authentication authentication  = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+    public AuthResponseDto login(LoginDto loginDto) {
+        Authentication authentication  = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
                 loginDto.getUsernameOrEmail(), loginDto.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return "User Logged-in successfully";
+
+        String token = jwtGenerator.generateToken(authentication);
+
+        return new AuthResponseDto(token);
     }
 
     @Override
-    public String register(RegisterDto registerDto) {
+    public RegisterDto register(RegisterDto registerDto) {
         // add check for username exist in database
         if (userRepository.existsByUsername(registerDto.getUsername())) {
             throw new APIException(HttpStatus.BAD_REQUEST, "Username is already exists!");
@@ -76,13 +86,14 @@ public class AuthServiceImpl implements AuthService {
             roleRepository.save(role);
             userRole = roleRepository.findByName("ROLE_USER").get();
         }else{
-            roleRepository.findByName("ROLE_USER").get(); // muss überarbeitet werden werden
+            roleRepository.findByName("ROLE_USER").get(); // TODO: muss überarbeitet werden werden
         }
         roles.add(userRole);
         user.setRoles(roles);
 
         userRepository.save(user);
 
-        return "User registered successfully";
+        //return "User registered successfully";
+        return registerDto;
     }
 }
