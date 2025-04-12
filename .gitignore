@@ -64,3 +64,6 @@ $RECYCLE.BIN/
 
 # huggingface datasets
 **/datasets/
+
+# secret properties
+**/.env
