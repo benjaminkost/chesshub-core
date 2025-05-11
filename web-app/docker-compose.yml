@@ -1,5 +1,5 @@
 services:
-  mysql1: #Datenbank
+  mysql1: #Database
     image: mysql
     container_name: mysql1
     ports:
@@ -24,9 +24,10 @@ services:
     ports:
       - "8081:80"
 
-  app:
+  chesshub-core:
     build: .
-    container_name: BenChessterApp
+    container_name: ChessHubApp
+    image: ${DOCKER_USERNAME}/chesshub-core:${DOCKER_IMAGE_VERSION}
     links:
       - mysql1
     ports:
