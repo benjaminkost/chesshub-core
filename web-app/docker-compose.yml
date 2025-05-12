@@ -3,12 +3,12 @@ services:
     image: mysql
     container_name: mysql1
     ports:
-      - "3308:3306" #Container ist wie WM mit eigenem Port zur Kommunikation
+      - "3308:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=chessmanagement  # Erstelle eine Standard-Datenbank
-#    volumes:
-#      - ./data:/var/lib/mysql # erstellt Ordner zur persistenten Speicherung von Tabellen
+      - MYSQL_DATABASE=chessmanagement
+    volumes:
+      - ./data:/var/lib/mysql
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 10s
@@ -20,13 +20,18 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: myadmin
     links:
-      - mysql1:db #Darf auf die Container-Datenbank zugreifen
+      - mysql1:db
     ports:
       - "8081:80"
 
-  chesshub-core:
-    build: .
-    container_name: ChessHubApp
+  chesshub-core: # web-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+      platforms:
+        - linux/amd64
+        - linux/arm64
+    container_name: chesshub-core
     image: ${DOCKER_USERNAME}/chesshub-core:${DOCKER_IMAGE_VERSION}
     links:
       - mysql1
