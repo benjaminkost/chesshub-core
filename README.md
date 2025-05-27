@@ -1,6 +1,7 @@
 # Chesshub-core
 ## Overview
 This repository is part of a project called ChessHub. The ChessHub project is build with a Microservice-Architecture.
+
 The chesshub-core repository defines the service which is responsible for User-, Team-, Club- and Game-Management. 
 ## Installation
 ### Prerequisites
