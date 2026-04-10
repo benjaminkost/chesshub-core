@@ -1,6 +1,6 @@
 openapi: 3.0.2
 servers:
-  - url: /benchesster.ben_kostka.de
+  - url: /chesshub-core.app
 info:
   description: |-
     This is a ChessGameManagement Server based on the OpenAPI 3.0 specification. 

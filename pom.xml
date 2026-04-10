@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>de.ben-kostka</groupId>
-    <artifactId>BenChesster</artifactId>
+    <artifactId>chesshub-core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <modules>
@@ -21,7 +21,7 @@
 
 
 
-    <name>BenChesster</name>
+    <name>chesshub</name>
     <description>Demo project for Spring Boot</description>
     <url/>
     <licenses>

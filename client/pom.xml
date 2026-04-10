@@ -8,7 +8,7 @@
 
     <parent>
         <groupId>de.ben-kostka</groupId>
-        <artifactId>BenChesster</artifactId>
+        <artifactId>chesshub-core</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
@@ -16,7 +16,7 @@
         <maven.compiler.source>20</maven.compiler.source>
         <maven.compiler.target>20</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <base-package>de.ben_kostka.benchesster</base-package>
+        <base-package>de.ben_kostka.chesshub_core</base-package>
         <java.version>17</java.version>
         <swagger-annotations-version>1.5.8</swagger-annotations-version>
         <jersey-version>2.35</jersey-version>
