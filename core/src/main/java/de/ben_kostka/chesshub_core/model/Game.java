@@ -19,17 +19,17 @@ public class Game {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private Long id;
-	@Column(columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
+	@Column(columnDefinition = "varchar(45) DEFAULT NULL")
 	private Date date;
-	@Column(columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
-	private String round;
-	@Column(columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
+	@Column(columnDefinition = "varchar(45) DEFAULT NULL")
+	private int round;
+	@Column(columnDefinition = "varchar(45) DEFAULT NULL")
 	private String event;
-	@Column(columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
+	@Column(columnDefinition = "varchar(45) DEFAULT NULL")
 	private String site;
-	@Column(columnDefinition = "mediumtext DEFAULT NULL", nullable = true)
+	@Column(columnDefinition = "mediumtext DEFAULT NULL")
 	private String moves;
-	@Column(columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
+	@Column(columnDefinition = "varchar(45) DEFAULT NULL")
 	private String result;
 	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="white_user_id")
@@ -41,7 +41,7 @@ public class Game {
 	private String black_player_name;
 	@Column
 	private String white_player_name;
-	@Column(columnDefinition = "varchar(45) DEFAULT NULL", nullable = true)
+	@Column(columnDefinition = "varchar(45) DEFAULT NULL")
 	private String comment;
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<GameRequest> requests;
