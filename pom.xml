@@ -13,6 +13,12 @@
     <artifactId>chesshub-core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+    <properties>
+        <java.version>23</java.version>
+        <maven.compiler.source>23</maven.compiler.source>
+        <maven.compiler.target>23</maven.compiler.target>
+    </properties>
+
     <modules>
         <module>api</module>
         <module>client</module>
