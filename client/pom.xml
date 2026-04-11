@@ -4,20 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>client</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <parent>
         <groupId>de.ben-kostka</groupId>
         <artifactId>chesshub-core</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <properties>
-        <maven.compiler.source>20</maven.compiler.source>
-        <maven.compiler.target>20</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <base-package>de.ben_kostka.chesshub_core</base-package>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <swagger-annotations-version>1.5.8</swagger-annotations-version>
         <jersey-version>2.35</jersey-version>
         <jackson-version>2.15.2</jackson-version>
@@ -62,19 +62,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
-        <!-- dependencies are needed for the client being generated -->
-
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
             <version>${swagger-annotations-version}</version>
         </dependency>
-
-        <!-- You can find the dependencies for the library configuration you chose by looking in JavaClientCodegen.
-             Then find the corresponding dependency on Maven Central, and set the versions in the property section below -->
-
-        <!-- HTTP client: jersey-client -->
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-client</artifactId>
@@ -215,39 +207,6 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
-           <!-- <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>7.10.0</version>
-                <executions>
-                    <execution>
-                        <id>client</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            &lt;!&ndash; specify the OpenAPI spec &ndash;&gt;
-                            <inputSpec>${project.parent.basedir}/api/src/main/resources/openapi.yaml</inputSpec>
-
-                            &lt;!&ndash; target to generate java client code &ndash;&gt;
-                            <generatorName>java</generatorName>
-
-                            &lt;!&ndash; pass any necessary config options &ndash;&gt;
-                            <configOptions>
-                                <dateLibrary>joda</dateLibrary>
-                            </configOptions>
-
-                            &lt;!&ndash; override the default library to jersey2 &ndash;&gt;
-                            <library>jersey2</library>
-
-                            <packageName>${base-package}.client</packageName>
-                            <apiPackage>${base-package}.client.api</apiPackage>
-                            <modelPackage>${base-package}.client.model</modelPackage>
-                            <invokerPackage>${base-package}.client</invokerPackage>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>-->
         </plugins>
     </build>
 </project>
