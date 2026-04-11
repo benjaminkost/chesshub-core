@@ -66,3 +66,6 @@ $RECYCLE.BIN/
 
 # secret properties
 **/.env
+
+# All backup data for mysql database
+web-app/data/**
