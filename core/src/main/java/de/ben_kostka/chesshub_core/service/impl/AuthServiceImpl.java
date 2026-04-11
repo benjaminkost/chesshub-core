@@ -3,9 +3,9 @@ package de.ben_kostka.chesshub_core.service.impl;
 import de.ben_kostka.chesshub_core.exception.APIException;
 import de.ben_kostka.chesshub_core.model.Role;
 import de.ben_kostka.chesshub_core.model.User;
-import de.ben_kostka.chesshub_core.payload.AuthResponseDto;
-import de.ben_kostka.chesshub_core.payload.LoginDto;
-import de.ben_kostka.chesshub_core.payload.RegisterDto;
+import de.ben_kostka.chesshub_core.api.dto.LoginRequest;
+import de.ben_kostka.chesshub_core.api.dto.RegisterRequest;
+import de.ben_kostka.chesshub_core.api.dto.UserSimple;
 import de.ben_kostka.chesshub_core.repository.RoleRepository;
 import de.ben_kostka.chesshub_core.repository.UserRepository;
 import de.ben_kostka.chesshub_core.security.JWTGenerator;
@@ -45,7 +45,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public AuthResponseDto login(LoginDto loginDto) {
+    public AuthResult login(LoginRequest loginDto) {
         Authentication authentication  = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                 loginDto.getUsernameOrEmail(), loginDto.getPassword()));
@@ -53,18 +53,24 @@ public class AuthServiceImpl implements AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String token = jwtGenerator.generateToken(authentication);
+        
+        User userEntity = userRepository.findByUsernameOrEmail(loginDto.getUsernameOrEmail(), loginDto.getUsernameOrEmail())
+                .orElseThrow(() -> new APIException(HttpStatus.NOT_FOUND, "User not found"));
+                
+        UserSimple userSimple = new UserSimple();
+        userSimple.setId(userEntity.getId());
+        userSimple.setName(userEntity.getFirstName() + " " + userEntity.getLastName());
+        userSimple.setUserName(userEntity.getUsername());
 
-        return new AuthResponseDto(token);
+        return new AuthResult(token, userSimple);
     }
 
     @Override
-    public RegisterDto register(RegisterDto registerDto) {
-        // add check for username exist in database
-        if (userRepository.existsByUsername(registerDto.getUsername())) {
+    public UserSimple register(RegisterRequest registerDto) {
+        if (userRepository.existsByUsername(registerDto.getUserName())) {
             throw new APIException(HttpStatus.BAD_REQUEST, "Username is already exists!");
         }
 
-        // add check for email exists in database
         if (userRepository.existsByEmail(registerDto.getEmail())) {
             throw new APIException(HttpStatus.BAD_REQUEST, "Email is already exists!");
         }
@@ -72,28 +78,26 @@ public class AuthServiceImpl implements AuthService {
         User user = new User();
         user.setFirstName(registerDto.getFirstName());
         user.setLastName(registerDto.getLastName());
-        user.setUsername(registerDto.getUsername());
+        user.setUsername(registerDto.getUserName());
         user.setEmail(registerDto.getEmail());
-        user.setPhone(registerDto.getPhone());
+        user.setPhone(registerDto.getPhoneNumber()); // Note: using phoneNumber from RegisterRequest
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
 
         Set<Role> roles = new HashSet<>();
-        Role userRole = null;
-
-        if (roleRepository.findByName("ROLE_USER").isEmpty()) {
+        Role userRole = roleRepository.findByName("ROLE_USER").orElseGet(() -> {
             Role role = new Role();
             role.setName("ROLE_USER");
-            roleRepository.save(role);
-            userRole = roleRepository.findByName("ROLE_USER").get();
-        }else{
-            roleRepository.findByName("ROLE_USER").get(); // TODO: muss überarbeitet werden werden
-        }
+            return roleRepository.save(role);
+        });
         roles.add(userRole);
         user.setRoles(roles);
 
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
 
-        //return "User registered successfully";
-        return registerDto;
+        UserSimple userSimple = new UserSimple();
+        userSimple.setId(savedUser.getId());
+        userSimple.setName(savedUser.getFirstName() + " " + savedUser.getLastName());
+        userSimple.setUserName(savedUser.getUsername());
+        return userSimple;
     }
 }

@@ -1,9 +1,9 @@
 package de.ben_kostka.chesshub_core.controller;
 
 import com.github.javafaker.Faker;
-import de.ben_kostka.chesshub_core.payload.AuthResponseDto;
-import de.ben_kostka.chesshub_core.payload.LoginDto;
-import de.ben_kostka.chesshub_core.payload.RegisterDto;
+import de.ben_kostka.chesshub_core.api.dto.LoginRequest;
+import de.ben_kostka.chesshub_core.api.dto.RegisterRequest;
+import de.ben_kostka.chesshub_core.api.dto.UserSimple;
 import de.ben_kostka.chesshub_core.service.AuthService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -48,14 +48,14 @@ public class AuthControllerTests  {
     @Test
     public void register_CorrectUser_ReturnsUser() throws Exception {
         // Give
-        RegisterDto registerDto = new RegisterDto();
+        RegisterRequest registerDto = new RegisterRequest();
         registerDto.setFirstName(faker.name().firstName());
         registerDto.setLastName(faker.name().lastName());
-        registerDto.setUsername(faker.name().username());
+        registerDto.setUserName(faker.name().username());
         registerDto.setEmail(faker.internet().emailAddress());
         registerDto.setPassword(faker.internet().password());
 
-        given(authService.register(ArgumentMatchers.any(RegisterDto.class)))
+        given(authService.register(ArgumentMatchers.any(RegisterRequest.class)))
                 .willAnswer(invocation -> invocation.getArgument(0));
 
         // When
@@ -68,7 +68,7 @@ public class AuthControllerTests  {
                 MockMvcResultMatchers.status().isCreated(),
                 MockMvcResultMatchers.jsonPath("$.firstName").value(registerDto.getFirstName()),
                 MockMvcResultMatchers.jsonPath("$.lastName").value(registerDto.getLastName()),
-                MockMvcResultMatchers.jsonPath("$.username").value(registerDto.getUsername()),
+                MockMvcResultMatchers.jsonPath("$.username").value(registerDto.getUserName()),
                 MockMvcResultMatchers.jsonPath("$.email").value(registerDto.getEmail())
         ).andDo(MockMvcResultHandlers.print());
     }
@@ -76,24 +76,33 @@ public class AuthControllerTests  {
     @Test
     public void login_CorrectUser_ReturnsUser() throws Exception {
         // Give
-        LoginDto logindto = new LoginDto();
-        logindto.setUsernameOrEmail(faker.internet().emailAddress());
-        logindto.setPassword(faker.internet().password());
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setUsernameOrEmail(faker.internet().emailAddress());
+        loginRequest.setPassword(faker.internet().password());
 
-        AuthResponseDto authResponseDto = new AuthResponseDto(faker.name().firstName());
+        UserSimple userSimple = new UserSimple();
+        userSimple.setId(1L);
+        userSimple.setName(faker.name().fullName());
+        userSimple.setUserName(faker.name().username());
 
-        given(authService.login(ArgumentMatchers.any(LoginDto.class)))
-            .willReturn(authResponseDto);
+        AuthService.AuthResult authResult = new AuthService.AuthResult("fake-jwt-token", userSimple);
+
+        given(authService.login(ArgumentMatchers.any(LoginRequest.class)))
+            .willReturn(authResult);
 
         // When
         ResultActions response = mockMvc.perform(MockMvcRequestBuilders.post("/api/auth/login")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(logindto)));
+                .content(objectMapper.writeValueAsString(loginRequest)));
 
         // Then
         response.andExpectAll(
                 MockMvcResultMatchers.status().isOk(),
-                MockMvcResultMatchers.jsonPath("$.accessToken").value(authResponseDto.getAccessToken())
-        );
+                MockMvcResultMatchers.cookie().exists("token"),
+                MockMvcResultMatchers.cookie().httpOnly("token", true),
+                MockMvcResultMatchers.jsonPath("$.id").value(userSimple.getId()),
+                MockMvcResultMatchers.jsonPath("$.userName").value(userSimple.getUserName()),
+                MockMvcResultMatchers.jsonPath("$.name").value(userSimple.getName())
+        ).andDo(MockMvcResultHandlers.print());
     }
 }
