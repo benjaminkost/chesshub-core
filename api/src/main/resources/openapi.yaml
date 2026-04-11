@@ -477,6 +477,7 @@ components:
       properties:
         id:
           type: integer
+          format: int64
         name:
           type: string
         userName:
@@ -511,10 +512,12 @@ components:
           type: array
           items:
             type: integer
+            format: int64
         teamIds:
           type: array
           items:
             type: integer
+            format: int64
 
     ClubSimple:
       type: object
@@ -527,6 +530,7 @@ components:
           type: string
         adminId:
           type: integer
+          format: int64
 
     ClubMember:
       type: object
