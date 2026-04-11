@@ -54,7 +54,7 @@
                             <inputSpec>${project.basedir}/src/main/resources/openapi.yaml</inputSpec>
                             <generatorName>spring</generatorName>
                             <apiPackage>de.ben_kostka.chesshub_core.api</apiPackage>
-                            <modelPackage>de.ben_kostka.chesshub_core.model</modelPackage>
+                            <modelPackage>de.ben_kostka.chesshub_core.api.dto</modelPackage>
                             <configOptions>
                                 <interfaceOnly>true</interfaceOnly>
                                 <useSpringBoot3>true</useSpringBoot3>
