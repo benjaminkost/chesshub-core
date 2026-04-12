@@ -5,14 +5,22 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.junit.jupiter.Container;
 import org.flywaydb.core.Flyway;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import javax.sql.DataSource;
+
 //see: https://www.youtube.com/watch?v=98t0WIWCnjc&list=PLeIYyC714HvbVGQJ_L3QW-acmFj2tDx1l&index=110 127-133
-@Testcontainers
 public abstract class AbstractTestcontainers {
+
+    protected static final MySQLContainer<?> mysqlContainer =
+            new MySQLContainer<>("mysql:8.0")
+            .withDatabaseName("chessmanagement")
+            .withUsername("root")
+            .withPassword("root");
+
+    static {
+        mysqlContainer.start();
+    }
 
     @BeforeAll
     static void beforeAll() {
@@ -24,13 +32,6 @@ public abstract class AbstractTestcontainers {
                 ).load();
         flyway.migrate();
     }
-
-    @Container
-    protected static final MySQLContainer<?> mysqlContainer =
-            new MySQLContainer<>("mysql:8.0")
-            .withDatabaseName("chessmanagement")
-            .withUsername("root")
-            .withPassword("root");
 
     @DynamicPropertySource
     private static void registerDataSourceProperties(DynamicPropertyRegistry registry) {

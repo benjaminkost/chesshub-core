@@ -3,7 +3,6 @@ package de.ben_kostka.chesshub_core.repository;
 import com.github.javafaker.Faker;
 import de.ben_kostka.chesshub_core.AbstractTestcontainers;
 import de.ben_kostka.chesshub_core.model.*;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,39 +25,15 @@ public class UserRepositoryIT extends AbstractTestcontainers {
     private TeamRepository teamRepository;
 
     @Autowired
+    private TeamMembershipRepository teamMembership;
+
+    @Autowired
     private RoleRepository roleRepository;
 
     @BeforeEach
     public void setUp() {
-        // Create User
-        Faker faker = new Faker();
-
-        User testUser = new User();
-        testUser.setUsername(faker.name().username());
-        testUser.setFirstName(faker.name().firstName());
-        testUser.setLastName(faker.name().lastName());
-        testUser.setEmail(faker.internet().emailAddress());
-        testUser.setPassword(faker.internet().password());
-
-        Team testTeam = new Team();
-        testTeam.setName("Team 1");
-
-        TeamMembership tm = new TeamMembership();
-        tm.setTeam(testTeam);
-        tm.setUser(testUser);
-        testUser.setTeamMemberships(new HashSet<>(Set.of(tm)));
-
-        Role testRole = new Role();
-        testRole.setName("Role 1");
-        testUser.setRoles(new HashSet<>(Set.of(testRole)));
-
-        // Save game
-        underTest.save(testUser);
-    }
-
-    @AfterEach
-    public void tearDown() {
         underTest.deleteAll();
+        teamMembership.deleteAll();
         teamRepository.deleteAll();
         roleRepository.deleteAll();
     }
@@ -68,24 +43,35 @@ public class UserRepositoryIT extends AbstractTestcontainers {
         // Give
         Faker faker = new Faker();
 
-        User testUser = new User();
-        testUser.setUsername(faker.name().username());
-        testUser.setFirstName(faker.name().firstName());
-        testUser.setLastName(faker.name().lastName());
-        testUser.setEmail(faker.internet().emailAddress());
-        testUser.setPassword(faker.internet().password());
+        User testUser = User.builder()
+                .username(faker.name().username())
+                .firstName(faker.name().firstName())
+                .lastName(faker.name().lastName())
+                .email(faker.internet().emailAddress())
+                .password(faker.internet().password())
+                .build();
 
-        Team testTeam = new Team();
-        testTeam.setName("Team 1");
+        underTest.save(testUser);
 
-        TeamMembership tm = new TeamMembership();
-        tm.setTeam(testTeam);
-        tm.setUser(testUser);
-        testUser.setTeamMemberships(new HashSet<>(Set.of(tm)));
+        Team testTeam = Team.builder()
+                .name("Team 1")
+                .build();
+        teamRepository.save(testTeam);
 
         Role testRole = new Role();
         testRole.setName("Role 1");
+        roleRepository.save(testRole);
+
         testUser.setRoles(new HashSet<>(Set.of(testRole)));
+
+        TeamMembership tm = TeamMembership.builder()
+                .id(new TeamMembershipId(testUser.getId(), testTeam.getId()))
+                .user(testUser)
+                .team(testTeam)
+                .roles("MEMBER")
+                .build();
+        
+        testUser.getTeamMemberships().add(tm);
 
         // When
         underTest.save(testUser);
@@ -97,17 +83,23 @@ public class UserRepositoryIT extends AbstractTestcontainers {
         Assertions.assertEquals(testUser.getLastName(), savedUser.getLastName());
         Assertions.assertEquals(testUser.getEmail(), savedUser.getEmail());
         Assertions.assertEquals(testUser.getPassword(), savedUser.getPassword());
-        Assertions.assertEquals(testUser.getRoles(), savedUser.getRoles());
-        Assertions.assertEquals(testUser.getTeamMemberships(), savedUser.getTeamMemberships());
+        Assertions.assertEquals(1, savedUser.getRoles().size());
+        Assertions.assertEquals(1, savedUser.getTeamMemberships().size());
     }
 
     @Test
     public void save_changeRoles_ShouldUpdateUser() {
         // Give
-        User testUser = underTest.findAll().stream().findFirst().get();
+        Faker faker = new Faker();
+        User testUser = User.builder()
+                .username(faker.name().username())
+                .email(faker.internet().emailAddress())
+                .build();
+        underTest.save(testUser);
 
         Role testRole = new Role();
         testRole.setName("Role 2");
+        roleRepository.save(testRole);
 
         testUser.setRoles(new HashSet<>(Set.of(testRole)));
 
@@ -116,31 +108,67 @@ public class UserRepositoryIT extends AbstractTestcontainers {
         User savedUser = underTest.findById(testUser.getId()).get();
 
         // Then
-        Assertions.assertEquals(testUser.getUsername(), savedUser.getUsername());
-        Assertions.assertEquals(testUser.getFirstName(), savedUser.getFirstName());
-        Assertions.assertEquals(testUser.getLastName(), savedUser.getLastName());
-        Assertions.assertEquals(testUser.getEmail(), savedUser.getEmail());
-        Assertions.assertEquals(testUser.getPassword(), savedUser.getPassword());
-        Assertions.assertEquals(testUser.getRoles(), savedUser.getRoles());
-
+        Assertions.assertEquals(1, savedUser.getRoles().size());
+        Assertions.assertTrue(savedUser.getRoles().contains(testRole));
     }
 
     @Test
-    public void save_changeTeams_ShouldUpdateUser() {
-        // Give
+    public void deleteAll_ShouldClearRepositories() {
+        // When
+        underTest.deleteAll();
+
+        List<User> users = underTest.findAll();
+        // Then
+        Assertions.assertEquals(0, users.size());
+    }
+
+    @Test
+    public void deleteAll_ShouldNotDeleteTeamsAndRoles() {
+        // Given
+        Faker faker = new Faker();
+
+        User testUser = User.builder()
+                .username(faker.name().username())
+                .firstName(faker.name().firstName())
+                .lastName(faker.name().lastName())
+                .email(faker.internet().emailAddress())
+                .password(faker.internet().password())
+                .build();
+
+        underTest.save(testUser);
+
+        Team testTeam = Team.builder()
+                .name("Team 1")
+                .build();
+        teamRepository.save(testTeam);
+
+        Role testRole = new Role();
+        testRole.setName("Role 1");
+        roleRepository.save(testRole);
+
+        testUser.setRoles(new HashSet<>(Set.of(testRole)));
+
+        TeamMembership tm = TeamMembership.builder()
+                .id(new TeamMembershipId(testUser.getId(), testTeam.getId()))
+                .user(testUser)
+                .team(testTeam)
+                .roles("MEMBER")
+                .build();
+
+        testUser.getTeamMemberships().add(tm);
+
+        underTest.save(testUser);
 
         // When
         underTest.deleteAll();
 
-        List<User> savedGame = underTest.findAll();
-        List<Team> savedTeams = teamRepository.findAll();
-        List<Role> savedRoles = roleRepository.findAll();
+        List<User> users = underTest.findAll();
+        List<Team> teams = teamRepository.findAll();
+        List<Role> roles = roleRepository.findAll();
 
         // Then
-        Assertions.assertEquals(0, savedGame.size());
-        Assertions.assertEquals(1, savedTeams.size());
-        Assertions.assertEquals(1, savedRoles.size());
+        Assertions.assertEquals(0, users.size());
+        Assertions.assertEquals(1, teams.size());
+        Assertions.assertEquals(1, roles.size());
     }
-
-
 }

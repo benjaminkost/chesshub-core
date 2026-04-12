@@ -1,26 +1,29 @@
 package de.ben_kostka.chesshub_core.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import java.util.*;
 
 /**
  * User
  */
-@Data
+@Getter
+@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(exclude = {"teamMemberships", "clubMemberships"})
 @Entity
 @Table
 public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @EqualsAndHashCode.Include
   private Long id;
 
   @Column
+  @EqualsAndHashCode.Include
   private String username;
 
   @Column
@@ -48,9 +51,11 @@ public class User {
   private String chesscomUsername;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  @Builder.Default
   private Set<TeamMembership> teamMemberships = new HashSet<>();
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  @Builder.Default
   private Set<ClubMembership> clubMemberships = new HashSet<>();
 
   @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
@@ -58,6 +63,7 @@ public class User {
           joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
   )
-  private Set<Role> roles;
+  @Builder.Default
+  private Set<Role> roles = new HashSet<>();
 }
 

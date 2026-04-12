@@ -1,23 +1,25 @@
 package de.ben_kostka.chesshub_core.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(exclude = {"requests"})
 @Entity
 @Table
 public class Game {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
+	@EqualsAndHashCode.Include
 	private Long id;
 	@Column(columnDefinition = "varchar(45) DEFAULT NULL")
 	private Date date;
@@ -44,7 +46,8 @@ public class Game {
 	@Column(columnDefinition = "varchar(45) DEFAULT NULL")
 	private String comment;
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<GameRequest> requests;
+	@Builder.Default
+	private List<GameRequest> requests = new java.util.ArrayList<>();
 
 	@Column
 	private String opening;

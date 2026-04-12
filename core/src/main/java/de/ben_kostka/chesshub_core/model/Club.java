@@ -1,19 +1,21 @@
 package de.ben_kostka.chesshub_core.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(exclude = {"clubMemberships", "president"})
 @Entity
 @Table
 public class Club {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include
 	private Long id;
 
 	@Column
@@ -26,7 +28,8 @@ public class Club {
 	@Column
 	private String address;
 
-	@OneToMany(mappedBy = "club", cascade = CascadeType.ALL, orphanRemoval = true)
-	private java.util.Set<ClubMembership> clubMemberships = new java.util.HashSet<>();
+  @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, orphanRemoval = true)
+  @Builder.Default
+  private java.util.Set<ClubMembership> clubMemberships = new java.util.HashSet<>();
 
 }

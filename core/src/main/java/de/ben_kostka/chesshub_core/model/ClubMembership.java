@@ -1,20 +1,23 @@
 package de.ben_kostka.chesshub_core.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
 
-@Data
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(exclude = {"user", "club"})
 @Entity
 @DynamicUpdate
 @Table(name = "club_membership")
 public class ClubMembership {
 
     @EmbeddedId
+    @EqualsAndHashCode.Include
     private ClubMembershipId id;
 
     @ManyToOne(fetch = FetchType.LAZY)

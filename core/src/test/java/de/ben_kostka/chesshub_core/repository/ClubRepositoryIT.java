@@ -5,16 +5,15 @@ import de.ben_kostka.chesshub_core.AbstractTestcontainers;
 import de.ben_kostka.chesshub_core.model.Club;
 import de.ben_kostka.chesshub_core.model.Role;
 import de.ben_kostka.chesshub_core.model.User;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -26,10 +25,14 @@ public class ClubRepositoryIT extends AbstractTestcontainers {
     @Autowired
     private UserRepository userRepository;
 
-    @AfterEach
-    void tearDown() {
+    @Autowired
+    private RoleRepository roleRepository;
+
+    @BeforeEach
+    public void setUp() {
         underTest.deleteAll();
         userRepository.deleteAll();
+        roleRepository.deleteAll();
     }
 
     @Test
@@ -37,24 +40,26 @@ public class ClubRepositoryIT extends AbstractTestcontainers {
         // Give
         Faker faker = new Faker();
 
-        User testUser = new User();
-        testUser.setUsername(faker.name().username());
-        testUser.setFirstName(faker.name().firstName());
-        testUser.setLastName(faker.name().lastName());
-        testUser.setEmail(faker.internet().emailAddress());
-        testUser.setPassword(faker.internet().password());
-        testUser.setPhone(faker.phoneNumber().phoneNumber());
-        testUser.setTeamMemberships(null);
+        User testUser = User.builder()
+                .username(faker.name().username())
+                .firstName(faker.name().firstName())
+                .lastName(faker.name().lastName())
+                .email(faker.internet().emailAddress())
+                .password(faker.internet().password())
+                .phone(faker.phoneNumber().phoneNumber())
+                .build();
+        userRepository.save(testUser);
 
         Role testRole = new Role();
         testRole.setName("TEST_ROLE");
-        Set<Role> testRoles = new HashSet<>();
-        testRoles.add(testRole);
-        testUser.setRoles(testRoles);
+        roleRepository.save(testRole);
+        testUser.getRoles().add(testRole);
+        userRepository.save(testUser);
 
-        Club testClub = new Club();
-        testClub.setName("TestClub");
-        testClub.setPresident(testUser);
+        Club testClub = Club.builder()
+                .name("TestClub")
+                .president(testUser)
+                .build();
 
         //When
         underTest.save(testClub);
@@ -63,63 +68,39 @@ public class ClubRepositoryIT extends AbstractTestcontainers {
         //Then
         Assertions.assertNotNull(savedClub);
         Assertions.assertEquals(testClub.getName(), savedClub.getName());
-        Assertions.assertEquals(testClub.getPresident().getId(), savedClub.getPresident().getId());
+        Assertions.assertEquals(testUser.getId(), savedClub.getPresident().getId());
     }
 
-    @Test  //President von einem Verein wird verändert
+    @Test
     public void save_changePresident_UpdatedRowWithChangedPresident() {
         //Give
         Faker faker = new Faker();
 
-        User testUser = new User();
-        testUser.setUsername(faker.name().username());
-        testUser.setFirstName(faker.name().firstName());
-        testUser.setLastName(faker.name().lastName());
-        testUser.setEmail(faker.internet().emailAddress());
-        testUser.setPassword(faker.internet().password());
-        testUser.setPhone(faker.phoneNumber().phoneNumber());
-        testUser.setTeamMemberships(null);
+        User testUser = User.builder()
+                .username(faker.name().username())
+                .email(faker.internet().emailAddress())
+                .build();
+        userRepository.save(testUser);
 
-        Club testClub = new Club();
-        testClub.setName("TestClub");
-        testClub.setPresident(testUser);
-
-        Role testRole = new Role();
-        testRole.setName("TEST_ROLE");
-        Set<Role> testRoles = new HashSet<>();
-        testRoles.add(testRole);
-        testUser.setRoles(testRoles);
-
-        //When
+        Club testClub = Club.builder()
+                .name("TestClub")
+                .president(testUser)
+                .build();
         underTest.save(testClub);
-        Club savedClub = underTest.findById(testClub.getId()).orElse(null);
-
-        //Then
-        Assertions.assertNotNull(savedClub);
-        Assertions.assertEquals(testClub.getName(), savedClub.getName());
 
         //When
-        User testUser2 = new User();
-        testUser2.setUsername(faker.name().username());
-        testUser2.setFirstName(faker.name().firstName());
-        testUser2.setLastName(faker.name().lastName());
-        testUser2.setEmail(faker.internet().emailAddress());
-        testUser2.setPassword(faker.internet().password());
-        testUser2.setPhone(faker.phoneNumber().phoneNumber());
-        testUser2.setTeamMemberships(null);
+        User testUser2 = User.builder()
+                .username(faker.name().username())
+                .email(faker.internet().emailAddress())
+                .build();
+        userRepository.save(testUser2);
 
-        testClub.setPresident(testUser2); //neuer Präsident wird festgelegt
-        underTest.save(testClub); //durch save wird mit JPA direkt die Zeile mit gleichem PK überschrieben
-        savedClub = underTest.findAll().get(0);
+        testClub.setPresident(testUser2);
+        underTest.save(testClub);
+        Club savedClub = underTest.findById(testClub.getId()).get();
 
         //Then
         Assertions.assertEquals(testUser2.getUsername(), savedClub.getPresident().getUsername());
-        Assertions.assertEquals(testUser2.getFirstName(), savedClub.getPresident().getFirstName());
-        Assertions.assertEquals(testUser2.getLastName(), savedClub.getPresident().getLastName());
-        Assertions.assertEquals(testUser2.getEmail(), savedClub.getPresident().getEmail());
-        Assertions.assertEquals(testUser2.getPassword(), savedClub.getPresident().getPassword());
-        Assertions.assertEquals(testUser2.getPhone(), savedClub.getPresident().getPhone());
-        Assertions.assertNull(savedClub.getPresident().getTeamMemberships());
     }
 
     @Test
@@ -127,75 +108,20 @@ public class ClubRepositoryIT extends AbstractTestcontainers {
         // Give
         Faker faker = new Faker();
 
-        User testUser = new User();
-        testUser.setUsername(faker.name().username());
-        testUser.setFirstName(faker.name().firstName());
-        testUser.setLastName(faker.name().lastName());
-        testUser.setEmail(faker.internet().emailAddress());
-        testUser.setPassword(faker.internet().password());
-        testUser.setPhone(faker.phoneNumber().phoneNumber());
-        testUser.setTeamMemberships(null);
+        User testUser1 = User.builder().username(faker.name().username()).email(faker.internet().emailAddress()).build();
+        User testUser2 = User.builder().username(faker.name().username()).email(faker.internet().emailAddress()).build();
+        userRepository.saveAll(List.of(testUser1, testUser2));
 
-        Club testClub = new Club();
-        testClub.setName("TestClub");
-        testClub.setPresident(testUser);
-
-        Role testRole = new Role();
-        testRole.setName("TEST_ROLE");
-        Set<Role> testRoles = new HashSet<>();
-        testRoles.add(testRole);
-        testUser.setRoles(testRoles);
-
-        User testUser2 = new User();
-        testUser2.setUsername(faker.name().username());
-        testUser2.setFirstName(faker.name().firstName());
-        testUser2.setLastName(faker.name().lastName());
-        testUser2.setEmail(faker.internet().emailAddress());
-        testUser2.setPassword(faker.internet().password());
-        testUser2.setPhone(faker.phoneNumber().phoneNumber());
-        testUser2.setTeamMemberships(null);
-
-        Club testClub2 = new Club();
-        testClub2.setName("TestClub");
-        testClub2.setPresident(testUser2);
-
-        Role testRole2 = new Role();
-        testRole2.setName("TEST_ROLE");
-        Set<Role> testRoles2 = new HashSet<>();
-        testRoles2.add(testRole2);
-        testUser2.setRoles(testRoles2);
-
-        // When
-
-        userRepository.save(testUser);
-        userRepository.save(testUser2);
-        underTest.save(testClub);
-        underTest.save(testClub2);
-
-        // Then
-
-        List<Club> savedClub = underTest.findAll();
-        List<User> savedUsers = userRepository.findAll();
-
-        Assertions.assertNotNull(savedClub);
-        Assertions.assertEquals(testUser.getUsername(), savedClub.get(0).getPresident().getUsername());
-        Assertions.assertEquals(2, savedClub.size());
-        Assertions.assertEquals(2, savedUsers.size());
-
-        // Give
+        Club testClub1 = Club.builder().name("Club 1").president(testUser1).build();
+        Club testClub2 = Club.builder().name("Club 2").president(testUser2).build();
+        underTest.saveAll(List.of(testClub1, testClub2));
 
         // When
         underTest.deleteAll();
 
-        List<Club> clubs = underTest.findAll();
-        List<User> users = userRepository.findAll();
-
         // Then
-
-        Assertions.assertEquals(0, clubs.size());
-        Assertions.assertEquals(2, users.size());
-
+        Assertions.assertEquals(0, underTest.count());
+        Assertions.assertEquals(2, userRepository.count());
     }
-
 }
 

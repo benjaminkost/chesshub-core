@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -27,9 +26,6 @@ import static org.mockito.Mockito.when;
 @AutoConfigureMockMvc(addFilters = false)
 @ExtendWith(MockitoExtension.class)
 public class ClubControllerTests {
-
-    @Value("${server.servlet.context-path}")
-    private String contextPath;
 
     @Autowired
     private MockMvc mockMvc;
@@ -66,8 +62,7 @@ public class ClubControllerTests {
         when(clubService.getAllClubs()).thenReturn(clubSimpleList);
 
         // When
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get(contextPath+"/clubs")
-                .contextPath(contextPath)
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/clubs")
                 .contentType(MediaType.APPLICATION_JSON));
 
         // Then
@@ -87,8 +82,7 @@ public class ClubControllerTests {
         when(clubService.getClubById(1L)).thenReturn(clubFull);
 
         // When
-        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get(contextPath+"/clubs/1")
-                .contextPath(contextPath)
+        ResultActions response = mockMvc.perform(MockMvcRequestBuilders.get("/clubs/1")
                 .contentType(MediaType.APPLICATION_JSON));
 
         // Then

@@ -1,5 +1,6 @@
 package de.ben_kostka.chesshub_core.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 import de.ben_kostka.chesshub_core.api.dto.LoginRequest;
 import de.ben_kostka.chesshub_core.api.dto.RegisterRequest;
@@ -11,7 +12,16 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @WebMvcTest(AuthController.class)
@@ -42,11 +52,17 @@ public class AuthControllerTests  {
         registerDto.setFirstName(faker.name().firstName());
         registerDto.setLastName(faker.name().lastName());
         registerDto.setUserName(faker.name().username());
+        registerDto.setUserName(faker.name().username());
         registerDto.setEmail(faker.internet().emailAddress());
         registerDto.setPassword(faker.internet().password());
 
+        UserSimple userSimple = new UserSimple();
+        userSimple.setId(1L);
+        userSimple.setName(registerDto.getFirstName()+" "+registerDto.getLastName());
+        userSimple.setUserName(registerDto.getUserName());
+
         given(authService.register(ArgumentMatchers.any(RegisterRequest.class)))
-                .willAnswer(invocation -> invocation.getArgument(0));
+                .willAnswer(invocation -> userSimple);
 
         // When
         ResultActions response = mockMvc.perform(MockMvcRequestBuilders.post("/auth/register")
@@ -56,10 +72,9 @@ public class AuthControllerTests  {
         // Then
         response.andExpectAll(
                 MockMvcResultMatchers.status().isCreated(),
-                MockMvcResultMatchers.jsonPath("$.firstName").value(registerDto.getFirstName()),
-                MockMvcResultMatchers.jsonPath("$.lastName").value(registerDto.getLastName()),
-                MockMvcResultMatchers.jsonPath("$.userName").value(registerDto.getUserName()),
-                MockMvcResultMatchers.jsonPath("$.email").value(registerDto.getEmail())
+                MockMvcResultMatchers.jsonPath("$.id").value(userSimple.getId()),
+                MockMvcResultMatchers.jsonPath("$.name").value(userSimple.getName()),
+                MockMvcResultMatchers.jsonPath("$.userName").value(userSimple.getUserName())
         ).andDo(print());
     }
 
