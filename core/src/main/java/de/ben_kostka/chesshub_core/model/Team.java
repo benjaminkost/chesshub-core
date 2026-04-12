@@ -28,5 +28,8 @@ public class Team {
 
   @OneToOne
   private User leader;
+
+  @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+  private java.util.Set<TeamMembership> teamMemberships = new java.util.HashSet<>();
 }
 

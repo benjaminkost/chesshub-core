@@ -34,7 +34,7 @@ public class GameRepositoryIT extends AbstractTestcontainers {
         Faker faker = new Faker();
         Game game = new Game();
         game.setDate(faker.date().birthday());
-        game.setRound("1");
+        game.setRound(1);
         game.setEvent(faker.book().title());
         game.setSite(faker.book().title());
         game.setMoves("1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nc3 Nc6 5. Bb5 Nf6 6. Nge2 Bg4 7. O-O e6 " +
@@ -84,7 +84,7 @@ public class GameRepositoryIT extends AbstractTestcontainers {
         Faker faker = new Faker();
         Game game = new Game();
         game.setDate(faker.date().birthday());
-        game.setRound("1");
+        game.setRound(1);
         game.setEvent(faker.book().title());
         game.setSite(faker.book().title());
         game.setMoves("1. e4 c6 2. d4 d5 3. exd5 cxd5 4. Nc3 Nc6 5. Bb5 Nf6 6. Nge2 Bg4 7. O-O e6 " +

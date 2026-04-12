@@ -23,4 +23,10 @@ public class Club {
 	@JoinColumn(name = "user_id")
 	private User president;
 
+	@Column
+	private String address;
+
+	@OneToMany(mappedBy = "club", cascade = CascadeType.ALL, orphanRemoval = true)
+	private java.util.Set<ClubMembership> clubMemberships = new java.util.HashSet<>();
+
 }

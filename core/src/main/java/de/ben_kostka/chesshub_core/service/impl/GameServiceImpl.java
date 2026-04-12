@@ -5,19 +5,24 @@ import de.ben_kostka.chesshub_core.api.dto.GameRequest;
 import de.ben_kostka.chesshub_core.exception.ResourceNotFoundException;
 import de.ben_kostka.chesshub_core.repository.GameRepository;
 import de.ben_kostka.chesshub_core.service.GameService;
+import de.ben_kostka.chesshub_core.repository.TeamRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.ZoneId;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GameServiceImpl implements GameService {
 
     private final GameRepository gameRepository;
+    private final TeamRepository teamRepository;
 
-    public GameServiceImpl(GameRepository gameRepository) {
+    public GameServiceImpl(GameRepository gameRepository, TeamRepository teamRepository) {
         this.gameRepository = gameRepository;
+        this.teamRepository = teamRepository;
     }
 
     @Override
@@ -32,6 +37,12 @@ public class GameServiceImpl implements GameService {
         gameEntity.setBlack_player_name(gameRequest.getBlackPlayerName());
         gameEntity.setEvent(gameRequest.getEvent());
         gameEntity.setMoves(gameRequest.getMoves());
+        
+        if (gameRequest.getTeamId() != null) {
+            de.ben_kostka.chesshub_core.model.Team team = teamRepository.findById(gameRequest.getTeamId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Team", "id", gameRequest.getTeamId().toString()));
+            gameEntity.setTeam(team);
+        }
         
         if (gameRequest.getDate() != null) {
             gameEntity.setDate(Date.from(gameRequest.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
@@ -48,6 +59,20 @@ public class GameServiceImpl implements GameService {
         return mapToDto(entity);
     }
 
+    @Override
+    public List<Game> getGamesByClub(Long clubId) {
+        return gameRepository.findByTeam_Club_Id(clubId).stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Game> getGamesByUser(Long userId) {
+        return gameRepository.findByWhiteUserOrBlackUser(userId).stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
+    }
+
     private Game mapToDto(de.ben_kostka.chesshub_core.model.Game entity) {
         Game dto = new Game();
         dto.setId(entity.getId());
@@ -56,11 +81,25 @@ public class GameServiceImpl implements GameService {
         if (entity.getDate() != null) {
             dto.setDate(LocalDate.ofInstant(entity.getDate().toInstant(), ZoneId.systemDefault()));
         }
-        dto.setRound(entity.getRound());
+        dto.setRound(entity.getRound() != 0 ? entity.getRound() : null);
         dto.setWhitePlayerName(entity.getWhite_player_name());
         dto.setBlackPlayerName(entity.getBlack_player_name());
         dto.setResult(entity.getResult());
         dto.setMoves(entity.getMoves());
+        dto.setOpening(entity.getOpening());
+        dto.setBoard(entity.getBoard());
+        
+        if (entity.getTeam() != null) {
+            dto.setTeamId(entity.getTeam().getId());
+            dto.setTeamName(entity.getTeam().getName());
+        }
+        
+        if (entity.getWhite_user() != null) {
+            dto.setWhitePlayerId(entity.getWhite_user().getId());
+        }
+        if (entity.getBlack_user() != null) {
+            dto.setBlackPlayerId(entity.getBlack_user().getId());
+        }
         return dto;
     }
 }

@@ -32,11 +32,11 @@ public class GameController implements GamesApi {
 
     @Override
     public ResponseEntity<java.util.List<Game>> getGamesByClub(Long clubId) {
-        return ResponseEntity.ok(java.util.Collections.emptyList());
+        return ResponseEntity.ok(gameService.getGamesByClub(clubId));
     }
 
     @Override
     public ResponseEntity<java.util.List<Game>> getGamesByUser(Long userId) {
-        return ResponseEntity.ok(java.util.Collections.emptyList());
+        return ResponseEntity.ok(gameService.getGamesByUser(userId));
     }
 }

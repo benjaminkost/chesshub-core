@@ -44,7 +44,7 @@ public class ClubRepositoryIT extends AbstractTestcontainers {
         testUser.setEmail(faker.internet().emailAddress());
         testUser.setPassword(faker.internet().password());
         testUser.setPhone(faker.phoneNumber().phoneNumber());
-        testUser.setTeams(null);
+        testUser.setTeamMemberships(null);
 
         Role testRole = new Role();
         testRole.setName("TEST_ROLE");
@@ -78,7 +78,7 @@ public class ClubRepositoryIT extends AbstractTestcontainers {
         testUser.setEmail(faker.internet().emailAddress());
         testUser.setPassword(faker.internet().password());
         testUser.setPhone(faker.phoneNumber().phoneNumber());
-        testUser.setTeams(null);
+        testUser.setTeamMemberships(null);
 
         Club testClub = new Club();
         testClub.setName("TestClub");
@@ -106,7 +106,7 @@ public class ClubRepositoryIT extends AbstractTestcontainers {
         testUser2.setEmail(faker.internet().emailAddress());
         testUser2.setPassword(faker.internet().password());
         testUser2.setPhone(faker.phoneNumber().phoneNumber());
-        testUser2.setTeams(null);
+        testUser2.setTeamMemberships(null);
 
         testClub.setPresident(testUser2); //neuer Präsident wird festgelegt
         underTest.save(testClub); //durch save wird mit JPA direkt die Zeile mit gleichem PK überschrieben
@@ -119,7 +119,7 @@ public class ClubRepositoryIT extends AbstractTestcontainers {
         Assertions.assertEquals(testUser2.getEmail(), savedClub.getPresident().getEmail());
         Assertions.assertEquals(testUser2.getPassword(), savedClub.getPresident().getPassword());
         Assertions.assertEquals(testUser2.getPhone(), savedClub.getPresident().getPhone());
-        Assertions.assertNull(savedClub.getPresident().getTeams());
+        Assertions.assertNull(savedClub.getPresident().getTeamMemberships());
     }
 
     @Test
@@ -134,7 +134,7 @@ public class ClubRepositoryIT extends AbstractTestcontainers {
         testUser.setEmail(faker.internet().emailAddress());
         testUser.setPassword(faker.internet().password());
         testUser.setPhone(faker.phoneNumber().phoneNumber());
-        testUser.setTeams(null);
+        testUser.setTeamMemberships(null);
 
         Club testClub = new Club();
         testClub.setName("TestClub");
@@ -153,7 +153,7 @@ public class ClubRepositoryIT extends AbstractTestcontainers {
         testUser2.setEmail(faker.internet().emailAddress());
         testUser2.setPassword(faker.internet().password());
         testUser2.setPhone(faker.phoneNumber().phoneNumber());
-        testUser2.setTeams(null);
+        testUser2.setTeamMemberships(null);
 
         Club testClub2 = new Club();
         testClub2.setName("TestClub");

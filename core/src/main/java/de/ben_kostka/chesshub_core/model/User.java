@@ -38,13 +38,20 @@ public class User {
   @Column
   private String phone;
 
-  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-  @JoinTable(
-          name = "user_has_teams", // Name der Zwischentabelle
-          joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), // Spalte, die auf die User-Entität verweist
-          inverseJoinColumns = @JoinColumn(name = "team_id", referencedColumnName = "id") // Spalte, die auf die Teams-Entität verweist
-  )
-  private Set<Team> teams = new HashSet<>();
+  @Column(name = "fide_id")
+  private String fideId;
+
+  @Column(name = "lichess_username")
+  private String lichessUsername;
+
+  @Column(name = "chesscom_username")
+  private String chesscomUsername;
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<TeamMembership> teamMemberships = new HashSet<>();
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<ClubMembership> clubMemberships = new HashSet<>();
 
   @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
   @JoinTable(name = "users_roles",

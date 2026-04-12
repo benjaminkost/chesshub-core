@@ -45,4 +45,14 @@ public class Game {
 	private String comment;
 	@OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<GameRequest> requests;
+
+	@Column
+	private String opening;
+
+	@Column
+	private String board;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "team_id")
+	private Team team;
 }

@@ -12,8 +12,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,19 +60,37 @@ public class UserServiceImpl implements UserService {
         dto.setEmail(userEntity.getEmail());
         dto.setPhoneNumber(userEntity.getPhone());
         
+        dto.setFideId(userEntity.getFideId());
+        dto.setLichessUsername(userEntity.getLichessUsername());
+        dto.setChesscomUsername(userEntity.getChesscomUsername());
+
         // Map roles to AppRole
         boolean isAdmin = userEntity.getRoles().stream().anyMatch(r -> r.getName().equals("ROLE_ADMIN"));
         dto.setAppRole(isAdmin ? AppRole.SUPER_ADMIN : AppRole.USER);
         
-        dto.setClubIds(new ArrayList<>());
-        dto.setTeamIds(userEntity.getTeams().stream().map(t -> t.getId()).collect(Collectors.toList()));
+        dto.setClubIds(userEntity.getClubMemberships().stream()
+                .map(cm -> cm.getClub().getId())
+                .collect(Collectors.toList()));
+        dto.setTeamIds(userEntity.getTeamMemberships().stream()
+                .map(tm -> tm.getTeam().getId())
+                .collect(Collectors.toList()));
         return dto;
     }
 
     @Override
     public List<ClubAffiliation> getMyClubs() {
-        // Current implementation: No explicit Club mapping inside User JPA yet.
-        // Needs proper schema changes for Club logic.
-        return Collections.emptyList();
+        de.ben_kostka.chesshub_core.model.User userEntity = getLoggedInUser();
+        return userEntity.getClubMemberships().stream().map(cm -> {
+            ClubAffiliation affiliation = new ClubAffiliation();
+            affiliation.setId(cm.getClub().getId());
+            affiliation.setName(cm.getClub().getName());
+            affiliation.setAddress(cm.getClub().getAddress());
+            affiliation.setStatus(de.ben_kostka.chesshub_core.api.dto.ClubMemberStatus.valueOf(cm.getStatus()));
+            if (cm.getClub().getPresident() != null) {
+                affiliation.setAdminId(cm.getClub().getPresident().getId());
+                affiliation.setAdminName(cm.getClub().getPresident().getFirstName() + " " + cm.getClub().getPresident().getLastName());
+            }
+            return affiliation;
+        }).collect(Collectors.toList());
     }
 }

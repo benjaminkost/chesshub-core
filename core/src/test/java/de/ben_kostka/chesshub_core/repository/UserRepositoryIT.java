@@ -43,7 +43,10 @@ public class UserRepositoryIT extends AbstractTestcontainers {
         Team testTeam = new Team();
         testTeam.setName("Team 1");
 
-        testUser.setTeams(new HashSet<>(Set.of(testTeam)));
+        TeamMembership tm = new TeamMembership();
+        tm.setTeam(testTeam);
+        tm.setUser(testUser);
+        testUser.setTeamMemberships(new HashSet<>(Set.of(tm)));
 
         Role testRole = new Role();
         testRole.setName("Role 1");
@@ -75,7 +78,10 @@ public class UserRepositoryIT extends AbstractTestcontainers {
         Team testTeam = new Team();
         testTeam.setName("Team 1");
 
-        testUser.setTeams(new HashSet<>(Set.of(testTeam)));
+        TeamMembership tm = new TeamMembership();
+        tm.setTeam(testTeam);
+        tm.setUser(testUser);
+        testUser.setTeamMemberships(new HashSet<>(Set.of(tm)));
 
         Role testRole = new Role();
         testRole.setName("Role 1");
@@ -92,7 +98,7 @@ public class UserRepositoryIT extends AbstractTestcontainers {
         Assertions.assertEquals(testUser.getEmail(), savedUser.getEmail());
         Assertions.assertEquals(testUser.getPassword(), savedUser.getPassword());
         Assertions.assertEquals(testUser.getRoles(), savedUser.getRoles());
-        Assertions.assertEquals(testUser.getTeams(), savedUser.getTeams());
+        Assertions.assertEquals(testUser.getTeamMemberships(), savedUser.getTeamMemberships());
     }
 
     @Test
