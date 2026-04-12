@@ -20,7 +20,7 @@
         <frontend-maven-plugin-version>1.15.0</frontend-maven-plugin-version>
         <node.version>v20.11.1</node.version>
         <npm.version>10.2.4</npm.version>
-        <npmName>@chesshub/chesshub-core-client</npmName>
+        <npmName>@benaurel/chesshub-core-client</npmName>
     </properties>
 
     <dependencies>
