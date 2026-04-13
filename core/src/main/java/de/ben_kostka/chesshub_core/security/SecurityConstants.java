@@ -5,7 +5,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SecurityConstants {
-    @Value("${security.jwt.expiration}")
-    public static long JWT_EXPIRATION;
+    @Value("${security.jwt.expiration:86400000}")
+    private long jwtExpiration;
 
+    public long getJwtExpiration() {
+        return jwtExpiration;
+    }
 }

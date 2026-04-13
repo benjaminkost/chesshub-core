@@ -1,11 +1,7 @@
-# Basisimage
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:21-jdk
 
-# Arbeitsverzeichnis im Container erstellen
 WORKDIR /app
 
-# Das JAR mit Abhängigkeiten ins Container-Verzeichnis kopieren
-COPY target/web-app-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY target/core-1.0.0.jar /app/app.jar
 
-# Spring Boot-Anwendung starten
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

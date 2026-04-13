@@ -44,3 +44,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql1:3306/chessmanagement
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    develop:
+      watch:
+        - action: rebuild
+          path: ./target/core-1.0.0.jar

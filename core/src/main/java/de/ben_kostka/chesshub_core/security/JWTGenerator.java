@@ -8,20 +8,26 @@ import java.security.Key;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-// https://github.com/teddysmithdev/pokemon-review-springboot/blob/master
-
 @Component
 public class JWTGenerator {
     private static final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    
+    private final SecurityConstants securityConstants;
+
+    @Autowired
+    public JWTGenerator(SecurityConstants securityConstants) {
+        this.securityConstants = securityConstants;
+    }
 
     public String generateToken(Authentication authentication) {
         String username = authentication.getName();
         Date currentDate = new Date();
-        Date expireDate = new Date(currentDate.getTime() + SecurityConstants.JWT_EXPIRATION);
+        Date expireDate = new Date(currentDate.getTime() + securityConstants.getJwtExpiration());
 
         String token = Jwts.builder()
                 .setSubject(username)

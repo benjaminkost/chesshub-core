@@ -59,7 +59,8 @@ paths:
             Set-Cookie:
               schema:
                 type: string
-                description: Clears the auth cookie
+                description: Clears the auth cookie by setting Max-Age=0
+                example: token=; Path=/; HttpOnly; Max-Age=0
         '401':
           $ref: '#/components/responses/Unauthorized'
         '500':
