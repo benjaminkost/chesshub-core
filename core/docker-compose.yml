@@ -1,7 +1,7 @@
 services:
-  mysql1: #Database
-    image: mysql
-    container_name: mysql1
+  mysql-db:
+    image: mysql:8.0
+    container_name: chesshub-mysql
     ports:
       - "3308:3306"
     environment:
@@ -10,21 +10,28 @@ services:
     volumes:
       - ./data:/var/lib/mysql
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 5s
       retries: 5
     restart: always
+    networks:
+      - chesshub-network
 
-  myadmin: #DBMS
+  phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: myadmin
-    links:
-      - mysql1:db
+    container_name: chesshub-phpmyadmin
+    environment:
+      - PMA_HOST=mysql-db
+      - PMA_PORT=3306
     ports:
       - "8081:80"
+    depends_on:
+      - mysql-db
+    networks:
+      - chesshub-network
 
-  chesshub-core: # web-service
+  chesshub-core:
     build:
       context: .
       dockerfile: Dockerfile
@@ -33,18 +40,27 @@ services:
         - linux/arm64
     container_name: chesshub-core
     image: ${DOCKER_USERNAME}/chesshub-core:${DOCKER_IMAGE_VERSION}
-    links:
-      - mysql1
     ports:
       - "8080:8080"
     depends_on:
-      mysql1:
+      mysql-db:
         condition: service_healthy
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql1:3306/chessmanagement
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-db:3306/chessmanagement
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - JWT_SECRET=your_very_secure_secret_key_here_must_be_long_enough
+      - JWT_EXPIRATION=86400000
+    networks:
+      - chesshub-network
     develop:
       watch:
         - action: rebuild
           path: ./target/core-1.0.0.jar
+
+networks:
+  chesshub-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
