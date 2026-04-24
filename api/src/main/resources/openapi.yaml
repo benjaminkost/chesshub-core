@@ -315,7 +315,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Game'
+                $ref: '#/components/schemas/GameDto'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -340,7 +340,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Game'
+                $ref: '#/components/schemas/GameDto'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -369,7 +369,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Game'
+                  $ref: '#/components/schemas/GameDto'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -398,7 +398,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Game'
+                  $ref: '#/components/schemas/GameDto'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -663,7 +663,7 @@ components:
           items:
             $ref: '#/components/schemas/TeamMember'
 
-    Game:
+    GameDto:
       type: object
       required: [id, moves]
       properties:
@@ -704,14 +704,29 @@ components:
         teamName:
           type: string
 
+    GamePlayer:
+      type: object
+      required: [firstName, lastName]
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        firstName:
+          type: string
+          example: 'Max'
+        lastName:
+          type: string
+          example: 'Mustermann'
+
     GameRequest:
       type: object
       required: [moves]
       properties:
-        whitePlayerName:
-          type: string
-        blackPlayerName:
-          type: string
+        whitePlayer:
+          $ref: '#/components/schemas/GamePlayer'
+        blackPlayer:
+          $ref: '#/components/schemas/GamePlayer'
         date:
           type: string
           format: date

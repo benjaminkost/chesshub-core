@@ -1,8 +1,10 @@
 package de.ben_kostka.chesshub_core.service.impl;
 
-import de.ben_kostka.chesshub_core.api.dto.Game;
+import de.ben_kostka.chesshub_core.api.dto.GameDto;
 import de.ben_kostka.chesshub_core.api.dto.GameRequest;
 import de.ben_kostka.chesshub_core.exception.ResourceNotFoundException;
+import de.ben_kostka.chesshub_core.model.Game;
+import de.ben_kostka.chesshub_core.model.User;
 import de.ben_kostka.chesshub_core.repository.GameRepository;
 import de.ben_kostka.chesshub_core.service.GameService;
 import de.ben_kostka.chesshub_core.repository.TeamRepository;
@@ -26,15 +28,31 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game createGame(GameRequest gameRequest) {
+    public GameDto createGame(GameRequest gameRequest) {
         if (gameRequest.getMoves() == null || gameRequest.getMoves().isEmpty()) {
             throw new IllegalArgumentException("Moves Data cannot be empty");
         }
 
         // Map directly from DTO to Entity
-        de.ben_kostka.chesshub_core.model.Game gameEntity = new de.ben_kostka.chesshub_core.model.Game();
-        gameEntity.setWhite_player_name(gameRequest.getWhitePlayerName());
-        gameEntity.setBlack_player_name(gameRequest.getBlackPlayerName());
+        Game gameEntity = new Game();
+        if (gameRequest.getWhitePlayer().getId() != null) {
+            User existingUserWhite = new User();
+            existingUserWhite.setId(gameRequest.getWhitePlayer().getId());
+            gameEntity.setWhite_user(existingUserWhite);
+        } else {
+            gameEntity.setWhite_user(null);
+            gameEntity.setBlack_player_name(gameRequest.getWhitePlayer().getLastName()+" "+gameRequest.getBlackPlayer().getLastName());
+        }
+
+        if (gameRequest.getBlackPlayer().getId() != null) {
+            User existingUserBlack = new User();
+            existingUserBlack.setId(gameRequest.getBlackPlayer().getId());
+            gameEntity.setBlack_user(existingUserBlack);
+        } else {
+            gameEntity.setBlack_user(null);
+            gameEntity.setBlack_player_name(gameRequest.getBlackPlayer().getFirstName()+" "+gameRequest.getBlackPlayer().getLastName());
+        }
+
         gameEntity.setEvent(gameRequest.getEvent());
         gameEntity.setMoves(gameRequest.getMoves());
         
@@ -48,33 +66,33 @@ public class GameServiceImpl implements GameService {
             gameEntity.setDate(Date.from(gameRequest.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         }
         
-        de.ben_kostka.chesshub_core.model.Game savedEntity = gameRepository.save(gameEntity);
+        Game savedEntity = gameRepository.save(gameEntity);
         return mapToDto(savedEntity);
     }
 
     @Override
-    public Game getGameById(Long gameId) {
-        de.ben_kostka.chesshub_core.model.Game entity = gameRepository.findById(gameId)
+    public GameDto getGameById(Long gameId) {
+        Game entity = gameRepository.findById(gameId)
                 .orElseThrow(() -> new ResourceNotFoundException("Game", "id", gameId.toString()));
         return mapToDto(entity);
     }
 
     @Override
-    public List<Game> getGamesByClub(Long clubId) {
+    public List<GameDto> getGamesByClub(Long clubId) {
         return gameRepository.findByTeam_Club_Id(clubId).stream()
                 .map(this::mapToDto)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<Game> getGamesByUser(Long userId) {
+    public List<GameDto> getGamesByUser(Long userId) {
         return gameRepository.findByWhiteUserOrBlackUser(userId).stream()
                 .map(this::mapToDto)
                 .collect(Collectors.toList());
     }
 
-    private Game mapToDto(de.ben_kostka.chesshub_core.model.Game entity) {
-        Game dto = new Game();
+    private GameDto mapToDto(Game entity) {
+        GameDto dto = new GameDto();
         dto.setId(entity.getId());
         dto.setEvent(entity.getEvent());
         dto.setSite(entity.getSite());
