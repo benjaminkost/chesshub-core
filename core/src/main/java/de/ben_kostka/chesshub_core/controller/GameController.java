@@ -1,7 +1,7 @@
 package de.ben_kostka.chesshub_core.controller;
 
 import de.ben_kostka.chesshub_core.api.GamesApi;
-import de.ben_kostka.chesshub_core.api.dto.Game;
+import de.ben_kostka.chesshub_core.api.dto.GameDto;
 import de.ben_kostka.chesshub_core.api.dto.GameRequest;
 import de.ben_kostka.chesshub_core.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,23 +20,23 @@ public class GameController implements GamesApi {
     }
 
     @Override
-    public ResponseEntity<Game> createGame(GameRequest gameRequest) {
-        Game gameResponse = gameService.createGame(gameRequest);
+    public ResponseEntity<GameDto> createGame(GameRequest gameRequest) {
+        GameDto gameResponse = gameService.createGame(gameRequest);
         return new ResponseEntity<>(gameResponse, HttpStatus.CREATED);
     }
     
     @Override
-    public ResponseEntity<Game> getGameById(Long gameId) {
+    public ResponseEntity<GameDto> getGameById(Long gameId) {
         return ResponseEntity.ok(gameService.getGameById(gameId));
     }
 
     @Override
-    public ResponseEntity<java.util.List<Game>> getGamesByClub(Long clubId) {
+    public ResponseEntity<java.util.List<GameDto>> getGamesByClub(Long clubId) {
         return ResponseEntity.ok(gameService.getGamesByClub(clubId));
     }
 
     @Override
-    public ResponseEntity<java.util.List<Game>> getGamesByUser(Long userId) {
+    public ResponseEntity<java.util.List<GameDto>> getGamesByUser(Long userId) {
         return ResponseEntity.ok(gameService.getGamesByUser(userId));
     }
 }
