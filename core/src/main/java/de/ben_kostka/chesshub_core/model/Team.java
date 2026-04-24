@@ -3,6 +3,9 @@ package de.ben_kostka.chesshub_core.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Team
  */
@@ -33,6 +36,6 @@ public class Team {
 
   @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
   @Builder.Default
-  private java.util.Set<TeamMembership> teamMemberships = new java.util.HashSet<>();
+  private List<TeamMembership> teamMemberships = new ArrayList<>();
 }
 

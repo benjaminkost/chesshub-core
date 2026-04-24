@@ -2,7 +2,7 @@ package de.ben_kostka.chesshub_core.service.impl;
 
 import de.ben_kostka.chesshub_core.api.dto.AppRole;
 import de.ben_kostka.chesshub_core.api.dto.ClubAffiliation;
-import de.ben_kostka.chesshub_core.api.dto.User;
+import de.ben_kostka.chesshub_core.api.dto.UserResponse;
 import de.ben_kostka.chesshub_core.api.dto.UserSimple;
 import de.ben_kostka.chesshub_core.exception.ResourceNotFoundException;
 import de.ben_kostka.chesshub_core.repository.UserRepository;
@@ -49,10 +49,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getCurrentUser() {
+    public UserResponse getCurrentUser() {
         de.ben_kostka.chesshub_core.model.User userEntity = getLoggedInUser();
         
-        User dto = new User();
+        UserResponse dto = new UserResponse();
         dto.setId(userEntity.getId());
         dto.setFirstName(userEntity.getFirstName());
         dto.setLastName(userEntity.getLastName());

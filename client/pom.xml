@@ -4,12 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>client</artifactId>
-    <version>1.0.0</version>
 
     <parent>
         <groupId>de.ben-kostka</groupId>
         <artifactId>chesshub-core</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.2</version>
     </parent>
 
     <properties>
@@ -20,6 +19,7 @@
         <frontend-maven-plugin-version>1.15.0</frontend-maven-plugin-version>
         <node.version>v20.11.1</node.version>
         <npm.version>10.2.4</npm.version>
+        <npmPackageVersion>1.0.1</npmPackageVersion>
         <npmName>@benaurel/chesshub-core-client</npmName>
     </properties>
 
@@ -72,7 +72,7 @@
                             <generateModelTests>false</generateModelTests>
                             <configOptions>
                                 <npmName>${npmName}</npmName>
-                                <npmVersion>${project.version}</npmVersion>
+                                <npmVersion>${npmPackageVersion}</npmVersion>
                                 <!--snapshot>true</snapshot-->
                                 <supportsES6>true</supportsES6>
                             </configOptions>

@@ -2,7 +2,7 @@ package de.ben_kostka.chesshub_core.controller;
 
 import de.ben_kostka.chesshub_core.api.UsersApi;
 import de.ben_kostka.chesshub_core.api.dto.ClubAffiliation;
-import de.ben_kostka.chesshub_core.api.dto.User;
+import de.ben_kostka.chesshub_core.api.dto.UserResponse;
 import de.ben_kostka.chesshub_core.api.dto.UserSimple;
 import de.ben_kostka.chesshub_core.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class UserController implements UsersApi {
     }
 
     @Override
-    public ResponseEntity<User> getCurrentUser() {
+    public ResponseEntity<UserResponse> getCurrentUser() {
         return ResponseEntity.ok(userService.getCurrentUser());
     }
 

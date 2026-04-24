@@ -99,7 +99,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UserResponse'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
@@ -267,7 +267,29 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Team'
+                $ref: '#/components/schemas/TeamDto'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /teams:
+    get:
+      tags: [Teams]
+      summary: Get all teams
+      operationId: getAllTeams
+      responses:
+        '200':
+          description: Details of teams
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamDto'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -484,7 +506,7 @@ components:
         userName:
           type: string
 
-    User:
+    UserResponse:
       type: object
       required: [id, firstName, lastName, userName, email, appRole]
       properties:
@@ -604,7 +626,9 @@ components:
         id:
           type: integer
           format: int64
-        name:
+        firstName:
+          type: string
+        lastName:
           type: string
         userName:
           type: string
@@ -613,7 +637,7 @@ components:
           items:
             $ref: '#/components/schemas/TeamRole'
 
-    Team:
+    TeamDto:
       type: object
       required: [id, clubId, name]
       properties:
@@ -630,7 +654,9 @@ components:
         adminId:
           type: integer
           format: int64
-        adminName:
+        adminFirstName:
+          type: string
+        adminLastName:
           type: string
         members:
           type: array
