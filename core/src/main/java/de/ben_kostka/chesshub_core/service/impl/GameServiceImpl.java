@@ -4,8 +4,9 @@ import de.ben_kostka.chesshub_core.api.dto.GameDto;
 import de.ben_kostka.chesshub_core.api.dto.GameRequest;
 import de.ben_kostka.chesshub_core.exception.ResourceNotFoundException;
 import de.ben_kostka.chesshub_core.model.Game;
-import de.ben_kostka.chesshub_core.model.User;
+import de.ben_kostka.chesshub_core.model.Team;
 import de.ben_kostka.chesshub_core.repository.GameRepository;
+import de.ben_kostka.chesshub_core.repository.UserRepository;
 import de.ben_kostka.chesshub_core.service.GameService;
 import de.ben_kostka.chesshub_core.repository.TeamRepository;
 import org.springframework.stereotype.Service;
@@ -21,10 +22,12 @@ public class GameServiceImpl implements GameService {
 
     private final GameRepository gameRepository;
     private final TeamRepository teamRepository;
+    private final UserRepository userRepository;
 
-    public GameServiceImpl(GameRepository gameRepository, TeamRepository teamRepository) {
+    public GameServiceImpl(GameRepository gameRepository, TeamRepository teamRepository, UserRepository userRepository) {
         this.gameRepository = gameRepository;
         this.teamRepository = teamRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -36,18 +39,16 @@ public class GameServiceImpl implements GameService {
         // Map directly from DTO to Entity
         Game gameEntity = new Game();
         if (gameRequest.getWhitePlayer().getId() != null) {
-            User existingUserWhite = new User();
-            existingUserWhite.setId(gameRequest.getWhitePlayer().getId());
-            gameEntity.setWhite_user(existingUserWhite);
+            gameEntity.setWhite_user(userRepository.getReferenceById(gameRequest.getWhitePlayer().getId()));
+            gameEntity.setWhite_player_name(gameRequest.getWhitePlayer().getFirstName()+" "+gameRequest.getWhitePlayer().getLastName());
         } else {
             gameEntity.setWhite_user(null);
-            gameEntity.setBlack_player_name(gameRequest.getWhitePlayer().getLastName()+" "+gameRequest.getBlackPlayer().getLastName());
+            gameEntity.setWhite_player_name(gameRequest.getWhitePlayer().getFirstName()+" "+gameRequest.getWhitePlayer().getLastName());
         }
 
         if (gameRequest.getBlackPlayer().getId() != null) {
-            User existingUserBlack = new User();
-            existingUserBlack.setId(gameRequest.getBlackPlayer().getId());
-            gameEntity.setBlack_user(existingUserBlack);
+            gameEntity.setBlack_user(userRepository.getReferenceById(gameRequest.getBlackPlayer().getId()));
+            gameEntity.setBlack_player_name(gameRequest.getBlackPlayer().getFirstName()+" "+gameRequest.getBlackPlayer().getLastName());
         } else {
             gameEntity.setBlack_user(null);
             gameEntity.setBlack_player_name(gameRequest.getBlackPlayer().getFirstName()+" "+gameRequest.getBlackPlayer().getLastName());
@@ -57,7 +58,7 @@ public class GameServiceImpl implements GameService {
         gameEntity.setMoves(gameRequest.getMoves());
         
         if (gameRequest.getTeamId() != null) {
-            de.ben_kostka.chesshub_core.model.Team team = teamRepository.findById(gameRequest.getTeamId())
+            Team team = teamRepository.findById(gameRequest.getTeamId())
                     .orElseThrow(() -> new ResourceNotFoundException("Team", "id", gameRequest.getTeamId().toString()));
             gameEntity.setTeam(team);
         }
