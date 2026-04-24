@@ -34,6 +34,8 @@ services:
   chesshub-core:
     build:
       context: .
+      args:
+        - PROJECT_VERSION=${DOCKER_IMAGE_VERSION}
       dockerfile: Dockerfile
       platforms:
         - linux/amd64
