@@ -103,8 +103,8 @@ public class AuthControllerTests  {
         // Then
         response.andExpectAll(
                 MockMvcResultMatchers.status().isOk(),
-                MockMvcResultMatchers.cookie().exists("token"),
-                MockMvcResultMatchers.cookie().httpOnly("token", true),
+                MockMvcResultMatchers.cookie().exists("chesshub_token"),
+                MockMvcResultMatchers.cookie().httpOnly("chesshub_token", true),
                 MockMvcResultMatchers.jsonPath("$.id").value(userSimple.getId()),
                 MockMvcResultMatchers.jsonPath("$.userName").value(userSimple.getUserName()),
                 MockMvcResultMatchers.jsonPath("$.name").value(userSimple.getName())
