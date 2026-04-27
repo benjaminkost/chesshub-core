@@ -4,6 +4,7 @@ import de.ben_kostka.chesshub_core.api.AuthApi;
 import de.ben_kostka.chesshub_core.api.dto.LoginRequest;
 import de.ben_kostka.chesshub_core.api.dto.RegisterRequest;
 import de.ben_kostka.chesshub_core.api.dto.UserSimple;
+import de.ben_kostka.chesshub_core.security.SecurityConstants;
 import de.ben_kostka.chesshub_core.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -14,23 +15,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AuthController implements AuthApi {
-    
+
+    private final SecurityConstants securityConstants;
     private final AuthService authService;
 
     @Autowired
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, SecurityConstants securityConstants) {
         this.authService = authService;
+        this.securityConstants = securityConstants;
     }
 
     @Override
     public ResponseEntity<UserSimple> login(LoginRequest loginRequest) {
         AuthService.AuthResult result = authService.login(loginRequest);
-        
-        ResponseCookie cookie = ResponseCookie.from("token", result.token())
+
+        ResponseCookie cookie = ResponseCookie.from("chesshub_token", result.token())
                 .httpOnly(true)
-                .secure(false) // Make true in production over HTTPS
+                .secure(false)
                 .path("/")
-                .maxAge(7 * 24 * 60 * 60) // 7 days
+                .maxAge(securityConstants.getJwtExpiration())
                 .build();
         
         return ResponseEntity.ok()
@@ -40,11 +43,11 @@ public class AuthController implements AuthApi {
 
     @Override
     public ResponseEntity<Void> logout() {
-        ResponseCookie cookie = ResponseCookie.from("token", "")
+        ResponseCookie cookie = ResponseCookie.from("chesshub_token", "")
                 .httpOnly(true)
                 .secure(false)
                 .path("/")
-                .maxAge(0) // Delete cookie
+                .maxAge(0)
                 .build();
         
         return ResponseEntity.ok()

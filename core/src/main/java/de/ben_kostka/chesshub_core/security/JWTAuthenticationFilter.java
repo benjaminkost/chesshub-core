@@ -42,7 +42,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     private String getJWTFromRequest(HttpServletRequest request) {
         if (request.getCookies() != null) {
             for (jakarta.servlet.http.Cookie cookie : request.getCookies()) {
-                if ("token".equals(cookie.getName())) {
+                if ("chesshub_token".equals(cookie.getName())) {
                     return cookie.getValue();
                 }
             }
