@@ -28,12 +28,13 @@ public class AuthController implements AuthApi {
     @Override
     public ResponseEntity<UserSimple> login(LoginRequest loginRequest) {
         AuthService.AuthResult result = authService.login(loginRequest);
+        long expirationTimeInSeconds = securityConstants.getJwtExpiration()/1000;
 
         ResponseCookie cookie = ResponseCookie.from("chesshub_token", result.token())
                 .httpOnly(true)
                 .secure(false)
                 .path("/")
-                .maxAge(securityConstants.getJwtExpiration())
+                .maxAge(expirationTimeInSeconds)
                 .build();
         
         return ResponseEntity.ok()
