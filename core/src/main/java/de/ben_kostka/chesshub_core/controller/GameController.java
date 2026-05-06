@@ -39,4 +39,9 @@ public class GameController implements GamesApi {
     public ResponseEntity<java.util.List<GameDto>> getGamesByUser(Long userId) {
         return ResponseEntity.ok(gameService.getGamesByUser(userId));
     }
+
+    @Override
+    public ResponseEntity<GameDto> updateGame(GameDto gameDto) {
+        return ResponseEntity.ok(gameService.updateDate(gameDto));
+    }
 }

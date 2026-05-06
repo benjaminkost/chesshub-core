@@ -5,6 +5,7 @@ import de.ben_kostka.chesshub_core.api.dto.GameRequest;
 import java.util.List;
 
 public interface GameService {
+    GameDto updateDate(GameDto gameDto);
     GameDto createGame(GameRequest gameRequest);
     GameDto getGameById(Long gameId);
     List<GameDto> getGamesByClub(Long clubId);
