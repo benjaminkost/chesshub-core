@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.ZoneId;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -157,6 +158,21 @@ public class GameServiceImpl implements GameService {
         return gamePlayer;
     }
 
+    private GamePlayer mapUnregisteredNameToGamePlayer(String fullPlayerName) {
+        GamePlayer gamePlayer = new GamePlayer();
+
+        String[] names = fullPlayerName.split(" ");
+        String lastName = names[names.length-1];
+        String firstNames = Arrays.stream(names)
+                .limit(names.length-1)
+                .collect(Collectors.joining(" "));
+
+        gamePlayer.setFirstName(firstNames);
+        gamePlayer.setLastName(lastName);
+
+        return gamePlayer;
+    }
+
     private GameDto mapToDto(Game entity) {
         GameDto dto = new GameDto();
         dto.setId(entity.getId());
@@ -168,9 +184,13 @@ public class GameServiceImpl implements GameService {
         dto.setRound(entity.getRound() != 0 ? entity.getRound() : null);
         if (entity.getWhite_user() != null) {
             dto.setWhitePlayer(mapUserToGamePlayer(entity.getWhite_user()));
+        } else {
+            dto.setWhitePlayer(mapUnregisteredNameToGamePlayer(entity.getWhite_player_name()));
         }
         if (entity.getBlack_user() != null) {
             dto.setBlackPlayer(mapUserToGamePlayer(entity.getBlack_user()));
+        } else {
+            dto.setBlackPlayer(mapUnregisteredNameToGamePlayer(entity.getBlack_player_name()));
         }
         dto.setResult(entity.getResult());
         dto.setMoves(entity.getMoves());
