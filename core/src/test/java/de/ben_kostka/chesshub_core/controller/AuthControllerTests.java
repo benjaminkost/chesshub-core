@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import de.ben_kostka.chesshub_core.api.dto.LoginRequest;
 import de.ben_kostka.chesshub_core.api.dto.RegisterRequest;
 import de.ben_kostka.chesshub_core.api.dto.UserSimple;
+import de.ben_kostka.chesshub_core.security.SecurityConstants;
 import de.ben_kostka.chesshub_core.service.AuthService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,9 @@ public class AuthControllerTests  {
 
     @MockBean
     private AuthService authService;
+
+    @MockBean
+    private SecurityConstants securityConstants;
 
     @Autowired
     private ObjectMapper objectMapper;
