@@ -7,7 +7,7 @@
     <parent>
         <groupId>de.ben-kostka</groupId>
         <artifactId>chesshub-core</artifactId>
-        <version>1.0.11-SNAPSHOT</version>
+        <version>1.0.13</version>
     </parent>
 
     <artifactId>api</artifactId>

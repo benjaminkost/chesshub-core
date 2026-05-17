@@ -36,23 +36,12 @@ public class GameServiceImpl implements GameService {
     private GameDto mapAndSave(GameDto gameDto) {
         Game gameEntity = new Game();
         gameEntity.setId(gameDto.getId());
-        if (gameDto.getWhitePlayer() != null && gameDto.getWhitePlayer().getId() != null) {
-            gameEntity.setWhite_user(userRepository.getReferenceById(gameDto.getWhitePlayer().getId()));
-            gameEntity.setWhite_player_name(gameDto.getWhitePlayer().getFirstName()+" "+gameDto.getWhitePlayer().getLastName());
-        } else {
-            gameEntity.setWhite_user(null);
-            gameEntity.setWhite_player_name(null);
-        }
 
-        if (gameDto.getBlackPlayer() != null) {
-            if (gameDto.getBlackPlayer().getId() != null) {
-                gameEntity.setBlack_user(userRepository.getReferenceById(gameDto.getBlackPlayer().getId()));
-            }
-            gameEntity.setBlack_player_name(gameDto.getBlackPlayer().getFirstName()+" "+gameDto.getBlackPlayer().getLastName());
-        } else {
-            gameEntity.setBlack_user(null);
-            gameEntity.setBlack_player_name(null);
-        }
+        // Map white player
+        mapPlayerToEntity(gameDto.getWhitePlayer(), gameEntity, true);
+
+        // Map black player
+        mapPlayerToEntity(gameDto.getBlackPlayer(), gameEntity, false);
 
         gameEntity.setResult(gameDto.getResult());
         gameEntity.setRound(gameDto.getRound() != null ? gameDto.getRound() : 0);
@@ -72,8 +61,49 @@ public class GameServiceImpl implements GameService {
             gameEntity.setDate(Date.from(gameDto.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         }
 
-       Game entity = gameRepository.save(gameEntity);
+        Game entity = gameRepository.save(gameEntity);
         return mapToDto(entity);
+    }
+
+    /**
+     * Maps a GamePlayer DTO to the corresponding user/name fields on a Game entity.
+     * Handles three cases:
+     * <ul>
+     *   <li>Registered player (id present): sets user reference + derived name</li>
+     *   <li>Unregistered player (no id, but name present): clears user reference, sets plain-text name</li>
+     *   <li>Null player: clears both user reference and name</li>
+     * </ul>
+     */
+    private void mapPlayerToEntity(GamePlayer player, Game gameEntity, boolean isWhite) {
+        if (player != null && player.getId() != null) {
+            // Registered user – link by reference and store the display name
+            User user = userRepository.getReferenceById(player.getId());
+            if (isWhite) {
+                gameEntity.setWhite_user(user);
+                gameEntity.setWhite_player_name(player.getFirstName() + " " + player.getLastName());
+            } else {
+                gameEntity.setBlack_user(user);
+                gameEntity.setBlack_player_name(player.getFirstName() + " " + player.getLastName());
+            }
+        } else if (player != null) {
+            // Unregistered player – no user reference, store plain-text name only
+            if (isWhite) {
+                gameEntity.setWhite_user(null);
+                gameEntity.setWhite_player_name(player.getFirstName() + " " + player.getLastName());
+            } else {
+                gameEntity.setBlack_user(null);
+                gameEntity.setBlack_player_name(player.getFirstName() + " " + player.getLastName());
+            }
+        } else {
+            // No player at all – clear everything
+            if (isWhite) {
+                gameEntity.setWhite_user(null);
+                gameEntity.setWhite_player_name(null);
+            } else {
+                gameEntity.setBlack_user(null);
+                gameEntity.setBlack_player_name(null);
+            }
+        }
     }
 
     @Override
@@ -92,23 +122,8 @@ public class GameServiceImpl implements GameService {
 
         // Map directly from DTO to Entity
         Game gameEntity = new Game();
-        if (gameRequest.getWhitePlayer() != null) {
-            if (gameRequest.getWhitePlayer().getId() != null) {
-                gameEntity.setWhite_user(userRepository.getReferenceById(gameRequest.getWhitePlayer().getId()));
-            }
-            gameEntity.setWhite_player_name(gameRequest.getWhitePlayer().getFirstName()+" "+gameRequest.getWhitePlayer().getLastName());
-        } else {
-            gameEntity.setWhite_user(null);
-            gameEntity.setWhite_player_name(null);
-        }
-
-        if (gameRequest.getBlackPlayer() != null && gameRequest.getBlackPlayer().getId() != null) {
-            gameEntity.setBlack_user(userRepository.getReferenceById(gameRequest.getBlackPlayer().getId()));
-            gameEntity.setBlack_player_name(gameRequest.getBlackPlayer().getFirstName()+" "+gameRequest.getBlackPlayer().getLastName());
-        } else {
-            gameEntity.setBlack_user(null);
-            gameEntity.setBlack_player_name(null);
-        }
+        mapPlayerToEntity(gameRequest.getWhitePlayer(), gameEntity, true);
+        mapPlayerToEntity(gameRequest.getBlackPlayer(), gameEntity, false);
 
         gameEntity.setEvent(gameRequest.getEvent());
         gameEntity.setMoves(gameRequest.getMoves());
