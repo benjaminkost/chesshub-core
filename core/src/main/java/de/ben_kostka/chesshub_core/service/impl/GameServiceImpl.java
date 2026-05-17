@@ -159,9 +159,10 @@ public class GameServiceImpl implements GameService {
     }
 
     private GamePlayer mapUnregisteredNameToGamePlayer(String fullPlayerName) {
+        if (fullPlayerName == null || fullPlayerName.trim().isEmpty()) return null;
         GamePlayer gamePlayer = new GamePlayer();
 
-        String[] names = fullPlayerName.split(" ");
+        String[] names = fullPlayerName.split("\\s+");
         String lastName = names[names.length-1];
         String firstNames = Arrays.stream(names)
                 .limit(names.length-1)
@@ -192,6 +193,7 @@ public class GameServiceImpl implements GameService {
         } else {
             dto.setBlackPlayer(mapUnregisteredNameToGamePlayer(entity.getBlack_player_name()));
         }
+
         dto.setResult(entity.getResult());
         dto.setMoves(entity.getMoves());
         dto.setOpening(entity.getOpening());
